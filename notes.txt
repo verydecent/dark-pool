@@ -1,0 +1,30 @@
+Overarching Concepts: Note taking, to do, reminder, progression, organizer, private growth, journal
+
+Features
+- Post notes
+    - Categorize
+    - Write
+    - Draft
+- View all notes
+  - By date
+  - By Category
+  - By highest efficiency
+  - By lowest efficiency
+  - By most tasks
+  - By least tasks
+  - Search
+- View single note
+  - Edit notes
+    - Delete
+    - Categorize
+    - Rewrite
+
+Authorized Views
+- Account dashboard
+- CTA dashboard
+Unauthorized Views
+- Landing
+- About/App Concept
+- Log In
+- Reigster
+-
