@@ -9,7 +9,6 @@ import Routes from '../Routes';
 const Root = () => {
   return (
     <BrowserRouter>
-      Root Component Here
       <Routes />
     </BrowserRouter>
   );
