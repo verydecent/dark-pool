@@ -12,8 +12,8 @@ const Nav = () => {
         <Link to='/concept'>Concept</Link>
       </nav>
       <nav className='nav__utility'>
-        <Link to='log-in'>Log In</Link>
-        <Link to='register'>Register</Link>
+        <Link to='/log-in'>Log In</Link>
+        <Link to='/register'>Register</Link>
       </nav>
     </div>
   );
