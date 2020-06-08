@@ -1,6 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './root.js';
+
+const Root = () => {
+  return (
+    <>
+      Root Component Here
+    </>
+  );
+}
 
 ReactDOM.render(
   <Root />,
