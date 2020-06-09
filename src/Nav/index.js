@@ -9,8 +9,12 @@ const Nav = () => {
         <Link to='/'>Logo Here</Link>
       </div>
       <nav className='nav__menu'>
-        <Link to='/'>Home</Link>
-        <Link to='/concept'>Concept</Link>
+        <ul className='nav__menu__list'>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/concept'>Concept</Link></li>
+          <li><Link to='/post'>Post</Link></li>
+          <li><Link to='/all'>See Notes</Link></li>
+        </ul>
       </nav>
       <nav className='nav__utility'>
         <Link to='/log-in'>Log In</Link>
