@@ -1,18 +1,18 @@
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = {
-  entry: './src/Root/index.js',
+  entry: "./src/Root/index.js",
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ["babel-loader", "eslint-loader"]
       },
       {
         test: /\.css$/i,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
@@ -20,15 +20,15 @@ module.exports = {
     extensions: ['*', '.js', 'jsx']
   },
   output: {
-    path: __dirname + '/build',
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: __dirname + "/build",
+    publicPath: "/",
+    filename: "bundle.js"
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: './build',
+    contentBase: "./build",
     hot: true,
     port: 1024,
     historyApiFallback: true
