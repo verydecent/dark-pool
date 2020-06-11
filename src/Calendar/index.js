@@ -30,11 +30,11 @@ export default class Calendar extends React.Component {
  
   render() {
     
-    let weekdayshortname = this.weekdayshort.map(day => <th key={day}>{day}</th>);
+    let weekdayshortname = this.weekdayshort.map(day => <th key={day} className='week-day'>{day}</th>);
     let blanks = [];
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
       blanks.push(
-        <td className=''></td>
+        <td className='calendar-day empty'></td>
       );
     }
     console.log('blanks', blanks);
@@ -42,7 +42,7 @@ export default class Calendar extends React.Component {
     let daysInMonth = [];
     for (let d = 1; d <= this.daysInMonth(); d++) {
       daysInMonth.push(
-        <td key={d} className=''>{d}</td>
+        <td key={d} className='calendar-day'>{d}</td>
       );
     }
     console.log('daysInMonth', daysInMonth);
