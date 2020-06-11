@@ -5,7 +5,8 @@ export default class Calendar extends React.Component {
   constructor() {
     super();
     this.state = {
-      dateObject: moment()
+      dateObject: moment(),
+      allMonths: moment.months()
     }
     this.weekdayshort = moment.weekdaysShort();
 
@@ -14,6 +15,8 @@ export default class Calendar extends React.Component {
     this.daysInMonth = this.daysInMonth.bind(this);
     this.currentDay = this.currentDay.bind(this);
     this.currentMonth = this.currentMonth.bind(this);
+    this.createMonthList = this.createMonthList.bind(this);
+    this.setMonth = this.setMonth.bind(this);
   }
   
   firstDayOfMonth() {
@@ -37,6 +40,56 @@ export default class Calendar extends React.Component {
 
   currentMonth() {
     return this.state.dateObject.format('MMMM');
+  }
+  
+  createMonthList(props) {
+    let months = [];
+    props.data.map(data => {
+      months.push(
+        <td>
+          <span>{data}</span>
+        </td>
+      );
+    });
+    
+    let rows = [];
+    let cells = [];
+
+    months.forEach((row, i) => {
+      if (i % 3 !== 0 || i == 0) {
+        cells.push(row);
+      }
+      else {
+        rows.push(cells);
+        cells = [];
+        cells.push(row);
+      }
+    });
+    rows.push(cells);
+
+    let monthlist = rows.map((d, i) => {
+      return <tr>{d}</tr>;
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th colSpan='4'>Select a Month</th>
+          </tr>
+        </thead>
+        <tbody>{monthlist}</tbody>
+      </table>
+    );
+  }
+  
+  setMonth(month) {
+    let monthNo = this.month.indexOf(month);
+    let dateObject = Object.assign({}, this.state.dateObject);
+    dateObject = moment(dateObject).set("month", monthNo);
+    this.setState({
+      dateObject: dateObject
+    }); 
   }
  
   render() {
@@ -82,14 +135,17 @@ export default class Calendar extends React.Component {
     
     return (
       <div>
-        <h2>Calendar</h2>
-        <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>{this.currentMonth()}</h2>
-        <table>
-          <thead>
-            <tr>{weekdayshortname}</tr>
-          </thead>
-          <tbody>{daysinmonth}</tbody>
-        </table>
+        <div><this.createMonthList data={this.state.allMonths} /></div>
+        <div>
+          <h2>Calendar</h2>
+          <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>{this.currentMonth()}</h2>
+          <table>
+            <thead>
+              <tr>{weekdayshortname}</tr>
+            </thead>
+            <tbody>{daysinmonth}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
