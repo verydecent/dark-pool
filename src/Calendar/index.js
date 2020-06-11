@@ -12,6 +12,8 @@ export default class Calendar extends React.Component {
     // class methods
     this.firstDayOfMonth = this.firstDayOfMonth.bind(this);
     this.daysInMonth = this.daysInMonth.bind(this);
+    this.currentDay = this.currentDay.bind(this);
+    this.currentMonth = this.currentMonth.bind(this);
   }
   
   firstDayOfMonth() {
@@ -27,6 +29,15 @@ export default class Calendar extends React.Component {
     
     return daysInMonth;
   }
+  
+  currentDay() {
+    const { dateObject } = this.state;
+    return dateObject.format('D');
+  }
+
+  currentMonth() {
+    return this.state.dateObject.format('MMMM');
+  }
  
   render() {
     
@@ -37,24 +48,47 @@ export default class Calendar extends React.Component {
         <td className='calendar-day empty'></td>
       );
     }
-    console.log('blanks', blanks);
     
     let daysInMonth = [];
     for (let d = 1; d <= this.daysInMonth(); d++) {
+      const currentDate = this.currentDay() == d ? { color: 'red' } : {};
       daysInMonth.push(
-        <td key={d} className='calendar-day'>{d}</td>
+        <td key={d} style={currentDate} className='calendar-day'>{d}</td>
       );
     }
-    console.log('daysInMonth', daysInMonth);
-    
 
+    var totalSlots = [...blanks, ...daysInMonth];
+    let rows = [];
+    let cells = [];
+
+    totalSlots.forEach((row, i) => {
+      if (i % 7 !== 0) {
+        cells.push(row);
+      }
+      else {
+        rows.push(cells); 
+        cells = [];
+        cells.push(row);
+      }
+      if (i === totalSlots.length - 1) {
+        rows.push(cells);
+        cells = [];
+      }
+    });
+    
+    let daysinmonth = rows.map((d, i) => {
+      return <tr key={i}>{d}</tr>;
+    });
+    
     return (
       <div>
         <h2>Calendar</h2>
+        <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>{this.currentMonth()}</h2>
         <table>
           <thead>
             <tr>{weekdayshortname}</tr>
           </thead>
+          <tbody>{daysinmonth}</tbody>
         </table>
       </div>
     );
