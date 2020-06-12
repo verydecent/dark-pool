@@ -6,7 +6,8 @@ export default class Calendar extends React.Component {
     super();
     this.state = {
       dateObject: moment(),
-      allMonths: moment.months()
+      allMonths: moment.months(),
+			showMonthTable: false,
     }
     this.weekdayshort = moment.weekdaysShort();
 
@@ -17,7 +18,12 @@ export default class Calendar extends React.Component {
     this.currentMonth = this.currentMonth.bind(this);
     this.createMonthList = this.createMonthList.bind(this);
     this.setMonth = this.setMonth.bind(this);
+		this.showMonth = this.showMonth.bind(this);
   }
+
+	componentDidMount() {
+		console.log('=== CDM ===');
+	}
   
   firstDayOfMonth() {
     let dateObject = this.state.dateObject;
@@ -46,7 +52,10 @@ export default class Calendar extends React.Component {
     let months = [];
     props.data.map(data => {
       months.push(
-        <td>
+        <td
+          key={data}
+          onClick={e => this.setMonth(data)}
+        >
           <span>{data}</span>
         </td>
       );
@@ -68,7 +77,7 @@ export default class Calendar extends React.Component {
     rows.push(cells);
 
     let monthlist = rows.map((d, i) => {
-      return <tr>{d}</tr>;
+      return <tr key={i}>{d}</tr>;
     });
 
     return (
@@ -84,16 +93,21 @@ export default class Calendar extends React.Component {
   }
   
   setMonth(month) {
-    let monthNo = this.month.indexOf(month);
+    let monthNo = this.state.allMonths.indexOf(month);
+    
     let dateObject = Object.assign({}, this.state.dateObject);
+      
     dateObject = moment(dateObject).set("month", monthNo);
     this.setState({
       dateObject: dateObject
     }); 
   }
+
+	showMonth() {
+		this.setState(prevState => ({ showMonthTable: !prevState.showMonthTable }));
+	}
  
   render() {
-    
     let weekdayshortname = this.weekdayshort.map(day => <th key={day} className='week-day'>{day}</th>);
     let blanks = [];
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
@@ -135,16 +149,28 @@ export default class Calendar extends React.Component {
     
     return (
       <div>
-        <div><this.createMonthList data={this.state.allMonths} /></div>
+        
         <div>
-          <h2>Calendar</h2>
-          <h2 style={{ fontWeight: 'bold', fontSize: 20 }}>{this.currentMonth()}</h2>
+          <h2>
+						Calendar 
+					</h2>
+					<h2
+						onClick={() => this.showMonth()}
+						style={{ fontWeight: 'bold', fontSize: 20 }}
+					>
+						{this.currentMonth()}
+					</h2>
+					<div>
+						{this.state.showMonthTable && <this.createMonthList data={this.state.allMonths} />}
+					</div>
+					{!this.state.showMonthTable && 
           <table>
             <thead>
               <tr>{weekdayshortname}</tr>
             </thead>
             <tbody>{daysinmonth}</tbody>
           </table>
+					}
         </div>
       </div>
     );
