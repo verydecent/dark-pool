@@ -1,0 +1,25 @@
+.nav {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+.nav__global-logo {
+  width: 177px;
+  height: 40px;
+}
+
+.nav__menu {
+  //margin-top: 22px;
+  //margin-left: 50px;
+}
+
+.nav__menu__list {
+  display: flex;
+}
+
+.nav__utility {
+  margin-left: auto;
+}
