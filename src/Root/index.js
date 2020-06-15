@@ -5,12 +5,10 @@ import './global.css';
 import './font.css';
 import './reset.css';
 import Routes from '../Routes';
-import Nav from '../Nav';
 
 const Root = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes />
     </BrowserRouter>
   );
