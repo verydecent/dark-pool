@@ -1,4 +1,8 @@
-.main-view {
+.app-view {
 	display: flex;
 	height: 100%;
+}
+
+.main-view {
+	padding: 24px;
 }
