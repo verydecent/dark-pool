@@ -1,4 +1,5 @@
 import React from 'react';
+import withNav from '../Hoc/withNav';
 
 const Home = () => {
   return (
@@ -8,4 +9,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default withNav(Home);
