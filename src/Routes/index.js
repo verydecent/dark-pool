@@ -10,7 +10,6 @@ import SideNav from '../App/SideNav';
 const Routes = () => {
   return (
 		<>
-			<Nav />
 			<Switch>
 				// Landing
 				<Route exact path='/' component={Home} />
