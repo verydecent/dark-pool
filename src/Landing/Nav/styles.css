@@ -9,12 +9,9 @@
 }
 
 .nav__menu {
+  margin-left: auto;
 }
 
 .nav__menu__list {
   display: flex;
-}
-
-.nav__utility {
-  margin-left: auto;
 }
