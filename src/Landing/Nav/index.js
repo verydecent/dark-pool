@@ -10,9 +10,9 @@ const Nav = () => {
       </div>
       <nav className='nav__menu'>
         <ul className='nav__menu__list'>
-          <li><Link to='/'>Home</Link></li>
           <li><Link to='/login'>Login</Link></li>
           <li><Link to='/register'>Register</Link></li>
+          <li><Link to='/Dash'>Dash</Link></li>
         </ul>
       </nav>
 		</div>
