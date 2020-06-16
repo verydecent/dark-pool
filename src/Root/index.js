@@ -9,9 +9,11 @@ import Routes from '../Routes';
 const Root = () => {
   return (
 		<div className='root-container'>
-			<BrowserRouter>
-				<Routes />
-			</BrowserRouter>
+			<div className='root-container-inner'>
+				<BrowserRouter>
+					<Routes />
+				</BrowserRouter>
+			</div>
 		</div>
   );
 }
