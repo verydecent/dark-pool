@@ -1,4 +1,5 @@
 .sidenav {
 	border: 1px solid #fff;
 	color: #fff;
+	width: calc(100% / 5);
 }
