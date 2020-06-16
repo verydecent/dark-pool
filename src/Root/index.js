@@ -8,9 +8,11 @@ import Routes from '../Routes';
 
 const Root = () => {
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+		<div className='root-container'>
+			<BrowserRouter>
+				<Routes />
+			</BrowserRouter>
+		</div>
   );
 }
 
