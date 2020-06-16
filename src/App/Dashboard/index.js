@@ -1,13 +1,14 @@
 import React from 'react';
 import SideNav from '../SideNav';
+import withSideNav from '../Hoc/withSideNav';
+import './styles.css';
 
 const Dashboard = () => {
 	return (
 		<div className='dashboard'>
-			<SideNav />
-			Dashboard component
+			Dashboard Component
 		</div>
-	)
+	);
 }
 
-export default Dashboard;
+export default withSideNav(Dashboard);
