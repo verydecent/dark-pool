@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 const SideNav = () => {
 	return (
 		<div className='sidenav'>
-			<div className='sidenav-logo'>darkpoolnotes</div>
+			<div className='sidenav-logo'>
+				<Link to='/'>darkpoolnotes</Link>
+			</div>
 			<div className='sidenav-link-list'>
 				<ul>
 					<li>
