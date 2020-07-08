@@ -1,6 +1,12 @@
 .sidenav {
 	color: #fff;
-	width: calc(100% / 5);
+  width: 240px;
 	background-color: #212121;
 	height: 100%;
+  padding: 56px 24px 0px;
+}
+
+.sidenav-link {
+  height: 32px;
+  line-height: 32px;
 }

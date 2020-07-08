@@ -8,27 +8,29 @@ const SideNav = () => {
 			<div className='sidenav-logo'>
 				<Link to='/'>darkpoolnotes</Link>
 			</div>
-			<div className='sidenav-link-list'>
-				<ul>
-					<li>
-						<Link to='/app'>Dashboard</Link>
+			<div className='sidenav-link-container'>
+				<ul className='sidenav-link-list'>
+					<li className='sidenav-link'>
+						<Link to='/app'>X Dashboard</Link>
 					</li>
-					<li>
-						<Link to='/app/calendar'>Calendar</Link>
+					<li className='sidenav-link'>
+						<Link to='/app/calendar'>X Calendar</Link>
 					</li>
-					<li>
-						<Link to='/app/collection'>Collection</Link>
+					<li className='sidenav-link'>
+						<Link to='/app/collection'>X Collection</Link>
 					</li>
-					<li>
-						<Link to='/app/profile'>Profile</Link>
-					</li>
-					<li>
-						<Link to='/app/account'>Account</Link>
-					</li>
-					<li>
-						<Link to='/'>Logout</Link>
+					<li className='sidenav-link'>
+						<Link to='/app/profile'>X Profile</Link>
 					</li>
 				</ul>
+        <ul className='sidenav-link-utilities'>
+          <li className='sidenav-link'>
+            <Link to='/app/account'>X Account</Link>
+					</li>
+					<li className='sidenav-link'>
+						<Link to='/'>X Logout</Link>
+					</li>
+        </ul>
 			</div>
 		</div>
 	);
