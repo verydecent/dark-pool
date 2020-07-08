@@ -7,6 +7,7 @@ import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
 // In App
 import Dashboard from '../Components/Dashboard';
+import Collection from '../Components/Collection';
 
 const Routes = () => {
   return (
@@ -16,8 +17,8 @@ const Routes = () => {
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
 			// App
-			<Route path='/app' component={Dashboard} />
-
+			<Route  exact path='/app' component={Dashboard} />
+      <Route exact path='/app/collection' component={Collection} />
 		</Switch>
   );
 }
