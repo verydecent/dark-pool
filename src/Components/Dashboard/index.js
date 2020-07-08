@@ -11,7 +11,6 @@ const Dashboard = () => {
 			</div>
 			<div className='dashboard-agenda'>
 				Agenda goes here
-
 			</div>
 		</div>
 	);
