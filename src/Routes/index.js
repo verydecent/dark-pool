@@ -7,7 +7,6 @@ import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
 // In App
 import Dashboard from '../Components/Dashboard';
-import SideNav from '../Components/SideNav';
 
 const Routes = () => {
   return (
