@@ -27,4 +27,11 @@ Unauthorized Views
 - About/App Concept
 - Log In
 - Reigster
--
+
+Update - Wed June 24 2020
+
+Simplifying down to these views
+- Dashboard displaying graphs
+- Calendar view
+- Account panel for updating password and viewing email and username
+- Profile view for public viewing info such as member since, and a graph of their progress

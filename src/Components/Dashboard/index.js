@@ -6,7 +6,13 @@ import './styles.css';
 const Dashboard = () => {
 	return (
 		<div className='dashboard'>
-			Dashboard Component
+			<div className='dashboard-graph'>
+				Graph goes here
+			</div>
+			<div className='dashboard-agenda'>
+				Agenda goes here
+
+			</div>
 		</div>
 	);
 }

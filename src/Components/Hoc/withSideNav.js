@@ -4,9 +4,11 @@ import './styles.css';
 
 const withSideNav = Component => () => {
 	return (
-		<div className='main-view'>
+		<div className='app-view'>
 			<SideNav />
-			<Component />
+			<div className='main-view'>
+				<Component />
+			</div>
 		</div>
 	);
 }
