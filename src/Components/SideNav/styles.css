@@ -3,10 +3,23 @@
   width: 240px;
 	background-color: #212121;
 	height: 100%;
-  padding: 56px 24px 0px;
+  padding: 40px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidenav-logo {
+  font-size: 24px;
+}
+
+.sidenav-link-list {
+  padding-top: 32px;
+}
+
+.sidenav-link-utilities {
 }
 
 .sidenav-link {
   height: 32px;
-  line-height: 32px;
 }

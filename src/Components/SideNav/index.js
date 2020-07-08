@@ -5,33 +5,33 @@ import { Link } from 'react-router-dom';
 const SideNav = () => {
 	return (
 		<div className='sidenav'>
-			<div className='sidenav-logo'>
-				<Link to='/'>darkpoolnotes</Link>
-			</div>
-			<div className='sidenav-link-container'>
-				<ul className='sidenav-link-list'>
-					<li className='sidenav-link'>
-						<Link to='/app'>X Dashboard</Link>
-					</li>
-					<li className='sidenav-link'>
-						<Link to='/app/calendar'>X Calendar</Link>
-					</li>
-					<li className='sidenav-link'>
-						<Link to='/app/collection'>X Collection</Link>
-					</li>
-					<li className='sidenav-link'>
-						<Link to='/app/profile'>X Profile</Link>
-					</li>
-				</ul>
-        <ul className='sidenav-link-utilities'>
+      <div className='sidenav-container'>
+        <div className='sidenav-logo'>
+          <Link to='/'>DarkPoolNotes</Link>
+        </div>
+        <ul className='sidenav-link-list'>
           <li className='sidenav-link'>
-            <Link to='/app/account'>X Account</Link>
-					</li>
-					<li className='sidenav-link'>
-						<Link to='/'>X Logout</Link>
-					</li>
+            <Link to='/app'>Dashboard</Link>
+          </li>
+          <li className='sidenav-link'>
+            <Link to='/app/calendar'>Calendar</Link>
+          </li>
+          <li className='sidenav-link'>
+            <Link to='/app/collection'>Collection</Link>
+          </li>
+          <li className='sidenav-link'>
+            <Link to='/app/profile'>Profile</Link>
+          </li>
         </ul>
-			</div>
+      </div>
+			<ul className='sidenav-link-utilities'>
+        <li className='sidenav-link'>
+          <Link to='/app/account'>Account</Link>
+        </li>
+        <li className='sidenav-link'>
+          <Link to='/'>Logout</Link>
+        </li>
+      </ul>
 		</div>
 	);
 }
