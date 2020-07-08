@@ -14,9 +14,3 @@ a {
 	height: 100vh;
 	width: 100wh;
 }
-
-.root-container-inner {
-	width: 1440px;
-	height: 1024px;
-	margin: 0 auto;
-}
