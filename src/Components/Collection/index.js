@@ -1,6 +1,7 @@
 import React from 'react';
 import withSideNav from '../Hoc/withSideNav.js';
 import './styles.css';
+import CollectionBox from '../CollectionBox';
 
 class Collection extends React.Component {
   constructor() {
@@ -20,7 +21,6 @@ class Collection extends React.Component {
           </div>
          
           <div className='collection-box-container'>
-
             <div className='collection-box-container-header'>
               <h2 className='date-header'>Wed July 8 2020</h2>
               <div className='collection-carousel-buttons'>
@@ -28,7 +28,19 @@ class Collection extends React.Component {
                 <button>right</button>
               </div>
             </div>
-            BOX BOX BOX BOX
+            <div className='collection-list-container'>
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+              <CollectionBox />
+            </div>
           </div>
         </div>
       </div>
