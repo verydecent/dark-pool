@@ -7,7 +7,8 @@ class Collection extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      selectedCollectionBox: null,
+      isModalOpen: false,
     };
   }
 
