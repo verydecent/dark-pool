@@ -10,6 +10,22 @@ class Collection extends React.Component {
       selectedCollectionBox: null,
       isModalOpen: false,
     };
+
+    this.selectCollectionBox = this.selectCollectionBox.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  selectCollectionBox() {
+    console.log('selectCollectionBox');
+  }
+
+  toggleModal() {
+    console.log('toggleModal()');
+    this.setState(prevState => {
+      return {
+        isModalOpen: prevState.isModalOpen
+      };
+    });
   }
 
   render() {
@@ -29,8 +45,13 @@ class Collection extends React.Component {
                 <button>right</button>
               </div>
             </div>
+
+            {this.state.selectedCollectionBox ?
+            <div className='collection-modal'>
+              OPENED COLLECTION MODAL 
+            </div> : null}
             <div className='collection-list-container'>
-              <CollectionBox />
+              <CollectionBox isModalOpen={this.isModalOpen}/>
               <CollectionBox />
               <CollectionBox />
               <CollectionBox />
