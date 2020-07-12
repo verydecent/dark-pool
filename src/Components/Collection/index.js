@@ -2,6 +2,7 @@ import React from 'react';
 import withSideNav from '../Hoc/withSideNav.js';
 import './styles.css';
 import CollectionBox from '../CollectionBox';
+import CollectionModal from '../CollectionModal';
 
 class Collection extends React.Component {
   constructor() {
@@ -47,7 +48,7 @@ class Collection extends React.Component {
 
             {this.state.isModalOpen ?
             <div className='collection-modal'>
-              OPENED COLLECTION MODAL 
+              <CollectionModal />
             </div> : null}
             <div className='collection-list-container'>
               <CollectionBox toggleModal={this.toggleModal}/>
