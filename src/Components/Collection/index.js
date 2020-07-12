@@ -46,10 +46,9 @@ class Collection extends React.Component {
               </div>
             </div>
 
-            {this.state.isModalOpen ?
             <div className='collection-modal'>
-              <CollectionModal />
-            </div> : null}
+              <CollectionModal isModalOpen={this.state.isModalOpen}/>
+            </div>
             <div className='collection-list-container'>
               <CollectionBox toggleModal={this.toggleModal}/>
               <CollectionBox />
