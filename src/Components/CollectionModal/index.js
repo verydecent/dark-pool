@@ -11,11 +11,7 @@ const CollectionModal = ({
     <div className='collection-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
       <div className='collection-modal-overlay' onClick={toggleModal}></div>
       <div className='collection-modal-content'>
-
-      COLLECTION MODAL COMPONENT
-
-      TITLE : ~> {title}
-      TODOS: ~> {todos}
+        Collection Modal Component
       </div>
     </div>
   );
