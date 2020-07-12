@@ -20,12 +20,11 @@ class Collection extends React.Component {
   }
 
   toggleModal() {
-    console.log('toggleModal()');
     this.setState(prevState => {
       return {
-        isModalOpen: prevState.isModalOpen
+        isModalOpen: !prevState.isModalOpen
       };
-    });
+    }, console.log(this.state.isModalOpen));
   }
 
   render() {
@@ -46,12 +45,12 @@ class Collection extends React.Component {
               </div>
             </div>
 
-            {this.state.selectedCollectionBox ?
+            {this.state.isModalOpen ?
             <div className='collection-modal'>
               OPENED COLLECTION MODAL 
             </div> : null}
             <div className='collection-list-container'>
-              <CollectionBox isModalOpen={this.isModalOpen}/>
+              <CollectionBox toggleModal={this.toggleModal}/>
               <CollectionBox />
               <CollectionBox />
               <CollectionBox />
