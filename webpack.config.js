@@ -32,10 +32,6 @@ module.exports = {
     hot: true,
     port: 1024,
     historyApiFallback: true,
-    overlay: {
-      errors: true,
-      warnings: true
-    }
   },
   devtool: "cheap-module-source-map"
 };	
