@@ -9,36 +9,6 @@ import RobotoRegular from '../../assets/fonts/Roboto-Regular.ttf';
 import RobotoMedium from '../../assets/fonts/Roboto-Medium.ttf';
 import RobotoBold from '../../assets/fonts/Roboto-Bold.ttf';
 
-const myGlobalCSS = `
-  @font-face {
-    font-family: 'Roboto',
-    font-style: normal,
-    font-weight: normal,
-    src:
-      url('${RobotoRegular}') format('ttf'),
-  }
-
-  @font-face {
-    font-family: 'Roboto',
-    font-style: normal,
-    font-weight: 500,
-    src:
-      url('${RobotoMedium}') format('ttf'),
-  }
-
-  @font-face {
-  font-family: 'Roboto',
-  font-style: normal,
-  font-weight: 700,
-  src
-    url('${RobotoBold}') format('ttf'),
-  }
-
-  html, body {
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-
 const Root = () => {
   return (
 		<div className='root-container'>
