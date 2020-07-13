@@ -16,8 +16,22 @@ const myGlobalCSS = `
     font-weight: normal,
     src:
       url('${RobotoRegular}') format('ttf'),
+  }
+
+  @font-face {
+    font-family: 'Roboto',
+    font-style: normal,
+    font-weight: 500,
+    src:
       url('${RobotoMedium}') format('ttf'),
-      url('${RobotoBold}') format('ttf'),
+  }
+
+  @font-face {
+  font-family: 'Roboto',
+  font-style: normal,
+  font-weight: 700,
+  src
+    url('${RobotoBold}') format('ttf'),
   }
 
   html, body {
