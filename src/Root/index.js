@@ -5,9 +5,6 @@ import './global.css';
 import './font.css';
 import './reset.css';
 import Routes from '../Routes';
-import RobotoRegular from '../../assets/fonts/Roboto-Regular.ttf';
-import RobotoMedium from '../../assets/fonts/Roboto-Medium.ttf';
-import RobotoBold from '../../assets/fonts/Roboto-Bold.ttf';
 
 const Root = () => {
   return (

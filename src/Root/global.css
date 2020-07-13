@@ -8,6 +8,34 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+    src:
+      url('../../assets/fonts/RobotoRegular.ttf') format('ttf')
+  }
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src:
+    url('../../assets/fonts/RobotoMedium.ttf') format('ttf')
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url('../../assets/fonts/RobotoBold.ttf') format('ttf')
+}
+
+  html, body {
+    font-family: 'Roboto', sans-serif;
+  }
+
 a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
