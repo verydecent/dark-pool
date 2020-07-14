@@ -17,7 +17,6 @@ class Collection extends React.Component {
   }
 
   selectCollectionBox() {
-    console.log('selectCollectionBox');
   }
 
   toggleModal() {
@@ -25,7 +24,7 @@ class Collection extends React.Component {
       return {
         isModalOpen: !prevState.isModalOpen
       };
-    }, console.log(this.state.isModalOpen));
+    });
   }
 
   render() {
