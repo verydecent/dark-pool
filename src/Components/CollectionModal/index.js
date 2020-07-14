@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Times } from '../FAIcons';
+import { Times, WindowClose, TimesCircle } from '../FAIcons';
 
 const CollectionModal = ({
   isModalOpen,
@@ -12,13 +12,13 @@ const CollectionModal = ({
   console.log(Times)
   return (
     <div className='collection-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
-      <div className='collection-modal-overlay' onClick={toggleModal}></div>
+      <div className='collection-modal-overlay' onClick={() => toggleModal()}></div>
       <div className='collection-modal-content'>
         <div className='collection-modal-content-header'>
            <h1 className='collection-modal-content-title'>
             Monday July 13 2020
           </h1>
-          <div className='collection-modal-icon'>
+          <div className='collection-modal-icon' onClick={() => toggleModal()}>
             <Times />
           </div>
         </div>
