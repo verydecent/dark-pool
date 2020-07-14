@@ -8,7 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { twitter } from '@fortawesome/free-brands-svg-icons';
 import { faTimesCircle, faTimes, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
-library.add(fab, faTimesCircle);
+library.add(faTimesCircle, faTimes, faWindowClose);
 
 const Root = () => {
   return (
