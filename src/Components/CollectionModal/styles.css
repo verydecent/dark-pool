@@ -27,5 +27,21 @@
   transform: translate(-50%, -50%);
   background-color: #424242;
   border-radius: 4px;
-  padding: 20px 24px 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.collection-modal-content-header {
+  padding-bottom: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: space-between;
+}
+
+.collection-modal-content-body {
+  padding-top: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
