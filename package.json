@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "css.gg": "^2.0.0",
-    "file-loader": "^6.0.0",
     "moment": "^2.26.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
