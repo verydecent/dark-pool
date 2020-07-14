@@ -4,6 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import './global.css';
 import './reset.css';
 import Routes from '../Routes';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { twitter } from '@fortawesome/free-brands-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, faTimesCircle);
 
 const Root = () => {
   return (
