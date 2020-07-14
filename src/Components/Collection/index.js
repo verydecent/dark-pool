@@ -37,8 +37,8 @@ class Collection extends React.Component {
             <button>Create Collection</button>
           </div>
          
-          <div className='collection-box-container'>
-            <div className='collection-box-container-header'>
+          <div className='collection-body-container'>
+            <div className='collection-body-container-header'>
               <h2 className='date-header'>Wed July 8 2020</h2>
               <div className='collection-carousel-buttons'>
                 <button>Left</button>

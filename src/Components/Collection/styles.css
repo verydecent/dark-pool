@@ -14,24 +14,23 @@
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  padding: 16px 16px 12px;
+  padding: 16px;
 }
 
-.collection-box-container {
-  padding: 16px 16px 24px;
+.collection-body-container {
+  padding: 16px;
 }
 
-.collection-box-container-header {
+.collection-body-container-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.6);
-  padding-bottom: 16px;
+  padding-bottom: 12px;
 }
 
 .collection-list-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 5px;
 }
