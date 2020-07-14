@@ -1,11 +1,11 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
-  font-family: 'Roboto', sans-serif;
 }
 
 @font-face {
@@ -13,7 +13,7 @@ html {
   font-style: normal;
   font-weight: normal;
     src:
-      url('../../assets/fonts/RobotoRegular.ttf') format('ttf')
+      url('../../assets/fonts/Roboto-Regular.ttf') format('ttf')
   }
 
 @font-face {
@@ -21,7 +21,7 @@ html {
   font-style: normal;
   font-weight: 500;
   src:
-    url('../../assets/fonts/RobotoMedium.ttf') format('ttf')
+    url('../../assets/fonts/Roboto-Medium.ttf') format('ttf')
 }
 
 @font-face {
@@ -29,12 +29,8 @@ html {
   font-style: normal;
   font-weight: 700;
   src:
-    url('../../assets/fonts/RobotoBold.ttf') format('ttf')
+    url('../../assets/fonts/Roboto-Bold.ttf') format('ttf')
 }
-
-  html, body {
-    font-family: 'Roboto', sans-serif;
-  }
 
 a {
   text-decoration: none;
