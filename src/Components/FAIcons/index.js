@@ -17,3 +17,19 @@ export const Plus = () => {
     </div>
   );
 }
+
+export const AngleLeft = () => {
+  return (
+    <div className='button-icon'>
+      <FontAwesomeIcon icon='angle-left' />
+    </div>
+  );
+}
+
+export const AngleRight = () => {
+  return (
+    <div className='button-icon'>
+      <FontAwesomeIcon icon='angle-right' />
+    </div>
+  );
+}
