@@ -25,3 +25,9 @@ export const WindowClose = () => {
     </div>
   );
 }
+
+export const Plus = () => {
+  return (
+    <FontAwesomeIcon icon='plus' />
+  );
+}
