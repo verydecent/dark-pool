@@ -8,6 +8,7 @@ import Register from '../Components/Landing/Register';
 // In App
 import Dashboard from '../Components/Dashboard';
 import TaskView from '../Components/TaskView';
+import CalendarView from '../Components/CalendarView';
 
 const Routes = () => {
   return (
@@ -18,7 +19,8 @@ const Routes = () => {
       <Route path='/register' component={Register} />
 			// App
 			<Route  exact path='/app' component={Dashboard} />
-      <Route exact path='/app/collection' component={TaskView} />
+      <Route exact path='/app/tasks' component={TaskView} />
+      <Route exact path='/app/calendar' component={CalendarView} />
 		</Switch>
   );
 }
