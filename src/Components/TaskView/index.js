@@ -1,8 +1,8 @@
 import React from 'react';
 import withSideNav from '../Hoc/withSideNav.js';
 import './styles.css';
-import CollectionBox from '../CollectionBox';
-import CollectionModal from '../CollectionModal';
+import Task from '../Task';
+import TaskModal from '../TaskModal';
 
 class Collection extends React.Component {
   constructor() {
@@ -45,22 +45,15 @@ class Collection extends React.Component {
               </div>
             </div>
 
-            <CollectionModal
+            <TaskModal
               isModalOpen={this.state.isModalOpen}
               toggleModal={this.toggleModal}
             />
             <div className='collection-list-container'>
-              <CollectionBox toggleModal={this.toggleModal}/>
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
-              <CollectionBox />
+              <Task toggleModal={this.toggleModal}/>
+              <Task />
+              <Task />
+              <Task />
             </div>
           </div>
         </div>
