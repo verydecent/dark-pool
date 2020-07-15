@@ -11,10 +11,10 @@ const SideNav = () => {
         </div>
         <ul className='sidenav-link-list'>
           <li className='sidenav-link'>
-            <Link to='/app/collection'>Collection</Link>
+            <Link to='/app'>Dashboard</Link>
           </li>
           <li className='sidenav-link'>
-            <Link to='/app'>Dashboard</Link>
+            <Link to='/app/tasks'>Tasks</Link>
           </li>
           <li className='sidenav-link'>
             <Link to='/app/calendar'>Calendar</Link>
