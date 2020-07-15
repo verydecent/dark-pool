@@ -3,10 +3,16 @@ import './styles.css';
 import { Times } from '../FAIcons';
 
 const TaskModal = ({
-  isModalOpen,
+  // values
+  isModalOpen, 
+  taskTitle,
+  taskDescription,
+  taskDateCreated,
+  tasks,
+
+  // methods
   toggleModal,
-  title,
-  todos,
+  handleChange
 }) => {
 
   return (
@@ -17,7 +23,7 @@ const TaskModal = ({
            <h1 className='task-modal-content-title'>
              Task Name
           </h1>
-          <div className='task-modal-icon' onClick={() => toggleModal()}>
+          <div onClick={() => toggleModal()}>
             <Times />
           </div>
         </div>
@@ -34,19 +40,38 @@ const TaskModal = ({
                   </label>
                 </div>
                 <div className='task-modal-content-details-row-right'>
-                  Monday July 14 2020
+                  {taskDateCreated}
                 </div>
               </div>
               <div className='task-modal-content-details-row'>
                 <div className='task-modal-content-details-row-left'>
                   <label className='task-modal-content-details-label'>
-                    Description
+                    Title
                   </label>
                 </div>
                 <div className='task-modal-content-details-row-right'>
-                  Create Task Modal. Ensure the redux and fetch calls make sense wihe db.
+                  <input
+                    name='taskTitle'
+                    value={taskTitle}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
+              <div className='task-modal-content-details-row'>
+                <div className='task-modal-content-details-row-left'>
+                  <label className='task-modal-content-details-label'>
+                    Title
+                  </label>
+                </div>
+                <div className='task-modal-content-details-row-right'>
+                  <input
+                    name='taskDescription'
+                    value={taskDescription}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
             </div>
             <div className='task-modal-content-graph-container'>
               Graph goes here

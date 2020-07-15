@@ -9,15 +9,35 @@ class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedTask: null,
+      chosenTaskForModalView: null,
       isModalOpen: false,
+      
+      taskTitle: '',
+      taskDescription: '',
+      tasks: [],
     };
 
-    this.selectTask = this.selectTask.bind(this);
+    this.openModalToAddTask = this.openModalToAddTask.bind(this);
+    this.addSubtask= this.addSubtask.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  selectTask() {
+  openModalToAddTask() {
+    console.log('openModalToAddTask()');
+    this.toggleModal();
+  }
+
+  addSubtask() {
+    
+  }
+
+  handleChange(e) {
+    console.log('handleChange', e.target);
+    this.setState({
+      [e.target.name]: e.target.value
+
+    });
   }
 
   toggleModal() {
@@ -34,7 +54,9 @@ class TaskView extends React.Component {
         <div className='collection-container'>
           <div className='collection-header-container'>
             <h2 className='collection-title'>Your Tasks</h2>
-            <Plus />
+            <div onClick={() => this.openModalToAddTask()}>
+              <Plus />
+            </div>
           </div>
          
           <div className='collection-body-container'>
@@ -47,8 +69,13 @@ class TaskView extends React.Component {
             </div>
 
             <TaskModal
+              taskTitle={this.state.taskTitle}
+              taskDescription={this.state.taskDescription}
+              subtask={this.state.selectedTask ? this.state.selectedTask.subtasks : null}
+              taskDateCreated={this.state.selectedTask ? this.state.selectedTask.dateCreated : null}
               isModalOpen={this.state.isModalOpen}
               toggleModal={this.toggleModal}
+              handleChange={this.handleChange}
             />
             <div className='collection-list-container'>
               <Task toggleModal={this.toggleModal}/>
