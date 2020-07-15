@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import { Times, WindowClose, TimesCircle } from '../FAIcons';
 
-const CollectionModal = ({
+const TaskModal = ({
   isModalOpen,
   toggleModal,
   title,
@@ -11,22 +11,22 @@ const CollectionModal = ({
 
   console.log(Times)
   return (
-    <div className='collection-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
-      <div className='collection-modal-overlay' onClick={() => toggleModal()}></div>
-      <div className='collection-modal-content'>
-        <div className='collection-modal-content-header'>
-           <h1 className='collection-modal-content-title'>
+    <div className='task-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
+      <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
+      <div className='task-modal-content'>
+        <div className='task-modal-content-header'>
+           <h1 className='task-modal-content-title'>
             Monday July 13 2020
           </h1>
-          <div className='collection-modal-icon' onClick={() => toggleModal()}>
+          <div className='task-modal-icon' onClick={() => toggleModal()}>
             <Times />
           </div>
         </div>
-        <div className='collection-modal-content-body'>
-          <div className='collection-modal-content-top-container'>
-            <div className='collection-modal-content-details-container'>
+        <div className='task-modal-content-body'>
+          <div className='task-modal-content-top-container'>
+            <div className='task-modal-content-details-container'>
               Details go here
-              <div className='collection-modal-content-details-input'>
+              <div className='task-modal-content-details-input'>
               </div>
               
               <div className='task-modal-content-details-row'>
@@ -46,13 +46,13 @@ const CollectionModal = ({
                 </div>
               </div>
             </div>
-            <div className='collection-modal-content-graph-container'>
+            <div className='task-modal-content-graph-container'>
               Graph goes here
             </div>
           </div>
 
-          <div className='collection-modal-content-bottom-container'>
-            <div className='collection-modal-content-input-container'>
+          <div className='task-modal-content-bottom-container'>
+            <div className='task-modal-content-input-container'>
 
             </div>
           </div>
@@ -62,4 +62,4 @@ const CollectionModal = ({
   );
 }
 
-export default CollectionModal;
+export default TaskModal;
