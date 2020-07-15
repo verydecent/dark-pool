@@ -45,3 +45,17 @@
   padding-left: 24px;
   padding-right: 24px;
 }
+
+.collection-modal-content-top-container {
+  display: flex;
+}
+
+.collection-modal-content-graph-container {
+  border: 1px solid red;
+  flex: 1;
+}
+
+.collection-modal-content-details-container {
+  border: 1px solid blue;
+  flex: 1;
+}

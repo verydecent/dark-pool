@@ -23,8 +23,31 @@ const CollectionModal = ({
           </div>
         </div>
         <div className='collection-modal-content-body'>
-          Body Here
-        </div>
+          <div className='collection-modal-content-top-container'>
+            <div className='collection-modal-content-graph-container'>
+              Graph goes here
+            </div>
+            <div className='collection-modal-content-details-container'>
+              Details go here
+              <div className='collection-modal-content-details-input'>
+                <input />
+                Date Created
+                Last Edited
+                Description
+
+              </div>
+            </div>
+          </div>
+
+          <div className='collection-modal-content-bottom-container'>
+            <div className='collection-modal-content-input-container'>
+              <input
+                className='collection-modal-content-input'
+                placeholder='Write something you have to do!'
+              />
+            </div>
+          </div>
+         </div>
       </div>
     </div>
   );
