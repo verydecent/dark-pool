@@ -9,14 +9,13 @@ const TaskModal = ({
   todos,
 }) => {
 
-  console.log(Times)
   return (
     <div className='task-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
       <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
       <div className='task-modal-content'>
         <div className='task-modal-content-header'>
            <h1 className='task-modal-content-title'>
-            Monday July 13 2020
+             Task Name
           </h1>
           <div className='task-modal-icon' onClick={() => toggleModal()}>
             <Times />
@@ -25,13 +24,14 @@ const TaskModal = ({
         <div className='task-modal-content-body'>
           <div className='task-modal-content-top-container'>
             <div className='task-modal-content-details-container'>
-              Details go here
               <div className='task-modal-content-details-input'>
               </div>
               
               <div className='task-modal-content-details-row'>
                 <div className='task-modal-content-details-row-left'>
-                  Date Published
+                  <label className='task-modal-content-details-label'>
+                    Published
+                  </label>
                 </div>
                 <div className='task-modal-content-details-row-right'>
                   Monday July 14 2020
@@ -39,7 +39,9 @@ const TaskModal = ({
               </div>
               <div className='task-modal-content-details-row'>
                 <div className='task-modal-content-details-row-left'>
-                  Task Details
+                  <label className='task-modal-content-details-label'>
+                    Description
+                  </label>
                 </div>
                 <div className='task-modal-content-details-row-right'>
                   Create Task Modal. Ensure the redux and fetch calls make sense wihe db.
