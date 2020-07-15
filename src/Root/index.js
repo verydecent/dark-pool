@@ -6,9 +6,14 @@ import './reset.css';
 import Routes from '../Routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { twitter } from '@fortawesome/free-brands-svg-icons';
-import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPlus, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTimes, faPlus);
+library.add(
+  faTimes,
+  faPlus,
+  faAngleLeft,
+  faAngleRight
+);
 
 const Root = () => {
   return (
