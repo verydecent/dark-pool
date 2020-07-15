@@ -24,27 +24,36 @@ const CollectionModal = ({
         </div>
         <div className='collection-modal-content-body'>
           <div className='collection-modal-content-top-container'>
-            <div className='collection-modal-content-graph-container'>
-              Graph goes here
-            </div>
             <div className='collection-modal-content-details-container'>
               Details go here
               <div className='collection-modal-content-details-input'>
-                <input />
-                Date Created
-                Last Edited
-                Description
-
               </div>
+              
+              <div className='task-modal-content-details-row'>
+                <div className='task-modal-content-details-row-left'>
+                  Date Published
+                </div>
+                <div className='task-modal-content-details-row-right'>
+                  Monday July 14 2020
+                </div>
+              </div>
+              <div className='task-modal-content-details-row'>
+                <div className='task-modal-content-details-row-left'>
+                  Task Details
+                </div>
+                <div className='task-modal-content-details-row-right'>
+                  Create Task Modal. Ensure the redux and fetch calls make sense wihe db.
+                </div>
+              </div>
+            </div>
+            <div className='collection-modal-content-graph-container'>
+              Graph goes here
             </div>
           </div>
 
           <div className='collection-modal-content-bottom-container'>
             <div className='collection-modal-content-input-container'>
-              <input
-                className='collection-modal-content-input'
-                placeholder='Write something you have to do!'
-              />
+
             </div>
           </div>
          </div>

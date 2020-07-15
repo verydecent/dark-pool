@@ -32,7 +32,7 @@ class Collection extends React.Component {
       <div className='collection'>
         <div className='collection-container'>
           <div className='collection-header-container'>
-            <h2 className='collection-title'>Collection</h2>
+            <h2 className='collection-title'>Your Tasks</h2>
             <button>Create Collection</button>
           </div>
          
