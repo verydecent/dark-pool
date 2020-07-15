@@ -7,7 +7,7 @@ import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
 // In App
 import Dashboard from '../Components/Dashboard';
-import Collection from '../Components/Collection';
+import TaskView from '../Components/TaskView';
 
 const Routes = () => {
   return (
@@ -18,7 +18,7 @@ const Routes = () => {
       <Route path='/register' component={Register} />
 			// App
 			<Route  exact path='/app' component={Dashboard} />
-      <Route exact path='/app/collection' component={Collection} />
+      <Route exact path='/app/collection' component={TaskView} />
 		</Switch>
   );
 }
