@@ -6,7 +6,7 @@ import Nav from '../Components/Landing/Nav';
 import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
 // In App
-import Dashboard from '../Components/Dashboard';
+import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
 import CalendarView from '../Components/CalendarView';
 
@@ -18,7 +18,7 @@ const Routes = () => {
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
 			// App
-			<Route  exact path='/app' component={Dashboard} />
+			<Route  exact path='/app' component={DashboardView} />
       <Route exact path='/app/tasks' component={TaskView} />
       <Route exact path='/app/calendar' component={CalendarView} />
 		</Switch>
