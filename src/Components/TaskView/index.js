@@ -4,7 +4,7 @@ import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
 
-class Collection extends React.Component {
+class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -62,4 +62,4 @@ class Collection extends React.Component {
   }
 }
 
-export default withSideNav(Collection);
+export default withSideNav(TaskView);
