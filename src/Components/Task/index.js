@@ -1,16 +1,16 @@
 import React from 'react';
 import './styles.css';
 
-const CollectionBox = ({
+const Task = ({
   toggleModal
 }) => {
   return (
     <div className='collection-box' onClick={() => toggleModal()}>
       <div className='collection-box-container'>
-        Collection Box
+        Task Component!
       </div>
     </div>
   );
 }
 
-export default CollectionBox;
+export default Task;
