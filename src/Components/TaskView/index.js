@@ -3,6 +3,7 @@ import withSideNav from '../Hoc/withSideNav.js';
 import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
+import { Plus } from '../FAIcons';
 
 class TaskView extends React.Component {
   constructor() {
@@ -33,7 +34,7 @@ class TaskView extends React.Component {
         <div className='collection-container'>
           <div className='collection-header-container'>
             <h2 className='collection-title'>Your Tasks</h2>
-            <button>Create Collection</button>
+            <Plus />
           </div>
          
           <div className='collection-body-container'>

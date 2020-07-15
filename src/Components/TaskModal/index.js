@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Times, WindowClose, TimesCircle } from '../FAIcons';
+import { Times } from '../FAIcons';
 
 const TaskModal = ({
   isModalOpen,
