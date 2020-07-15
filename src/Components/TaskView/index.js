@@ -9,15 +9,15 @@ class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedCollectionBox: null,
+      selectedTask: null,
       isModalOpen: false,
     };
 
-    this.selectCollectionBox = this.selectCollectionBox.bind(this);
+    this.selectTask = this.selectTask.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-  selectCollectionBox() {
+  selectTask() {
   }
 
   toggleModal() {
