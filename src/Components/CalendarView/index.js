@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
+import withSideNav from '../Hoc/withSideNav';
 
-export default class Calendar extends React.Component {
+class CalendarView extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -176,3 +177,5 @@ export default class Calendar extends React.Component {
     );
   }
 }
+
+export default withSideNav(CalendarView);
