@@ -1,13 +1,13 @@
-.collection {
+.task-view {
   background-color: #212121;
   border-radius: 4px;
   height: 100%;
 }
 
-.collection-container {
+.task-view-container {
 }
 
-.collection-header-container {
+.task-view-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,11 +16,11 @@
   padding: 16px;
 }
 
-.collection-body-container {
+.task-view-body-container {
   padding: 16px;
 }
 
-.collection-body-container-header {
+.task-view-body-container-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +28,7 @@
   padding-bottom: 16px;
 }
 
-.collection-list-container {
+.task-view-list-container {
   display: flex;
   flex-wrap: wrap;
 }

@@ -3,7 +3,7 @@ import withSideNav from '../Hoc/withSideNav.js';
 import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
-import { Plus } from '../FAIcons';
+import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 
 class TaskView extends React.Component {
   constructor() {
@@ -50,21 +50,25 @@ class TaskView extends React.Component {
 
   render() {
     return (
-      <div className='collection'>
-        <div className='collection-container'>
-          <div className='collection-header-container'>
-            <h2 className='collection-title'>Your Tasks</h2>
+      <div className='task-view'>
+        <div className='task-view-container'>
+          <div className='task-view-header-container'>
+            <h2 className='task-view-title'>Your Tasks</h2>
             <div onClick={() => this.openModalToAddTask()}>
               <Plus />
             </div>
           </div>
          
-          <div className='collection-body-container'>
-            <div className='collection-body-container-header'>
+          <div className='task-view-body-container'>
+            <div className='task-view-body-container-header'>
               <h2 className='date-header'>Wed July 8 2020</h2>
-              <div className='collection-carousel-buttons'>
-                <button>Left</button>
-                <button>right</button>
+              <div className='task-view-carousel-buttons'>
+                <div>
+                  <AngleLeft />
+                </div>
+                <div>
+                  <AngleRight />
+                </div>
               </div>
             </div>
 
@@ -77,7 +81,7 @@ class TaskView extends React.Component {
               toggleModal={this.toggleModal}
               handleChange={this.handleChange}
             />
-            <div className='collection-list-container'>
+            <div className='task-view-list-container'>
               <Task toggleModal={this.toggleModal}/>
               <Task />
               <Task />
