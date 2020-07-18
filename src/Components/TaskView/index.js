@@ -25,21 +25,17 @@ class TaskView extends React.Component {
       // No
 
     };
-
-    this.openModalToAddTask = this.openModalToAddTask.bind(this);
-    this.addTask = this.addTask.bind(this);
-    this.addSubtask= this.addSubtask.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.addTask.bind(this);
+    this.addSubtask= this.addSubtask.bind(this);
+    this.selectTask = this.selectTask.bind(this);
   }
 
   componentDidMount() {
     console.log('=== TaskView componentDidMount ===');
     // Make get request for task array and setState with tasks
-    //
     // axios.get();
-    
-
   }
 
   addTask(e) {
@@ -59,10 +55,6 @@ class TaskView extends React.Component {
    }, console.log('this.state.tasks', this.state.tasks));
   }
 
-  openModalToAddTask() {
-    this.toggleModal();
-  }
-
   addSubtask(e) {
     e.preventDefault();
     const newSubtask = {
@@ -77,21 +69,20 @@ class TaskView extends React.Component {
   }
 
   handleChange(e) {
-    // e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
-
     });
   }
-
+  
   toggleModal() {
     // How do I search for the selected task in the array then set it to state?
     // Search through this.state.tasks.filter then find by id? How do I create an id? 
     // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
+  
     if (this.state.taskTitle === '') {
       this.setState(prevState => {
         return {
-          isModalOpen: !prevState.isModalOpen
+          isModalOpen: !prevState.isModalOpen,
         };
       });
     }
@@ -109,6 +100,16 @@ class TaskView extends React.Component {
     }
   }
 
+  selectTask(id, title, description, subtasks) {
+    console.log('selectTask()');
+    this.setState({
+      taskId: id,
+      taskTitle: title,
+      taskDescription: description,
+      subtasks: subtasks
+    }, console.log(this.state));
+  }
+
   render() {
 
     // Map out Task components we get from API call in componentDidMoun
@@ -117,7 +118,7 @@ class TaskView extends React.Component {
         <div className='task-view-container'>
           <div className='task-view-header-container'>
             <h2 className='task-view-title'>Your Tasks</h2>
-            <div onClick={() => this.openModalToAddTask()}>
+            <div onClick={() => this.toggleModal()}>
               <Plus />
             </div>
           </div>
@@ -150,7 +151,7 @@ class TaskView extends React.Component {
               addSubtask={this.addSubtask}
             />
             <div className='task-view-list-container'>
-              {this.state.tasks.map(task => <Task toggleModal={this.toggleModal} key={shortid.generate()} />)}
+              {this.state.tasks.map(task => <Task id={task.id} title={task.title} description={task.description} subtasks={task.subtasks} toggleModal={this.toggleModal} selectTask={this.selectTask} key={shortid.generate()} />)}
             </div>
           </div>
         </div>
