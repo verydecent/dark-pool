@@ -5,6 +5,7 @@ import Task from '../Task';
 import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import axios from 'axios';
+import shortid from 'shortid';
 
 class TaskView extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ class TaskView extends React.Component {
       taskId: '',
       taskTitle: '',
       taskDescription: '',
+      subtaskDescription: '',
       subtasks: [],
 
       // Should I just use a nested object to contain current modal?
@@ -40,24 +42,29 @@ class TaskView extends React.Component {
 
   }
 
-  addTask() {
+  addTask(e) {
+    console.log('somethign here');
+    e.preventDefault();
+
     const newTask = {
       id: Math.random(),
       title: this.state.taskTitle,
-      description: this.state.descriptionTitle,
-      subtasks: this.state.taskSubtasks
+      description: this.state.taskDescription,
+      subtasks: this.state.subtasks
     };
 
-    this.setState({
+   this.setState({
+      isModalOpen: this.state.isModalOpen,
       tasks: [...this.state.tasks, newTask]
-    }, console.log('this.state.tasks', this.state.tasks));
+   }, console.log('this.state.tasks', this.state.tasks));
   }
 
   openModalToAddTask() {
     this.toggleModal();
   }
 
-  addSubtask() {
+  addSubtask(e) {
+    e.preventDefault();
     const newSubtask = {
       complete: false,
       description: this.state.subtaskDescription
@@ -70,6 +77,7 @@ class TaskView extends React.Component {
   }
 
   handleChange(e) {
+    // e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
 
@@ -79,11 +87,26 @@ class TaskView extends React.Component {
   toggleModal() {
     // How do I search for the selected task in the array then set it to state?
     // Search through this.state.tasks.filter then find by id? How do I create an id? 
-    this.setState(prevState => {
-      return {
-        isModalOpen: !prevState.isModalOpen
-      };
-    });
+    // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
+    if (this.state.taskTitle === '') {
+      this.setState(prevState => {
+        return {
+          isModalOpen: !prevState.isModalOpen
+        };
+      });
+    }
+    else {
+      this.setState(prevState => {
+        return {
+          isModalOpen: !prevState.isModalOpen,
+          taskId: '',
+          taskTitle: '',
+          taskDescription: '',
+          subtaskDescription: '',
+          subtasks: [],
+        };
+      });
+    }
   }
 
   render() {
@@ -116,10 +139,9 @@ class TaskView extends React.Component {
               /* Values */
               taskTitle={this.state.taskTitle}
               taskDescription={this.state.taskDescription}
-              subtask={this.state.selectedTask ? this.state.selectedTask.subtasks : null}
-              taskDateCreated={this.state.selectedTask ? this.state.selectedTask.dateCreated : null}
               isModalOpen={this.state.isModalOpen}
-              subtaskTitle={this.state.subtaskTitle}
+              subtaskDescription={this.state.subtaskDescription}
+              subtasks={this.state.subtasks}
 
               /* Method Props */
               toggleModal={this.toggleModal}
@@ -128,10 +150,7 @@ class TaskView extends React.Component {
               addSubtask={this.addSubtask}
             />
             <div className='task-view-list-container'>
-              <Task toggleModal={this.toggleModal}/>
-              <Task />
-              <Task />
-              <Task />
+              {this.state.tasks.map(task => <p toggleModal={this.toggleModal} key={shortid.generate()}>`${task.title} - ${task.description}`</p>)}
             </div>
           </div>
         </div>

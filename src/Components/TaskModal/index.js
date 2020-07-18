@@ -34,7 +34,7 @@ const TaskModal = ({
         <div className='task-modal-content-body'>
           <div className='task-modal-content-top-container'>
             <div className='task-modal-content-details-container'>
-              <form type='submit' onClick={(e) => addTask(e)}> 
+              <form type='submit' onSubmit={(e) => addTask(e)}> 
                 <div className='task-modal-content-details-row'>
                   <div className='task-modal-content-details-row-left'>
                     <label className='task-modal-content-details-label'>
