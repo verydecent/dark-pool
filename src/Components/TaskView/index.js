@@ -9,12 +9,17 @@ class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
-      chosenTaskForModalView: null,
+      tasks: [],
       isModalOpen: false,
       
+      // State display for currently selected task modal
       taskTitle: '',
       taskDescription: '',
-      tasks: [],
+      subtasks: [],
+
+      // Should I just use a nested object to contain current modal?
+      chosenTaskForModalView: null,
+
     };
 
     this.openModalToAddTask = this.openModalToAddTask.bind(this);
@@ -23,8 +28,12 @@ class TaskView extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    console.log('=== TaskView componentDidMount ===');
+
+  }
+
   openModalToAddTask() {
-    console.log('openModalToAddTask()');
     this.toggleModal();
   }
 
@@ -33,7 +42,6 @@ class TaskView extends React.Component {
   }
 
   handleChange(e) {
-    console.log('handleChange', e.target);
     this.setState({
       [e.target.name]: e.target.value
 
@@ -49,6 +57,8 @@ class TaskView extends React.Component {
   }
 
   render() {
+
+    // Map out Task components we get from API call in componentDidMoun
     return (
       <div className='task-view'>
         <div className='task-view-container'>
@@ -78,6 +88,8 @@ class TaskView extends React.Component {
               subtask={this.state.selectedTask ? this.state.selectedTask.subtasks : null}
               taskDateCreated={this.state.selectedTask ? this.state.selectedTask.dateCreated : null}
               isModalOpen={this.state.isModalOpen}
+              subtaskTitle={this.state.subtaskTitle}
+
               toggleModal={this.toggleModal}
               handleChange={this.handleChange}
             />
