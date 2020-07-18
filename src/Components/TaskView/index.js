@@ -150,7 +150,7 @@ class TaskView extends React.Component {
               addSubtask={this.addSubtask}
             />
             <div className='task-view-list-container'>
-              {this.state.tasks.map(task => <p toggleModal={this.toggleModal} key={shortid.generate()}>`${task.title} - ${task.description}`</p>)}
+              {this.state.tasks.map(task => <Task toggleModal={this.toggleModal} key={shortid.generate()} />)}
             </div>
           </div>
         </div>
