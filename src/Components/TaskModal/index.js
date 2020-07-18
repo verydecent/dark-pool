@@ -8,7 +8,8 @@ const TaskModal = ({
   taskTitle,
   taskDescription,
   taskDateCreated,
-  tasks,
+  subtasks,
+  subtaskTitle,
 
   // methods
   toggleModal,
@@ -53,24 +54,25 @@ const TaskModal = ({
                   <input
                     name='taskTitle'
                     value={taskTitle}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
               <div className='task-modal-content-details-row'>
                 <div className='task-modal-content-details-row-left'>
                   <label className='task-modal-content-details-label'>
-                    Title
+                    Description
                   </label>
                 </div>
                 <div className='task-modal-content-details-row-right'>
                   <input
                     name='taskDescription'
                     value={taskDescription}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
-              </div>
+
+             </div>
 
             </div>
             <div className='task-modal-content-graph-container'>
@@ -80,7 +82,19 @@ const TaskModal = ({
 
           <div className='task-modal-content-bottom-container'>
             <div className='task-modal-content-input-container'>
+              <div className='task-modal-content-details-subtask-container'>
+                {/* map out sub tasks here */}
 
+                {/* subtask creator input here */}
+
+                Subtask creator input
+                <input
+                  className=''
+                  name='subtaskTitle'
+                  value={subtaskTitle}
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
             </div>
           </div>
          </div>

@@ -4,6 +4,7 @@ import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
+import axios from 'axios';
 
 class TaskView extends React.Component {
   constructor() {
