@@ -14,16 +14,18 @@ class TaskView extends React.Component {
       isModalOpen: false,
       
       // State display for currently selected task modal
+      taskId: '',
       taskTitle: '',
       taskDescription: '',
       subtasks: [],
 
       // Should I just use a nested object to contain current modal?
-      chosenTaskForModalView: null,
+      // No
 
     };
 
     this.openModalToAddTask = this.openModalToAddTask.bind(this);
+    this.addTask = this.addTask.bind(this);
     this.addSubtask= this.addSubtask.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,7 +33,24 @@ class TaskView extends React.Component {
 
   componentDidMount() {
     console.log('=== TaskView componentDidMount ===');
+    // Make get request for task array and setState with tasks
+    //
+    // axios.get();
+    
 
+  }
+
+  addTask() {
+    const newTask = {
+      id: Math.random(),
+      title: this.state.taskTitle,
+      description: this.state.descriptionTitle,
+      subtasks: this.state.taskSubtasks
+    };
+
+    this.setState({
+      tasks: [...this.state.tasks, newTask]
+    }, console.log('this.state.tasks', this.state.tasks));
   }
 
   openModalToAddTask() {
@@ -39,7 +58,15 @@ class TaskView extends React.Component {
   }
 
   addSubtask() {
-    
+    const newSubtask = {
+      complete: false,
+      description: this.state.subtaskDescription
+    };
+
+    this.setState({
+      subtasks: [...this.state.subtasks, newSubtask],
+      subtaskDescription: ''
+    });
   }
 
   handleChange(e) {
@@ -50,6 +77,8 @@ class TaskView extends React.Component {
   }
 
   toggleModal() {
+    // How do I search for the selected task in the array then set it to state?
+    // Search through this.state.tasks.filter then find by id? How do I create an id? 
     this.setState(prevState => {
       return {
         isModalOpen: !prevState.isModalOpen
@@ -84,6 +113,7 @@ class TaskView extends React.Component {
             </div>
 
             <TaskModal
+              /* Values */
               taskTitle={this.state.taskTitle}
               taskDescription={this.state.taskDescription}
               subtask={this.state.selectedTask ? this.state.selectedTask.subtasks : null}
@@ -91,8 +121,11 @@ class TaskView extends React.Component {
               isModalOpen={this.state.isModalOpen}
               subtaskTitle={this.state.subtaskTitle}
 
+              /* Method Props */
               toggleModal={this.toggleModal}
               handleChange={this.handleChange}
+              addTask={this.addTask}
+              addSubtask={this.addSubtask}
             />
             <div className='task-view-list-container'>
               <Task toggleModal={this.toggleModal}/>

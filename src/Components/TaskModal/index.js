@@ -31,50 +31,51 @@ const TaskModal = ({
         <div className='task-modal-content-body'>
           <div className='task-modal-content-top-container'>
             <div className='task-modal-content-details-container'>
-              <div className='task-modal-content-details-input'>
-              </div>
-              
-              <div className='task-modal-content-details-row'>
-                <div className='task-modal-content-details-row-left'>
-                  <label className='task-modal-content-details-label'>
-                    Published
-                  </label>
+              <form type='submit'> 
+                <div className='task-modal-content-details-row'>
+                  <div className='task-modal-content-details-row-left'>
+                    <label className='task-modal-content-details-label'>
+                      Published
+                    </label>
+                  </div>
+                  <div className='task-modal-content-details-row-right'>
+                    {taskDateCreated}
+                  </div>
                 </div>
-                <div className='task-modal-content-details-row-right'>
-                  {taskDateCreated}
+                <div className='task-modal-content-details-row'>
+                  <div className='task-modal-content-details-row-left'>
+                    <label className='task-modal-content-details-label'>
+                      Title
+                    </label>
+                  </div>
+                  <div className='task-modal-content-details-row-right'>
+                    <input
+                      name='taskTitle'
+                      value={taskTitle}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className='task-modal-content-details-row'>
-                <div className='task-modal-content-details-row-left'>
-                  <label className='task-modal-content-details-label'>
-                    Title
-                  </label>
-                </div>
-                <div className='task-modal-content-details-row-right'>
-                  <input
-                    name='taskTitle'
-                    value={taskTitle}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-              </div>
-              <div className='task-modal-content-details-row'>
-                <div className='task-modal-content-details-row-left'>
-                  <label className='task-modal-content-details-label'>
-                    Description
-                  </label>
-                </div>
-                <div className='task-modal-content-details-row-right'>
-                  <input
-                    name='taskDescription'
-                    value={taskDescription}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-
-             </div>
-
+                <div className='task-modal-content-details-row'>
+                  <div className='task-modal-content-details-row-left'>
+                    <label className='task-modal-content-details-label'>
+                      Description
+                    </label>
+                  </div>
+                  <div className='task-modal-content-details-row-right'>
+                    <input
+                      name='taskDescription'
+                      value={taskDescription}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                 </div>
+              </form>
             </div>
+
+
+
+
             <div className='task-modal-content-graph-container'>
               Graph goes here
             </div>
