@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Times } from '../FAIcons';
+import shortid from 'shortid';
 
 const TaskModal = ({
   // values
@@ -9,11 +10,13 @@ const TaskModal = ({
   taskDescription,
   taskDateCreated,
   subtasks,
-  subtaskTitle,
+  subtaskDescription,
 
   // methods
   toggleModal,
-  handleChange
+  handleChange,
+  addTask,
+  addSubtask,
 }) => {
 
   return (
@@ -31,7 +34,7 @@ const TaskModal = ({
         <div className='task-modal-content-body'>
           <div className='task-modal-content-top-container'>
             <div className='task-modal-content-details-container'>
-              <form type='submit'> 
+              <form type='submit' onClick={(e) => addTask(e)}> 
                 <div className='task-modal-content-details-row'>
                   <div className='task-modal-content-details-row-left'>
                     <label className='task-modal-content-details-label'>
@@ -70,6 +73,8 @@ const TaskModal = ({
                     />
                   </div>
                  </div>
+
+                <button>Task it!</button>
               </form>
             </div>
 
@@ -85,16 +90,19 @@ const TaskModal = ({
             <div className='task-modal-content-input-container'>
               <div className='task-modal-content-details-subtask-container'>
                 {/* map out sub tasks here */}
+                {subtasks.map(subtask => <h1 key={shortid.generate()}>{subtask.description}</h1>)}
 
                 {/* subtask creator input here */}
-
-                Subtask creator input
-                <input
-                  className=''
-                  name='subtaskTitle'
-                  value={subtaskTitle}
-                  onChange={(e) => handleChange(e)}
-                />
+                <form type='submit' onSubmit={(e) => addSubtask(e)}>
+                  Subtask creator input
+                  <input
+                    className=''
+                    name='subtaskDescription'
+                    value={subtaskDescription}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <button>Subtask it!</button>
+                </form>
               </div>
             </div>
           </div>
