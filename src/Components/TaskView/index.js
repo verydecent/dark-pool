@@ -28,6 +28,7 @@ class TaskView extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.updateTask = this.updateTask.bind(this);
     this.addSubtask= this.addSubtask.bind(this);
     this.selectTask = this.selectTask.bind(this);
   }
@@ -53,6 +54,36 @@ class TaskView extends React.Component {
       isModalOpen: this.state.isModalOpen,
       tasks: [...this.state.tasks, newTask]
    }, console.log('this.state.tasks', this.state.tasks));
+  }
+
+  updateTask() {
+    console.log('updateTask');
+
+    // This will activate after updating the selected Tasks data in the state
+    // We will then take the state data and create a new object
+    // Search for task in task array by ID then replace the task with new task object
+    // setState with newly mapped out array
+    
+    const updatedTask = {
+      id: this.state.taskId,
+      title: this.state.taskTitle,
+      description: this.state.taskDescription,
+      subtasks: this.state.subtasks
+    };
+
+    const tasksWithUpdatedTask = this.state.tasks.map(task => {
+      if (task.id === this.state.taskId) {
+        return updatedTask;
+      }
+      else {
+        return task;
+      }
+    });
+
+    // setState here
+    this.setState({
+      tasks: tasksWithUpdatedTask
+    });
   }
 
   addSubtask(e) {
@@ -101,6 +132,8 @@ class TaskView extends React.Component {
   }
 
   selectTask(id, title, description, subtasks) {
+    const targetedTask = this.state.tasks.filter(task => task.title === title);
+    console.log(targetedTask)
     console.log('selectTask()');
     this.setState({
       taskId: id,
@@ -148,6 +181,7 @@ class TaskView extends React.Component {
               toggleModal={this.toggleModal}
               handleChange={this.handleChange}
               addTask={this.addTask}
+              updateTask={this.updateTask}
               addSubtask={this.addSubtask}
             />
             <div className='task-view-list-container'>

@@ -16,6 +16,7 @@ const TaskModal = ({
   toggleModal,
   handleChange,
   addTask,
+  updateTask,
   addSubtask,
 }) => {
 
@@ -75,6 +76,7 @@ const TaskModal = ({
                  </div>
 
                 <button>Task it!</button>
+                <button onClick={() => updateTask()}>Update task!</button>
               </form>
             </div>
 
