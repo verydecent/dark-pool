@@ -79,3 +79,18 @@ Now we have array of tasks to use
 Opening a modal will open modal, while also setting state for title, description, date and subtasks of modal
 Selected modal will setState into state and the state will match the value of input
 
+
+== Mon July 20 2020 ==
+
+Important question: Is it better to reload the app with newly updated database data or just to update the data and have the array match what is happening on the data? What if there is a response error? and it doesnt match? Prevent the user from adding to the array.
+
+
+Deleting.... We need an id. 
+
+Todos
+- Delete function
+- Choosing a graphing library
+- Design how its going to look and feel. I want to sit down and write the concept out and then design. What are some aspects of functionality i'd like to include.
+- Going for ultimate simplicity and functionality.
+- Complete Bool for subtasks
+
