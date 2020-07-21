@@ -29,7 +29,7 @@ const TaskModal = ({
       <div className='task-modal-content'>
         <div className='task-modal-content-header'>
            <h1 className='task-modal-content-title'>
-             Task Name
+             {taskTitle}
           </h1>
           <div onClick={() => toggleModal()}>
             <Times />
