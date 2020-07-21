@@ -92,7 +92,7 @@ class TaskView extends React.Component {
     const newTasks = this.state.tasks.filter(task => task.id !== this.state.taskId);
     this.setState({
       tasks: newTasks
-    });
+    }, () => this.toggleModal());
   }
 
   addSubtask(e) {
