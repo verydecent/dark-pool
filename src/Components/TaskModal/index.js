@@ -20,6 +20,7 @@ const TaskModal = ({
   updateTask,
   deleteTask,
   addSubtask,
+  deleteSubtask,
 }) => {
 
   return (
@@ -95,7 +96,7 @@ const TaskModal = ({
             <div className='task-modal-content-input-container'>
               <div className='task-modal-content-details-subtask-container'>
                 {/* map out sub tasks here */}
-                {subtasks.map(subtask => <Subtask key={shortid.generate()} description={subtask.description} complete={subtask.complete} />)}
+                {subtasks.map(subtask => <Subtask key={shortid.generate()} id={subtask.id} description={subtask.description} complete={subtask.complete} deleteSubtask={deleteSubtask}/>)}
 
                 {/* subtask creator input here */}
                 <form type='submit' onSubmit={(e) => addSubtask(e)}>

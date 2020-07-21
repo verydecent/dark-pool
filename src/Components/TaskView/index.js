@@ -27,11 +27,12 @@ class TaskView extends React.Component {
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.selectTask = this.selectTask.bind(this);
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.addSubtask= this.addSubtask.bind(this);
-    this.selectTask = this.selectTask.bind(this);
+    this.deleteSubtask = this.deleteSubtask.bind(this);
   }
 
   componentDidMount() {
@@ -110,8 +111,6 @@ class TaskView extends React.Component {
   }
 
   deleteSubtask(subtaskId) {
-    console.log('deleteSubtask');
-
     const newSubtasks = this.state.subtasks.filter(subtask => subtask.id !== subtaskId);
 
     // filter out if the matching id and then setState with newly created array
@@ -206,6 +205,7 @@ class TaskView extends React.Component {
               updateTask={this.updateTask}
               deleteTask={this.deleteTask}
               addSubtask={this.addSubtask}
+              deleteSubtask={this.deleteSubtask}
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => <Task id={task.id} title={task.title} description={task.description} subtasks={task.subtasks} toggleModal={this.toggleModal} selectTask={this.selectTask} key={shortid.generate()} />)}
