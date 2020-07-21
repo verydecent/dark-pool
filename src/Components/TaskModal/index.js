@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import { Times } from '../FAIcons';
 import shortid from 'shortid';
+import Subtask from '../Subtask';
 
 const TaskModal = ({
   // values
@@ -94,7 +95,7 @@ const TaskModal = ({
             <div className='task-modal-content-input-container'>
               <div className='task-modal-content-details-subtask-container'>
                 {/* map out sub tasks here */}
-                {subtasks.map(subtask => <h1 key={shortid.generate()}>{subtask.description}</h1>)}
+                {subtasks.map(subtask => <Subtask key={shortid.generate()} description={subtask.description} />)}
 
                 {/* subtask creator input here */}
                 <form type='submit' onSubmit={(e) => addSubtask(e)}>
