@@ -4,6 +4,7 @@ import { Times  } from '../FAIcons';
 const Subtask = ({
 // Values
   description,
+  complete,
   // Methods
 }) => {
 
