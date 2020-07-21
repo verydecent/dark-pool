@@ -28,6 +28,7 @@ class TaskView extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.addSubtask= this.addSubtask.bind(this);
     this.selectTask = this.selectTask.bind(this);
@@ -56,14 +57,12 @@ class TaskView extends React.Component {
    }, console.log('this.state.tasks', this.state.tasks));
   }
 
-  updateTask() {
-    console.log('updateTask');
-
+  updateTask(e) {
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
     // Search for task in task array by ID then replace the task with new task object
     // setState with newly mapped out array
-    
+    // e.preventDefault(); 
     const updatedTask = {
       id: this.state.taskId,
       title: this.state.taskTitle,
@@ -79,10 +78,20 @@ class TaskView extends React.Component {
         return task;
       }
     });
+    console.log('updateTask', tasksWithUpdatedTask);
 
     // setState here
     this.setState({
       tasks: tasksWithUpdatedTask
+    });
+  }
+
+  deleteTask() {
+
+    console.log('=== this.state.taskId ===', this.state.taskId)
+    const newTasks = this.state.tasks.filter(task => task.id !== this.state.taskId);
+    this.setState({
+      tasks: newTasks
     });
   }
 
@@ -97,6 +106,14 @@ class TaskView extends React.Component {
       subtasks: [...this.state.subtasks, newSubtask],
       subtaskDescription: ''
     });
+  }
+
+  deleteSubtask() {
+    console.log('deleteSubtask');
+
+    // filter out if the matching id and then setState with newly created array
+    // Do this for tasks as well
+    // const newSubtasks = this.state.subtasks.filter(subtask => )
   }
 
   handleChange(e) {
@@ -133,8 +150,7 @@ class TaskView extends React.Component {
 
   selectTask(id, title, description, subtasks) {
     const targetedTask = this.state.tasks.filter(task => task.title === title);
-    console.log(targetedTask)
-    console.log('selectTask()');
+    console.log('selectTask()', targetedTask);
     this.setState({
       taskId: id,
       taskTitle: title,
@@ -150,7 +166,7 @@ class TaskView extends React.Component {
       <div className='task-view'>
         <div className='task-view-container'>
           <div className='task-view-header-container'>
-            <h2 className='task-view-title'>Your Tasks</h2>
+            <h2 className='task-view-title'>Daily Tasks</h2>
             <div onClick={() => this.toggleModal()}>
               <Plus />
             </div>
@@ -182,6 +198,7 @@ class TaskView extends React.Component {
               handleChange={this.handleChange}
               addTask={this.addTask}
               updateTask={this.updateTask}
+              deleteTask={this.deleteTask}
               addSubtask={this.addSubtask}
             />
             <div className='task-view-list-container'>
