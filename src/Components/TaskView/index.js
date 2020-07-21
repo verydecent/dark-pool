@@ -98,6 +98,7 @@ class TaskView extends React.Component {
   addSubtask(e) {
     e.preventDefault();
     const newSubtask = {
+      id: Math.random(),
       complete: false,
       description: this.state.subtaskDescription
     };
