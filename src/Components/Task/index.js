@@ -2,10 +2,13 @@ import React from 'react';
 import './styles.css';
 
 const Task = ({
+  // Values
   id,
   title,
   description,
   subtasks,
+
+  // Methods
   toggleModal,
   selectTask
 }) => {
