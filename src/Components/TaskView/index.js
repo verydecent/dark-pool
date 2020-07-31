@@ -91,12 +91,15 @@ class TaskView extends React.Component {
 
     axios.put(`http://localhost:3000/task/${this.state.taskId}`, updatedTask)
       .then((response) => {
+        console.log(
+          'Response after updating Task', response
+        );
         const arrayWithUpdatedTask = this.state.tasks.map(task => {
           if (task._id === response.data._id) {
             // Deep copy of object
             const newTask = JSON.parse(JSON.stringify(task));
+            console.log('newTask from JSON PARSE', newTask);
             newTask.title = response.data.title;
-            console.log('``~~~~~~~~~~~~~~~~~~~~~~', response.data.description)
             newTask.description = response.data.description;
             
             return newTask;
@@ -105,7 +108,7 @@ class TaskView extends React.Component {
         });
         this.setState({
           taskTitle: response.data.title,
-          taskDescription: response.data.taskDescription,
+          taskDescription: response.data.description,
           tasks: arrayWithUpdatedTask
         });
       })
@@ -113,23 +116,26 @@ class TaskView extends React.Component {
   }
 
   deleteTask() {
-  //   console.log('=== this.state.taskId ===', this.state.taskId)
-  //   const newTasks = this.state.tasks.filter(task => task.id !== this.state.taskId);
-  //   this.setState({
-  //     tasks: newTasks
-  //   }, () => this.toggleModal());
+    axios.delete(`http://localhost:3000/task/${this.state.taskId}`)
+      .then(response => {
+        console.log(response)
+        const taskRemoved = this.state.tasks.filter(task => {
+          if (task._id === this.state.taskId) return;
+          return task;
+        });
+
+        this.toggleModal();
+        this.setState({
+          tasks: taskRemoved
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   addSubtask(e) {
     e.preventDefault();
 
-    const newSubtask = {
-      complete: false,
-      description: this.state.subtaskDescription,
-      task_id: this.state.taskId
-    };
-
-    axios.post('http://localhost:3000/subtask', newSubtask)
+    axios.post(`http://localhost:3000/subtask/${this.state.taskId}`)
       .then(response => {
         console.log('Subtask Response', response);
         this.setState(prevState => {
@@ -142,6 +148,10 @@ class TaskView extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  updateSubtask() {
+
   }
 
   deleteSubtask(subtaskId) {
