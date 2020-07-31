@@ -154,15 +154,23 @@ class TaskView extends React.Component {
 
   }
 
-  deleteSubtask(subtaskId) {
-    const newSubtasks = this.state.subtasks.filter(subtask => subtask.id !== subtaskId);
-
+  deleteSubtask(id) {
     // filter out if the matching id and then setState with newly created array
     // Do this for tasks as well
     // const newSubtasks = this.state.subtasks.filter(subtask => )
-    this.setState({
-      subtasks: newSubtasks
-    });
+    axios.delete(`http://localhost:3000/subtask/${id}`)
+      .then(response => {
+        console.log(response)
+        const subtaskRemoved = this.state.subtasks.filter(subtask => {
+          if (subtask._id === this.state.id) return;
+          return subtask;
+        });
+
+        this.setState({
+          subtask: subtaskRemoved
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   handleChange(e) {
