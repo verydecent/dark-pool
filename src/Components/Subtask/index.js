@@ -9,9 +9,8 @@ const Subtask = ({
 
   // Methods
   deleteSubtask,
-
 }) => {
-  console.log('id from subtask', id)
+
   return (
     <div>
       {/* Description */}
