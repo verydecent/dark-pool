@@ -48,7 +48,10 @@
 
 .task-modal-content-top-container {
   display: flex;
-  flex-direction: column;
+}
+
+.task-modal-content-bottom-container {
+  display: flex;
 }
 
 .task-modal-content-graph-container {

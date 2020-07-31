@@ -16,15 +16,11 @@ const TaskModal = ({
   // methods
   toggleModal,
   handleChange,
-  addTask,
   updateTask,
   deleteTask,
   addSubtask,
   deleteSubtask,
 }) => {
-  console.log('TaskModal subtasks', subtasks);
-
-  const taskDescriptionConditional = taskDescriptionConditional ? taskDescription : '';
   const subtasksConditional = subtasks ? subtasks : [];
 
   return (
@@ -40,7 +36,13 @@ const TaskModal = ({
           </div>
         </div>
         <div className='task-modal-content-body'>
-          <div className='task-modal-content-top-container'>
+          
+          {/* TOP */}
+
+          <div className='task-modal-content-bottom-container'>
+            <div className='task-modal-content-graph-container'>
+              Graph goes here
+            </div>
             <div className='task-modal-content-details-container'>
               <form type='submit' onSubmit={(e) => updateTask(e)}> 
                 <div className='task-modal-content-details-row'>
@@ -84,18 +86,12 @@ const TaskModal = ({
                 <button>Update Task Changes</button>
               </form>
               <button onClick={() => deleteTask()}>Delete Task</button>
-
-            </div>
-
-
-
-
-            <div className='task-modal-content-graph-container'>
-              Graph goes here
             </div>
           </div>
 
-          <div className='task-modal-content-bottom-container'>
+          {/* BOTTOM */}
+
+          <div className='task-modal-content-top-container'>
             <div className='task-modal-content-input-container'>
               <div className='task-modal-content-details-subtask-container'>
                 {/* map out sub tasks here */}
@@ -103,7 +99,7 @@ const TaskModal = ({
                   return (
                     <Subtask
                       key={shortid.generate()}
-                      id={subtask.id}
+                      id={subtask._id}
                       description={subtask.description}
                       complete={subtask.complete}
                       deleteSubtask={deleteSubtask}
@@ -114,17 +110,18 @@ const TaskModal = ({
                 {/* subtask creator input here */}
                 <form type='submit' onSubmit={(e) => addSubtask(e)}>
                   Subtask creator input
-                  <input
+                  {/* <input
                     className=''
                     name='subtaskDescription'
                     value={subtaskDescription}
                     onChange={(e) => handleChange(e)}
-                  />
+                  /> */}
                   <button>Add Subtask</button>
                 </form>
               </div>
             </div>
           </div>
+
          </div>
       </div>
     </div>

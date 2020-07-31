@@ -1,28 +1,119 @@
 import React from 'react';
 import { Times  } from '../FAIcons';
+import axios from 'axios';
+import './styles.css';
 
-const Subtask = ({
-// Values
-  id,
-  description,
-  complete,
 
-  // Methods
-  deleteSubtask,
-}) => {
+// Class component
+// componentDidMount will pull the values of the Subtask such as complete, description, id etc.
+// Each subtask will have it's own state to load into and will be responsible for it's own input value and complete values
 
-  return (
-    <div>
-      {/* Description */}
-      {description}
+// * Update *
+// Need to redo this whole thing, it pretty much failed, going to move past this leaving it uneditable for now
+// and then I'll focus on styling then come back to it
 
-      {/* Close button */}
-      <div onClick={() => deleteSubtask(id)}>
-        <Times />
+
+class Subtask extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      complete: false,
+      description: ''
+    }
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
+      .then(response => {
+        this.setState({
+          complete: response.data.complete,
+          description: response.data.description
+        });
+      })
+      .catch(error => console.log(error));
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  updateSubtask(e) {
+    e.preventDefault();
+
+    const updatedSubtask = {
+      complete: this.state.complete,
+      description: this.state.description
+    };
+
+    axios.put(`http://localhost:3000/subtask/${this.props.id}`, updatedSubtask)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          complete: response.data.complete,
+          description: response.data.description
+        });
+      })
+      .catch(error => console.log(error));
+  }
+
+  render() {
+    const { deleteSubtask } = this.props;
+
+    return (
+      <div>
+        <form onSubmit={(e) => this.updateSubtask(e)}>
+          {/* Description */}
+          {this.state.description}
+          <input
+            value={this.state.description}
+            name='description'
+            onChange={(e) => this.handleChange(e)}
+          />
+
+          <button>Update Subtask</button>
+
+          {/* Close button */}
+          <div onClick={() => deleteSubtask(this.props.id)}>
+            <Times />
+          </div>
+        </form>
       </div>
-
-    </div>
-  )
+    );
+  }
 }
+
+
+
+
+
+// const Subtask = ({
+// // Values
+//   id,
+//   description,
+//   complete,
+
+//   // Methods
+//   deleteSubtask,
+// }) => {
+
+//   return (
+//     <div>
+//       <form>
+//         {/* Description */}
+//         <input
+//           value={description}
+//           name=''
+//         />
+
+//         {/* Close button */}
+//         <div onClick={() => deleteSubtask(id)}>
+//           <Times />
+//         </div>
+//       </form>
+//     </div>
+//   )
+// }
 
 export default Subtask;

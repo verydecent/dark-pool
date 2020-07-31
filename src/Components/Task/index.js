@@ -12,7 +12,6 @@ const Task = ({
   selectTask
 }) => {
 
-  console.log('inside task', id);
   return (
     <div className='collection-box' onClick={() => {
       toggleModal();
