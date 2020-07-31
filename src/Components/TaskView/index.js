@@ -30,7 +30,6 @@ class TaskView extends React.Component {
     this.createTask = this.createTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.selectTask = this.selectTask.bind(this);
-    this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.addSubtask= this.addSubtask.bind(this);
@@ -42,7 +41,6 @@ class TaskView extends React.Component {
     // Make get request for task array and setState with tasks
     axios.get(`http://localhost:3000/task/${this.state.userId}`)
       .then(response => {
-        console.log(response);
         this.setState({ tasks: response.data });
       })
       .catch(error => console.log(error));
@@ -52,7 +50,6 @@ class TaskView extends React.Component {
     axios.get(`http://localhost:3000/subtask/${id}`)
       .then(response => {
         const subtasks = response.data;
-        console.log(subtasks)
 
         this.setState({
           taskId: id,
@@ -82,22 +79,6 @@ class TaskView extends React.Component {
       });
   }
 
-  addTask(e) {
-    e.preventDefault();
-
-    const newTask = {
-      id: Math.random(),
-      title: this.state.taskTitle,
-      description: this.state.taskDescription,
-      subtasks: this.state.subtasks
-    };
-
-   this.setState({
-      isModalOpen: this.state.isModalOpen,
-      tasks: [...this.state.tasks, newTask]
-   });
-  }
-
   updateTask(e) {
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
@@ -115,13 +96,13 @@ class TaskView extends React.Component {
             // Deep copy of object
             const newTask = JSON.parse(JSON.stringify(task));
             newTask.title = response.data.title;
+            console.log('``~~~~~~~~~~~~~~~~~~~~~~', response.data.description)
             newTask.description = response.data.description;
-            console.log('newTask', newTask);
             
             return newTask;
           }
           return task;
-        })
+        });
         this.setState({
           taskTitle: response.data.title,
           taskDescription: response.data.taskDescription,
@@ -243,7 +224,6 @@ class TaskView extends React.Component {
               /* Method Props */
               toggleModal={this.toggleModal}
               handleChange={this.handleChange}
-              addTask={this.addTask}
               updateTask={this.updateTask}
               deleteTask={this.deleteTask}
               addSubtask={this.addSubtask}
@@ -251,7 +231,6 @@ class TaskView extends React.Component {
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {
-                console.log('from task', task);
                 return (
                   <Task
                     id={task._id}
