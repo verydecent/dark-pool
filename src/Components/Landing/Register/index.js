@@ -7,8 +7,6 @@ class Register extends React.Component {
     super();
     this.state = {
       username: '',
-      firstName: '',
-      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -29,21 +27,24 @@ class Register extends React.Component {
     // Prevents form from refreshing the page
     e.preventDefault();
     this.setState({ buttonText: 'Registering...' });
-    axios.post(`${REACT_APP_API_URL}/register`, { username, email, password })
+
+    const { username, email, password } = this.state;
+
+    // axios.post(`${process.env.REACT_APP_API_URL}/register`, { username, email, password })
+    axios.post(`${process.env.API_URL}/register`, { username, email, password })
       .then(response => {
         console.log('Registration Success', response);
-        this.setState({ username: '', firstName: '', lastName: '', email: '', password: '', buttonText: 'Register' })
+        this.setState({ username: '', email: '', password: '', buttonText: 'Registered' })
       })
       .catch(error => {
         console.log('Registration error', error);
+        this.setState({ buttonText: 'Register' });
       });
   }
 
   render() {
     const {
       username,
-      firstName,
-      lastName,
       email,
       password,
       confirmPassword,
@@ -54,26 +55,12 @@ class Register extends React.Component {
       <>
         {JSON.stringify(this.state)}
         Register Component
-        <form className=''>
+        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
           <input
            name='username'
            placeholder='Username'
            type='text'
            value={username}
-           onChange={(e) => this.handleChange(e)}
-          />
-          <input
-           name='firstName'
-           placeholder='First Name'
-           type='text'
-           value={firstName}
-           onChange={(e) => this.handleChange(e)}
-          />
-          <input
-           name='lastName'
-           placeholder='Last Name'
-           type='text'
-           value={lastName}
            onChange={(e) => this.handleChange(e)}
           />
          <input
