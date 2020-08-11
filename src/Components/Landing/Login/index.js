@@ -44,6 +44,7 @@ class Login extends React.Component {
 
     return (
       <>
+        <h1>LOGIN</h1>
         {JSON.stringify(this.state)}
         Login Component
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>

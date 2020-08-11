@@ -53,6 +53,7 @@ class Register extends React.Component {
 
     return (
       <>
+        <h1>REGISTER</h1>
         {JSON.stringify(this.state)}
         Register Component
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
