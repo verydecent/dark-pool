@@ -5,6 +5,7 @@ import Home from '../Components/Landing/Home';
 import Nav from '../Components/Landing/Nav';
 import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
+import ActivateAccount from '../Components/Landing/ActivateAccount';
 // In App
 import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
@@ -18,6 +19,7 @@ const Routes = () => {
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/auth/activate-account/:token' component={ActivateAccount} />
         {/* App */}
         <Route  exact path='/app' component={DashboardView} />
         <Route exact path='/app/tasks' component={TaskView} />
