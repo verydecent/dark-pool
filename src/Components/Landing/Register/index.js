@@ -22,8 +22,6 @@ class Register extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log('handleSubmit()');
-
     // Prevents form from refreshing the page
     e.preventDefault();
     this.setState({ buttonText: 'Registering...' });

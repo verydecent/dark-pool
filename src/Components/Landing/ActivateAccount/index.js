@@ -24,21 +24,28 @@ class ActivateAccount extends React.Component {
   handleSubmit(e) {
     const { token } = this.state;
 
+    this.setState({ buttonText: 'Activating...' });
+
     axios.post(`${process.env.API_URL}/auth/account-activation`, {
       token
     })
-    .then()
+    .then(response => {
+      console.log('Account Activation Success', response);
+      this.setState({ visible: false, buttonText: 'Account Activated' });
+    })
     .catch(error => {
       console.log('Account Activation Error', error);
     });
   }
 
   render() {
-    const { username, buttonText } = this.state;
+    const { username, visible, buttonText } = this.state;
+
+    const title = visible ? <h1>Hey, {username}, Are you ready to activate your account?</h1> : <h1>Your account was successfully activated! You can now login!</h1>;
     return (
       <>
-        Hey, {username}, Are you ready to activate your account?
-        <button onClick={(e) => this.handleSubmit(e)}>{buttonText}</button>
+        {title}
+        <button disabled={!visible} onClick={(e) => this.handleSubmit(e)}>{buttonText}</button>
       </>
     );
   }
