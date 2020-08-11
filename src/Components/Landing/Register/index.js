@@ -31,13 +31,13 @@ class Register extends React.Component {
     const { username, email, password } = this.state;
 
     // axios.post(`${process.env.REACT_APP_API_URL}/register`, { username, email, password })
-    axios.post(`${process.env.API_URL}/register`, { username, email, password })
+    axios.post(`${process.env.API_URL}/auth/register`, { username, email, password })
       .then(response => {
         console.log('Registration Success', response);
         this.setState({ username: '', email: '', password: '', buttonText: 'Registered' })
       })
       .catch(error => {
-        console.log('Registration error', error);
+        console.log('Registration error', error.response);
         this.setState({ buttonText: 'Register' });
       });
   }
