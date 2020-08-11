@@ -19,9 +19,9 @@ const Routes = () => {
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
-        <Route path='/auth/activate-account/:token' component={ActivateAccount} />
+        <Route exact path='/auth/activate/:token' exact component={ActivateAccount} />
         {/* App */}
-        <Route  exact path='/app' component={DashboardView} />
+        <Route exact path='/app' component={DashboardView} />
         <Route exact path='/app/tasks' component={TaskView} />
         <Route exact path='/app/calendar' component={CalendarView} />
       </Switch>
