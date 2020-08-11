@@ -39,7 +39,7 @@ class TaskView extends React.Component {
   componentDidMount() {
     console.log('======= CDM =======');
     // Make get request for task array and setState with tasks
-    axios.get(`${process.env.REACT_APP_API_URL}/task/${this.state.userId}`)
+    axios.get(`${process.env.API_URL}/task/${this.state.userId}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -47,7 +47,7 @@ class TaskView extends React.Component {
   }
 
   selectTask(id, title, description) {
-    axios.get(`${process.env.REACT_APP_API_URL}/subtask/${id}`)
+    axios.get(`${process.env.API_URL}/subtask/${id}`)
       .then(response => {
         const subtasks = response.data;
 
@@ -65,7 +65,7 @@ class TaskView extends React.Component {
     this.toggleModal();
     
     // POST request to task
-    axios.post(`${process.env.REACT_APP_API_URL}/task`, { user_id: this.state.userId })
+    axios.post(`${process.env.API_URL}/task`, { user_id: this.state.userId })
       .then((response) => {
         this.setState(prevState => {
           return {
@@ -89,7 +89,7 @@ class TaskView extends React.Component {
       description: this.state.taskDescription
     };
 
-    axios.put(`${process.env.REACT_APP_API_URL}/task/${this.state.taskId}`, updatedTask)
+    axios.put(`${process.env.API_URL}/task/${this.state.taskId}`, updatedTask)
       .then((response) => {
         console.log(
           'Response after updating Task', response
@@ -116,7 +116,7 @@ class TaskView extends React.Component {
   }
 
   deleteTask() {
-    axios.delete(`${process.env.REACT_APP_API_URL}/task/${this.state.taskId}`)
+    axios.delete(`${process.env.API_URL}/task/${this.state.taskId}`)
       .then(response => {
         console.log(response)
         const taskRemoved = this.state.tasks.filter(task => {
@@ -135,7 +135,7 @@ class TaskView extends React.Component {
   addSubtask(e) {
     e.preventDefault();
 
-    axios.post(`${process.env.REACT_APP_API_URL}/subtask/${this.state.taskId}`)
+    axios.post(`${process.env.API_URL}/subtask/${this.state.taskId}`)
       .then(response => {
         console.log('Subtask Response', response);
         this.setState(prevState => {
@@ -158,7 +158,7 @@ class TaskView extends React.Component {
     // filter out if the matching id and then setState with newly created array
     // Do this for tasks as well
     // const newSubtasks = this.state.subtasks.filter(subtask => )
-    axios.delete(`${process.env.REACT_APP_API_URL}/subtask/${id}`)
+    axios.delete(`${process.env.API_URL}/subtask/${id}`)
       .then(response => {
         console.log(response)
         const subtaskRemoved = this.state.subtasks.filter(subtask => {
