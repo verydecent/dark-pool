@@ -37,7 +37,9 @@ module.exports = {
     contentBase: "./build",
     hot: true,
     port: 1024,
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule: true
+    },
     overlay: {
       warnings: true,
       errors: true,
