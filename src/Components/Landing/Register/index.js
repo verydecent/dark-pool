@@ -1,5 +1,6 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
+import axios from 'axios';
 
 class Register extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class Register extends React.Component {
       lastName: '',
       email: '',
       password: '',
+      confirmPassword: '',
       buttonText: 'Register',
     };
 
@@ -27,6 +29,14 @@ class Register extends React.Component {
     // Prevents form from refreshing the page
     e.preventDefault();
     this.setState({ buttonText: 'Registering...' });
+    axios.post(`${REACT_APP_API_URL}/register`, { username, email, password })
+      .then(response => {
+        console.log('Registration Success', response);
+        this.setState({ username: '', firstName: '', lastName: '', email: '', password: '', buttonText: 'Register' })
+      })
+      .catch(error => {
+        console.log('Registration error', error);
+      });
   }
 
   render() {
