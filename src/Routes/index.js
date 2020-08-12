@@ -19,7 +19,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
 
-        <Route path='/protected' component={protected} />
+        <Route path='/protected' component={Protected} />
 
 
         {/* Landing */}
