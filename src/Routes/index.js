@@ -32,8 +32,8 @@ const Routes = () => {
 
         {/* App - Subscriber */}
         <ProtectedRoute exact path='/app' component={DashboardView} />
-        <Route exact path='/app/tasks' component={TaskView} />
-        <Route exact path='/app/calendar' component={CalendarView} />
+        <ProtectedRoute exact path='/app/tasks' component={TaskView} />
+        <ProtectedRoute exact path='/app/calendar' component={CalendarView} />
 
         {/* App - Admin */}
         <AdminRoute exact path='/app/admin' component={ProtectedAdmin} />
