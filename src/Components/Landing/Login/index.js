@@ -1,6 +1,7 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
+import { authenticate } from '../../Utilities/helpers';
 
 class Login extends React.Component {
   constructor() {
@@ -31,7 +32,9 @@ class Login extends React.Component {
     .then(response => {
       // Push user to dashboard route
       console.log('Login Success', response);
-      this.setState({ email: '', password: '', buttonText: 'Logging In...' });
+      authenticate(response, () => {
+        this.setState({ email: '', password: '', buttonText: 'Logging In...' });
+      });
     })
     .catch(error => {
       console.log('Error Logging In', error);
