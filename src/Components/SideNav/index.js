@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import { logout } from '../../Utilities/helpers';
+import { isAuthenticated } from '../../Utilities/helpers';
 
 const SideNav = (props) => {
 	return (
@@ -11,9 +12,20 @@ const SideNav = (props) => {
           <Link to='/'>DarkPoolNotes</Link>
         </div>
         <ul className='sidenav-link-list'>
-          <li className='sidenav-link'>
-            <Link to='/app'>Dashboard</Link>
-          </li>
+          {
+            isAuthenticated() && isAuthenticated().role === 'admin'
+              ? (<li className='sidenav-link'>
+                  <Link to='/app/admin'>Admin Dashboard</Link>
+                </li>)
+              : null
+          }
+          {
+            isAuthenticated() && isAuthenticated().role === 'subscriber'
+              ? (<li className='sidenav-link'>
+                  <Link to='/app'>Dashboard</Link>
+                </li>)
+              : null
+          }
           <li className='sidenav-link'>
             <Link to='/app/tasks'>Tasks</Link>
           </li>
