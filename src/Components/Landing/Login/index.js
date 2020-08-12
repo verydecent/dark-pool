@@ -5,8 +5,8 @@ import { authenticate, isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
@@ -15,6 +15,10 @@ class Login extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('cdm', this.props);
   }
 
   handleChange(e) {
@@ -35,6 +39,10 @@ class Login extends React.Component {
       console.log('Login Success', response);
       authenticate(response, () => {
         this.setState({ email: '', password: '', buttonText: 'Logging In...' });
+        // Push admin to admin protected route
+        isAuthenticated() && isAuthenticated().role === 'admin'
+          ? this.props.history.push('/app/admin')
+          : this.props.history.push('/app');
       });
     })
     .catch(error => {
