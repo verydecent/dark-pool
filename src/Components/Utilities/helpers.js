@@ -25,7 +25,7 @@ export const removeCookie = (key) => {
 
 export const getCookie = (key) => {
   if (window !== undefined) {
-    cookie.get(key);
+    return cookie.get(key);
   }
 }
 
@@ -48,7 +48,7 @@ export const removeLocalStorage = (key) => {
 // Authenticate user by passing data to cookie and localStorage during login
 
 export const authenticate = (response, next) => {
-  console.log('Authenticate Helper Login Resposne', response);
+  console.log('Authenticate Helper Login Response', response);
   setCookie('token', response.data.token);
   setLocalStorage('user', response.data.user);
   next();
