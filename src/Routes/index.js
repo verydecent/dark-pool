@@ -14,7 +14,7 @@ import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
 import CalendarView from '../Components/CalendarView';
 
-
+import ProtectedAdmin from '../Components/ProtectedAdmin';
 import Protected from '../Components/Protected';
 
 const Routes = () => {
@@ -24,16 +24,20 @@ const Routes = () => {
 
         <ProtectedRoute path='/protected' component={Protected} />
 
-
         {/* Landing */}
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Route exact path='/auth/activate/:token' exact component={ActivateAccount} />
-        {/* App */}
-        <Route exact path='/app' component={DashboardView} />
+
+        {/* App - Subscriber */}
+        <ProtectedRoute exact path='/app' component={DashboardView} />
         <Route exact path='/app/tasks' component={TaskView} />
         <Route exact path='/app/calendar' component={CalendarView} />
+
+        {/* App - Admin */}
+        <AdminRoute exact path='/app/admin' component={ProtectedAdmin} />
+        
       </Switch>
     </BrowserRouter>
   );
