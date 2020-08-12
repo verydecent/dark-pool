@@ -70,3 +70,9 @@ export const isAuthenticated = () => {
     }
   }
 }
+
+export const logout = next => {
+  removeCookie('token');
+  removeLocalStorage('user');
+  next();
+}
