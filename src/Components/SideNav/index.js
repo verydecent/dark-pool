@@ -1,8 +1,10 @@
 import React from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import { logout } from '../Utilities/helpers';
 
-const SideNav = () => {
+const SideNav = (props) => {
+  console.log('props', props);
 	return (
 		<div className='sidenav'>
       <div className='sidenav-container'>
@@ -28,8 +30,11 @@ const SideNav = () => {
         <li className='sidenav-link'>
           <Link to='/app/account'>Account</Link>
         </li>
-        <li className='sidenav-link'>
-          <Link to='/'>Logout</Link>
+        <li
+          className='sidenav-link'
+          onClick={() => logout(() => props.history.push('/'))}
+        >
+          Logout
         </li>
       </ul>
 		</div>
