@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { logout } from '../Utilities/helpers';
+import { logout } from '../../Utilities/helpers';
 
 const SideNav = (props) => {
 	return (

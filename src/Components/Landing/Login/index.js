@@ -1,7 +1,7 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
-import { authenticate, isAuthenticated } from '../../Utilities/helpers';
+import { authenticate, isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {

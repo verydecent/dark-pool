@@ -1,7 +1,7 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
-import { isAuthenticated } from '../../Utilities/helpers';
+import { isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect } from 'react-router-dom';
 
 class Register extends React.Component {
