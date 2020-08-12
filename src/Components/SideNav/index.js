@@ -31,6 +31,7 @@ const SideNav = (props) => {
           <Link to='/app/account'>Account</Link>
         </li>
         <li
+          style={{ cursor: 'pointer' }}
           className='sidenav-link'
           onClick={() => logout(() => props.history.push('/'))}
         >
