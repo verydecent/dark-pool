@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { logout } from '../Utilities/helpers';
 
 const SideNav = (props) => {
-  console.log('props', props);
 	return (
 		<div className='sidenav'>
       <div className='sidenav-container'>

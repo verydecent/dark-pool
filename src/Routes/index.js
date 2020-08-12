@@ -11,10 +11,17 @@ import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
 import CalendarView from '../Components/CalendarView';
 
+
+import Protected from '../Components/Protected';
+
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
+
+        <Route path='/protected' component={protected} />
+
+
         {/* Landing */}
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
