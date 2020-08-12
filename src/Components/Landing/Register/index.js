@@ -1,6 +1,8 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
+import { isAuthenticated } from '../../Utilities/helpers';
+import { Redirect } from 'react-router-dom';
 
 class Register extends React.Component {
   constructor() {
@@ -51,6 +53,7 @@ class Register extends React.Component {
 
     return (
       <>
+        {isAuthenticated() ? <Redirect to='/app' /> : null}
         <h1>REGISTER</h1>
         {JSON.stringify(this.state)}
         Register Component

@@ -1,7 +1,8 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
-import { authenticate } from '../../Utilities/helpers';
+import { authenticate, isAuthenticated } from '../../Utilities/helpers';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor() {
@@ -17,7 +18,7 @@ class Login extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value }, console.log(this.state));
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e) {
@@ -47,8 +48,8 @@ class Login extends React.Component {
 
     return (
       <>
+        {isAuthenticated() ? <Redirect to='/app' /> : null}
         <h1>LOGIN</h1>
-        {JSON.stringify(this.state)}
         Login Component
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
          <input
