@@ -2,10 +2,10 @@ import React from 'react';
 import SideNav from '../SideNav';
 import './styles.css';
 
-const withSideNav = Component => () => {
+const withSideNav = Component => (props) => {
 	return (
 		<div className='app-view'>
-			<SideNav />
+			<SideNav {...props} />
 			<div className='main-view'>
 				<Component />
 			</div>
