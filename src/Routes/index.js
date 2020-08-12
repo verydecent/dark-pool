@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+// Private Routing
+import ProtectedRoute from './ProtectedRoute';
+import AdminRoute from './AdminRoute';
 // Landing
 import Home from '../Components/Landing/Home';
 import Nav from '../Components/Landing/Nav';
@@ -19,7 +22,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
 
-        <Route path='/protected' component={Protected} />
+        <ProtectedRoute path='/protected' component={Protected} />
 
 
         {/* Landing */}
