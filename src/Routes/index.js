@@ -13,6 +13,7 @@ import ActivateAccount from '../Components/Landing/ActivateAccount';
 import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
 import CalendarView from '../Components/CalendarView';
+import AccountView from '../Components/AccountView'
 
 import ProtectedAdmin from '../Components/ProtectedAdmin';
 import Protected from '../Components/Protected';
@@ -34,6 +35,7 @@ const Routes = () => {
         <ProtectedRoute exact path='/app' component={DashboardView} />
         <ProtectedRoute exact path='/app/tasks' component={TaskView} />
         <ProtectedRoute exact path='/app/calendar' component={CalendarView} />
+        <ProtectedRoute exact path='/app/account' component={AccountView} />
 
         {/* App - Admin */}
         <AdminRoute exact path='/app/admin' component={ProtectedAdmin} />
