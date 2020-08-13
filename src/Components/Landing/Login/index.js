@@ -52,7 +52,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { buttonText } = this.state;
+    const { email, password, buttonText } = this.state;
 
     return (
       <>
@@ -63,12 +63,14 @@ class Login extends React.Component {
          <input
            name='email'
            placeholder='email'
+           value={email}
            type='text'
            onChange={(e) => this.handleChange(e)}
           />
           <input
             name='password'
             placeholder='password'
+            value={password}
             type='password'
             onChange={(e) => this.handleChange(e)}
           />
