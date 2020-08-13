@@ -4,6 +4,34 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../Utilities/helpers';
 import { isAuthenticated } from '../../Utilities/helpers';
 
+const adminNav = (
+  <>
+    <li className='sidenav-link'>
+      <Link to='/app/admin'>Admin Dashboard</Link>
+    </li>
+    <li className='sidenav-link'>
+      <Link to='/app/profile'>Profile</Link>
+    </li>
+  </>
+);
+
+const subscriberNav = (
+  <>
+    <li className='sidenav-link'>
+      <Link to='/app'>Dashboard</Link>
+    </li>
+    <li className='sidenav-link'>
+    <Link to='/app/tasks'>Tasks</Link>
+    </li>
+    <li className='sidenav-link'>
+      <Link to='/app/calendar'>Calendar</Link>
+    </li>
+    <li className='sidenav-link'>
+      <Link to='/app/profile'>Profile</Link>
+    </li>
+  </>
+);
+
 const SideNav = (props) => {
 	return (
 		<div className='sidenav'>
@@ -12,29 +40,8 @@ const SideNav = (props) => {
           <Link to='/'>DarkPoolNotes</Link>
         </div>
         <ul className='sidenav-link-list'>
-          {
-            isAuthenticated() && isAuthenticated().role === 'admin'
-              ? (<li className='sidenav-link'>
-                  <Link to='/app/admin'>Admin Dashboard</Link>
-                </li>)
-              : null
-          }
-          {
-            isAuthenticated() && isAuthenticated().role === 'subscriber'
-              ? (<li className='sidenav-link'>
-                  <Link to='/app'>Dashboard</Link>
-                </li>)
-              : null
-          }
-          <li className='sidenav-link'>
-            <Link to='/app/tasks'>Tasks</Link>
-          </li>
-          <li className='sidenav-link'>
-            <Link to='/app/calendar'>Calendar</Link>
-          </li>
-          <li className='sidenav-link'>
-            <Link to='/app/profile'>Profile</Link>
-          </li>
+          {isAuthenticated() && isAuthenticated().role === 'admin' ? adminNav : null}
+          {isAuthenticated() && isAuthenticated().role === 'subscriber' ? subscriberNav : null}
         </ul>
       </div>
 			<ul className='sidenav-link-utilities'>
