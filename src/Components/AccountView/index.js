@@ -52,11 +52,12 @@ class AccountView extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     const { username, password } = this.state;
     const token = getCookie('token');
     
     this.setState({ buttonText: 'Updating...' });
-    axios.put(`${process.env.API_URL}/user/update`, {
+    axios.put(`${process.env.API_URL}/user`, {
       username,
       password
     }, {
