@@ -82,8 +82,9 @@ export const logout = next => {
 export const updateUser = (response, next) => {
   console.log('Update User In LocalStorage');
   if (typeof window !== 'undefined') {
-    let user = JSON.parse(localStorage.getItem('user'));
-    user = response.data;
+    // ? Why need the code below ?
+    // let user = JSON.parse(localStorage.getItem('user'));
+    const user = response.data;
     localStorage.setItem('user', JSON.stringify(user));
   }
   // Acts as middleware
