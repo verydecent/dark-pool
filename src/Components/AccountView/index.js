@@ -1,16 +1,22 @@
 import React from 'react';
 import axios from 'axios';
+import withSideNav from '../Hoc/withSideNav';
 
 class AccountView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      buttonText: "Update"
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    
   }
 
   handleChange(e) {
@@ -21,24 +27,29 @@ class AccountView extends React.Component {
 
     const { username, password } = this.state;
 
-    axios.post(`${process.env.API_URL}/user`, {
+    this.setState({ buttonText: 'Updating...' });
+
+    axios.post(`${process.env.API_URL}/user/update`, {
       username,
       password
     })
     .then(response => {
       console.log('Update User Information Success', response);
+      this.setState({ buttonText: 'Updated' });
     })
     .catch(error => {
       console.log('Update User Information Error', error);
+      this.setState({ buttonText: 'Update' });
     })
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, buttonText } = this.state;
 
     return (
       <>
         <h1>Account View Component</h1>
+        <p>Update your user info</p>
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
          <input
            name='username'
@@ -61,4 +72,4 @@ class AccountView extends React.Component {
   }
 }
 
-export default AccountView;
+export default withSideNav(AccountView);
