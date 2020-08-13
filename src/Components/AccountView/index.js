@@ -32,7 +32,6 @@ class AccountView extends React.Component {
     .then(response => {
       console.log('Get User Info Success', response);
       const { email, username, role } = response.data;
-      console.log(email);
       this.setState({ username, email, role });
     })
     .catch(error => {
