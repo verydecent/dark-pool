@@ -76,7 +76,7 @@ class Login extends React.Component {
           />
 
           <button>{buttonText}</button>
-          <Link to='/auth/forgot-password'>Forgot Password?</Link>
+          <Link to='/auth/password/forgot'>Forgot Password?</Link>
         </form>
      </>
     );

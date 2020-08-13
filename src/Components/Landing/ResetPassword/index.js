@@ -19,9 +19,8 @@ class ResetPassword extends React.Component {
   componentDidMount() {
     const token = this.props.match.params.token;
     const { username } = jwt.decode(token);
-    console.log(username);
 
-    this.setState({ username });
+    this.setState({ username, token });
   }
 
   handleChange(e) {
@@ -29,11 +28,11 @@ class ResetPassword extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log('handleSubmit ')
+    console.log('sub')
     e.preventDefault();
-    const { newPassword, confirmPassword } = this.state;
+    const { newPassword, token } = this.state;
     
-    axios.post(`${process.env.API_URL}/auth/reset-password`, { newPassword })
+    axios.post(`${process.env.API_URL}/auth/reset-password`, { newPassword, resetPasswordLink: token })
       .then(response => {
         console.log('Reset password Request Success', response);
       })
