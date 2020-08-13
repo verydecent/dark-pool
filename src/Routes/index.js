@@ -31,7 +31,7 @@ const Routes = () => {
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Route exact path='/auth/activate/:token' component={ActivateAccount} />
-        <Route exact path='/profile/:id' component={ProfileView} />
+        <Route path='/app/profile' component={ProfileView} />
 
         {/* App - Subscriber */}
         <ProtectedRoute exact path='/app' component={DashboardView} />
