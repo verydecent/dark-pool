@@ -9,6 +9,8 @@ import Nav from '../Components/Landing/Nav';
 import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
 import ActivateAccount from '../Components/Landing/ActivateAccount';
+import ForgotPassword from '../Components/Landing/ForgotPassword';
+import ResetPassword from '../Components/Landing/ResetPassword';
 // In App
 import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
@@ -31,6 +33,8 @@ const Routes = () => {
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Route exact path='/auth/activate/:token' component={ActivateAccount} />
+        <Route exact path='/auth/password/forgot' component={ForgotPassword} />
+        <Route exact path='/auth/password/reset/:token' component={ResetPassword} />
         <Route path='/app/profile' component={ProfileView} />
 
         {/* App - Subscriber */}
