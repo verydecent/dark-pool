@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import withSideNav from '../Hoc/withSideNav';
-import { getCookie, isAuthenticated } from '../../Utilities/helpers';
+import { getCookie, isAuthenticated, logout } from '../../Utilities/helpers';
 
 class AccountView extends React.Component {
   constructor(props) {
@@ -37,6 +37,13 @@ class AccountView extends React.Component {
     })
     .catch(error => {
       console.log('Get User Info Error', error);
+
+      // In the case that request is made with an expired token (aka 401 unauthorized), we will redirect the user to the landing page
+      if (error.response.status === 401) {
+        logout(() => {
+          this.props.history.push('/');
+        });
+      }
     })
   }
 
@@ -45,21 +52,24 @@ class AccountView extends React.Component {
   }
 
   handleSubmit(e) {
-
     const { username, password } = this.state;
-
+    const token = getCookie('token');
+    
     this.setState({ buttonText: 'Updating...' });
-
-    axios.post(`${process.env.API_URL}/user/update`, {
+    axios.put(`${process.env.API_URL}/user/update`, {
       username,
       password
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     .then(response => {
       console.log('Update User Information Success', response);
       this.setState({ buttonText: 'Updated' });
     })
     .catch(error => {
-      console.log('Update User Information Error', error);
+      console.log('Update User Information Error', error.response.data.error);
       this.setState({ buttonText: 'Update' });
     })
   }
@@ -71,25 +81,21 @@ class AccountView extends React.Component {
       <>
         <h1>Account View Component</h1>
         <p>Update your user info</p>
-        <table>
-            <tr>
-              <td>
-                User Email ====
-              </td>
-              <td>
-                {email}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                User Role ====
-              </td>
-              <td>
-                {role}
-              </td>
-            </tr>
-        </table>
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
+         <input
+           name='email'
+           value={email}
+           type='text'
+           disabled={true}
+           onChange={(e) => this.handleChange(e)}
+          />
+          <input
+            name='role'
+            value={role}
+            type='text'
+            disabled={true}
+            onChange={(e) => this.handleChange(e)}
+          />
          <input
            name='username'
            value={username}
