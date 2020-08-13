@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import withNav from '../Hoc/withNav';
 
 class ForgotPassword extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class ForgotPassword extends React.Component {
       <>
         <h1>Forgot password</h1>
 
-        <form className='' onClick={(e) => this.handleSubmit(e)}>
+        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
           <input 
             name='email'
             value={email}
@@ -47,4 +48,4 @@ class ForgotPassword extends React.Component {
   }
 }
 
-export default ForgotPassword;
+export default withNav(ForgotPassword);

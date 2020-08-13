@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
+import withNav from '../Hoc/withNav';
 
 class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: '',
+      token: '',
       newPassword: '',
       confirmPassword: ''
     }
@@ -12,15 +16,24 @@ class ResetPassword extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const token = this.props.match.params.token;
+    const { username } = jwt.decode(token);
+    console.log(username);
+
+    this.setState({ username });
+  }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e) {
+    console.log('handleSubmit ')
     e.preventDefault();
     const { newPassword, confirmPassword } = this.state;
     
-    axios.post(`${process.env.API_URL}/auth/reset-password`, { email })
+    axios.post(`${process.env.API_URL}/auth/reset-password`, { newPassword })
       .then(response => {
         console.log('Reset password Request Success', response);
       })
@@ -30,12 +43,12 @@ class ResetPassword extends React.Component {
   }
 
   render() {
-    const { email } = this.state;
+    const { username, newPassword, confirmPassword } = this.state;
     return (
       <>
-        <h1>Reset password</h1>
+        <h1>Hey {username}, reset your password</h1>
 
-        <form className='' onClick={(e) => this.handleSubmit(e)}>
+        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
           <input 
             name='newPassword'
             value={newPassword}
@@ -53,4 +66,4 @@ class ResetPassword extends React.Component {
   }
 }
 
-export default ResetPassword;
+export default withNav(ResetPassword);
