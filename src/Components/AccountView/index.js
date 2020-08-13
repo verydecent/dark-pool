@@ -1,13 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import withSideNav from '../Hoc/withSideNav';
+import { getCookie, isAuthenticated } from '../../Utilities/helpers';
 
 class AccountView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      email: "",
       username: "",
       password: "",
+      role: "",
       buttonText: "Update"
     }
 
@@ -16,7 +19,25 @@ class AccountView extends React.Component {
   }
 
   componentDidMount() {
-    
+    // Get user's ID from localStorage helper
+    const id = isAuthenticated()._id;
+    // Get JWT from cookie
+    const token = getCookie('token');
+
+    axios.get(`${process.env.API_URL}/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      console.log('Get User Info Success', response);
+      const { email, username, role } = response.data;
+      console.log(email);
+      this.setState({ username, email, role });
+    })
+    .catch(error => {
+      console.log('Get User Info Error', error);
+    })
   }
 
   handleChange(e) {
@@ -44,12 +65,30 @@ class AccountView extends React.Component {
   }
 
   render() {
-    const { username, password, buttonText } = this.state;
+    const { username, password, role, email, buttonText } = this.state;
 
     return (
       <>
         <h1>Account View Component</h1>
         <p>Update your user info</p>
+        <table>
+            <tr>
+              <td>
+                User Email ====
+              </td>
+              <td>
+                {email}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                User Role ====
+              </td>
+              <td>
+                {role}
+              </td>
+            </tr>
+        </table>
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
          <input
            name='username'
