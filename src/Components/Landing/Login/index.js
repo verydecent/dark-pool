@@ -2,7 +2,7 @@ import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
 import { authenticate, isAuthenticated } from '../../../Utilities/helpers';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
@@ -74,7 +74,9 @@ class Login extends React.Component {
             type='password'
             onChange={(e) => this.handleChange(e)}
           />
+
           <button>{buttonText}</button>
+          <Link to='/auth/forgot-password'>Forgot Password?</Link>
         </form>
      </>
     );
