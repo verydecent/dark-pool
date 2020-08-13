@@ -13,7 +13,8 @@ import ActivateAccount from '../Components/Landing/ActivateAccount';
 import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
 import CalendarView from '../Components/CalendarView';
-import AccountView from '../Components/AccountView'
+import AccountView from '../Components/AccountView';
+import ProfileView from '../Components/ProfileView';
 
 import ProtectedAdmin from '../Components/ProtectedAdmin';
 import Protected from '../Components/Protected';
@@ -29,7 +30,8 @@ const Routes = () => {
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
-        <Route exact path='/auth/activate/:token' exact component={ActivateAccount} />
+        <Route exact path='/auth/activate/:token' component={ActivateAccount} />
+        <Route exact path='/profile/:id' component={ProfileView} />
 
         {/* App - Subscriber */}
         <ProtectedRoute exact path='/app' component={DashboardView} />
