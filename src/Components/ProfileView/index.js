@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class ProfileView extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class ProfileView extends React.Component {
 
   componentDidMount() {
     // const userId = this.props.match
-    axios.get(`${process.env.API_URL}/user/${}`)
+    axios.get(`${process.env.API_URL}/user/`)
     .then(response => {
       console.log('Get User Info Success', response);
       // this.setState({ })
@@ -22,6 +23,7 @@ class ProfileView extends React.Component {
   render() {
     return (
       <>
+        <Link to='/'>Go Home</Link>
         <h1>Profile View component</h1>
       </>
     );
