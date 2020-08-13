@@ -74,7 +74,6 @@ class Login extends React.Component {
             type='password'
             onChange={(e) => this.handleChange(e)}
           />
-
           <button>{buttonText}</button>
         </form>
      </>
