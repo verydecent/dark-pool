@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import withSideNav from '../Hoc/withSideNav';
-import { getCookie, isAuthenticated, logout } from '../../Utilities/helpers';
+import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
 
 class AccountView extends React.Component {
   constructor(props) {
@@ -66,7 +66,9 @@ class AccountView extends React.Component {
     })
     .then(response => {
       console.log('Update User Information Success', response);
-      this.setState({ buttonText: 'Updated' });
+      updateUser(response, () => {
+        this.setState({ buttonText: 'Updated' });
+      });
     })
     .catch(error => {
       console.log('Update User Information Error', error.response.data.error);
