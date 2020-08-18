@@ -60,12 +60,12 @@ class Login extends React.Component {
       <>
         {redirect}
         <div className='login-container-1'>
-          <h1>LOGIN</h1>
-          Login Component
+          <h1 className='login-title'>Login to DarkPoolNotes</h1>
           <form className='' onSubmit={(e) => this.handleSubmit(e)}>
             <div className='login-action-container-1'>
-              <label htmlFor=''>Email</label>
+              <label className='form-label' htmlFor=''>Email</label>
               <input
+                className='form-input'
                 name='email'
                 placeholder='email'
                 value={email}
@@ -74,8 +74,9 @@ class Login extends React.Component {
               />
             </div>
             <div className='login-action-container-1'>
-              <label htmlFor=''>Password</label>
+              <label className='form-label' htmlFor=''>Password</label>
               <input
+                className='form-input'
                 name='password'
                 placeholder='password'
                 value={password}
@@ -83,8 +84,13 @@ class Login extends React.Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <button>{buttonText}</button>
-            <Link to='/auth/password/forgot'>Forgot Password?</Link>
+            <div className='login-action-container-1'>
+              <button className='form-button'>{buttonText}</button>
+            </div>
+            <div className='login-action-container-2'>
+              <Link to='/auth/password/forgot'>Forgot Password?</Link>
+              <Link to='/register'>Need an account?</Link>
+            </div>
           </form>
         </div>
       </>
