@@ -3,6 +3,7 @@ import withNav from '../Hoc/withNav';
 import axios from 'axios';
 import { authenticate, isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect, Link } from 'react-router-dom';
+import './styles.css';
 
 class Login extends React.Component {
   constructor(props) {
