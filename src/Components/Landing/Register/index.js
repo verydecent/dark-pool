@@ -2,7 +2,7 @@ import React from 'react';
 import withNav from '../Hoc/withNav';
 import axios from 'axios';
 import { isAuthenticated } from '../../../Utilities/helpers';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Register extends React.Component {
   constructor() {
@@ -11,7 +11,8 @@ class Register extends React.Component {
       username: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      passwordConfirm: '',
+      doesPasswordConfirm: true,
       buttonText: 'Register',
     };
 
@@ -26,20 +27,30 @@ class Register extends React.Component {
   handleSubmit(e) {
     // Prevents form from refreshing the page
     e.preventDefault();
-    this.setState({ buttonText: 'Registering...' });
+    const { username, email, password, passwordConfirm } = this.state;
 
-    const { username, email, password } = this.state;
+    if (password !== passwordConfirm) {
+      this.setState({ doesPasswordConfirm: false });
+    }
+    else {
+      this.setState({ buttonText: 'Registering...' });
+      axios.post(`${process.env.API_URL}/auth/register`, { username, email, password })
+        .then(response => {
+          console.log('Registration Success', response);
+          this.setState({
+            username: '',
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            buttonText: 'Registered'
+          })
+        })
+        .catch(error => {
+          console.log('Registration error', error.response);
+          this.setState({ buttonText: 'Register' });
+        });
+    }
 
-    // axios.post(`${process.env.REACT_APP_API_URL}/register`, { username, email, password })
-    axios.post(`${process.env.API_URL}/auth/register`, { username, email, password })
-      .then(response => {
-        console.log('Registration Success', response);
-        this.setState({ username: '', email: '', password: '', buttonText: 'Registered' })
-      })
-      .catch(error => {
-        console.log('Registration error', error.response);
-        this.setState({ buttonText: 'Register' });
-      });
   }
 
   render() {
@@ -47,48 +58,77 @@ class Register extends React.Component {
       username,
       email,
       password,
-      confirmPassword,
-      buttonText
+      passwordConfirm,
+      buttonText,
+      doesPasswordConfirm
     } = this.state;
+    const redirect = isAuthenticated() ? <Redirect to='/app' /> : null;
+    const passwordConfirmaMessage = doesPasswordConfirm
+      ? null
+      : <p style={{ color: 'red', textAlign: 'center' }}>*Required: Password and Password Confirm match & Password length is at least 6 characters in length</p>;
 
     return (
       <>
-        {isAuthenticated() ? <Redirect to='/app' /> : null}
-        <h1>REGISTER</h1>
-        {JSON.stringify(this.state)}
-        Register Component
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-          <input
-           name='username'
-           placeholder='Username'
-           type='text'
-           value={username}
-           onChange={(e) => this.handleChange(e)}
-          />
-         <input
-           name='email'
-           placeholder='Email'
-           type='text'
-           value={email}
-           onChange={(e) => this.handleChange(e)}
-          />
-          <input
-            name='password'
-            placeholder='Password'
-            type='password'
-            value={password}
-            onChange={(e) => this.handleChange(e)}
-          />
-          <input
-           name='confirmPassword'
-           placeholder='Confirm Password'
-           type='password'
-           value={confirmPassword}
-           onChange={(e) => this.handleChange(e)}
-          />
-          <button>{buttonText}</button>
-        </form>
-     </>
+        {redirect}
+        <div className='login-container-1'>
+          <h1 className='login-title'>Register with DarkPoolNotes</h1>
+          <form className='' onSubmit={(e) => this.handleSubmit(e)}>
+            <div className='login-action-container-1'>
+              <label className='form-label' htmlFor=''>Username</label>
+              <input
+                className='form-input'
+                name='username'
+                placeholder='username'
+                value={username}
+                type='text'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              <label className='form-label' htmlFor=''>Email</label>
+              <input
+                className='form-input'
+                name='email'
+                placeholder='email'
+                value={email}
+                type='text'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              <label className='form-label' htmlFor=''>Password</label>
+              <input
+                className='form-input'
+                name='password'
+                placeholder='password'
+                value={password}
+                type='password'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              <label className='form-label' htmlFor=''>Password Confirm</label>
+              <input
+                className='form-input'
+                name='passwordConfirm'
+                placeholder='Password Confirmation'
+                value={passwordConfirm}
+                type='password'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              {passwordConfirmaMessage}
+            </div>
+            <div className='login-action-container-1'>
+              <button className='form-button'>{buttonText}</button>
+            </div>
+            <div className='login-action-container-2'>
+              <Link to='/login'>Already registered?</Link>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 }
