@@ -27,4 +27,70 @@ Unauthorized Views
 - About/App Concept
 - Log In
 - Reigster
--
+
+Update - Wed June 24 2020
+
+Simplifying down to these views
+- Dashboard displaying graphs
+- Calendar view
+- Account panel for updating password and viewing email and username
+- Profile view for public viewing info such as member since, and a graph of their progress
+
+
+*Quick notes to design and organize API
+
+
+== GET TASKS ==
+
+Clicking on a date we hit this request which returns all tasks of that day
+Clicking on a particular task for modal will open that already existing task
+Updating that task will hit the update tasks endpoint and then it will return the newly updated array of tasks? Or Update the current browser AND update the backend so that they match?
+
+== UPDATE TASKS ==
+
+Open Task then make the request
+
+== CREATE TASKS ==
+
+Create task on the front end and then send a request to the backend
+Or refresh the app once we create?
+
+
+
+UserFlow
+1. User clicks on date
+2. Makes a call based on UserID + Date Clicked
+3. Returns all tasks and subtask of tasks
+4. Component receives tasks into TaskView Component
+5. Clicking on Task opens up Modal with pre filled tasks
+    1. Inputs will have API returned response data
+    2. Updating these inputs fields or creating a subtask updates the currently held array of tasks OR does it make a request to the database to update that task of that array of tasks? And then makes a new call to GET the new array? Or Update currently array while updating the backend exactly?… Yeah lets try that? Instead of making another car to get the entire array. Sounds better
+    3. Value of input props will be from props which will get refreshed with new value once we make the update? But what about the state change of the input? It the state local? How does it match?
+
+Another Solution?
+- Open Modal then make a call, and then set state then drop down state as value of input?
+
+
+Call()
+	return arrayOfTasksPlusSubtasks
+
+Now we have array of tasks to use
+
+Opening a modal will open modal, while also setting state for title, description, date and subtasks of modal
+Selected modal will setState into state and the state will match the value of input
+
+
+== Mon July 20 2020 ==
+
+Important question: Is it better to reload the app with newly updated database data or just to update the data and have the array match what is happening on the data? What if there is a response error? and it doesnt match? Prevent the user from adding to the array.
+
+
+Deleting.... We need an id. 
+
+Todos
+- Delete function
+- Choosing a graphing library
+- Design how its going to look and feel. I want to sit down and write the concept out and then design. What are some aspects of functionality i'd like to include.
+- Going for ultimate simplicity and functionality.
+- Complete Bool for subtasks
+

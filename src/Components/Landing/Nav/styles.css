@@ -1,0 +1,17 @@
+.nav {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.nav__global-logo {
+}
+
+.nav__menu {
+  margin-left: auto;
+}
+
+.nav__menu__list {
+  display: flex;
+}

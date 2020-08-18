@@ -1,0 +1,10 @@
+.app-view {
+	display: flex;
+	height: 100vh;
+  background: #121212;
+}
+
+.main-view {
+	margin: 16px 24px;
+	width: 100%;
+}

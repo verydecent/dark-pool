@@ -1,0 +1,33 @@
+.task-view {
+  background-color: #212121;
+  border-radius: 4px;
+  height: 100%;
+}
+
+.task-view-container {
+}
+
+.task-view-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 16px;
+}
+
+.task-view-body-container {
+  padding: 16px;
+}
+
+.task-view-body-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  padding-bottom: 16px;
+}
+
+.task-view-list-container {
+
+}
