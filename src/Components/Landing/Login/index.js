@@ -35,51 +35,59 @@ class Login extends React.Component {
       email,
       password
     })
-    .then(response => {
-      // Push user to dashboard route
-      console.log('Login Success', response);
-      authenticate(response, () => {
-        this.setState({ email: '', password: '', buttonText: 'Logging In...' });
-        // Push admin to admin protected route
-        isAuthenticated() && isAuthenticated().role === 'admin'
-          ? this.props.history.push('/app/admin')
-          : this.props.history.push('/app');
+      .then(response => {
+        // Push user to dashboard route
+        console.log('Login Success', response);
+        authenticate(response, () => {
+          this.setState({ email: '', password: '', buttonText: 'Logging In...' });
+          // Push admin to admin protected route
+          isAuthenticated() && isAuthenticated().role === 'admin'
+            ? this.props.history.push('/app/admin')
+            : this.props.history.push('/app');
+        });
+      })
+      .catch(error => {
+        console.log('Error Logging In', error);
+        this.setState({ buttonText: 'Login' });
       });
-    })
-    .catch(error => {
-      console.log('Error Logging In', error);
-      this.setState({ buttonText: 'Login' });
-    });
   }
 
   render() {
     const { email, password, buttonText } = this.state;
+    const redirect = isAuthenticated() ? <Redirect to='/app' /> : null;
 
     return (
       <>
-        {isAuthenticated() ? <Redirect to='/app' /> : null}
-        <h1>LOGIN</h1>
-        Login Component
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-         <input
-           name='email'
-           placeholder='email'
-           value={email}
-           type='text'
-           onChange={(e) => this.handleChange(e)}
-          />
-          <input
-            name='password'
-            placeholder='password'
-            value={password}
-            type='password'
-            onChange={(e) => this.handleChange(e)}
-          />
-
-          <button>{buttonText}</button>
-          <Link to='/auth/password/forgot'>Forgot Password?</Link>
-        </form>
-     </>
+        {redirect}
+        <div className='login-container-1'>
+          <h1>LOGIN</h1>
+          Login Component
+          <form className='' onSubmit={(e) => this.handleSubmit(e)}>
+            <div className='login-action-container-1'>
+              <label htmlFor=''>Email</label>
+              <input
+                name='email'
+                placeholder='email'
+                value={email}
+                type='text'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              <label htmlFor=''>Password</label>
+              <input
+                name='password'
+                placeholder='password'
+                value={password}
+                type='password'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <button>{buttonText}</button>
+            <Link to='/auth/password/forgot'>Forgot Password?</Link>
+          </form>
+        </div>
+      </>
     );
   }
 }
