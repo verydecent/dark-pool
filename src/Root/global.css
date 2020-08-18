@@ -6,7 +6,7 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   font-family: 'Roboto', sans-serif;
-  color: rgba(255, 255, 255, 0.9);
+  /* color: rgba(255, 255, 255, 0.9); */
 }
 
 @font-face {
@@ -35,34 +35,34 @@ html {
 
 a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
+  /* color: rgba(255, 255, 255, 0.9); */
   font-family: 'Roboto', sans-serif;
 }
 
 a:hover {
-  color: rgba(255, 255, 255, 0.6);
+  /* color: rgba(255, 255, 255, 0.6); */
 }
 a:visited {
-  color: rgba(255, 255, 255, 0.9);
+  /* color: rgba(255, 255, 255, 0.9); */
 }
 
 .root-container {
 	height: 100vh;
 	width: 100wh;
-  background-color: #212121;
+  /* background-color: #212121; */
 }
 
 .header-1 {
   font-size: 2.4rem;
-  color: rgba(255, 255, 255, 0.9);
+  /* color: rgba(255, 255, 255, 0.9); */
 }
 
 .header-2 {
   font-size: 1.6rem;
-  color: rgba(255, 255, 255, 0.9);
+  /* color: rgba(255, 255, 255, 0.9); */
 }
 
 .header-3 {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  /* color: rgba(255, 255, 255, 0.9); */
 }
