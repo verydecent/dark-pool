@@ -56,7 +56,7 @@ class Login extends React.Component {
       <>
         {redirect}
         <div className='login-container-1'>
-          <h1 className='login-title'>Login to DarkPoolNotes</h1>
+          <h1 className='login-title'>Login</h1>
           <form className='' onSubmit={(e) => this.handleSubmit(e)}>
             <div className='login-action-container-1'>
               <label className='form-label' htmlFor=''>Email</label>

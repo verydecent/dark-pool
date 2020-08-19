@@ -3,6 +3,7 @@ import withNav from '../Hoc/withNav';
 import axios from 'axios';
 import { isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect, Link } from 'react-router-dom';
+import './styles.css';
 
 class Register extends React.Component {
   constructor() {
@@ -70,8 +71,8 @@ class Register extends React.Component {
     return (
       <>
         {redirect}
-        <div className='login-container-1'>
-          <h1 className='login-title'>Register with DarkPoolNotes</h1>
+        <div className='register-container-1'>
+          <h1 className='login-title'>Register</h1>
           <form className='' onSubmit={(e) => this.handleSubmit(e)}>
             <div className='login-action-container-1'>
               <label className='form-label' htmlFor=''>Username</label>

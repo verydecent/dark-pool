@@ -3,12 +3,13 @@
 /* Containers */
 
 .login-container-1 {
+  width: 360px;
+
   border: 1px solid red;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
   border-radius: 6px;
   padding-top: 24px;
   padding-bottom: 24px;
