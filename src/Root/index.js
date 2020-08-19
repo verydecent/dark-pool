@@ -4,7 +4,17 @@ import './global.css';
 import './reset.css';
 import Routes from '../Routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes, faPlus, faAngleLeft, faAngleRight, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimes,
+  faPlus,
+  faAngleLeft,
+  faAngleRight,
+  faCalendarAlt,
+  faClipboard,
+  faUser,
+  faChartLine,
+  faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faTimes,
@@ -12,6 +22,10 @@ library.add(
   faAngleLeft,
   faAngleRight,
   faCalendarAlt,
+  faClipboard,
+  faUser,
+  faChartLine,
+  faSignOutAlt
 );
 
 const Root = () => {
