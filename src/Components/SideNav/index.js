@@ -3,14 +3,13 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 import { logout } from '../../Utilities/helpers';
 import { isAuthenticated } from '../../Utilities/helpers';
+import { CalendarAlt, Clipboard, User, ChartLine, SignOut } from '../FAIcons';
 
 const adminNav = (
   <>
     <li className='sidenav-link'>
+      <ChartLine />
       <Link to='/app/admin'>Admin Dashboard</Link>
-    </li>
-    <li className='sidenav-link'>
-      <Link to='/app/profile'>Profile</Link>
     </li>
   </>
 );
@@ -18,12 +17,15 @@ const adminNav = (
 const subscriberNav = (
   <>
     <li className='sidenav-link'>
+      <ChartLine />
       <Link to='/app'>Dashboard</Link>
     </li>
     <li className='sidenav-link'>
-    <Link to='/app/tasks'>Tasks</Link>
+      <Clipboard />
+      <Link to='/app/tasks'>Tasks</Link>
     </li>
     <li className='sidenav-link'>
+      <CalendarAlt />
       <Link to='/app/calendar'>Calendar</Link>
     </li>
     <li className='sidenav-link'>
@@ -33,8 +35,8 @@ const subscriberNav = (
 );
 
 const SideNav = (props) => {
-	return (
-		<div className='sidenav'>
+  return (
+    <div className='sidenav'>
       <div className='sidenav-container'>
         <div className='sidenav-logo'>
           <Link to='/'>DarkPoolNotes</Link>
@@ -44,20 +46,20 @@ const SideNav = (props) => {
           {isAuthenticated() && isAuthenticated().role === 'subscriber' ? subscriberNav : null}
         </ul>
       </div>
-			<ul className='sidenav-link-utilities'>
+      <ul className='sidenav-link-utilities'>
         <li className='sidenav-link'>
-          <Link to='/app/account'>Account</Link>
+          <User /><Link to='/app/account'>Account</Link>
         </li>
         <li
           style={{ cursor: 'pointer' }}
           className='sidenav-link'
           onClick={() => logout(() => props.history.push('/'))}
         >
-          Logout
+          <SignOut />Logout
         </li>
       </ul>
-		</div>
-	);
+    </div>
+  );
 }
 
 export default SideNav;
