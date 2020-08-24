@@ -4,6 +4,7 @@ import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
+import { isAuthenticated } from '../../Utilities/helpers';
 import axios from 'axios';
 import shortid from 'shortid';
 
@@ -11,10 +12,10 @@ class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: '5f2397d202ea39098fee8bfe',
+      userId: '',
       tasks: [],
       isModalOpen: false,
-      
+
       // State display for currently selected task modal
       taskId: '',
       taskTitle: '',
@@ -32,14 +33,16 @@ class TaskView extends React.Component {
     this.selectTask = this.selectTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
-    this.addSubtask= this.addSubtask.bind(this);
+    this.addSubtask = this.addSubtask.bind(this);
     this.deleteSubtask = this.deleteSubtask.bind(this);
   }
 
   componentDidMount() {
-    console.log('======= CDM =======');
+    const userId = isAuthenticated()._id;
+    console.log('======= CDM =======', userId);
+
     // Make get request for task array and setState with tasks
-    axios.get(`${process.env.API_URL}/task/${this.state.userId}`)
+    axios.get(`${process.env.API_URL}/task/${userId}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -63,18 +66,19 @@ class TaskView extends React.Component {
 
   createTask() {
     this.toggleModal();
-    
+    const userId = isAuthenticated()._id;
+
     // POST request to task
-    axios.post(`${process.env.API_URL}/task`, { user_id: this.state.userId })
+    axios.post(`${process.env.API_URL}/task`, { user_id: userId })
       .then((response) => {
         this.setState(prevState => {
           return {
             taskId: response.data._id,
-            tasks: [...prevState.tasks, response.data ]
+            tasks: [...prevState.tasks, response.data]
           };
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -101,7 +105,7 @@ class TaskView extends React.Component {
             console.log('newTask from JSON PARSE', newTask);
             newTask.title = response.data.title;
             newTask.description = response.data.description;
-            
+
             return newTask;
           }
           return task;
@@ -178,7 +182,7 @@ class TaskView extends React.Component {
       [e.target.name]: e.target.value
     });
   }
-  
+
   toggleModal() {
     // this.setState({ isModalOpen: !this.state.isModalOpen });
     // How do I search for the selected task in the array then set it to state?
@@ -186,15 +190,15 @@ class TaskView extends React.Component {
     // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
     if (this.state.isModalOpen) {
       this.setState(prevState => {
-            return {
-              isModalOpen: false,
-              taskId: '',
-              taskTitle: '',
-              taskDescription: '',
-              subtaskDescription: '',
-              subtasks: [],
-            };
-          });
+        return {
+          isModalOpen: false,
+          taskId: '',
+          taskTitle: '',
+          taskDescription: '',
+          subtaskDescription: '',
+          subtasks: [],
+        };
+      });
     }
     else {
       this.setState(prevState => {
@@ -217,7 +221,7 @@ class TaskView extends React.Component {
               <Plus />
             </div>
           </div>
-         
+
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
               <h2 className='date-header'>Wed July 8 2020</h2>
@@ -259,7 +263,7 @@ class TaskView extends React.Component {
                     key={shortid.generate()}
                   />
                 );
-                })}
+              })}
             </div>
           </div>
         </div>
