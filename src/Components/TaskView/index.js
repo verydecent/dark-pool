@@ -7,6 +7,7 @@ import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from 'axios';
 import shortid from 'shortid';
+import moment from 'moment';
 
 class TaskView extends React.Component {
   constructor() {
@@ -41,9 +42,17 @@ class TaskView extends React.Component {
     const userId = isAuthenticated()._id;
     console.log('======= CDM =======', userId);
 
+    const today = moment().startOf('day');
+    const todayToDate = today.toDate();
+    const endOfTodayToDate = moment(today).endOf('day').toDate();
+    console.log('todayToDate()', todayToDate);
+    console.log('endOfTodayToDate()', endOfTodayToDate);
+
+
     // Make get request for task array and setState with tasks
-    axios.get(`${process.env.API_URL}/task/${userId}`)
+    axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
       .then(response => {
+        console.log('response ===> ', response);
         this.setState({ tasks: response.data });
       })
       .catch(error => console.log(error));
