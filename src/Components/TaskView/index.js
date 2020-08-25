@@ -17,7 +17,7 @@ class TaskView extends React.Component {
       tasks: [],
       isModalOpen: false,
 
-      currentDate: moment().toDate(),
+      currentDate: moment(),
 
       // State display for currently selected task modal
       taskId: '',
@@ -44,7 +44,7 @@ class TaskView extends React.Component {
 
   componentDidMount() {
     const userId = isAuthenticated()._id;
-    console.log('======= CDM =======', moment());
+    console.log('======= CDM =======', this.state.currentDate);
 
     const today = moment().startOf('day');
     const todayToDate = today.toDate();
@@ -219,12 +219,12 @@ class TaskView extends React.Component {
   }
 
   parseNextDate(e) {
-    console.log('parseNextDate');
+    // We must update the state's currentDate to the next date using moment
+    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => console.log(this.state.currentDate));
   }
 
   parsePrevDate(e) {
-    console.log('parsePrevDate');
-
+    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => console.log(this.state.currentDate));
   }
 
   render() {
@@ -244,11 +244,11 @@ class TaskView extends React.Component {
             <div className='task-view-body-container-header'>
               <h2 className='date-header'>Wed July 8 2020</h2>
               <div className='task-view-carousel-buttons'>
-                <div>
-                  <AngleLeft />
-                </div>
-                <div>
+                <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
+                </div>
+                <div onClick={(e) => this.parsePrevDate(e)}>
+                  <AngleLeft />
                 </div>
               </div>
             </div>
