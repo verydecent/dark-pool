@@ -17,6 +17,8 @@ class TaskView extends React.Component {
       tasks: [],
       isModalOpen: false,
 
+      currentDate: moment().toDate(),
+
       // State display for currently selected task modal
       taskId: '',
       taskTitle: '',
@@ -36,19 +38,17 @@ class TaskView extends React.Component {
     this.updateTask = this.updateTask.bind(this);
     this.addSubtask = this.addSubtask.bind(this);
     this.deleteSubtask = this.deleteSubtask.bind(this);
+    this.parseNextDate = this.parseNextDate.bind(this);
+    this.parsePrevDate = this.parsePrevDate.bind(this);
   }
 
   componentDidMount() {
     const userId = isAuthenticated()._id;
-    console.log('======= CDM =======', userId);
+    console.log('======= CDM =======', moment());
 
     const today = moment().startOf('day');
     const todayToDate = today.toDate();
     const endOfTodayToDate = moment(today).endOf('day').toDate();
-    console.log('todayToDate()', todayToDate);
-    console.log('endOfTodayToDate()', endOfTodayToDate);
-
-
     // Make get request for task array and setState with tasks
     axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
       .then(response => {
@@ -216,6 +216,15 @@ class TaskView extends React.Component {
         };
       });
     }
+  }
+
+  parseNextDate(e) {
+    console.log('parseNextDate');
+  }
+
+  parsePrevDate(e) {
+    console.log('parsePrevDate');
+
   }
 
   render() {
