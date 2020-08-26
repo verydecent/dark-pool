@@ -25,13 +25,13 @@ class Subtask extends React.Component {
   componentDidMount() {
     axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
       .then(response => {
-
+        console.log(response);
         response.data.description === undefined
           ? response.data.description = ""
           : null;
         this.setState({
-          complete: response.data.complete,
-          description: response.data.description
+          complete: response.data[0].complete,
+          description: response.data[0].description
         });
       })
       .catch(error => console.log(error));
@@ -64,6 +64,8 @@ class Subtask extends React.Component {
 
   render() {
     const { deleteSubtask } = this.props;
+    const { description } = this.state;
+    console.log('===', this.state)
 
     return (
       <div>
