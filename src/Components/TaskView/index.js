@@ -260,7 +260,6 @@ class TaskView extends React.Component {
   }
 
   render() {
-
     // Map out Task components we get from API call in componentDidMoun
     return (
       <div className='task-view'>
@@ -274,7 +273,7 @@ class TaskView extends React.Component {
 
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
-              <h2 className='date-header'>{this.state.currentDate.format()}</h2>
+              <h2 className='date-header'>{this.state.currentDate.format('MMMM, D, YYYY')}</h2>
               <div className='task-view-carousel-buttons'>
                 <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
