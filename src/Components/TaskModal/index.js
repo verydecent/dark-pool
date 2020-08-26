@@ -104,7 +104,7 @@ const TaskModal = ({
                       description={subtask.description}
                       complete={subtask.complete}
                       deleteSubtask={deleteSubtask}
-                      updateTask={updateTask}
+                      updateSubtask={updateSubtask}
                     />
                   );
                 })}
