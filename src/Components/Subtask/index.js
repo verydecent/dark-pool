@@ -1,5 +1,5 @@
 import React from 'react';
-import { Times  } from '../FAIcons';
+import { Times } from '../FAIcons';
 import axios from 'axios';
 import './styles.css';
 
@@ -25,6 +25,10 @@ class Subtask extends React.Component {
   componentDidMount() {
     axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
       .then(response => {
+
+        response.data.description === undefined
+          ? response.data.description = ""
+          : null;
         this.setState({
           complete: response.data.complete,
           description: response.data.description
