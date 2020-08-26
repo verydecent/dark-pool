@@ -166,7 +166,12 @@ class TaskView extends React.Component {
       });
   }
 
-  updateSubtask(id) {
+  updateSubtask(id, complete, description) {
+    const updatedSubtask = {
+      complete: complete,
+      description: description
+    }
+
     axios.put(`${process.env.API_URL}/subtask/${id}`)
       .then(response => {
         // Grab the newly updated subtask
