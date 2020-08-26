@@ -30,50 +30,16 @@ class Subtask extends React.Component {
     });
   }
 
-  // componentDidMount() {
-  //   axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
-  //     .then(response => {
-  //       console.log(response);
-  //       response.data.description === undefined
-  //         ? response.data.description = ""
-  //         : null;
-  //       this.setState({
-  //         complete: response.data[0].complete,
-  //         description: response.data[0].description
-  //       });
-  //     })
-  //     .catch(error => console.log(error));
-  // }
-
-  // updateSubtask(e) {
-  //   e.preventDefault();
-
-  //   const updatedSubtask = {
-  //     complete: this.state.complete,
-  //     description: this.state.description
-  //   };
-
-  //   axios.put(`http://localhost:3000/subtask/${this.props.id}`, updatedSubtask)
-  //     .then(response => {
-  //       console.log(response);
-  //       this.setState({
-  //         complete: response.data.complete,
-  //         description: response.data.description
-  //       });
-  //     })
-  //     .catch(error => console.log(error));
-  // }
-
   render() {
-    const { deleteSubtask, updateSubtask } = this.props;
+    const { id, deleteSubtask, updateSubtask } = this.props;
     const { complete, description } = this.state;
     console.log(this.props);
 
     return (
       <div>
-        <form onSubmit={() => updateSubtask(complete, description)}>
+        <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
           {/* Description */}
-          {description}
+          {this.props.description}
           <input
             value={description}
             name='description'
