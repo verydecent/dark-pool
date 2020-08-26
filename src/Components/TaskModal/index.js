@@ -20,7 +20,7 @@ const TaskModal = ({
   deleteTask,
   addSubtask,
   deleteSubtask,
-  updateTask
+  updateSubtask
 }) => {
   const subtasksConditional = subtasks ? subtasks : [];
 
