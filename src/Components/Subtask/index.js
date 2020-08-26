@@ -22,6 +22,7 @@ class Subtask extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.check = this.check.bind(this);
   }
 
   handleChange(e) {
@@ -30,29 +31,54 @@ class Subtask extends React.Component {
     });
   }
 
-  render() {
-    const { id, deleteSubtask, updateSubtask } = this.props;
-    const { complete, description } = this.state;
-    console.log(this.props);
+  check(id) {
+    // e.preventDefault();
+    // this.setState(prevState => ({ ...prevState, complete: !prevState.complete }));
+    this.setState(prevState => {
 
+      return {
+        ...prevState,
+        complete: !prevState.complete
+      }
+    },
+      () => {
+        this.props.toggleSubtask(id, this.state.complete, this.state.description)
+      }
+    );
+  }
+
+  render() {
+    const { id, deleteSubtask } = this.props;
+    const { complete, description } = this.state;
+
+    console.log('this is the latest complete check', complete);
     return (
       <div>
-        <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
-          {/* Description */}
+        <p stlye={{ color: 'fff', fontSize: 24 }}>
           {this.props.description}
-          <input
-            value={description}
-            name='description'
-            onChange={(e) => this.handleChange(e)}
-          />
+        </p>
+        <input
+          checked={complete}
+          onChange={() => this.check(id)}
+          // value={complete}
+          name='complete'
+          type='checkbox'
+        />
+        {/* <form onSubmit={(e) => updateSubtask(e, id, complete, description)}> */}
+        {/* Description */}
+        <input
+          value={description}
+          name='description'
+          onChange={(e) => this.handleChange(e)}
+        />
 
-          <button>Update Subtask</button>
+        <button>Update Subtask</button>
 
-          {/* Close button */}
-          <div onClick={() => deleteSubtask(this.props.id)}>
-            <Times />
-          </div>
-        </form>
+        {/* Close button */}
+        <div onClick={() => deleteSubtask(this.props.id)}>
+          <Times />
+        </div>
+        {/* </form> */}
       </div>
     );
   }

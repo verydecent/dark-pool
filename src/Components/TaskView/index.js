@@ -48,6 +48,7 @@ class TaskView extends React.Component {
     this.addSubtask = this.addSubtask.bind(this);
     this.updateSubtask = this.updateSubtask.bind(this);
     this.deleteSubtask = this.deleteSubtask.bind(this);
+    this.toggleSubtask = this.toggleSubtask.bind(this);
   }
 
   componentDidMount() {
@@ -176,8 +177,8 @@ class TaskView extends React.Component {
   }
 
   updateSubtask(e, id, complete, description) {
-    e.preventDefault();
-
+    // e.preventDefault();
+    console.log('us');
     const updatedSubtask = {
       complete: complete,
       description: description
@@ -204,6 +205,36 @@ class TaskView extends React.Component {
       .catch(error => {
         console.log('error', error);
       })
+  }
+
+  toggleSubtask(id, complete, description) {
+    console.log('complete', complete, 'description', description);
+    const updatedSubtask = {
+      complete: complete,
+      description: description
+    };
+    console.log('updatedSubtask', updatedSubtask);
+
+    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
+      .then(response => {
+        console.log('response', response);
+        const subtasks = this.state.subtasks.map(subtask => {
+          if (subtask._id === id) {
+            subtask.complete = response.data.complete;
+            subtask.description = response.data.description;
+            return subtask;
+          }
+          else return subtask;
+        });
+        console.log('subtasks', subtasks);
+        this.setState({
+          ...this.state,
+          subtask: subtasks
+        });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 
   deleteSubtask(id) {
@@ -259,17 +290,14 @@ class TaskView extends React.Component {
 
   parseNextDate(e) {
     // We must update the state's currentDate to the next date using moment
-    this.setState({ currentDate: this.state.currentDate.add(1, 'days') });
-    this.callTask();
+    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
   }
 
   parsePrevDate(e) {
-    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') });
-    this.callTask();
+    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
   }
 
   callTask() {
-    console.log('callTask');
     const { currentDate } = this.state;
     const userId = isAuthenticated()._id;
 
@@ -277,9 +305,7 @@ class TaskView extends React.Component {
     // const endOfTodayToDate = moment(today).endOf('day').toDate();
 
     const beginningOfCurrentDate = currentDate.startOf('day').toDate();
-    console.log('beg', beginningOfCurrentDate);
     const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
-    console.log('end', endOfCurrentDate);
 
     const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
 
@@ -336,6 +362,7 @@ class TaskView extends React.Component {
               addSubtask={this.addSubtask}
               deleteSubtask={this.deleteSubtask}
               updateSubtask={this.updateSubtask}
+              toggleSubtask={this.toggleSubtask}
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {
