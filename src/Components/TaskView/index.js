@@ -30,17 +30,24 @@ class TaskView extends React.Component {
       // No
 
     };
+
+    // Main
     this.toggleModal = this.toggleModal.bind(this);
-    this.createTask = this.createTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.callTask = this.callTask.bind(this);
+    this.parseNextDate = this.parseNextDate.bind(this);
+    this.parsePrevDate = this.parsePrevDate.bind(this);
+
+    // Task
+    this.createTask = this.createTask.bind(this);
     this.selectTask = this.selectTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
+
+    // Subtask
     this.addSubtask = this.addSubtask.bind(this);
+    this.updateSubtask = this.updateSubtask.bind(this);
     this.deleteSubtask = this.deleteSubtask.bind(this);
-    this.parseNextDate = this.parseNextDate.bind(this);
-    this.parsePrevDate = this.parsePrevDate.bind(this);
-    this.callTask = this.callTask.bind(this);
   }
 
   componentDidMount() {
@@ -166,7 +173,8 @@ class TaskView extends React.Component {
       });
   }
 
-  updateSubtask(id, complete, description) {
+  updateSubtask(e, id, complete, description) {
+    e.preventDefault();
 
     const updatedSubtask = {
       complete: complete,
@@ -175,6 +183,7 @@ class TaskView extends React.Component {
 
     axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
       .then(response => {
+        console.log('updateSubtask response', response);
         // Grab the newly updated subtask
         // Filter through this.state.subtasks, find the id and then replace that object in a newly created array then setState with that new array
         const updatedSubtasks = this.state.subtasks.map(subtask => {
@@ -269,7 +278,7 @@ class TaskView extends React.Component {
 
     // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
 
-    axios.get(`${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`)
+    axios.get(url)
       .then(response => {
         console.log('response', response);
         this.setState({ tasks: response.data });
