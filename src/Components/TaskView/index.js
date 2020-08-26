@@ -166,8 +166,22 @@ class TaskView extends React.Component {
       });
   }
 
-  updateSubtask() {
-
+  updateSubtask(id) {
+    axios.put(`${process.env.API_URL}/subtask/${id}`)
+      .then(response => {
+        // Grab the newly updated subtask
+        // Filter through this.state.subtasks, find the id and then replace that object in a newly created array then setState with that new array
+        const updatedSubtasks = this.state.subtasks.map(subtask => {
+          if (subtask._id === id) {
+            subtask.description = response.data.description;
+            subtask.complete = response.data.complete;
+          }
+        });
+        this.setState({ subtasks: updatedSubtasks });
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
   }
 
   deleteSubtask(id) {
@@ -273,7 +287,7 @@ class TaskView extends React.Component {
 
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
-              <h2 className='date-header'>{this.state.currentDate.format('MMMM, D, YYYY')}</h2>
+              <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
               <div className='task-view-carousel-buttons'>
                 <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
@@ -299,6 +313,7 @@ class TaskView extends React.Component {
               deleteTask={this.deleteTask}
               addSubtask={this.addSubtask}
               deleteSubtask={this.deleteSubtask}
+              updateSubtask={this.updateSubtask}
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {
