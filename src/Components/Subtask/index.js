@@ -1,5 +1,5 @@
 import React from 'react';
-import { Times  } from '../FAIcons';
+import { Times } from '../FAIcons';
 import axios from 'axios';
 import './styles.css';
 
@@ -20,17 +20,9 @@ class Subtask extends React.Component {
       complete: false,
       description: ''
     }
-  }
 
-  componentDidMount() {
-    axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
-      .then(response => {
-        this.setState({
-          complete: response.data.complete,
-          description: response.data.description
-        });
-      })
-      .catch(error => console.log(error));
+    this.handleChange = this.handleChange.bind(this);
+    this.check = this.check.bind(this);
   }
 
   handleChange(e) {
@@ -39,81 +31,57 @@ class Subtask extends React.Component {
     });
   }
 
-  updateSubtask(e) {
-    e.preventDefault();
+  check(id) {
+    // e.preventDefault();
+    // this.setState(prevState => ({ ...prevState, complete: !prevState.complete }));
+    this.setState(prevState => {
 
-    const updatedSubtask = {
-      complete: this.state.complete,
-      description: this.state.description
-    };
-
-    axios.put(`http://localhost:3000/subtask/${this.props.id}`, updatedSubtask)
-      .then(response => {
-        console.log(response);
-        this.setState({
-          complete: response.data.complete,
-          description: response.data.description
-        });
-      })
-      .catch(error => console.log(error));
+      return {
+        ...prevState,
+        complete: !prevState.complete
+      }
+    },
+      () => {
+        this.props.toggleSubtask(id, this.state.complete, this.state.description)
+      }
+    );
   }
 
   render() {
-    const { deleteSubtask } = this.props;
+    const { id, deleteSubtask } = this.props;
+    const { complete, description } = this.state;
 
+    console.log('this is the latest complete check', complete);
     return (
       <div>
-        <form onSubmit={(e) => this.updateSubtask(e)}>
-          {/* Description */}
-          {this.state.description}
-          <input
-            value={this.state.description}
-            name='description'
-            onChange={(e) => this.handleChange(e)}
-          />
+        <p stlye={{ color: 'fff', fontSize: 24 }}>
+          {this.props.description}
+        </p>
+        <input
+          checked={complete}
+          onChange={() => this.check(id)}
+          // value={complete}
+          name='complete'
+          type='checkbox'
+        />
+        {/* <form onSubmit={(e) => updateSubtask(e, id, complete, description)}> */}
+        {/* Description */}
+        <input
+          value={description}
+          name='description'
+          onChange={(e) => this.handleChange(e)}
+        />
 
-          <button>Update Subtask</button>
+        <button>Update Subtask</button>
 
-          {/* Close button */}
-          <div onClick={() => deleteSubtask(this.props.id)}>
-            <Times />
-          </div>
-        </form>
+        {/* Close button */}
+        <div onClick={() => deleteSubtask(this.props.id)}>
+          <Times />
+        </div>
+        {/* </form> */}
       </div>
     );
   }
 }
-
-
-
-
-
-// const Subtask = ({
-// // Values
-//   id,
-//   description,
-//   complete,
-
-//   // Methods
-//   deleteSubtask,
-// }) => {
-
-//   return (
-//     <div>
-//       <form>
-//         {/* Description */}
-//         <input
-//           value={description}
-//           name=''
-//         />
-
-//         {/* Close button */}
-//         <div onClick={() => deleteSubtask(id)}>
-//           <Times />
-//         </div>
-//       </form>
-//     </div>
-//   )
-// }
 
 export default Subtask;

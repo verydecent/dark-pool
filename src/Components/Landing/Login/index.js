@@ -3,6 +3,7 @@ import withNav from '../Hoc/withNav';
 import axios from 'axios';
 import { authenticate, isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect, Link } from 'react-router-dom';
+import './styles.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -15,10 +16,6 @@ class Login extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    console.log('cdm', this.props);
   }
 
   handleChange(e) {
@@ -34,51 +31,65 @@ class Login extends React.Component {
       email,
       password
     })
-    .then(response => {
-      // Push user to dashboard route
-      console.log('Login Success', response);
-      authenticate(response, () => {
-        this.setState({ email: '', password: '', buttonText: 'Logging In...' });
-        // Push admin to admin protected route
-        isAuthenticated() && isAuthenticated().role === 'admin'
-          ? this.props.history.push('/app/admin')
-          : this.props.history.push('/app');
+      .then(response => {
+        // Push user to dashboard route
+        console.log('Login Success', response);
+        authenticate(response, () => {
+          this.setState({ email: '', password: '', buttonText: 'Logging In...' });
+          // Push admin to admin protected route
+          isAuthenticated() && isAuthenticated().role === 'admin'
+            ? this.props.history.push('/app/admin')
+            : this.props.history.push('/app');
+        });
+      })
+      .catch(error => {
+        console.log('Error Logging In', error);
+        this.setState({ buttonText: 'Login' });
       });
-    })
-    .catch(error => {
-      console.log('Error Logging In', error);
-      this.setState({ buttonText: 'Login' });
-    });
   }
 
   render() {
     const { email, password, buttonText } = this.state;
+    const redirect = isAuthenticated() ? <Redirect to='/app' /> : null;
 
     return (
       <>
-        {isAuthenticated() ? <Redirect to='/app' /> : null}
-        <h1>LOGIN</h1>
-        Login Component
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-         <input
-           name='email'
-           placeholder='email'
-           value={email}
-           type='text'
-           onChange={(e) => this.handleChange(e)}
-          />
-          <input
-            name='password'
-            placeholder='password'
-            value={password}
-            type='password'
-            onChange={(e) => this.handleChange(e)}
-          />
-
-          <button>{buttonText}</button>
-          <Link to='/auth/password/forgot'>Forgot Password?</Link>
-        </form>
-     </>
+        {redirect}
+        <div className='login-container-1'>
+          <h1 className='login-title'>Login</h1>
+          <form className='' onSubmit={(e) => this.handleSubmit(e)}>
+            <div className='login-action-container-1'>
+              <label className='form-label' htmlFor=''>Email</label>
+              <input
+                className='form-input'
+                name='email'
+                placeholder='email'
+                value={email}
+                type='text'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              <label className='form-label' htmlFor=''>Password</label>
+              <input
+                className='form-input'
+                name='password'
+                placeholder='password'
+                value={password}
+                type='password'
+                onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className='login-action-container-1'>
+              <button className='form-button'>{buttonText}</button>
+            </div>
+            <div className='login-action-container-2'>
+              <Link to='/auth/password/forgot'>Forgot Password?</Link>
+              <Link to='/register'>Need an account?</Link>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 }

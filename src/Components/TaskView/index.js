@@ -4,17 +4,21 @@ import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
+import { isAuthenticated } from '../../Utilities/helpers';
 import axios from 'axios';
 import shortid from 'shortid';
+import moment from 'moment';
 
 class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: '5f2397d202ea39098fee8bfe',
+      userId: '',
       tasks: [],
       isModalOpen: false,
-      
+
+      currentDate: moment(),
+
       // State display for currently selected task modal
       taskId: '',
       taskTitle: '',
@@ -26,24 +30,45 @@ class TaskView extends React.Component {
       // No
 
     };
+
+    // Main
     this.toggleModal = this.toggleModal.bind(this);
-    this.createTask = this.createTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.callTask = this.callTask.bind(this);
+    this.parseNextDate = this.parseNextDate.bind(this);
+    this.parsePrevDate = this.parsePrevDate.bind(this);
+
+    // Task
+    this.createTask = this.createTask.bind(this);
     this.selectTask = this.selectTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
-    this.addSubtask= this.addSubtask.bind(this);
+
+    // Subtask
+    this.addSubtask = this.addSubtask.bind(this);
+    this.updateSubtask = this.updateSubtask.bind(this);
     this.deleteSubtask = this.deleteSubtask.bind(this);
+    this.toggleSubtask = this.toggleSubtask.bind(this);
   }
 
   componentDidMount() {
+    const userId = isAuthenticated()._id;
+
+    const today = moment().startOf('day');
+    const todayToDate = today.startOf('day').toDate();
+    const endOfTodayToDate = moment(today).endOf('day').toDate();
+
+    const url = `${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`;
+
     console.log('======= CDM =======');
-    // Make get request for task array and setState with tasks
-    axios.get(`${process.env.API_URL}/task/${this.state.userId}`)
+
+    axios.get(url)
       .then(response => {
         this.setState({ tasks: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error)
+      });
   }
 
   selectTask(id, title, description) {
@@ -63,18 +88,19 @@ class TaskView extends React.Component {
 
   createTask() {
     this.toggleModal();
-    
+    const userId = isAuthenticated()._id;
+
     // POST request to task
-    axios.post(`${process.env.API_URL}/task`, { user_id: this.state.userId })
+    axios.post(`${process.env.API_URL}/task`, { user_id: userId })
       .then((response) => {
         this.setState(prevState => {
           return {
             taskId: response.data._id,
-            tasks: [...prevState.tasks, response.data ]
+            tasks: [...prevState.tasks, response.data]
           };
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -101,7 +127,7 @@ class TaskView extends React.Component {
             console.log('newTask from JSON PARSE', newTask);
             newTask.title = response.data.title;
             newTask.description = response.data.description;
-            
+
             return newTask;
           }
           return task;
@@ -150,8 +176,65 @@ class TaskView extends React.Component {
       });
   }
 
-  updateSubtask() {
+  updateSubtask(e, id, complete, description) {
+    // e.preventDefault();
+    console.log('us');
+    const updatedSubtask = {
+      complete: complete,
+      description: description
+    }
 
+    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
+      .then(response => {
+        this.setState(prevState => {
+          const updated = prevState.subtasks.map(subtask => {
+            if (subtask._id === id) {
+              subtask.complete = response.data.complete;
+              subtask.description = response.data.description;
+              return subtask;
+            }
+            else return subtask;
+          });
+
+          return {
+            ...prevState,
+            subtasks: updated
+          }
+        });
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
+
+  toggleSubtask(id, complete, description) {
+    console.log('complete', complete, 'description', description);
+    const updatedSubtask = {
+      complete: complete,
+      description: description
+    };
+    console.log('updatedSubtask', updatedSubtask);
+
+    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
+      .then(response => {
+        console.log('response', response);
+        const subtasks = this.state.subtasks.map(subtask => {
+          if (subtask._id === id) {
+            subtask.complete = response.data.complete;
+            subtask.description = response.data.description;
+            return subtask;
+          }
+          else return subtask;
+        });
+        console.log('subtasks', subtasks);
+        this.setState({
+          ...this.state,
+          subtask: subtasks
+        });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 
   deleteSubtask(id) {
@@ -178,7 +261,7 @@ class TaskView extends React.Component {
       [e.target.name]: e.target.value
     });
   }
-  
+
   toggleModal() {
     // this.setState({ isModalOpen: !this.state.isModalOpen });
     // How do I search for the selected task in the array then set it to state?
@@ -186,15 +269,15 @@ class TaskView extends React.Component {
     // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
     if (this.state.isModalOpen) {
       this.setState(prevState => {
-            return {
-              isModalOpen: false,
-              taskId: '',
-              taskTitle: '',
-              taskDescription: '',
-              subtaskDescription: '',
-              subtasks: [],
-            };
-          });
+        return {
+          isModalOpen: false,
+          taskId: '',
+          taskTitle: '',
+          taskDescription: '',
+          subtaskDescription: '',
+          subtasks: [],
+        };
+      });
     }
     else {
       this.setState(prevState => {
@@ -205,8 +288,40 @@ class TaskView extends React.Component {
     }
   }
 
-  render() {
+  parseNextDate(e) {
+    // We must update the state's currentDate to the next date using moment
+    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
+  }
 
+  parsePrevDate(e) {
+    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
+  }
+
+  callTask() {
+    const { currentDate } = this.state;
+    const userId = isAuthenticated()._id;
+
+    // const todayToDate = today.toDate();
+    // const endOfTodayToDate = moment(today).endOf('day').toDate();
+
+    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
+    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
+
+    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
+
+    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
+
+    axios.get(url)
+      .then(response => {
+        console.log('response', response);
+        this.setState({ tasks: response.data });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }
+
+  render() {
     // Map out Task components we get from API call in componentDidMoun
     return (
       <div className='task-view'>
@@ -217,16 +332,16 @@ class TaskView extends React.Component {
               <Plus />
             </div>
           </div>
-         
+
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
-              <h2 className='date-header'>Wed July 8 2020</h2>
+              <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
               <div className='task-view-carousel-buttons'>
-                <div>
-                  <AngleLeft />
-                </div>
-                <div>
+                <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
+                </div>
+                <div onClick={(e) => this.parsePrevDate(e)}>
+                  <AngleLeft />
                 </div>
               </div>
             </div>
@@ -246,6 +361,8 @@ class TaskView extends React.Component {
               deleteTask={this.deleteTask}
               addSubtask={this.addSubtask}
               deleteSubtask={this.deleteSubtask}
+              updateSubtask={this.updateSubtask}
+              toggleSubtask={this.toggleSubtask}
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {
@@ -259,7 +376,7 @@ class TaskView extends React.Component {
                     key={shortid.generate()}
                   />
                 );
-                })}
+              })}
             </div>
           </div>
         </div>
