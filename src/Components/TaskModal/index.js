@@ -6,7 +6,7 @@ import Subtask from '../Subtask';
 
 const TaskModal = ({
   // values
-  isModalOpen, 
+  isModalOpen,
   taskTitle,
   taskDescription,
   taskDateCreated,
@@ -20,6 +20,7 @@ const TaskModal = ({
   deleteTask,
   addSubtask,
   deleteSubtask,
+  updateTask
 }) => {
   const subtasksConditional = subtasks ? subtasks : [];
 
@@ -28,15 +29,15 @@ const TaskModal = ({
       <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
       <div className='task-modal-content'>
         <div className='task-modal-content-header'>
-           <h1 className='task-modal-content-title'>
-             {taskTitle}
+          <h1 className='task-modal-content-title'>
+            {taskTitle}
           </h1>
           <div onClick={() => toggleModal()}>
             <Times />
           </div>
         </div>
         <div className='task-modal-content-body'>
-          
+
           {/* TOP */}
 
           <div className='task-modal-content-bottom-container'>
@@ -44,7 +45,7 @@ const TaskModal = ({
               Graph goes here
             </div>
             <div className='task-modal-content-details-container'>
-              <form type='submit' onSubmit={(e) => updateTask(e)}> 
+              <form type='submit' onSubmit={(e) => updateTask(e)}>
                 <div className='task-modal-content-details-row'>
                   <div className='task-modal-content-details-row-left'>
                     <label className='task-modal-content-details-label'>
@@ -82,7 +83,7 @@ const TaskModal = ({
                       onChange={(e) => handleChange(e)}
                     />
                   </div>
-                 </div>
+                </div>
                 <button>Update Task Changes</button>
               </form>
               <button onClick={() => deleteTask()}>Delete Task</button>
@@ -103,6 +104,7 @@ const TaskModal = ({
                       description={subtask.description}
                       complete={subtask.complete}
                       deleteSubtask={deleteSubtask}
+                      updateTask={updateTask}
                     />
                   );
                 })}
@@ -122,7 +124,7 @@ const TaskModal = ({
             </div>
           </div>
 
-         </div>
+        </div>
       </div>
     </div>
   );
