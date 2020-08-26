@@ -88,36 +88,4 @@ class Subtask extends React.Component {
   }
 }
 
-
-
-
-
-// const Subtask = ({
-// // Values
-//   id,
-//   description,
-//   complete,
-
-//   // Methods
-//   deleteSubtask,
-// }) => {
-
-//   return (
-//     <div>
-//       <form>
-//         {/* Description */}
-//         <input
-//           value={description}
-//           name=''
-//         />
-
-//         {/* Close button */}
-//         <div onClick={() => deleteSubtask(id)}>
-//           <Times />
-//         </div>
-//       </form>
-//     </div>
-//   )
-// }
-
 export default Subtask;
