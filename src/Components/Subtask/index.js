@@ -20,21 +20,8 @@ class Subtask extends React.Component {
       complete: false,
       description: ''
     }
-  }
 
-  componentDidMount() {
-    axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
-      .then(response => {
-        console.log(response);
-        response.data.description === undefined
-          ? response.data.description = ""
-          : null;
-        this.setState({
-          complete: response.data[0].complete,
-          description: response.data[0].description
-        });
-      })
-      .catch(error => console.log(error));
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
@@ -43,37 +30,52 @@ class Subtask extends React.Component {
     });
   }
 
-  updateSubtask(e) {
-    e.preventDefault();
+  // componentDidMount() {
+  //   axios.get(`http://localhost:3000/subtask/single/${this.props.id}`)
+  //     .then(response => {
+  //       console.log(response);
+  //       response.data.description === undefined
+  //         ? response.data.description = ""
+  //         : null;
+  //       this.setState({
+  //         complete: response.data[0].complete,
+  //         description: response.data[0].description
+  //       });
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 
-    const updatedSubtask = {
-      complete: this.state.complete,
-      description: this.state.description
-    };
+  // updateSubtask(e) {
+  //   e.preventDefault();
 
-    axios.put(`http://localhost:3000/subtask/${this.props.id}`, updatedSubtask)
-      .then(response => {
-        console.log(response);
-        this.setState({
-          complete: response.data.complete,
-          description: response.data.description
-        });
-      })
-      .catch(error => console.log(error));
-  }
+  //   const updatedSubtask = {
+  //     complete: this.state.complete,
+  //     description: this.state.description
+  //   };
+
+  //   axios.put(`http://localhost:3000/subtask/${this.props.id}`, updatedSubtask)
+  //     .then(response => {
+  //       console.log(response);
+  //       this.setState({
+  //         complete: response.data.complete,
+  //         description: response.data.description
+  //       });
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 
   render() {
-    const { deleteSubtask } = this.props;
-    const { description } = this.state;
-    console.log('===', this.state)
+    const { deleteSubtask, updateSubtask } = this.props;
+    const { complete, description } = this.state;
+    console.log(this.props);
 
     return (
       <div>
-        <form onSubmit={(e) => this.updateSubtask(e)}>
+        <form onSubmit={() => updateSubtask(complete, description)}>
           {/* Description */}
-          {this.state.description}
+          {description}
           <input
-            value={this.state.description}
+            value={description}
             name='description'
             onChange={(e) => this.handleChange(e)}
           />
