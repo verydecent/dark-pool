@@ -55,17 +55,19 @@ class TaskView extends React.Component {
 
     const today = moment().startOf('day');
     const todayToDate = today.startOf('day').toDate();
-    console.log(todayToDate)
     const endOfTodayToDate = moment(today).endOf('day').toDate();
+
     const url = `${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`;
-    console.log('======= CDM =======', url);
-    // Make get request for task array and setState with tasks
+
+    console.log('======= CDM =======');
+
     axios.get(url)
       .then(response => {
-        console.log('response ===> ', response);
         this.setState({ tasks: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error)
+      });
   }
 
   selectTask(id, title, description) {
