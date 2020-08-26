@@ -167,12 +167,13 @@ class TaskView extends React.Component {
   }
 
   updateSubtask(id, complete, description) {
+
     const updatedSubtask = {
       complete: complete,
       description: description
     }
 
-    axios.put(`${process.env.API_URL}/subtask/${id}`)
+    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
       .then(response => {
         // Grab the newly updated subtask
         // Filter through this.state.subtasks, find the id and then replace that object in a newly created array then setState with that new array
