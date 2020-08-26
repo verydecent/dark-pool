@@ -5,10 +5,10 @@ import './styles.css';
 const withSideNav = Component => (props) => {
 	return (
 		<div className='app-view'>
-			<SideNav {...props} />
 			<div className='main-view'>
 				<Component />
 			</div>
+			<SideNav {...props} />
 		</div>
 	);
 }
