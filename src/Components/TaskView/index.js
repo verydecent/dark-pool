@@ -185,16 +185,21 @@ class TaskView extends React.Component {
 
     axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
       .then(response => {
-        console.log('updateSubtask response', response);
-        // Grab the newly updated subtask
-        // Filter through this.state.subtasks, find the id and then replace that object in a newly created array then setState with that new array
-        const updatedSubtasks = this.state.subtasks.map(subtask => {
-          if (subtask._id === id) {
-            subtask.description = response.data.description;
-            subtask.complete = response.data.complete;
+        this.setState(prevState => {
+          const updated = prevState.subtasks.map(subtask => {
+            if (subtask._id === id) {
+              subtask.complete = response.data.complete;
+              subtask.description = response.data.description;
+              return subtask;
+            }
+            else return subtask;
+          });
+
+          return {
+            ...prevState,
+            subtasks: updated
           }
         });
-        this.setState({ subtasks: updatedSubtasks });
       })
       .catch(error => {
         console.log('error', error);
