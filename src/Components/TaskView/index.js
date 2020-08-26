@@ -40,17 +40,20 @@ class TaskView extends React.Component {
     this.deleteSubtask = this.deleteSubtask.bind(this);
     this.parseNextDate = this.parseNextDate.bind(this);
     this.parsePrevDate = this.parsePrevDate.bind(this);
+    this.callTask = this.callTask.bind(this);
   }
 
   componentDidMount() {
     const userId = isAuthenticated()._id;
-    console.log('======= CDM =======', this.state.currentDate);
 
     const today = moment().startOf('day');
-    const todayToDate = today.toDate();
+    const todayToDate = today.startOf('day').toDate();
+    console.log(todayToDate)
     const endOfTodayToDate = moment(today).endOf('day').toDate();
+    const url = `${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`;
+    console.log('======= CDM =======', url);
     // Make get request for task array and setState with tasks
-    axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
+    axios.get(url)
       .then(response => {
         console.log('response ===> ', response);
         this.setState({ tasks: response.data });
@@ -220,11 +223,40 @@ class TaskView extends React.Component {
 
   parseNextDate(e) {
     // We must update the state's currentDate to the next date using moment
-    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => console.log(this.state.currentDate));
+    this.setState({ currentDate: this.state.currentDate.add(1, 'days') });
+    this.callTask();
   }
 
   parsePrevDate(e) {
-    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => console.log(this.state.currentDate));
+    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') });
+    this.callTask();
+  }
+
+  callTask() {
+    console.log('callTask');
+    const { currentDate } = this.state;
+    const userId = isAuthenticated()._id;
+
+    // const todayToDate = today.toDate();
+    // const endOfTodayToDate = moment(today).endOf('day').toDate();
+
+    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
+    console.log('beg', beginningOfCurrentDate);
+    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
+    console.log('end', endOfCurrentDate);
+
+    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
+
+    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
+
+    axios.get(`${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`)
+      .then(response => {
+        console.log('response', response);
+        this.setState({ tasks: response.data });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 
   render() {
@@ -242,7 +274,7 @@ class TaskView extends React.Component {
 
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
-              <h2 className='date-header'>Wed July 8 2020</h2>
+              <h2 className='date-header'>{this.state.currentDate.format()}</h2>
               <div className='task-view-carousel-buttons'>
                 <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
