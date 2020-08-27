@@ -31,37 +31,41 @@ class Subtask extends React.Component {
   }
 
   render() {
-    const { id, deleteSubtask } = this.props;
-    const { complete, description } = this.state;
+    console.log('subtask props', this.props);
 
-    console.log('this is the latest complete check', complete);
+    const {
+      id,
+      complete,
+      description,
+      handleChangeSubtask,
+      updateSubtask,
+      deleteSubtask
+    } = this.props;
+
     return (
       <div>
-        <p stlye={{ color: 'fff', fontSize: 24 }}>
+        <p style={{ color: 'fff', fontSize: 24 }}>
           {this.props.description}
         </p>
-        <input
+        {/* <input
           checked={complete}
           onChange={() => this.check(id)}
-          // value={complete}
           name='complete'
           type='checkbox'
-        />
-        {/* <form onSubmit={(e) => updateSubtask(e, id, complete, description)}> */}
-        {/* Description */}
-        <input
-          value={description}
-          name='description'
-          onChange={(e) => this.handleChange(e)}
-        />
+        /> */}
+        <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
+          <input
+            value={description}
+            name='description'
+            onChange={(e) => handleChangeSubtask(e)}
+          />
 
-        <button>Update Subtask</button>
-
-        {/* Close button */}
+          <button>Update Subtask</button>
+        </form>
+        {/* 
         <div onClick={() => deleteSubtask(this.props.id)}>
           <Times />
-        </div>
-        {/* </form> */}
+        </div> */}
       </div>
     );
   }

@@ -380,10 +380,11 @@ class TaskView extends React.Component {
               handleChange={this.handleChange}
               updateTask={this.updateTask}
               deleteTask={this.deleteTask}
+              handleChangeSubtask={this.handleChangeSubtask}
               addSubtask={this.addSubtask}
-              deleteSubtask={this.deleteSubtask}
               updateSubtask={this.updateSubtask}
               toggleSubtask={this.toggleSubtask}
+              deleteSubtask={this.deleteSubtask}
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {

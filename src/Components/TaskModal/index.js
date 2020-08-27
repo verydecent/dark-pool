@@ -27,10 +27,11 @@ class TaskModal extends React.Component {
       handleChange,
       updateTask,
       deleteTask,
+      handleChangeSubtask,
       addSubtask,
-      deleteSubtask,
       updateSubtask,
-      toggleSubtask
+      toggleSubtask,
+      deleteSubtask,
     } = this.props;
     const subtasksConditional = subtasks ? subtasks : [];
     return (
@@ -115,9 +116,10 @@ class TaskModal extends React.Component {
                         id={subtask._id}
                         description={subtask.description}
                         complete={subtask.complete}
-                        deleteSubtask={deleteSubtask}
+                        handleChangeSubtask={handleChangeSubtask}
                         updateSubtask={updateSubtask}
                         toggleSubtask={toggleSubtask}
+                        deleteSubtask={deleteSubtask}
                       />
                     );
                   })}
