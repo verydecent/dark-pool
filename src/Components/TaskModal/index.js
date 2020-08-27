@@ -16,13 +16,11 @@ class TaskModal extends React.Component {
   render() {
     const {
       // values
-      taskId,
       isModalOpen,
       taskTitle,
       taskDescription,
       taskDateCreated,
       subtasks,
-      subtaskDescription,
 
       // methods
       toggleModal,
@@ -127,12 +125,6 @@ class TaskModal extends React.Component {
                   {/* subtask creator input here */}
                   <form type='submit' onSubmit={(e) => addSubtask(e)}>
                     Subtask creator input
-                    {/* <input
-                      className=''
-                      name='subtaskDescription'
-                      value={subtaskDescription}
-                      onChange={(e) => handleChange(e)}
-                    /> */}
                     <button>Add Subtask</button>
                   </form>
                 </div>

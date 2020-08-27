@@ -23,7 +23,6 @@ class TaskView extends React.Component {
       taskId: '',
       taskTitle: '',
       taskDescription: '',
-      subtaskDescription: '',
       subtasks: [],
 
       // Should I just use a nested object to contain current modal?
@@ -89,7 +88,6 @@ class TaskView extends React.Component {
           taskId: '',
           taskTitle: '',
           taskDescription: '',
-          subtaskDescription: '',
           subtasks: [],
         };
       });
@@ -231,7 +229,6 @@ class TaskView extends React.Component {
         console.log('Subtask Response', response);
         this.setState(prevState => {
           return {
-            subtaskDescription: '',
             subtasks: [...prevState.subtasks, response.data]
           };
         });
@@ -351,7 +348,6 @@ class TaskView extends React.Component {
               taskTitle={this.state.taskTitle}
               taskDescription={this.state.taskDescription}
               isModalOpen={this.state.isModalOpen}
-              subtaskDescription={this.state.subtaskDescription}
               subtasks={this.state.subtasks}
 
               /* Method Props */
