@@ -394,7 +394,7 @@ class TaskView extends React.Component {
 
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
-              <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
+              <h2 className='date-header' style={{ color: '#fff' }}>{this.state.currentDate.format('llll')}</h2>
               <div className='task-view-carousel-buttons'>
                 <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
