@@ -13,62 +13,41 @@ import './styles.css';
 // and then I'll focus on styling then come back to it
 
 
-class Subtask extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      complete: false,
-      description: ''
-    }
+const Subtask = ({
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  id,
+  complete,
+  description,
+  handleChangeSubtask,
+  updateSubtask,
+  deleteSubtask
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+}) => {
 
-  render() {
-    console.log('subtask props', this.props);
+  console.log('Subtask Component Re-Render');
 
-    const {
-      id,
-      complete,
-      description,
-      handleChangeSubtask,
-      updateSubtask,
-      deleteSubtask
-    } = this.props;
-
-    return (
-      <div>
-        <p style={{ color: 'fff', fontSize: 24 }}>
-          {this.props.description}
-        </p>
-        {/* <input
+  return (
+    <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
+      <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
+      {/* <input
           checked={complete}
           onChange={() => this.check(id)}
           name='complete'
           type='checkbox'
         /> */}
-        <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
-          <input
-            value={description}
-            name='description'
-            onChange={(e) => handleChangeSubtask(e)}
-          />
+      <input
+        value={description}
+        name='description'
+        onChange={(e) => handleChangeSubtask(e, id)}
+      />
 
-          <button>Update Subtask</button>
-        </form>
-        {/* 
+      <button>Update Subtask</button>
+      {/* 
         <div onClick={() => deleteSubtask(this.props.id)}>
-          <Times />
-        </div> */}
-      </div>
-    );
-  }
+        <Times />
+      </div> */}
+    </form>
+  );
 }
 
 export default Subtask;
