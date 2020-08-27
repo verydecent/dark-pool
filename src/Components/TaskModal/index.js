@@ -23,7 +23,7 @@ const TaskModal = ({
   toggleSubtask,
   deleteSubtask,
 }) => {
-
+  console.log(subtasks)
   return (
     <div className='task-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
       <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
@@ -94,15 +94,13 @@ const TaskModal = ({
           <div className='task-modal-content-top-container'>
             <div className='task-modal-content-input-container'>
               <div className='task-modal-content-details-subtask-container'>
-
-                {/* <SubtaskList
-                    taskId={taskId}
-                  /> */}
                 {/* map out sub tasks here */}
                 {subtasks.map(subtask => {
                   return (
                     <Subtask
-                      key={shortid.generate()}
+                      // Using subtask's _id as key otherwise React will re render a new form every setState
+                      // This causes the input lose focus
+                      key={subtask._id}
                       id={subtask._id}
                       description={subtask.description}
                       complete={subtask.complete}
