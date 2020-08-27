@@ -48,6 +48,7 @@ class TaskView extends React.Component {
     this.updateSubtask = this.updateSubtask.bind(this);
     this.toggleSubtask = this.toggleSubtask.bind(this);
     this.deleteSubtask = this.deleteSubtask.bind(this);
+    this.handleChangeSubtask = this.handleChangeSubtask.bind(this);
   }
 
   componentDidMount() {
@@ -219,6 +220,32 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
+  handleChangeSubtask(e, id) {
+    // Find subtask by id
+
+    // Create new array with updated description
+    e.preventDefault();
+
+    const subtaskClone = [...this.state.subtasks];
+
+    console.log('subtaskClone', subtaskClone);
+
+
+
+    // Event: +
+    // - Enter on input
+    // - Click off input
+
+    // Put/Patch Request:
+    // - Take new description as argument and then make request
+
+    // Align client side with backend data:
+    // - Take response id and map clone of subtasks array 
+    // - Return new response object
+    // - setState({ Object })
+
+  }
+
   addSubtask(e) {
     e.preventDefault();
 
@@ -237,7 +264,7 @@ class TaskView extends React.Component {
   }
 
   updateSubtask(e, id, complete, description) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log('us');
     const updatedSubtask = {
       complete: complete,
