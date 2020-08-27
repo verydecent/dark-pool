@@ -238,6 +238,8 @@ class TaskView extends React.Component {
   }
 
   handleChangeSubtask(e, id) {
+    console.log('***FUNCTION ALERT ===> handleChangeSubtask()');
+
     // e.preventDefault();
     // Clone subtasks from state to keep things immutable
     // Target subtask index
@@ -254,7 +256,7 @@ class TaskView extends React.Component {
     this.setState(prevState => ({
       ...prevState,
       subtasks: subtaskClone
-    }));
+    }), (e) => this.updateSubtask(e, id));
 
     // My way of doing it
     // const mapTest = subtaskClone.map(subtask => {
@@ -269,24 +271,49 @@ class TaskView extends React.Component {
   }
 
   toggleSubtask(e, id) {
+    console.log('***FUNCTION ALERT ===> toggleSubtask()');
     // Clone to keep immutable
     // Find index of target subtask
     // Use index to update cloned array's target Subtask
     // setState()
 
+    // console.log('e.target.checked', e.target.checked);
+    const subtaskClone = [...this.state.subtasks];
+    // console.log('subtaslClone', subtaskClone)
+    // const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    // console.log('targetSubtaskIndex', targetSubtaskIndex);
+    // subtaskClone[targetSubtaskIndex].complete = e.target.checked;
+    // console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
+    // console.log('subtaskClone', subtaskClone);
 
-    const subtaskClone = [this.state.subtasks];
-    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
-    console.log('targetSubtaskIndex', targetSubtaskIndex);
-    subtaskClone[targetSubtaskIndex].complete = !subtaskClone[targetSubtaskIndex].complete;
-    console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
-    this.setState(prevState => ({
-      ...prevState,
-      subtasks: subtaskClone
-    }));
+    console.log('subtaskClone', subtaskClone);
+
+    const mappedArr = subtaskClone.map(subtask => {
+      if (subtask._id === id) {
+        subtask.complete = e.target.checked;
+        console.log('subtask from map', subtask)
+        return subtask;
+      }
+      else return subtask;
+    });
+    console.log('mappedArr', mappedArr);
+
+    this.setState(prevState => {
+      console.log('prevState', prevState);
+      return {
+        subtasks: mappedArr,
+        ...prevState
+      }
+    }, () => this.updateSubtask(id));
+
+    // console.log('updatedSubtask', updatedSubtask)
+
+    // axios.patch(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
   }
 
-  updateSubtask(e, id, complete, description) {
+  updateSubtask(id) {
+    console.log('***FUNCTION ALERT ===> updateSubtask()');
+    // console.log(e);
     // Event: +
     // - Enter on input
     // - Click off input
@@ -298,34 +325,38 @@ class TaskView extends React.Component {
     // - Take response id and map clone of subtasks array 
     // - Return new response object
     // - setState({ Object })
-    e.preventDefault();
-    console.log('us');
+    // e.preventDefault();
+
+    const targetSubtask = this.state.subtasks.filter(subtask => subtask._id === id);
+
     const updatedSubtask = {
-      complete: complete,
-      description: description
+      complete: targetSubtask[0].complete,
+      description: targetSubtask[0].description
     }
+    console.log('updated', updatedSubtask);
 
     axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
       .then(response => {
-        this.setState(prevState => {
-          const updated = prevState.subtasks.map(subtask => {
-            if (subtask._id === id) {
-              subtask.complete = response.data.complete;
-              subtask.description = response.data.description;
-              return subtask;
-            }
-            else return subtask;
-          });
+        console.log('response', response);
+        // this.setState(prevState => {
+        //   const updated = prevState.subtasks.map(subtask => {
+        //     if (subtask._id === id) {
+        //       subtask.complete = response.data.complete;
+        //       subtask.description = response.data.description;
+        //       return subtask;
+        //     }
+        //     else return subtask;
+        //   });
 
-          return {
-            ...prevState,
-            subtasks: updated
-          }
-        });
+        //   return {
+        //     ...prevState,
+        //     subtasks: updated
+        //   }
+        // });
       })
       .catch(error => {
         console.log('error', error);
-      })
+      });
   }
 
   deleteSubtask(id) {
