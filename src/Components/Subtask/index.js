@@ -19,6 +19,7 @@ const Subtask = ({
   complete,
   description,
   handleChangeSubtask,
+  toggleSubtask,
   updateSubtask,
   deleteSubtask
 
@@ -29,12 +30,12 @@ const Subtask = ({
   return (
     <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
       <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
-      {/* <input
-          checked={complete}
-          onChange={() => this.check(id)}
-          name='complete'
-          type='checkbox'
-        /> */}
+      <input
+        checked={complete}
+        onChange={(e) => toggleSubtask(e, id)}
+        name='complete'
+        type='checkbox'
+      />
       <input
         value={description}
         name='description'

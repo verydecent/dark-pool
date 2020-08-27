@@ -16,10 +16,10 @@ const TaskModal = ({
   handleChange,
   updateTask,
   deleteTask,
-  handleChangeSubtask,
   addSubtask,
-  updateSubtask,
+  handleChangeSubtask,
   toggleSubtask,
+  updateSubtask,
   deleteSubtask,
 }) => {
   console.log(subtasks)

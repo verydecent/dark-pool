@@ -268,6 +268,24 @@ class TaskView extends React.Component {
     // this.setState({ subtasks: mapTest });
   }
 
+  toggleSubtask(e, id) {
+    // Clone to keep immutable
+    // Find index of target subtask
+    // Use index to update cloned array's target Subtask
+    // setState()
+
+
+    const subtaskClone = [this.state.subtasks];
+    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    console.log('targetSubtaskIndex', targetSubtaskIndex);
+    subtaskClone[targetSubtaskIndex].complete = !subtaskClone[targetSubtaskIndex].complete;
+    console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
+    this.setState(prevState => ({
+      ...prevState,
+      subtasks: subtaskClone
+    }));
+  }
+
   updateSubtask(e, id, complete, description) {
     // Event: +
     // - Enter on input
@@ -308,36 +326,6 @@ class TaskView extends React.Component {
       .catch(error => {
         console.log('error', error);
       })
-  }
-
-  toggleSubtask(id, complete, description) {
-    console.log('complete', complete, 'description', description);
-    const updatedSubtask = {
-      complete: complete,
-      description: description
-    };
-    console.log('updatedSubtask', updatedSubtask);
-
-    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
-      .then(response => {
-        console.log('response', response);
-        const subtasks = this.state.subtasks.map(subtask => {
-          if (subtask._id === id) {
-            subtask.complete = response.data.complete;
-            subtask.description = response.data.description;
-            return subtask;
-          }
-          else return subtask;
-        });
-        console.log('subtasks', subtasks);
-        this.setState({
-          ...this.state,
-          subtask: subtasks
-        });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
   }
 
   deleteSubtask(id) {
@@ -396,10 +384,10 @@ class TaskView extends React.Component {
               handleChange={this.handleChange}
               updateTask={this.updateTask}
               deleteTask={this.deleteTask}
-              handleChangeSubtask={this.handleChangeSubtask}
               addSubtask={this.addSubtask}
-              updateSubtask={this.updateSubtask}
+              handleChangeSubtask={this.handleChangeSubtask}
               toggleSubtask={this.toggleSubtask}
+              updateSubtask={this.updateSubtask}
               deleteSubtask={this.deleteSubtask}
             />
             <div className='task-view-list-container'>
