@@ -253,10 +253,12 @@ class TaskView extends React.Component {
     const subtaskClone = [...this.state.subtasks];
     const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
     subtaskClone[targetSubtaskIndex].description = e.target.value;
+
     this.setState(prevState => ({
       ...prevState,
       subtasks: subtaskClone
-    }), (e) => this.updateSubtask(e, id));
+    }));
+    // }), () => this.updateSubtask(id));
 
     // My way of doing it
     // const mapTest = subtaskClone.map(subtask => {
@@ -280,28 +282,27 @@ class TaskView extends React.Component {
     // console.log('e.target.checked', e.target.checked);
     const subtaskClone = [...this.state.subtasks];
     // console.log('subtaslClone', subtaskClone)
-    // const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
     // console.log('targetSubtaskIndex', targetSubtaskIndex);
-    // subtaskClone[targetSubtaskIndex].complete = e.target.checked;
+    subtaskClone[targetSubtaskIndex].complete = e.target.checked;
     // console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
     // console.log('subtaskClone', subtaskClone);
 
     console.log('subtaskClone', subtaskClone);
 
-    const mappedArr = subtaskClone.map(subtask => {
-      if (subtask._id === id) {
-        subtask.complete = e.target.checked;
-        console.log('subtask from map', subtask)
-        return subtask;
-      }
-      else return subtask;
-    });
-    console.log('mappedArr', mappedArr);
+    // const mappedArr = subtaskClone.map(subtask => {
+    //   if (subtask._id === id) {
+    //     subtask.complete = e.target.checked;
+    //     console.log('subtask from map', subtask)
+    //     return subtask;
+    //   }
+    //   else return subtask;
+    // });
+    // console.log('mappedArr', mappedArr);
 
     this.setState(prevState => {
-      console.log('prevState', prevState);
       return {
-        subtasks: mappedArr,
+        subtasks: subtaskClone,
         ...prevState
       }
     }, () => this.updateSubtask(id));
@@ -329,6 +330,7 @@ class TaskView extends React.Component {
 
     const targetSubtask = this.state.subtasks.filter(subtask => subtask._id === id);
 
+    console.log('targetSubtask', targetSubtask);
     const updatedSubtask = {
       complete: targetSubtask[0].complete,
       description: targetSubtask[0].description
