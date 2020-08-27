@@ -25,7 +25,13 @@ const Subtask = ({
 
 }) => {
   return (
-    <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        updateSubtask(id);
+      }}
+      onBlur={() => updateSubtask(id)}
+    >
       <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
       <input
         checked={complete}
