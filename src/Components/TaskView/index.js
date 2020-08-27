@@ -59,8 +59,6 @@ class TaskView extends React.Component {
 
     const url = `${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`;
 
-    console.log('======= CDM =======');
-
     axios.get(url)
       .then(response => {
         this.setState({ tasks: response.data });
