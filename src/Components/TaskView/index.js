@@ -23,7 +23,6 @@ class TaskView extends React.Component {
       taskId: '',
       taskTitle: '',
       taskDescription: '',
-      subtaskDescription: '',
       subtasks: [],
 
       // Should I just use a nested object to contain current modal?
@@ -32,23 +31,24 @@ class TaskView extends React.Component {
     };
 
     // Main
-    this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.callTask = this.callTask.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.parseNextDate = this.parseNextDate.bind(this);
     this.parsePrevDate = this.parsePrevDate.bind(this);
+    this.callTask = this.callTask.bind(this);
 
     // Task
     this.createTask = this.createTask.bind(this);
     this.selectTask = this.selectTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
 
     // Subtask
     this.addSubtask = this.addSubtask.bind(this);
     this.updateSubtask = this.updateSubtask.bind(this);
-    this.deleteSubtask = this.deleteSubtask.bind(this);
     this.toggleSubtask = this.toggleSubtask.bind(this);
+    this.deleteSubtask = this.deleteSubtask.bind(this);
+    this.handleChangeSubtask = this.handleChangeSubtask.bind(this);
   }
 
   componentDidMount() {
@@ -60,8 +60,6 @@ class TaskView extends React.Component {
 
     const url = `${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`;
 
-    console.log('======= CDM =======');
-
     axios.get(url)
       .then(response => {
         this.setState({ tasks: response.data });
@@ -71,19 +69,68 @@ class TaskView extends React.Component {
       });
   }
 
-  selectTask(id, title, description) {
-    axios.get(`${process.env.API_URL}/subtask/${id}`)
-      .then(response => {
-        const subtasks = response.data;
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
-        this.setState({
-          taskId: id,
-          taskTitle: title,
-          taskDescription: description,
-          subtasks: subtasks
-        });
+  toggleModal() {
+    // this.setState({ isModalOpen: !this.state.isModalOpen });
+    // How do I search for the selected task in the array then set it to state?
+    // Search through this.state.tasks.filter then find by id? How do I create an id? 
+    // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
+    if (this.state.isModalOpen) {
+      this.setState(prevState => {
+        return {
+          isModalOpen: false,
+          taskId: '',
+          taskTitle: '',
+          taskDescription: '',
+          subtasks: [],
+        };
+      });
+    }
+    else {
+      this.setState(prevState => {
+        return {
+          isModalOpen: true
+        };
+      });
+    }
+  }
+
+  parseNextDate(e) {
+    // We must update the state's currentDate to the next date using moment
+    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
+  }
+
+  parsePrevDate(e) {
+    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
+  }
+
+  callTask() {
+    const { currentDate } = this.state;
+    const userId = isAuthenticated()._id;
+
+    // const todayToDate = today.toDate();
+    // const endOfTodayToDate = moment(today).endOf('day').toDate();
+
+    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
+    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
+
+    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
+
+    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
+
+    axios.get(url)
+      .then(response => {
+        console.log('response', response);
+        this.setState({ tasks: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 
   createTask() {
@@ -103,6 +150,21 @@ class TaskView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  selectTask(id, title, description) {
+    axios.get(`${process.env.API_URL}/subtask/${id}`)
+      .then(response => {
+        const subtasks = response.data;
+
+        this.setState({
+          taskId: id,
+          taskTitle: title,
+          taskDescription: description,
+          subtasks: subtasks
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   updateTask(e) {
@@ -166,7 +228,6 @@ class TaskView extends React.Component {
         console.log('Subtask Response', response);
         this.setState(prevState => {
           return {
-            subtaskDescription: '',
             subtasks: [...prevState.subtasks, response.data]
           };
         });
@@ -176,61 +237,124 @@ class TaskView extends React.Component {
       });
   }
 
-  updateSubtask(e, id, complete, description) {
+  handleChangeSubtask(e, id) {
+    console.log('***FUNCTION ALERT ===> handleChangeSubtask()');
+
     // e.preventDefault();
-    console.log('us');
-    const updatedSubtask = {
-      complete: complete,
-      description: description
-    }
+    // Clone subtasks from state to keep things immutable
+    // Target subtask index
+    // Update subtask with event target's value
+    // setState with new array
+    // Finally, proceed to Put/Patch request
 
-    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
-      .then(response => {
-        this.setState(prevState => {
-          const updated = prevState.subtasks.map(subtask => {
-            if (subtask._id === id) {
-              subtask.complete = response.data.complete;
-              subtask.description = response.data.description;
-              return subtask;
-            }
-            else return subtask;
-          });
+    // In order to keep things immutable, create a fresh array that will be set to state later
+    // Immutability keeps increases trackability and performance
+    // How idk I need to research that more
+    const subtaskClone = [...this.state.subtasks];
+    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    subtaskClone[targetSubtaskIndex].description = e.target.value;
 
-          return {
-            ...prevState,
-            subtasks: updated
-          }
-        });
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
+    this.setState(prevState => ({
+      ...prevState,
+      subtasks: subtaskClone
+    }));
+    // }), () => this.updateSubtask(id));
+
+    // My way of doing it
+    // const mapTest = subtaskClone.map(subtask => {
+    //   if (subtask._id === id) {
+    //     subtask.description = e.target.value;
+    //     return subtask;
+    //   }
+    //   else return subtask;
+    // });
+
+    // this.setState({ subtasks: mapTest });
   }
 
-  toggleSubtask(id, complete, description) {
-    console.log('complete', complete, 'description', description);
+  toggleSubtask(e, id) {
+    console.log('***FUNCTION ALERT ===> toggleSubtask()');
+    // Clone to keep immutable
+    // Find index of target subtask
+    // Use index to update cloned array's target Subtask
+    // setState()
+
+    // console.log('e.target.checked', e.target.checked);
+    const subtaskClone = [...this.state.subtasks];
+    // console.log('subtaslClone', subtaskClone)
+    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    // console.log('targetSubtaskIndex', targetSubtaskIndex);
+    subtaskClone[targetSubtaskIndex].complete = e.target.checked;
+    // console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
+    // console.log('subtaskClone', subtaskClone);
+
+    console.log('subtaskClone', subtaskClone);
+
+    // const mappedArr = subtaskClone.map(subtask => {
+    //   if (subtask._id === id) {
+    //     subtask.complete = e.target.checked;
+    //     console.log('subtask from map', subtask)
+    //     return subtask;
+    //   }
+    //   else return subtask;
+    // });
+    // console.log('mappedArr', mappedArr);
+
+    this.setState(prevState => {
+      return {
+        subtasks: subtaskClone,
+        ...prevState
+      }
+    }, () => this.updateSubtask(id));
+
+    // console.log('updatedSubtask', updatedSubtask)
+
+    // axios.patch(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
+  }
+
+  updateSubtask(id) {
+    console.log('***FUNCTION ALERT ===> updateSubtask()');
+    // console.log(e);
+    // Event: +
+    // - Enter on input
+    // - Click off input
+
+    // Put/Patch Request:
+    // - Take new description as argument and then make request
+
+    // Align client side with backend data:
+    // - Take response id and map clone of subtasks array 
+    // - Return new response object
+    // - setState({ Object })
+    // e.preventDefault();
+
+    const targetSubtask = this.state.subtasks.filter(subtask => subtask._id === id);
+
+    console.log('targetSubtask', targetSubtask);
     const updatedSubtask = {
-      complete: complete,
-      description: description
-    };
-    console.log('updatedSubtask', updatedSubtask);
+      complete: targetSubtask[0].complete,
+      description: targetSubtask[0].description
+    }
+    console.log('updated', updatedSubtask);
 
     axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
       .then(response => {
         console.log('response', response);
-        const subtasks = this.state.subtasks.map(subtask => {
-          if (subtask._id === id) {
-            subtask.complete = response.data.complete;
-            subtask.description = response.data.description;
-            return subtask;
-          }
-          else return subtask;
-        });
-        console.log('subtasks', subtasks);
-        this.setState({
-          ...this.state,
-          subtask: subtasks
-        });
+        // this.setState(prevState => {
+        //   const updated = prevState.subtasks.map(subtask => {
+        //     if (subtask._id === id) {
+        //       subtask.complete = response.data.complete;
+        //       subtask.description = response.data.description;
+        //       return subtask;
+        //     }
+        //     else return subtask;
+        //   });
+
+        //   return {
+        //     ...prevState,
+        //     subtasks: updated
+        //   }
+        // });
       })
       .catch(error => {
         console.log('error', error);
@@ -256,71 +380,6 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  toggleModal() {
-    // this.setState({ isModalOpen: !this.state.isModalOpen });
-    // How do I search for the selected task in the array then set it to state?
-    // Search through this.state.tasks.filter then find by id? How do I create an id? 
-    // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
-    if (this.state.isModalOpen) {
-      this.setState(prevState => {
-        return {
-          isModalOpen: false,
-          taskId: '',
-          taskTitle: '',
-          taskDescription: '',
-          subtaskDescription: '',
-          subtasks: [],
-        };
-      });
-    }
-    else {
-      this.setState(prevState => {
-        return {
-          isModalOpen: true
-        };
-      });
-    }
-  }
-
-  parseNextDate(e) {
-    // We must update the state's currentDate to the next date using moment
-    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
-  }
-
-  parsePrevDate(e) {
-    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
-  }
-
-  callTask() {
-    const { currentDate } = this.state;
-    const userId = isAuthenticated()._id;
-
-    // const todayToDate = today.toDate();
-    // const endOfTodayToDate = moment(today).endOf('day').toDate();
-
-    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
-    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
-
-    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
-
-    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
-
-    axios.get(url)
-      .then(response => {
-        console.log('response', response);
-        this.setState({ tasks: response.data });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
-  }
-
   render() {
     // Map out Task components we get from API call in componentDidMoun
     return (
@@ -335,7 +394,7 @@ class TaskView extends React.Component {
 
           <div className='task-view-body-container'>
             <div className='task-view-body-container-header'>
-              <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
+              <h2 className='date-header' style={{ color: '#fff' }}>{this.state.currentDate.format('llll')}</h2>
               <div className='task-view-carousel-buttons'>
                 <div onClick={(e) => this.parseNextDate(e)}>
                   <AngleRight />
@@ -351,7 +410,6 @@ class TaskView extends React.Component {
               taskTitle={this.state.taskTitle}
               taskDescription={this.state.taskDescription}
               isModalOpen={this.state.isModalOpen}
-              subtaskDescription={this.state.subtaskDescription}
               subtasks={this.state.subtasks}
 
               /* Method Props */
@@ -360,9 +418,10 @@ class TaskView extends React.Component {
               updateTask={this.updateTask}
               deleteTask={this.deleteTask}
               addSubtask={this.addSubtask}
-              deleteSubtask={this.deleteSubtask}
-              updateSubtask={this.updateSubtask}
+              handleChangeSubtask={this.handleChangeSubtask}
               toggleSubtask={this.toggleSubtask}
+              updateSubtask={this.updateSubtask}
+              deleteSubtask={this.deleteSubtask}
             />
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {
