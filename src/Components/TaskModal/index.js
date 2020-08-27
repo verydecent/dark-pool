@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import { Times } from '../FAIcons';
-import shortid from 'shortid';
 import Subtask from '../Subtask';
 
 const TaskModal = ({
