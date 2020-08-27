@@ -24,9 +24,6 @@ const Subtask = ({
   deleteSubtask
 
 }) => {
-
-  console.log('Subtask Component Re-Render');
-
   return (
     <form onSubmit={(e) => updateSubtask(e, id, complete, description)}>
       <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >

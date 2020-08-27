@@ -22,7 +22,6 @@ const TaskModal = ({
   updateSubtask,
   deleteSubtask,
 }) => {
-  console.log(subtasks)
   return (
     <div className='task-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
       <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
