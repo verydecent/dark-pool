@@ -22,29 +22,12 @@ class Subtask extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.check = this.check.bind(this);
   }
 
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
-
-  check(id) {
-    // e.preventDefault();
-    // this.setState(prevState => ({ ...prevState, complete: !prevState.complete }));
-    this.setState(prevState => {
-
-      return {
-        ...prevState,
-        complete: !prevState.complete
-      }
-    },
-      () => {
-        this.props.toggleSubtask(id, this.state.complete, this.state.description)
-      }
-    );
   }
 
   render() {
