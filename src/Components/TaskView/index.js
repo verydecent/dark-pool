@@ -32,23 +32,23 @@ class TaskView extends React.Component {
     };
 
     // Main
-    this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.callTask = this.callTask.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.parseNextDate = this.parseNextDate.bind(this);
     this.parsePrevDate = this.parsePrevDate.bind(this);
+    this.callTask = this.callTask.bind(this);
 
     // Task
     this.createTask = this.createTask.bind(this);
     this.selectTask = this.selectTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
 
     // Subtask
     this.addSubtask = this.addSubtask.bind(this);
     this.updateSubtask = this.updateSubtask.bind(this);
-    this.deleteSubtask = this.deleteSubtask.bind(this);
     this.toggleSubtask = this.toggleSubtask.bind(this);
+    this.deleteSubtask = this.deleteSubtask.bind(this);
   }
 
   componentDidMount() {
@@ -71,19 +71,69 @@ class TaskView extends React.Component {
       });
   }
 
-  selectTask(id, title, description) {
-    axios.get(`${process.env.API_URL}/subtask/${id}`)
-      .then(response => {
-        const subtasks = response.data;
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
-        this.setState({
-          taskId: id,
-          taskTitle: title,
-          taskDescription: description,
-          subtasks: subtasks
-        });
+  toggleModal() {
+    // this.setState({ isModalOpen: !this.state.isModalOpen });
+    // How do I search for the selected task in the array then set it to state?
+    // Search through this.state.tasks.filter then find by id? How do I create an id? 
+    // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
+    if (this.state.isModalOpen) {
+      this.setState(prevState => {
+        return {
+          isModalOpen: false,
+          taskId: '',
+          taskTitle: '',
+          taskDescription: '',
+          subtaskDescription: '',
+          subtasks: [],
+        };
+      });
+    }
+    else {
+      this.setState(prevState => {
+        return {
+          isModalOpen: true
+        };
+      });
+    }
+  }
+
+  parseNextDate(e) {
+    // We must update the state's currentDate to the next date using moment
+    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
+  }
+
+  parsePrevDate(e) {
+    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
+  }
+
+  callTask() {
+    const { currentDate } = this.state;
+    const userId = isAuthenticated()._id;
+
+    // const todayToDate = today.toDate();
+    // const endOfTodayToDate = moment(today).endOf('day').toDate();
+
+    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
+    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
+
+    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
+
+    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
+
+    axios.get(url)
+      .then(response => {
+        console.log('response', response);
+        this.setState({ tasks: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 
   createTask() {
@@ -103,6 +153,21 @@ class TaskView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  selectTask(id, title, description) {
+    axios.get(`${process.env.API_URL}/subtask/${id}`)
+      .then(response => {
+        const subtasks = response.data;
+
+        this.setState({
+          taskId: id,
+          taskTitle: title,
+          taskDescription: description,
+          subtasks: subtasks
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   updateTask(e) {
@@ -254,71 +319,6 @@ class TaskView extends React.Component {
         });
       })
       .catch(error => console.log(error));
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  toggleModal() {
-    // this.setState({ isModalOpen: !this.state.isModalOpen });
-    // How do I search for the selected task in the array then set it to state?
-    // Search through this.state.tasks.filter then find by id? How do I create an id? 
-    // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
-    if (this.state.isModalOpen) {
-      this.setState(prevState => {
-        return {
-          isModalOpen: false,
-          taskId: '',
-          taskTitle: '',
-          taskDescription: '',
-          subtaskDescription: '',
-          subtasks: [],
-        };
-      });
-    }
-    else {
-      this.setState(prevState => {
-        return {
-          isModalOpen: true
-        };
-      });
-    }
-  }
-
-  parseNextDate(e) {
-    // We must update the state's currentDate to the next date using moment
-    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
-  }
-
-  parsePrevDate(e) {
-    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
-  }
-
-  callTask() {
-    const { currentDate } = this.state;
-    const userId = isAuthenticated()._id;
-
-    // const todayToDate = today.toDate();
-    // const endOfTodayToDate = moment(today).endOf('day').toDate();
-
-    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
-    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
-
-    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
-
-    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
-
-    axios.get(url)
-      .then(response => {
-        console.log('response', response);
-        this.setState({ tasks: response.data });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
   }
 
   render() {
