@@ -220,32 +220,6 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  handleChangeSubtask(e, id) {
-    // Find subtask by id
-
-    // Create new array with updated description
-    e.preventDefault();
-
-    const subtaskClone = [...this.state.subtasks];
-
-    console.log('subtaskClone', subtaskClone);
-
-
-
-    // Event: +
-    // - Enter on input
-    // - Click off input
-
-    // Put/Patch Request:
-    // - Take new description as argument and then make request
-
-    // Align client side with backend data:
-    // - Take response id and map clone of subtasks array 
-    // - Return new response object
-    // - setState({ Object })
-
-  }
-
   addSubtask(e) {
     e.preventDefault();
 
@@ -263,7 +237,49 @@ class TaskView extends React.Component {
       });
   }
 
+  handleChangeSubtask(e, id) {
+    // e.preventDefault();
+    // Clone subtasks from state to keep things immutable
+    // Target subtask index
+    // Update subtask with event target's value
+    // setState with new array
+    // Finally, proceed to Put/Patch request
+
+    // In order to keep things immutable, create a fresh array that will be set to state later
+    // Immutability keeps increases trackability and performance
+    // How idk I need to research that more
+    const subtaskClone = [...this.state.subtasks];
+    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    subtaskClone[targetSubtaskIndex].description = e.target.value;
+    this.setState(prevState => ({
+      ...prevState,
+      subtasks: subtaskClone
+    }));
+
+    // My way of doing it
+    // const mapTest = subtaskClone.map(subtask => {
+    //   if (subtask._id === id) {
+    //     subtask.description = e.target.value;
+    //     return subtask;
+    //   }
+    //   else return subtask;
+    // });
+
+    // this.setState({ subtasks: mapTest });
+  }
+
   updateSubtask(e, id, complete, description) {
+    // Event: +
+    // - Enter on input
+    // - Click off input
+
+    // Put/Patch Request:
+    // - Take new description as argument and then make request
+
+    // Align client side with backend data:
+    // - Take response id and map clone of subtasks array 
+    // - Return new response object
+    // - setState({ Object })
     e.preventDefault();
     console.log('us');
     const updatedSubtask = {
