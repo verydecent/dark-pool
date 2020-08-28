@@ -1,6 +1,5 @@
 .task-view {
-  background-color: #212121;
-  border-radius: 4px;
+  /* background-color: #2C3255; */
   height: 100%;
 }
 
@@ -12,12 +11,21 @@
   justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  padding: 16px;
+  border-bottom: 1px solid #EFF2F5;
+
+
+
+  padding-left: 42px;
+  padding-right: 42px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .task-view-body-container {
-  padding: 16px;
+  padding-left: 42px;
+  padding-right: 42px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .task-view-body-container-header {
