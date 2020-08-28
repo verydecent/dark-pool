@@ -1,7 +1,7 @@
 .sidenav {
 	color: #fff;
   width: 284px;
-	background-color: #212121;
+	background-color: #25244D;
 	height: 100%;
   padding: 30px 24px 24px;
   display: flex;
@@ -15,7 +15,7 @@
 }
 
 .sidenav-link-list {
-  padding-top: 32px;
+  padding-top: 48px;
 }
 
 .sidenav-link-li {
