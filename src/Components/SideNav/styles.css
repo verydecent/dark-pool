@@ -1,25 +1,36 @@
 .sidenav {
 	color: #fff;
-  width: 240px;
+  width: 284px;
 	background-color: #212121;
 	height: 100%;
-  padding: 40px 24px 24px;
+  padding: 30px 24px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .sidenav-logo {
-  font-size: 24px;
+  font-size: 1.6rem;
+  text-align: center;
 }
 
 .sidenav-link-list {
   padding-top: 32px;
 }
 
-.sidenav-link-utilities {
+.sidenav-link-li {
+  height: 48px;
+  max-width: 242px;
+  border-radius: 4px;
+  /* border: 1px solid white; */
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  color: #fff;
 }
 
-.sidenav-link {
-  height: 32px;
+.sidenav-link-li-icon {
+  padding-right: 20px;
+  font-size: 1.6rem;
 }
