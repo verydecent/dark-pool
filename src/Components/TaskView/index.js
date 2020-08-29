@@ -439,9 +439,12 @@ class TaskView extends React.Component {
                 console.log('task =============>', task)
                 return (
                   <Task
+                    // Values
                     id={task._id}
                     title={task.title}
                     description={task.description}
+                    subtasks={task.subtasks}
+                    // Methods
                     toggleModal={this.toggleModal}
                     selectTask={this.selectTask}
                     key={shortid.generate()}
