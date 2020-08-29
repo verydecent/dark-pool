@@ -62,6 +62,7 @@ class TaskView extends React.Component {
 
     axios.get(url)
       .then(response => {
+        console.log('response data from cdm', response);
         this.setState({ tasks: response.data });
       })
       .catch(error => {
@@ -151,19 +152,19 @@ class TaskView extends React.Component {
       });
   }
 
-  selectTask(id, title, description) {
-    axios.get(`${process.env.API_URL}/subtask/${id}`)
-      .then(response => {
-        const subtasks = response.data;
-
-        this.setState({
-          taskId: id,
-          taskTitle: title,
-          taskDescription: description,
-          subtasks: subtasks
-        });
-      })
-      .catch(error => console.log(error));
+  selectTask(id, title, description, subtasks) {
+    // Should we accept arguments from props
+    // OR should I use a loop everytime to target with id?
+    // I think since we already have the value we can just pass as arguments instead of having the loop?
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        taskId: id,
+        taskTitle: title,
+        taskDescription: description,
+        subtasks: subtasks
+      }
+    });
   }
 
   updateTask(e) {
@@ -384,6 +385,7 @@ class TaskView extends React.Component {
     return (
       <div className='task-view'>
         <div className='task-view-container'>
+          {/* HEADER */}
           <div className='task-view-header-container'>
             <h2 className='task-view-title'>Daily Tasks</h2>
             <div onClick={() => this.createTask()}>
@@ -391,7 +393,9 @@ class TaskView extends React.Component {
             </div>
           </div>
 
+          {/* BODY */}
           <div className='task-view-body-container'>
+            {/* BODY HEADER */}
             <div className='task-view-body-container-header'>
               <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
               <div className='task-view-carousel-buttons'>
@@ -403,27 +407,36 @@ class TaskView extends React.Component {
                 </div>
               </div>
             </div>
+            <div className='task-view-data-container'>
+              <div className='task-view-graph-container'>
+                Pie graph goes here
+              </div>
+              <div className='task-view-graph-container'>
+                Tasks complete 9/10
+                Subtasks complete 7/10
+              </div>
 
-            <TaskModal
-              /* Values */
-              taskTitle={this.state.taskTitle}
-              taskDescription={this.state.taskDescription}
-              isModalOpen={this.state.isModalOpen}
-              subtasks={this.state.subtasks}
+            </div>
 
-              /* Method Props */
-              toggleModal={this.toggleModal}
-              handleChange={this.handleChange}
-              updateTask={this.updateTask}
-              deleteTask={this.deleteTask}
-              addSubtask={this.addSubtask}
-              handleChangeSubtask={this.handleChangeSubtask}
-              toggleSubtask={this.toggleSubtask}
-              updateSubtask={this.updateSubtask}
-              deleteSubtask={this.deleteSubtask}
-            />
+            <div className='task-view-list-header-container'>
+              {/* COLUMN */}
+              <div className='task-view-list-header-container-column'>
+                <h2>Title</h2>
+              </div>
+              {/* COLUMN */}
+              <div className='task-view-list-header-container-column'>
+                <h2>% Complete</h2>
+              </div>
+              {/* COLUMN */}
+              <div className='task-view-list-header-container-column'>
+                <h2>Subtasks</h2>
+              </div>
+              {/* COLUMN */}
+            </div>
+
             <div className='task-view-list-container'>
               {this.state.tasks.map(task => {
+                console.log('task =============>', task)
                 return (
                   <Task
                     id={task._id}
@@ -438,6 +451,27 @@ class TaskView extends React.Component {
             </div>
           </div>
         </div>
+
+
+
+        <TaskModal
+          /* Values */
+          taskTitle={this.state.taskTitle}
+          taskDescription={this.state.taskDescription}
+          isModalOpen={this.state.isModalOpen}
+          subtasks={this.state.subtasks}
+
+          /* Method Props */
+          toggleModal={this.toggleModal}
+          handleChange={this.handleChange}
+          updateTask={this.updateTask}
+          deleteTask={this.deleteTask}
+          addSubtask={this.addSubtask}
+          handleChangeSubtask={this.handleChangeSubtask}
+          toggleSubtask={this.toggleSubtask}
+          updateSubtask={this.updateSubtask}
+          deleteSubtask={this.deleteSubtask}
+        />
       </div>
     );
   }

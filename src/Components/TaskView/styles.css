@@ -37,5 +37,15 @@
 }
 
 .task-view-list-container {
+  /* border: 1px solid red; */
+}
 
+.task-view-list-header-container {
+  display: flex;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EFF2F5;
+}
+
+.task-view-list-header-container-column {
+  width: 33%;
 }
