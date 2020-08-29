@@ -31,7 +31,10 @@ const Subtask = ({
         e.preventDefault();
         updateSubtask(taskId, subtaskId);
       }}
-      onBlur={() => updateSubtask(id)}
+      onBlur={(e) => {
+        e.preventDefault();
+        updateSubtask(taskId, subtaskId);
+      }}
     >
       <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
       <input
