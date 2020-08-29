@@ -9,6 +9,10 @@ import axios from 'axios';
 import shortid from 'shortid';
 import moment from 'moment';
 
+// Set axios baseUrl
+// axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = process.env.API_URL;
+
 class TaskView extends React.Component {
   constructor() {
     super();
@@ -279,7 +283,7 @@ class TaskView extends React.Component {
     }, () => this.updateSubtask(id));
   }
 
-  updateSubtask(subtaskId, taskId) {
+  updateSubtask(taskId, subtaskId) {
     console.log('***FUNCTION ALERT ===> updateSubtask()');
     // console.log(e);
     // Event: +
@@ -295,14 +299,23 @@ class TaskView extends React.Component {
     // - setState({ Object })
     // e.preventDefault();
 
+    console.log(axios.defaults)
+    console.log('subtaskId', subtaskId, 'taskId', taskId)
+
     const targetSubtask = this.state.subtasks.filter(subtask => subtask._id === id);
 
     const updatedSubtask = {
-      complete: targetSubtask[0].complete,
-      description: targetSubtask[0].description
+      complete: true,
+      description: 'asdasd'
     };
+    // const updatedSubtask = {
+    //   complete: targetSubtask[0].complete,
+    //   description: targetSubtask[0].description
+    // };
 
-    axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
+
+    // axios.put(`/task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
+    axios.put(`/task/${taskId}`, updatedSubtask)
       .then(response => {
         console.log('response', response);
         // this.setState(prevState => {
@@ -425,6 +438,7 @@ class TaskView extends React.Component {
 
         <TaskModal
           /* Values */
+          taskId={this.state.taskId}
           taskTitle={this.state.taskTitle}
           taskDescription={this.state.taskDescription}
           isModalOpen={this.state.isModalOpen}

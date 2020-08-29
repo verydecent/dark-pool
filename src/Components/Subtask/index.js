@@ -29,7 +29,7 @@ const Subtask = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        updateSubtask(subtaskId, taskId);
+        updateSubtask(taskId, subtaskId);
       }}
       onBlur={() => updateSubtask(id)}
     >
