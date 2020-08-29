@@ -9,10 +9,6 @@ import axios from 'axios';
 import shortid from 'shortid';
 import moment from 'moment';
 
-// Set axios baseUrl
-// axios.defaults.baseURL = 'http://localhost:3000';
-axios.defaults.baseURL = process.env.API_URL;
-
 class TaskView extends React.Component {
   constructor() {
     super();
@@ -260,20 +256,9 @@ class TaskView extends React.Component {
   }
 
   toggleSubtask(e, id) {
-    console.log('***FUNCTION ALERT ===> toggleSubtask()');
-    // Clone to keep immutable
-    // Find index of target subtask
-    // Use index to update cloned array's target Subtask
-    // setState()
-
-    // console.log('e.target.checked', e.target.checked);
-    const subtaskClone = [...this.state.subtasks];
-    // console.log('subtaslClone', subtaskClone)
-    const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
+    const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === id);
     // console.log('targetSubtaskIndex', targetSubtaskIndex);
     subtaskClone[targetSubtaskIndex].complete = e.target.checked;
-    // console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
-    // console.log('subtaskClone', subtaskClone);
 
     this.setState(prevState => {
       return {
@@ -284,58 +269,26 @@ class TaskView extends React.Component {
   }
 
   updateSubtask(taskId, subtaskId) {
-    console.log('***FUNCTION ALERT ===> updateSubtask()');
-    // console.log(e);
-    // Event: +
-    // - Enter on input
-    // - Click off input
+    // Find subtask with id
+    const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => {
+      if (subtask._id === subtaskId) {
+        return subtask;
+      }
+    });
 
-    // Put/Patch Request:
-    // - Take new description as argument and then make request
-
-    // Align client side with backend data:
-    // - Take response id and map clone of subtasks array 
-    // - Return new response object
-    // - setState({ Object })
-    // e.preventDefault();
-
-    console.log(axios.defaults)
-    console.log('subtaskId', subtaskId, 'taskId', taskId)
-
-    const targetSubtask = this.state.subtasks.filter(subtask => subtask._id === id);
+    const targetSubtask = this.state.subtasks[indexOfTargetSubtask];
 
     const updatedSubtask = {
-      complete: true,
-      description: 'asdasd'
+      complete: targetSubtask.complete,
+      description: targetSubtask.description
     };
-    // const updatedSubtask = {
-    //   complete: targetSubtask[0].complete,
-    //   description: targetSubtask[0].description
-    // };
 
-
-    // axios.put(`/task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
-    axios.put(`/task/${taskId}`, updatedSubtask)
+    axios.put(`${process.env.API_URL}/task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
       .then(response => {
-        console.log('response', response);
-        // this.setState(prevState => {
-        //   const updated = prevState.subtasks.map(subtask => {
-        //     if (subtask._id === id) {
-        //       subtask.complete = response.data.complete;
-        //       subtask.description = response.data.description;
-        //       return subtask;
-        //     }
-        //     else return subtask;
-        //   });
-
-        //   return {
-        //     ...prevState,
-        //     subtasks: updated
-        //   }
-        // });
+        console.log(response);
       })
       .catch(error => {
-        console.log('error', error);
+        console.log(error);
       });
   }
 

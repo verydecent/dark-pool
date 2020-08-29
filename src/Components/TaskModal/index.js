@@ -23,7 +23,7 @@ const TaskModal = ({
   updateSubtask,
   deleteSubtask,
 }) => {
-  console.log('Loc = TaskModal, var = taskId', taskId);
+  console.log(subtasks)
   return (
     <div className='task-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
       <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
@@ -96,6 +96,7 @@ const TaskModal = ({
               <div className='task-modal-content-details-subtask-container'>
                 {/* map out sub tasks here */}
                 {subtasks.map(subtask => {
+                  console.log(subtask)
                   return (
                     <Subtask
                       // Using subtask's _id as key otherwise React will re render a new form every setState

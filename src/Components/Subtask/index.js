@@ -25,18 +25,19 @@ const Subtask = ({
   updateSubtask,
   deleteSubtask
 }) => {
+  console.log(description)
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         updateSubtask(taskId, subtaskId);
       }}
-      onBlur={(e) => {
-        e.preventDefault();
-        updateSubtask(taskId, subtaskId);
-      }}
+    // onBlur={(e) => {
+    //   e.preventDefault();
+    //   updateSubtask(taskId, subtaskId);
+    // }}
     >
-      <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
+      <p style={{ color: '#fff', fontSize: 20 }}>{description}</p >
       <input
         checked={complete}
         onChange={(e) => toggleSubtask(e, subtaskId)}

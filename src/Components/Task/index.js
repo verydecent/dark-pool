@@ -11,9 +11,6 @@ const Task = ({
   toggleModal,
   selectTask
 }) => {
-
-  console.log('props in Task Component', subtasks);
-
   return (
     <div
       className='collection-box'
