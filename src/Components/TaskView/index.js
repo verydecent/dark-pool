@@ -256,7 +256,11 @@ class TaskView extends React.Component {
   }
 
   toggleSubtask(e, id) {
+    console.log('toggleSubtask', e.target.checked);
+    const subtaskClone = [...this.state.subtasks];
     const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === id);
+    console.log('clone', targetSubtaskIndex);
+
     // console.log('targetSubtaskIndex', targetSubtaskIndex);
     subtaskClone[targetSubtaskIndex].complete = e.target.checked;
 
@@ -265,10 +269,11 @@ class TaskView extends React.Component {
         subtasks: subtaskClone,
         ...prevState
       }
-    }, () => this.updateSubtask(id));
+    }, () => this.updateSubtask(this.state.taskId, id));
   }
 
   updateSubtask(taskId, subtaskId) {
+    console.log('taskId', 'subtaskId', subtaskId);
     // Find subtask with id
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => {
       if (subtask._id === subtaskId) {
