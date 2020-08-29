@@ -14,35 +14,35 @@ import './styles.css';
 
 
 const Subtask = ({
-
-  id,
+  // Values
+  subtask_id,
   complete,
   description,
+  // Methods
   handleChangeSubtask,
   toggleSubtask,
   updateSubtask,
   deleteSubtask
-
 }) => {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        updateSubtask(id);
+        updateSubtask(task_id, subtask_id);
       }}
       onBlur={() => updateSubtask(id)}
     >
       <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
       <input
         checked={complete}
-        onChange={(e) => toggleSubtask(e, id)}
+        onChange={(e) => toggleSubtask(e, subtask_id)}
         name='complete'
         type='checkbox'
       />
       <input
         value={description}
         name='description'
-        onChange={(e) => handleChangeSubtask(e, id)}
+        onChange={(e) => handleChangeSubtask(e, subtask_id)}
       />
 
       <button>Update Subtask</button>
