@@ -218,7 +218,7 @@ class TaskView extends React.Component {
 
   addSubtask(e) {
     e.preventDefault();
-    axios.post(`${process.env.API_URL}/subtask/${this.state.taskId}`)
+    axios.post(`${process.env.API_URL}/task/${this.state.taskId}subtask/`)
       .then(response => {
         this.setState(prevState => {
           return {
@@ -256,12 +256,8 @@ class TaskView extends React.Component {
   }
 
   toggleSubtask(e, id) {
-    console.log('toggleSubtask', e.target.checked);
     const subtaskClone = [...this.state.subtasks];
     const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === id);
-    console.log('clone', targetSubtaskIndex);
-
-    // console.log('targetSubtaskIndex', targetSubtaskIndex);
     subtaskClone[targetSubtaskIndex].complete = e.target.checked;
 
     this.setState(prevState => {
