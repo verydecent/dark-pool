@@ -216,15 +216,15 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  addSubtask(e) {
+  addSubtask(e, taskId) {
     e.preventDefault();
     // Must update subtasks within task array and subtask array in state
 
-    axios.post(`${process.env.API_URL}/task/${this.state.taskId}/subtask/`)
+    axios.post(`${process.env.API_URL}/task/${taskId}/subtask`)
       .then(response => {
         this.setState(prevState => {
           const immutableTasks = [...prevState.tasks].map(task => {
-            if (task._id === this.state.taskId) return response.data;
+            if (task._id === taskId) return response.data;
             return task;
           });
 
