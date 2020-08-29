@@ -16,6 +16,7 @@ import './styles.css';
 const Subtask = ({
   // Values
   subtask_id,
+  task_id,
   complete,
   description,
   // Methods
