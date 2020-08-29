@@ -6,6 +6,7 @@ import Subtask from '../Subtask';
 const TaskModal = ({
   // values
   isModalOpen,
+  taskId,
   taskTitle,
   taskDescription,
   taskDateCreated,
@@ -99,7 +100,8 @@ const TaskModal = ({
                       // Using subtask's _id as key otherwise React will re render a new form every setState
                       // This causes the input lose focus
                       key={subtask._id}
-                      id={subtask._id}
+                      subtaskId={subtask._id}
+                      taskId={taskId}
                       description={subtask.description}
                       complete={subtask.complete}
                       handleChangeSubtask={handleChangeSubtask}

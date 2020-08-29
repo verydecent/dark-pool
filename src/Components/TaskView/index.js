@@ -179,9 +179,6 @@ class TaskView extends React.Component {
 
     axios.put(`${process.env.API_URL}/task/${this.state.taskId}`, updatedTask)
       .then((response) => {
-        console.log(
-          'Response after updating Task', response
-        );
         const arrayWithUpdatedTask = this.state.tasks.map(task => {
           if (task._id === response.data._id) {
             // Deep copy of object
@@ -206,7 +203,6 @@ class TaskView extends React.Component {
   deleteTask() {
     axios.delete(`${process.env.API_URL}/task/${this.state.taskId}`)
       .then(response => {
-        console.log(response)
         const taskRemoved = this.state.tasks.filter(task => {
           if (task._id === this.state.taskId) return;
           return task;
@@ -222,12 +218,11 @@ class TaskView extends React.Component {
 
   addSubtask(e) {
     e.preventDefault();
-
     axios.post(`${process.env.API_URL}/subtask/${this.state.taskId}`)
       .then(response => {
-        console.log('Subtask Response', response);
         this.setState(prevState => {
           return {
+            ...prevState,
             subtasks: [...prevState.subtasks, response.data]
           };
         });
@@ -258,18 +253,6 @@ class TaskView extends React.Component {
       ...prevState,
       subtasks: subtaskClone
     }));
-    // }), () => this.updateSubtask(id));
-
-    // My way of doing it
-    // const mapTest = subtaskClone.map(subtask => {
-    //   if (subtask._id === id) {
-    //     subtask.description = e.target.value;
-    //     return subtask;
-    //   }
-    //   else return subtask;
-    // });
-
-    // this.setState({ subtasks: mapTest });
   }
 
   toggleSubtask(e, id) {
@@ -288,31 +271,15 @@ class TaskView extends React.Component {
     // console.log('updated complete?', subtaskClone[targetSubtaskIndex]);
     // console.log('subtaskClone', subtaskClone);
 
-    console.log('subtaskClone', subtaskClone);
-
-    // const mappedArr = subtaskClone.map(subtask => {
-    //   if (subtask._id === id) {
-    //     subtask.complete = e.target.checked;
-    //     console.log('subtask from map', subtask)
-    //     return subtask;
-    //   }
-    //   else return subtask;
-    // });
-    // console.log('mappedArr', mappedArr);
-
     this.setState(prevState => {
       return {
         subtasks: subtaskClone,
         ...prevState
       }
     }, () => this.updateSubtask(id));
-
-    // console.log('updatedSubtask', updatedSubtask)
-
-    // axios.patch(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
   }
 
-  updateSubtask(id) {
+  updateSubtask(subtaskId, taskId) {
     console.log('***FUNCTION ALERT ===> updateSubtask()');
     // console.log(e);
     // Event: +
@@ -330,12 +297,10 @@ class TaskView extends React.Component {
 
     const targetSubtask = this.state.subtasks.filter(subtask => subtask._id === id);
 
-    console.log('targetSubtask', targetSubtask);
     const updatedSubtask = {
       complete: targetSubtask[0].complete,
       description: targetSubtask[0].description
-    }
-    console.log('updated', updatedSubtask);
+    };
 
     axios.put(`${process.env.API_URL}/subtask/${id}`, updatedSubtask)
       .then(response => {
@@ -382,6 +347,21 @@ class TaskView extends React.Component {
 
   render() {
     // Map out Task components we get from API call in componentDidMoun
+    const TasksMapped = this.state.tasks.map(task => {
+      return (
+        <Task
+          // Values
+          id={task._id}
+          title={task.title}
+          description={task.description}
+          subtasks={task.subtasks}
+          // Methods
+          toggleModal={this.toggleModal}
+          selectTask={this.selectTask}
+          key={shortid.generate()}
+        />
+      );
+    });
     return (
       <div className='task-view'>
         <div className='task-view-container'>
@@ -435,22 +415,8 @@ class TaskView extends React.Component {
             </div>
 
             <div className='task-view-list-container'>
-              {this.state.tasks.map(task => {
-                console.log('task =============>', task)
-                return (
-                  <Task
-                    // Values
-                    id={task._id}
-                    title={task.title}
-                    description={task.description}
-                    subtasks={task.subtasks}
-                    // Methods
-                    toggleModal={this.toggleModal}
-                    selectTask={this.selectTask}
-                    key={shortid.generate()}
-                  />
-                );
-              })}
+              {/* Tasks Mapped */}
+              {TasksMapped}
             </div>
           </div>
         </div>
