@@ -25,17 +25,16 @@ const Subtask = ({
   updateSubtask,
   deleteSubtask
 }) => {
-  console.log(description)
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         updateSubtask(taskId, subtaskId);
       }}
-    // onBlur={(e) => {
-    //   e.preventDefault();
-    //   updateSubtask(taskId, subtaskId);
-    // }}
+      onBlur={(e) => {
+        e.preventDefault();
+        updateSubtask(taskId, subtaskId);
+      }}
     >
       <p style={{ color: '#fff', fontSize: 20 }}>{description}</p >
       <input
@@ -51,10 +50,10 @@ const Subtask = ({
       />
 
       <button>Update Subtask</button>
-      {/* 
-        <div onClick={() => deleteSubtask(subtaskId)}>
+
+      <div onClick={() => deleteSubtask(subtaskId)}>
         <Times />
-      </div> */}
+      </div>
     </form>
   );
 }
