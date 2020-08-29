@@ -15,8 +15,8 @@ import './styles.css';
 
 const Subtask = ({
   // Values
-  subtask_id,
-  task_id,
+  subtaskId,
+  taskId,
   complete,
   description,
   // Methods
@@ -29,26 +29,26 @@ const Subtask = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        updateSubtask(task_id, subtask_id);
+        updateSubtask(taskId, subtaskId);
       }}
       onBlur={() => updateSubtask(id)}
     >
       <p style={{ color: '#fff', fontSize: 24 }}>{description}</p >
       <input
         checked={complete}
-        onChange={(e) => toggleSubtask(e, subtask_id)}
+        onChange={(e) => toggleSubtask(e, subtaskId)}
         name='complete'
         type='checkbox'
       />
       <input
         value={description}
         name='description'
-        onChange={(e) => handleChangeSubtask(e, subtask_id)}
+        onChange={(e) => handleChangeSubtask(e, subtaskId)}
       />
 
       <button>Update Subtask</button>
       {/* 
-        <div onClick={() => deleteSubtask(subtask_id)}>
+        <div onClick={() => deleteSubtask(subtaskId)}>
         <Times />
       </div> */}
     </form>
