@@ -15,8 +15,8 @@ import './styles.css';
 
 const Subtask = ({
   // Values
-  subtaskId,
   taskId,
+  subtaskId,
   complete,
   description,
   // Methods
@@ -51,7 +51,7 @@ const Subtask = ({
 
       <button>Update Subtask</button>
 
-      <div onClick={() => deleteSubtask(subtaskId)}>
+      <div onClick={() => deleteSubtask(taskId, subtaskId)}>
         <Times />
       </div>
     </form>
