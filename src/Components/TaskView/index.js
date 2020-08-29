@@ -62,7 +62,6 @@ class TaskView extends React.Component {
 
     axios.get(url)
       .then(response => {
-        console.log('response data from cdm', response);
         this.setState({ tasks: response.data });
       })
       .catch(error => {
@@ -126,7 +125,6 @@ class TaskView extends React.Component {
 
     axios.get(url)
       .then(response => {
-        console.log('response', response);
         this.setState({ tasks: response.data });
       })
       .catch(error => {
@@ -183,7 +181,6 @@ class TaskView extends React.Component {
           if (task._id === response.data._id) {
             // Deep copy of object
             const newTask = JSON.parse(JSON.stringify(task));
-            console.log('newTask from JSON PARSE', newTask);
             newTask.title = response.data.title;
             newTask.description = response.data.description;
 
@@ -213,7 +210,9 @@ class TaskView extends React.Component {
           tasks: taskRemoved
         });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error)
+      });
   }
 
   addSubtask(e, taskId) {
@@ -261,9 +260,9 @@ class TaskView extends React.Component {
     }));
   }
 
-  toggleSubtask(e, id) {
+  toggleSubtask(e, taskId, subtaskId) {
     const subtaskClone = [...this.state.subtasks];
-    const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === id);
+    const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === subtaskId);
     subtaskClone[targetSubtaskIndex].complete = e.target.checked;
 
     this.setState(prevState => {
@@ -271,16 +270,15 @@ class TaskView extends React.Component {
         subtasks: subtaskClone,
         ...prevState
       }
-    }, () => this.updateSubtask(this.state.taskId, id));
+    }, () => {
+      console.log(this.state.tasks)
+      this.updateSubtask(taskId, subtaskId)
+    });
   }
 
   updateSubtask(taskId, subtaskId) {
     // Find subtask with id
-    const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => {
-      if (subtask._id === subtaskId) {
-        return subtask;
-      }
-    });
+    const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => (subtask._id === subtaskId));
 
     const targetSubtask = this.state.subtasks[indexOfTargetSubtask];
 
@@ -292,6 +290,7 @@ class TaskView extends React.Component {
     axios.put(`${process.env.API_URL}/task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
       .then(response => {
         console.log(response);
+
       })
       .catch(error => {
         console.log(error);

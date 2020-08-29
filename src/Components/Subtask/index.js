@@ -39,7 +39,7 @@ const Subtask = ({
       <p style={{ color: '#fff', fontSize: 20 }}>{description}</p >
       <input
         checked={complete}
-        onChange={(e) => toggleSubtask(e, subtaskId)}
+        onChange={(e) => toggleSubtask(e, taskId, subtaskId)}
         name='complete'
         type='checkbox'
       />
