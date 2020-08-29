@@ -48,7 +48,7 @@ const Subtask = ({
 
       <button>Update Subtask</button>
       {/* 
-        <div onClick={() => deleteSubtask(this.props.id)}>
+        <div onClick={() => deleteSubtask(subtask_id)}>
         <Times />
       </div> */}
     </form>
