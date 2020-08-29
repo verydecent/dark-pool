@@ -218,12 +218,20 @@ class TaskView extends React.Component {
 
   addSubtask(e) {
     e.preventDefault();
-    axios.post(`${process.env.API_URL}/task/${this.state.taskId}subtask/`)
+    // Must update subtasks within task array and subtask array in state
+
+    axios.post(`${process.env.API_URL}/task/${this.state.taskId}/subtask/`)
       .then(response => {
         this.setState(prevState => {
+          const immutableTasks = [...prevState.tasks].map(task => {
+            if (task._id === this.state.taskId) return response.data;
+            return task;
+          });
+
           return {
             ...prevState,
-            subtasks: [...prevState.subtasks, response.data]
+            tasks: immutableTasks,
+            subtasks: response.data.subtasks
           };
         });
       })
@@ -233,8 +241,6 @@ class TaskView extends React.Component {
   }
 
   handleChangeSubtask(e, id) {
-    console.log('***FUNCTION ALERT ===> handleChangeSubtask()');
-
     // e.preventDefault();
     // Clone subtasks from state to keep things immutable
     // Target subtask index
@@ -269,7 +275,6 @@ class TaskView extends React.Component {
   }
 
   updateSubtask(taskId, subtaskId) {
-    console.log('taskId', 'subtaskId', subtaskId);
     // Find subtask with id
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => {
       if (subtask._id === subtaskId) {
@@ -293,20 +298,23 @@ class TaskView extends React.Component {
       });
   }
 
-  deleteSubtask(id) {
+  deleteSubtask(taskId, subtaskId) {
     // filter out if the matching id and then setState with newly created array
     // Do this for tasks as well
     // const newSubtasks = this.state.subtasks.filter(subtask => )
-    axios.delete(`${process.env.API_URL}/subtask/${id}`)
+    axios.delete(`${process.env.API_URL}/task/${taskId}/subtask/${subtaskId}`)
       .then(response => {
-        console.log(response)
-        const subtaskRemoved = this.state.subtasks.filter(subtask => {
-          if (subtask._id === this.state.id) return;
-          return subtask;
-        });
+        this.setState(prevState => {
+          const immutableTasks = [...prevState.tasks].map(task => {
+            if (task._id === taskId) return response.data;
+            return task;
+          });
 
-        this.setState({
-          subtask: subtaskRemoved
+          return {
+            ...prevState,
+            tasks: immutableTasks,
+            subtasks: response.data.subtasks
+          }
         });
       })
       .catch(error => console.log(error));
