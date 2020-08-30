@@ -23,7 +23,7 @@ class TaskView extends React.Component {
       subtasks: [],
 
       // Helpers
-      userId: '',
+      userId: isAuthenticated()._id,
       isModalOpen: false,
       currentDate: moment(),
     };
@@ -51,7 +51,7 @@ class TaskView extends React.Component {
 
   componentDidMount() {
     console.log('cdm');
-    const userId = isAuthenticated()._id;
+    const { userId } = this.state;
 
     const today = moment().startOf('day');
     const todayToDate = today.startOf('day').toDate();
@@ -229,7 +229,7 @@ class TaskView extends React.Component {
 
           return {
             ...prevState,
-            // tasks: immutableTasks,
+            tasks: immutableTasks,
             subtasks: response.data.subtasks
           };
         });
@@ -261,6 +261,7 @@ class TaskView extends React.Component {
   }
 
   toggleSubtask(e, taskId, subtaskId) {
+    // Need to be cloning whole task array 
     const subtaskClone = [...this.state.subtasks];
     const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === subtaskId);
     subtaskClone[targetSubtaskIndex].complete = e.target.checked;
@@ -320,7 +321,6 @@ class TaskView extends React.Component {
   }
 
   render() {
-    console.log('State Tasks', this.state.tasks);
     // Map out Task components we get from API call in componentDidMoun
     const TasksMapped = this.state.tasks.map(task => {
       return (
@@ -338,9 +338,24 @@ class TaskView extends React.Component {
       );
     });
 
-    const Subtasks = this.state.tasks.filter(task => {
-      if (task._id === this.state.taskId) return task;
-    })
+    const subtasksTotal = () => {
+      let count = 0;
+      this.state.tasks.forEach(task => {
+        count += task.subtasks.length;
+      });
+      return count;
+    }
+
+    const subtasksComplete = () => {
+      let completeSubtaskCount = 0;
+      this.state.tasks.forEach(task => {
+        task.subtasks.forEach(subtask => {
+          if (subtask.complete) completeSubtaskCount++
+        });
+      });
+      return completeSubtaskCount;
+    }
+
     return (
       <div className='task-view'>
         <div className='task-view-container'>
@@ -371,8 +386,9 @@ class TaskView extends React.Component {
                 Pie graph goes here
               </div>
               <div className='task-view-graph-container'>
-                Tasks complete 9/10
-                Subtasks complete 7/10
+                Tasks complete /{this.state.tasks.length}
+                <br />
+                Subtasks complete {subtasksComplete()} / {subtasksTotal()}
               </div>
 
             </div>
@@ -419,7 +435,7 @@ class TaskView extends React.Component {
           updateSubtask={this.updateSubtask}
           deleteSubtask={this.deleteSubtask}
         />
-      </div>
+      </div >
     );
   }
 }
