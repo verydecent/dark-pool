@@ -13,21 +13,19 @@ class TaskView extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: '',
+      // Tasks
       tasks: [],
-      isModalOpen: false,
 
-      currentDate: moment(),
-
-      // State display for currently selected task modal
+      // Selected task
       taskId: '',
       taskTitle: '',
       taskDescription: '',
       subtasks: [],
 
-      // Should I just use a nested object to contain current modal?
-      // No
-
+      // Helpers
+      userId: '',
+      isModalOpen: false,
+      currentDate: moment(),
     };
 
     // Main
@@ -52,6 +50,7 @@ class TaskView extends React.Component {
   }
 
   componentDidMount() {
+    console.log('cdm');
     const userId = isAuthenticated()._id;
 
     const today = moment().startOf('day');
@@ -110,6 +109,7 @@ class TaskView extends React.Component {
   }
 
   callTask() {
+    console.log('callTask');
     const { currentDate } = this.state;
     const userId = isAuthenticated()._id;
 
@@ -229,7 +229,7 @@ class TaskView extends React.Component {
 
           return {
             ...prevState,
-            tasks: immutableTasks,
+            // tasks: immutableTasks,
             subtasks: response.data.subtasks
           };
         });
@@ -320,6 +320,7 @@ class TaskView extends React.Component {
   }
 
   render() {
+    console.log('State Tasks', this.state.tasks);
     // Map out Task components we get from API call in componentDidMoun
     const TasksMapped = this.state.tasks.map(task => {
       return (
@@ -336,6 +337,10 @@ class TaskView extends React.Component {
         />
       );
     });
+
+    const Subtasks = this.state.tasks.filter(task => {
+      if (task._id === this.state.taskId) return task;
+    })
     return (
       <div className='task-view'>
         <div className='task-view-container'>
@@ -394,8 +399,6 @@ class TaskView extends React.Component {
             </div>
           </div>
         </div>
-
-
 
         <TaskModal
           /* Values */
