@@ -77,7 +77,7 @@ class TaskView extends React.Component {
   toggleModal() {
     // this.setState({ isModalOpen: !this.state.isModalOpen });
     // How do I search for the selected task in the array then set it to state?
-    // Search through this.state.tasks.filter then find by id? How do I create an id? 
+    // Search through this.state.tasks.filter then find by id? How do I create an idq? 
     // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
     if (this.state.isModalOpen) {
       this.setState(prevState => {
@@ -100,18 +100,20 @@ class TaskView extends React.Component {
   }
 
   parseNextDate(e) {
+    console.log('nextDate()');
     // We must update the state's currentDate to the next date using moment
     this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
   }
 
   parsePrevDate(e) {
+    console.log('prevDate()');
     this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
   }
 
   callTask() {
-    console.log('callTask');
+    console.log('callTask()');
     const { currentDate } = this.state;
-    const userId = isAuthenticated()._id;
+    const { userId } = this.state;
 
     // const todayToDate = today.toDate();
     // const endOfTodayToDate = moment(today).endOf('day').toDate();
@@ -133,7 +135,8 @@ class TaskView extends React.Component {
   }
 
   createTask() {
-    const userId = isAuthenticated()._id;
+    console.log('createTask()');
+    const { userId } = this.state;
 
     // POST request to task
     axios.post(`${process.env.API_URL}/task`, { user_id: userId })
@@ -151,6 +154,7 @@ class TaskView extends React.Component {
   }
 
   selectTask(id, title, description, subtasks) {
+    console.log('selectTask()');
     // Should we accept arguments from props
     // OR should I use a loop everytime to target with id?
     // I think since we already have the value we can just pass as arguments instead of having the loop?
@@ -166,6 +170,7 @@ class TaskView extends React.Component {
   }
 
   updateTask(e) {
+    console.log('updateTask()');
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
     // Search for task in task array by ID then replace the task with new task object
@@ -198,6 +203,7 @@ class TaskView extends React.Component {
   }
 
   deleteTask() {
+    console.log('deleteTask()');
     axios.delete(`${process.env.API_URL}/task/${this.state.taskId}`)
       .then(response => {
         const taskRemoved = this.state.tasks.filter(task => {
@@ -216,6 +222,7 @@ class TaskView extends React.Component {
   }
 
   addSubtask(e, taskId) {
+    console.log('addSubtask()');
     e.preventDefault();
     // Must update subtasks within task array and subtask array in state
 
@@ -232,7 +239,7 @@ class TaskView extends React.Component {
             tasks: immutableTasks,
             subtasks: response.data.subtasks
           };
-        });
+        }, console.log('handleChangeSubtask()'));
       })
       .catch(error => {
         console.log(error);
@@ -257,7 +264,7 @@ class TaskView extends React.Component {
     this.setState(prevState => ({
       ...prevState,
       subtasks: subtaskClone
-    }));
+    }, console.log('handleChangeSubtask()')));
   }
 
   toggleSubtask(e, taskId, subtaskId) {
@@ -272,12 +279,13 @@ class TaskView extends React.Component {
         ...prevState
       }
     }, () => {
-      console.log(this.state.tasks)
+      console.log('toggleSubtask()')
       this.updateSubtask(taskId, subtaskId)
     });
   }
 
   updateSubtask(taskId, subtaskId) {
+    console.log('updateSubtask()', this.state);
     // Find subtask with id
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => (subtask._id === subtaskId));
 
@@ -290,6 +298,9 @@ class TaskView extends React.Component {
 
     axios.put(`${process.env.API_URL}/task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
       .then(response => {
+        // Since we're already updating subtasks with the handleChange do we need to update state again?... 
+        // Maybe it's good to do it i'll ask
+        // Just so its like aligned with the latest database
         console.log(response);
 
       })
@@ -299,6 +310,7 @@ class TaskView extends React.Component {
   }
 
   deleteSubtask(taskId, subtaskId) {
+
     // filter out if the matching id and then setState with newly created array
     // Do this for tasks as well
     // const newSubtasks = this.state.subtasks.filter(subtask => )
@@ -315,13 +327,14 @@ class TaskView extends React.Component {
             tasks: immutableTasks,
             subtasks: response.data.subtasks
           }
-        });
+        }, console.log('deleteSubtask()', this.state));
       })
       .catch(error => console.log(error));
   }
 
   render() {
-    // Map out Task components we get from API call in componentDidMoun
+    // Map out Task components we get from API call in componentDidMount
+    console.log('** state tasks **', this.state.tasks);
     const TasksMapped = this.state.tasks.map(task => {
       return (
         <Task
@@ -381,6 +394,7 @@ class TaskView extends React.Component {
                 </div>
               </div>
             </div>
+            {/* Turn into component */}
             <div className='task-view-data-container'>
               <div className='task-view-graph-container'>
                 Pie graph goes here
@@ -392,7 +406,7 @@ class TaskView extends React.Component {
               </div>
 
             </div>
-
+            {/* Turn this into a component later */}
             <div className='task-view-list-header-container'>
               {/* COLUMN */}
               <div className='task-view-list-header-container-column'>
