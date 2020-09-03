@@ -92,6 +92,7 @@ class TaskView extends React.Component {
     else {
       this.setState(prevState => {
         return {
+          ...prevState,
           isModalOpen: true
         };
       });
