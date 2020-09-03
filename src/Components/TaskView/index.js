@@ -6,7 +6,6 @@ import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from 'axios';
-import shortid from 'shortid';
 import moment from 'moment';
 
 class TaskView extends React.Component {
@@ -346,7 +345,7 @@ class TaskView extends React.Component {
           // Methods
           toggleModal={this.toggleModal}
           selectTask={this.selectTask}
-          key={shortid.generate()}
+          key={task._id}
         />
       );
     });
