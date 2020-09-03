@@ -139,7 +139,7 @@ class TaskView extends React.Component {
     const { userId } = this.state;
 
     // POST request to task
-    axios.post(`${process.env.API_URL}/task`, { user_id: userId })
+    axios.post(`${process.env.API_URL}/task/${userId}`)
       .then((response) => {
         this.setState(prevState => {
           return {
