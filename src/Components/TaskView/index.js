@@ -5,7 +5,7 @@ import Task from '../Task';
 import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
-import axios from 'axios';
+import axios from '../../Utilities/axiosConfig';
 import moment from 'moment';
 
 class TaskView extends React.Component {
@@ -139,7 +139,8 @@ class TaskView extends React.Component {
     const { userId } = this.state;
 
     // POST request to task
-    axios.post(`${process.env.API_URL}/task/${userId}`)
+    // axios.post(`${process.env.API_URL}/task/${userId}`)
+    axios.post(`task/${userId}`)
       .then((response) => {
         this.setState(prevState => {
           return {
@@ -180,7 +181,7 @@ class TaskView extends React.Component {
       description: this.state.taskDescription
     };
 
-    axios.put(`${process.env.API_URL}/task/${this.state.taskId}`, updatedTask)
+    axios.put(`task/${this.state.taskId}`, updatedTask)
       .then((response) => {
         const arrayWithUpdatedTask = this.state.tasks.map(task => {
           if (task._id === response.data._id) {
@@ -204,7 +205,7 @@ class TaskView extends React.Component {
 
   deleteTask() {
     console.log('deleteTask()');
-    axios.delete(`${process.env.API_URL}/task/${this.state.taskId}`)
+    axios.delete(`task/${this.state.taskId}`)
       .then(response => {
         const taskRemoved = this.state.tasks.filter(task => {
           if (task._id === this.state.taskId) return;
@@ -226,7 +227,7 @@ class TaskView extends React.Component {
     e.preventDefault();
     // Must update subtasks within task array and subtask array in state
 
-    axios.post(`${process.env.API_URL}/task/${taskId}/subtask`)
+    axios.post(`task/${taskId}/subtask`)
       .then(response => {
         this.setState(prevState => {
           const immutableTasks = [...prevState.tasks].map(task => {
@@ -296,7 +297,7 @@ class TaskView extends React.Component {
       description: targetSubtask.description
     };
 
-    axios.put(`${process.env.API_URL}/task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
+    axios.put(`task/${taskId}/subtask/${subtaskId}`, updatedSubtask)
       .then(response => {
         // Since we're already updating subtasks with the handleChange do we need to update state again?... 
         // Maybe it's good to do it i'll ask
@@ -314,7 +315,7 @@ class TaskView extends React.Component {
     // filter out if the matching id and then setState with newly created array
     // Do this for tasks as well
     // const newSubtasks = this.state.subtasks.filter(subtask => )
-    axios.delete(`${process.env.API_URL}/task/${taskId}/subtask/${subtaskId}`)
+    axios.delete(`task/${taskId}/subtask/${subtaskId}`)
       .then(response => {
         this.setState(prevState => {
           const immutableTasks = [...prevState.tasks].map(task => {
