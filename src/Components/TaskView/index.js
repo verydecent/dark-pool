@@ -56,9 +56,7 @@ class TaskView extends React.Component {
     const todayToDate = today.startOf('day').toDate();
     const endOfTodayToDate = moment(today).endOf('day').toDate();
 
-    const url = `${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`;
-
-    axios.get(url)
+    axios.get(`task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -121,11 +119,7 @@ class TaskView extends React.Component {
     const beginningOfCurrentDate = currentDate.startOf('day').toDate();
     const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
 
-    const url = `${process.env.API_URL}/task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`;
-
-    // axios.get(`${process.env.API_URL}/task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
-
-    axios.get(url)
+    axios.get(`task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -138,8 +132,6 @@ class TaskView extends React.Component {
     console.log('createTask()');
     const { userId } = this.state;
 
-    // POST request to task
-    // axios.post(`${process.env.API_URL}/task/${userId}`)
     axios.post(`task/${userId}`)
       .then((response) => {
         this.setState(prevState => {
