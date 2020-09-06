@@ -2,7 +2,7 @@ import React from 'react';
 import SideNav from '../SideNav';
 import './styles.css';
 
-const withSideNav = Component => (props) => {
+const withNav = Component => (props) => {
 	return (
 		<div className='app-view'>
 			<SideNav {...props} />
@@ -13,4 +13,4 @@ const withSideNav = Component => (props) => {
 	);
 }
 
-export default withSideNav;
+export default withNav;

@@ -1,6 +1,6 @@
 import React from 'react';
 import SideNav from '../SideNav';
-import withSideNav from '../Hoc/withSideNav';
+import withNav from '../Hoc/withNav';
 import './styles.css';
 
 class Dashboard extends React.Component {
@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
 
     };
   }
-  
+
   render() {
     return (
       <div className='dashboard'>
@@ -22,4 +22,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default withSideNav(Dashboard);
+export default withNav(Dashboard);

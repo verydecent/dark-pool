@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import withSideNav from '../Hoc/withSideNav';
+import withNav from '../Hoc/withNav';
 
 class CalendarView extends React.Component {
   constructor() {
@@ -8,7 +8,7 @@ class CalendarView extends React.Component {
     this.state = {
       dateObject: moment(),
       allMonths: moment.months(),
-			showMonthTable: false,
+      showMonthTable: false,
     }
     this.weekdayshort = moment.weekdaysShort();
 
@@ -19,27 +19,27 @@ class CalendarView extends React.Component {
     this.currentMonth = this.currentMonth.bind(this);
     this.createMonthList = this.createMonthList.bind(this);
     this.setMonth = this.setMonth.bind(this);
-		this.showMonth = this.showMonth.bind(this);
+    this.showMonth = this.showMonth.bind(this);
   }
 
-	componentDidMount() {
-		console.log('=== CDM ===');
-	}
-  
+  componentDidMount() {
+    console.log('=== CDM ===');
+  }
+
   firstDayOfMonth() {
     let dateObject = this.state.dateObject;
     let firstDay = moment(dateObject).startOf('month').format('d');
-    
+
     return firstDay;
   }
 
   daysInMonth() {
     const { dateObject } = this.state;
     const daysInMonth = dateObject.daysInMonth();
-    
+
     return daysInMonth;
   }
-  
+
   currentDay() {
     const { dateObject } = this.state;
     return dateObject.format('D');
@@ -48,7 +48,7 @@ class CalendarView extends React.Component {
   currentMonth() {
     return this.state.dateObject.format('MMMM');
   }
-  
+
   createMonthList(props) {
     let months = [];
     props.data.map(data => {
@@ -61,7 +61,7 @@ class CalendarView extends React.Component {
         </td>
       );
     });
-    
+
     let rows = [];
     let cells = [];
 
@@ -92,22 +92,22 @@ class CalendarView extends React.Component {
       </table>
     );
   }
-  
+
   setMonth(month) {
     let monthNo = this.state.allMonths.indexOf(month);
-    
+
     let dateObject = Object.assign({}, this.state.dateObject);
-      
+
     dateObject = moment(dateObject).set("month", monthNo);
     this.setState({
       dateObject: dateObject
-    }); 
+    });
   }
 
-	showMonth() {
-		this.setState(prevState => ({ showMonthTable: !prevState.showMonthTable }));
-	}
- 
+  showMonth() {
+    this.setState(prevState => ({ showMonthTable: !prevState.showMonthTable }));
+  }
+
   render() {
     let weekdayshortname = this.weekdayshort.map(day => <th key={day} className='week-day'>{day}</th>);
     let blanks = [];
@@ -116,7 +116,7 @@ class CalendarView extends React.Component {
         <td className='calendar-day empty'></td>
       );
     }
-    
+
     let daysInMonth = [];
     for (let d = 1; d <= this.daysInMonth(); d++) {
       const currentDate = this.currentDay() == d ? { color: 'red' } : {};
@@ -134,7 +134,7 @@ class CalendarView extends React.Component {
         cells.push(row);
       }
       else {
-        rows.push(cells); 
+        rows.push(cells);
         cells = [];
         cells.push(row);
       }
@@ -143,39 +143,39 @@ class CalendarView extends React.Component {
         cells = [];
       }
     });
-    
+
     let daysinmonth = rows.map((d, i) => {
       return <tr key={i}>{d}</tr>;
     });
-    
+
     return (
       <div>
-        
+
         <div>
           <h2>
-						Calendar 
+            Calendar
 					</h2>
-					<h2
-						onClick={() => this.showMonth()}
-						style={{ fontWeight: 'bold', fontSize: 20 }}
-					>
-						{this.currentMonth()}
-					</h2>
-					<div>
-						{this.state.showMonthTable && <this.createMonthList data={this.state.allMonths} />}
-					</div>
-					{!this.state.showMonthTable && 
-          <table>
-            <thead>
-              <tr>{weekdayshortname}</tr>
-            </thead>
-            <tbody>{daysinmonth}</tbody>
-          </table>
-					}
+          <h2
+            onClick={() => this.showMonth()}
+            style={{ fontWeight: 'bold', fontSize: 20 }}
+          >
+            {this.currentMonth()}
+          </h2>
+          <div>
+            {this.state.showMonthTable && <this.createMonthList data={this.state.allMonths} />}
+          </div>
+          {!this.state.showMonthTable &&
+            <table>
+              <thead>
+                <tr>{weekdayshortname}</tr>
+              </thead>
+              <tbody>{daysinmonth}</tbody>
+            </table>
+          }
         </div>
       </div>
     );
   }
 }
 
-export default withSideNav(CalendarView);
+export default withNav(CalendarView);

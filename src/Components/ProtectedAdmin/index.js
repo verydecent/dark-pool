@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import withSideNav from '../Hoc/withSideNav';
+import withNav from '../Hoc/withNav';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
 
 class ProtecedAdmin extends React.Component {
@@ -29,21 +29,21 @@ class ProtecedAdmin extends React.Component {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(response => {
-      console.log('Get User Info Success', response);
-      const { email, username, role } = response.data;
-      this.setState({ username, email, role });
-    })
-    .catch(error => {
-      console.log('Get User Info Error', error);
+      .then(response => {
+        console.log('Get User Info Success', response);
+        const { email, username, role } = response.data;
+        this.setState({ username, email, role });
+      })
+      .catch(error => {
+        console.log('Get User Info Error', error);
 
-      // In the case that request is made with an expired token (aka 401 unauthorized), we will redirect the user to the landing page
-      if (error.response.status === 401) {
-        logout(() => {
-          this.props.history.push('/');
-        });
-      }
-    })
+        // In the case that request is made with an expired token (aka 401 unauthorized), we will redirect the user to the landing page
+        if (error.response.status === 401) {
+          logout(() => {
+            this.props.history.push('/');
+          });
+        }
+      })
   }
 
   handleChange(e) {
@@ -54,7 +54,7 @@ class ProtecedAdmin extends React.Component {
     e.preventDefault();
     const { username, password } = this.state;
     const token = getCookie('token');
-    
+
     this.setState({ buttonText: 'Updating...' });
     axios.put(`${process.env.API_URL}/user`, {
       username,
@@ -64,16 +64,16 @@ class ProtecedAdmin extends React.Component {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(response => {
-      console.log('Update User Information Success', response);
-      updateUser(response, () => {
-        this.setState({ buttonText: 'Updated' });
-      });
-    })
-    .catch(error => {
-      console.log('Update User Information Error', error.response.data.error);
-      this.setState({ buttonText: 'Update' });
-    })
+      .then(response => {
+        console.log('Update User Information Success', response);
+        updateUser(response, () => {
+          this.setState({ buttonText: 'Updated' });
+        });
+      })
+      .catch(error => {
+        console.log('Update User Information Error', error.response.data.error);
+        this.setState({ buttonText: 'Update' });
+      })
   }
 
   render() {
@@ -84,12 +84,12 @@ class ProtecedAdmin extends React.Component {
         <h1>Admin Account View Component</h1>
         <p>Update your admin info</p>
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-         <input
-           name='email'
-           value={email}
-           type='text'
-           disabled={true}
-           onChange={(e) => this.handleChange(e)}
+          <input
+            name='email'
+            value={email}
+            type='text'
+            disabled={true}
+            onChange={(e) => this.handleChange(e)}
           />
           <input
             name='role'
@@ -98,12 +98,12 @@ class ProtecedAdmin extends React.Component {
             disabled={true}
             onChange={(e) => this.handleChange(e)}
           />
-         <input
-           name='username'
-           value={username}
-           placeholder='username'
-           type='text'
-           onChange={(e) => this.handleChange(e)}
+          <input
+            name='username'
+            value={username}
+            placeholder='username'
+            type='text'
+            onChange={(e) => this.handleChange(e)}
           />
           <input
             name='password'
@@ -119,4 +119,4 @@ class ProtecedAdmin extends React.Component {
   }
 }
 
-export default withSideNav(ProtecedAdmin);
+export default withNav(ProtecedAdmin);

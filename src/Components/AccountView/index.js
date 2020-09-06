@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import withSideNav from '../Hoc/withSideNav';
+import withNav from '../Hoc/withNav';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
 
 class AccountView extends React.Component {
@@ -119,4 +119,4 @@ class AccountView extends React.Component {
   }
 }
 
-export default withSideNav(AccountView);
+export default withNav(AccountView);

@@ -1,5 +1,5 @@
 import React from 'react';
-import withSideNav from '../Hoc/withSideNav.js';
+import withNav from '../Hoc/withNav.js';
 import './styles.css';
 import Task from '../Task';
 import TaskModal from '../TaskModal';
@@ -7,6 +7,10 @@ import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment';
+import { Pie, PieChart, Cell, Label, Text } from 'recharts';
+
+const data = [{ name: 'Group A', value: .5 }, { name: 'Group B', value: .5 }];
+const COLORS = ['#0088FE', 'transparent'];
 
 class TaskView extends React.Component {
   constructor() {
@@ -326,24 +330,6 @@ class TaskView extends React.Component {
   }
 
   render() {
-    // Map out Task components we get from API call in componentDidMount
-    console.log('** state tasks **', this.state.tasks);
-    const TasksMapped = this.state.tasks.map(task => {
-      return (
-        <Task
-          // Values
-          id={task._id}
-          title={task.title}
-          description={task.description}
-          subtasks={task.subtasks}
-          // Methods
-          toggleModal={this.toggleModal}
-          selectTask={this.selectTask}
-          key={task._id}
-        />
-      );
-    });
-
     const subtasksTotal = () => {
       let count = 0;
       this.state.tasks.forEach(task => {
@@ -361,6 +347,23 @@ class TaskView extends React.Component {
       });
       return completeSubtaskCount;
     }
+
+    const TasksMapped = this.state.tasks.map(task => {
+      return (
+        <Task
+          // Values
+          key={task._id}
+          id={task._id}
+          title={task.title}
+          description={task.description}
+          subtasks={task.subtasks}
+          // Methods
+          toggleModal={this.toggleModal}
+          selectTask={this.selectTask}
+        />
+      );
+    });
+
 
     return (
       <div className='task-view'>
@@ -391,6 +394,26 @@ class TaskView extends React.Component {
             <div className='task-view-data-container'>
               <div className='task-view-graph-container'>
                 Pie graph goes here
+                <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+                  <Pie
+                    data={data}
+                    cx={200}
+                    cy={200}
+                    startAngle={180}
+                    endAngle={0}
+                    innerRadius={60}
+                    outerRadius={80}
+                    // fill="#8884d8"
+                    paddingAngle={0}
+                  >
+                    {
+                      data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
+                    }
+                    <Label value="Center" offset={0} position="center" />
+                    <Text>Something</Text>
+
+                  </Pie>
+                </PieChart>
               </div>
               <div className='task-view-graph-container'>
                 Tasks complete /{this.state.tasks.length}
@@ -447,4 +470,4 @@ class TaskView extends React.Component {
   }
 }
 
-export default withSideNav(TaskView);
+export default withNav(TaskView);
