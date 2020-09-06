@@ -149,32 +149,29 @@ class CalendarView extends React.Component {
     });
 
     return (
-      <div>
-
-        <div>
-          <h2>
-            Calendar
+      <div className='view'>
+        <h2>
+          Calendar
 					</h2>
-          <h2
-            onClick={() => this.showMonth()}
-            style={{ fontWeight: 'bold', fontSize: 20 }}
-          >
-            {this.currentMonth()}
-          </h2>
-          <div>
-            {this.state.showMonthTable && <this.createMonthList data={this.state.allMonths} />}
-          </div>
-          {!this.state.showMonthTable &&
-            <table>
-              <thead>
-                <tr>{weekdayshortname}</tr>
-              </thead>
-              <tbody>{daysinmonth}</tbody>
-            </table>
-          }
+        <h2
+          onClick={() => this.showMonth()}
+          style={{ fontWeight: 'bold', fontSize: 20 }}
+        >
+          {this.currentMonth()}
+        </h2>
+        <div>
+          {this.state.showMonthTable && <this.createMonthList data={this.state.allMonths} />}
         </div>
+        {!this.state.showMonthTable &&
+          <table>
+            <thead>
+              <tr>{weekdayshortname}</tr>
+            </thead>
+            <tbody>{daysinmonth}</tbody>
+          </table>
+        }
       </div>
-    );
+    )
   }
 }
 

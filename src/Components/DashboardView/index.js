@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className='dashboard'>
+      <div className='view'>
         <div className='dashboard-graph'>
           Graph goes here
         </div>

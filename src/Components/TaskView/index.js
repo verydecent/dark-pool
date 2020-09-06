@@ -366,7 +366,7 @@ class TaskView extends React.Component {
 
 
     return (
-      <div className='task-view'>
+      <div className='view'>
         <div className='task-view-container'>
           {/* HEADER */}
           <div className='task-view-header-container'>

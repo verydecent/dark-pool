@@ -80,7 +80,7 @@ class ProtecedAdmin extends React.Component {
     const { username, password, role, email, buttonText } = this.state;
 
     return (
-      <>
+      <div className='view'>
         <h1>Admin Account View Component</h1>
         <p>Update your admin info</p>
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
@@ -114,7 +114,7 @@ class ProtecedAdmin extends React.Component {
           />
           <button>{buttonText}</button>
         </form>
-      </>
+      </div>
     );
   }
 }
