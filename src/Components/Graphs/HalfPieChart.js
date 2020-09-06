@@ -7,18 +7,36 @@ import {
   Text
 } from 'recharts';
 
-const data = [{ name: 'Group A', value: .5 }, { name: 'Group B', value: .5 }];
-const COLORS = ['#0088FE', 'transparent'];
+const subtasksTotal = subtasks => subtasks.length;
+const subtasksComplete = subtasks => {
+  let count = 0;
+  subtasks.forEach(subtask => {
+    if (subtask.complete) count += 1;
+    else return;
+  })
+  return count;
+};
 
-const HalfPieChart = () => {
+const HalfPieChart = ({
+  subtasks
+}) => {
+  const subtasksUpdated = subtasks ? subtasks : [];
+  const complete = subtasksComplete(subtasksUpdated);
+  const total = subtasksTotal(subtasksUpdated);
+  const remaining = total - complete;
+
+
+  const data = [{ name: 'Group A', value: complete }, { name: 'Group B', value: remaining }];
+  const COLORS = ['#0088FE', 'transparent'];
+
   return (
     <PieChart width={300} height={300}>
       <Pie
         data={data}
         cx={200}
         cy={200}
-        startAngle={180}
-        endAngle={0}
+        startAngle={0}
+        endAngle={180}
         innerRadius={60}
         outerRadius={80}
         fill="transparent"
