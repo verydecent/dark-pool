@@ -7,10 +7,7 @@ import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment';
-import { Pie, PieChart, Cell, Label, Text } from 'recharts';
-
-const data = [{ name: 'Group A', value: .5 }, { name: 'Group B', value: .5 }];
-const COLORS = ['#0088FE', 'transparent'];
+import HalfPieChart from '../Graphs/HalfPieChart';
 
 class TaskView extends React.Component {
   constructor() {
@@ -393,27 +390,7 @@ class TaskView extends React.Component {
             {/* Turn into component */}
             <div className='task-view-data-container'>
               <div className='task-view-graph-container'>
-                Pie graph goes here
-                <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-                  <Pie
-                    data={data}
-                    cx={200}
-                    cy={200}
-                    startAngle={180}
-                    endAngle={0}
-                    innerRadius={60}
-                    outerRadius={80}
-                    // fill="#8884d8"
-                    paddingAngle={0}
-                  >
-                    {
-                      data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
-                    }
-                    <Label value="Center" offset={0} position="center" />
-                    <Text>Something</Text>
-
-                  </Pie>
-                </PieChart>
+                <HalfPieChart />
               </div>
               <div className='task-view-graph-container'>
                 Tasks complete /{this.state.tasks.length}
