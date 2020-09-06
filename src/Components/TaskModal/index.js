@@ -40,7 +40,7 @@ const TaskModal = ({
           {/* TOP */}
           <div className='task-modal-content-bottom-container'>
             <div className='task-modal-content-graph-container'>
-              <HalfPieChart />
+              <HalfPieChart subtasks={subtasks} />
             </div>
             <div className='task-modal-content-details-container'>
               <form type='submit' onSubmit={(e) => updateTask(e)}>
