@@ -12,7 +12,7 @@ const COLORS = ['#0088FE', 'transparent'];
 
 const HalfPieChart = () => {
   return (
-    <PieChart width={800} height={400}>
+    <PieChart width={300} height={300}>
       <Pie
         data={data}
         cx={200}
@@ -21,7 +21,8 @@ const HalfPieChart = () => {
         endAngle={0}
         innerRadius={60}
         outerRadius={80}
-        // fill="#8884d8"
+        fill="transparent"
+        stroke='none'
         paddingAngle={0}
       >
         {

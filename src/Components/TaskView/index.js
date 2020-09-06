@@ -361,6 +361,29 @@ class TaskView extends React.Component {
       );
     });
 
+    const TaskModalConditional = this.state.isModalOpen
+      ? (
+        <TaskModal
+          /* Values */
+          taskId={this.state.taskId}
+          taskTitle={this.state.taskTitle}
+          taskDescription={this.state.taskDescription}
+          subtasks={this.state.subtasks}
+
+          /* Method Props */
+          toggleModal={this.toggleModal}
+          handleChange={this.handleChange}
+          updateTask={this.updateTask}
+          deleteTask={this.deleteTask}
+          addSubtask={this.addSubtask}
+          handleChangeSubtask={this.handleChangeSubtask}
+          toggleSubtask={this.toggleSubtask}
+          updateSubtask={this.updateSubtask}
+          deleteSubtask={this.deleteSubtask}
+        />
+      )
+      : null;
+
 
     return (
       <div className='view'>
@@ -422,26 +445,8 @@ class TaskView extends React.Component {
             </div>
           </div>
         </div>
-
-        <TaskModal
-          /* Values */
-          taskId={this.state.taskId}
-          taskTitle={this.state.taskTitle}
-          taskDescription={this.state.taskDescription}
-          isModalOpen={this.state.isModalOpen}
-          subtasks={this.state.subtasks}
-
-          /* Method Props */
-          toggleModal={this.toggleModal}
-          handleChange={this.handleChange}
-          updateTask={this.updateTask}
-          deleteTask={this.deleteTask}
-          addSubtask={this.addSubtask}
-          handleChangeSubtask={this.handleChangeSubtask}
-          toggleSubtask={this.toggleSubtask}
-          updateSubtask={this.updateSubtask}
-          deleteSubtask={this.deleteSubtask}
-        />
+        {/* Modal */}
+        {TaskModalConditional}
       </div >
     );
   }

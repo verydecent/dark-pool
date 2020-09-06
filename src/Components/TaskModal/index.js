@@ -2,10 +2,10 @@ import React from 'react';
 import './styles.css';
 import { Times } from '../FAIcons';
 import Subtask from '../Subtask';
+import HalfPieChart from '../Graphs/HalfPieChart';
 
 const TaskModal = ({
   // values
-  isModalOpen,
   taskId,
   taskTitle,
   taskDescription,
@@ -24,7 +24,7 @@ const TaskModal = ({
   deleteSubtask,
 }) => {
   return (
-    <div className='task-modal' style={{ display: isModalOpen ? 'block' : 'none' }}>
+    <div className='task-modal'>
       <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
       <div className='task-modal-content'>
         <div className='task-modal-content-header'>
@@ -40,8 +40,8 @@ const TaskModal = ({
           {/* TOP */}
           <div className='task-modal-content-bottom-container'>
             <div className='task-modal-content-graph-container'>
-              Graph goes here
-              </div>
+              <HalfPieChart />
+            </div>
             <div className='task-modal-content-details-container'>
               <form type='submit' onSubmit={(e) => updateTask(e)}>
                 <div className='task-modal-content-details-row'>
