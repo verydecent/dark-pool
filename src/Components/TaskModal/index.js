@@ -8,6 +8,7 @@ import Header from './Header'
 import Description from './Description';
 import Details from './Details';
 import SubtaskList from './SubtaskList';
+import ButtonContainer from './ButtonContainer';
 
 const TaskModal = ({
   // values
@@ -58,13 +59,17 @@ const TaskModal = ({
           // Values
           taskId={taskId}
           subtasks={subtasks}
-          addSubtask={addSubtask}
           // Methods
           handleChangeSubtask={handleChangeSubtask}
           toggleSubtask={toggleSubtask}
           updateSubtask={updateSubtask}
           deleteSubtask={deleteSubtask}
-          // deleteTask method button inside of SubtaskList Component
+        />
+
+        <ButtonContainer
+          // Values
+          // Methods
+          addSubtask={addSubtask}
           deleteTask={deleteTask}
         />
       </div>
