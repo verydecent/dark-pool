@@ -24,29 +24,38 @@ const HalfPieChart = ({
   const complete = subtasksComplete(subtasksUpdated);
   const total = subtasksTotal(subtasksUpdated);
   const remaining = total - complete;
-
-
+  const percentComplete = `${Math.round((complete / total) * 100)} %`;
   const data = [{ name: 'Group A', value: complete }, { name: 'Group B', value: remaining }];
-  const COLORS = ['#0088FE', 'transparent'];
+  // const COLORS = ['#005EA6', '#4A4B4F']; Blue
+  const COLORS = ['#01B074', '#4A4B4F'];
+
 
   return (
-    <PieChart width={300} height={300}>
+    <PieChart width={200} height={300}>
       <Pie
         data={data}
-        cx={200}
+        cx={100}
         cy={200}
-        startAngle={0}
-        endAngle={180}
+        startAngle={180}
+        endAngle={0}
         innerRadius={60}
         outerRadius={80}
-        fill="transparent"
+        fill='transparent'
         stroke='none'
         paddingAngle={0}
       >
         {
           data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
         }
-        <Label value="Center" offset={0} position="center" />
+        <Label
+          style={{
+            fontSize: 20,
+            fill: '#fff'
+          }}
+          value={`${remaining === 0 ? 'Complete!' : percentComplete}`}
+          offset={0}
+          position="center"
+        />
 
       </Pie>
     </PieChart >

@@ -254,11 +254,12 @@ class TaskView extends React.Component {
     const subtaskClone = [...this.state.subtasks];
     const targetSubtaskIndex = subtaskClone.findIndex(subtask => subtask._id === id);
     subtaskClone[targetSubtaskIndex].description = e.target.value;
+    console.log('value===>', e.target.value);
 
     this.setState(prevState => ({
       ...prevState,
       subtasks: subtaskClone
-    }, console.log('handleChangeSubtask()')));
+    }, console.log('handleChangeSubtask()', this.state.subtasks)));
   }
 
   toggleSubtask(e, taskId, subtaskId) {
@@ -413,7 +414,7 @@ class TaskView extends React.Component {
             {/* Turn into component */}
             <div className='task-view-data-container'>
               <div className='task-view-graph-container'>
-                <HalfPieChart />
+                {/* <HalfPieChart subtasks=/> */}
               </div>
               <div className='task-view-graph-container'>
                 Tasks complete /{this.state.tasks.length}
