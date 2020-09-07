@@ -44,36 +44,38 @@ const TaskModal = ({
           handleChange={handleChange}
           toggleModal={toggleModal}
         />
-        <Description
+        <div className='task-modal-overflow-container'>
+          <Description
+            // Values
+            taskDescription={taskDescription}
+            // Methods
+            handleChange={handleChange}
+            updateTask={updateTask}
+          />
+          <Details
           // Values
-          taskDescription={taskDescription}
           // Methods
-          handleChange={handleChange}
-          updateTask={updateTask}
-        />
-        <Details
-        // Values
-        // Methods
-        />
-        <SubtaskList
-          // Values
-          taskId={taskId}
-          subtasks={subtasks}
-          // Methods
-          handleChangeSubtask={handleChangeSubtask}
-          toggleSubtask={toggleSubtask}
-          updateSubtask={updateSubtask}
-          deleteSubtask={deleteSubtask}
-        />
-
+          />
+          <SubtaskList
+            // Values
+            taskId={taskId}
+            subtasks={subtasks}
+            // Methods
+            handleChangeSubtask={handleChangeSubtask}
+            toggleSubtask={toggleSubtask}
+            updateSubtask={updateSubtask}
+            deleteSubtask={deleteSubtask}
+          />
+        </div>
         <ButtonContainer
           // Values
+          taskId={taskId}
           // Methods
           addSubtask={addSubtask}
           deleteTask={deleteTask}
         />
       </div>
-    </div >
+    </div>
   );
 }
 
