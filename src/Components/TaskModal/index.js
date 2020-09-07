@@ -51,6 +51,7 @@ const TaskModal = ({
         <div className='task-modal-overflow-container'>
           <Description
             // Values
+            taskId={taskId}
             taskDescription={taskDescription}
             // Methods
             handleChange={handleChange}
