@@ -1,4 +1,4 @@
-export const getTotalSubtasksAmount = (subtasks) => {
+export const getTotalSubtaskAmount = (subtasks) => {
   return subtasks.length;
 };
 
