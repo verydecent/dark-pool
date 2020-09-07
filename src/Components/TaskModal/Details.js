@@ -4,7 +4,7 @@ import {
   getCompleteSubtaskAmount,
   getIncommpleteSubtaskAmount,
   getTotalSubtaskAmount
-} from '../../Utilities/graphHelpers';
+} from '../../Utilities/subtaskHelpers';
 
 const Details = ({
   subtasks
