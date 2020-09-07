@@ -16,7 +16,7 @@ const Header = ({
         onSubmit={(e) => updateTask(e)}
         onBlur={(e) => updateTask(e)}
       >
-        <textarea
+        <input
           placeholder='Edit your task title by clicking here'
           name='taskTitle'
           value={taskTitle}
