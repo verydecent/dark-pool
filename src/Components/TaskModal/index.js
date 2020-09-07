@@ -28,7 +28,13 @@ const TaskModal = ({
   return (
     <div className='task-modal'>
       <Overlay toggleModal={toggleModal} />
-      <div className='task-modal-content'>
+
+      {/* Header */}
+      {/* Graph/Details */}
+      {/* Description Area */}
+      {/* Subtask List */}
+
+      <div className='task-modal-container'>
         <div className='task-modal-content-header'>
           <h1 className='task-modal-content-title'>
             {taskTitle}

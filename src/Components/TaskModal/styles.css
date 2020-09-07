@@ -17,7 +17,7 @@
   left: 0;
 }
 
-.task-modal-content {
+.task-modal-container {
   width: 600px;
   height: 600px;
   z-index: 999;
