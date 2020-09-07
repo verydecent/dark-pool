@@ -6,8 +6,7 @@ import TaskModal from '../TaskModal';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
-import moment from 'moment';
-import HalfPieChart from '../Graphs/HalfPieChart';
+import moment from 'moment'
 
 class TaskView extends React.Component {
   constructor() {

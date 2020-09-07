@@ -1,8 +1,5 @@
 import React from 'react';
 import './styles.css';
-import { Times } from '../FAIcons';
-import Subtask from '../Subtask';
-import HalfPieChart from '../Graphs/HalfPieChart';
 import Overlay from './Overlay';
 import Header from './Header'
 import Description from './Description';
