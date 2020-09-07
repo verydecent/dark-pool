@@ -266,15 +266,18 @@ class TaskView extends React.Component {
   }
 
   toggleSubtask(e, taskId, subtaskId) {
-    // Need to be cloning whole task array 
-    const subtaskClone = [...this.state.subtasks];
-    const targetSubtaskIndex = this.state.subtasks.findIndex(subtask => subtask._id === subtaskId);
-    subtaskClone[targetSubtaskIndex].complete = e.target.checked;
+    // Need to be cloning whole task array
+    const subtasksClone = this.state.subtasks.map(subtask => {
+      if (subtask._id === subtaskId) {
+        subtask.complete = e.target.checked;
+      }
+      return subtask;
+    });
 
     this.setState(prevState => {
       return {
-        subtasks: subtaskClone,
-        ...prevState
+        ...prevState,
+        subtasks: subtasksClone
       }
     }, () => {
       console.log('toggleSubtask()')
@@ -284,9 +287,7 @@ class TaskView extends React.Component {
 
   updateSubtask(taskId, subtaskId) {
     console.log('updateSubtask()', this.state);
-    // Find subtask with id
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => (subtask._id === subtaskId));
-
     const targetSubtask = this.state.subtasks[indexOfTargetSubtask];
 
     const updatedSubtask = {
