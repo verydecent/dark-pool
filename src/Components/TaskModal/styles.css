@@ -79,7 +79,10 @@
 }
 
 /* Subtask List */
-
+.task-modal-subtask-list {
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 /* 
 .task-modal-content-header {

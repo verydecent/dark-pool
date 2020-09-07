@@ -1,0 +1,42 @@
+.subtask-form {
+  min-height: 44px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.subtask-checkbox {
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.subtask-input {
+  min-height: 24px;
+  width: 100px;
+  min-width: 380px;
+  margin-left: 20px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  background: #424242;
+}
+
+.subtask-exit-container {
+  margin-left: auto;
+  padding-right: 10px;
+}
+
+.task-modal-button {
+  padding: 6px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
