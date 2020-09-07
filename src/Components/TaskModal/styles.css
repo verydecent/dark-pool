@@ -1,3 +1,5 @@
+/* Parent Container */
+
 .task-modal {
   z-index: 990;
   position: fixed;
@@ -7,15 +9,6 @@
   height: 100%;
 }
 
-.task-modal-overlay {
-  z-index: 995;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 .task-modal-container {
   width: 550px;
@@ -27,6 +20,18 @@
   transform: translate(-50%, -50%);
   background-color: #424242;
   border-radius: 4px;
+}
+
+/* Overlay */
+
+.task-modal-overlay {
+  z-index: 995;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Header */
