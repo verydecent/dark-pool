@@ -39,7 +39,7 @@ const Gauge = ({
   const total = subtasksTotal(subtasksUpdated);
   const remaining = total - complete;
   const percentComplete = `${Math.round((complete / total) * 100)} %`;
-  const data = [{ name: 'Completed', value: complete }, { name: 'Remaining', value: remaining }];
+  const data = [{ name: 'Subtasks Completed', value: complete }, { name: 'Subtasks Incomplete', value: remaining }];
 
   return (
     <PieChart width={200} height={200}>
