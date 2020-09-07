@@ -90,6 +90,8 @@
 
 .task-modal-details-graph {
   flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 /* Description */
