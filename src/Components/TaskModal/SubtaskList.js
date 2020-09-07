@@ -33,7 +33,7 @@ const SubtaskList = ({
     <div className='task-modal-subtask-list'>
       Subtask list
       <button
-        className='task-modal-button'
+        className='task-modal-subtask-list-button'
         onClick={(e) => addSubtask(e, taskId)}
       >
         Create Subtask
