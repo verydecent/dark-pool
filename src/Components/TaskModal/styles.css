@@ -23,7 +23,7 @@
 }
 
 .task-modal-overflow-container {
-  height: 450px;
+  height: 300px;
   overflow: auto;
 }
 
@@ -76,18 +76,20 @@
 .task-modal-details {
   padding-left: 30px;
   padding-right: 30px;
+  display: flex;
 }
 
-.task-modal-details-group {
-  padding-bottom: 6px
-}
-
-.task-modal-details-group-field {
+.task-modal-details ol {
+  flex: 1;
 }
 
 .task-modal-details-group-data {
   font-weight: 700;
   padding-left: 6px;
+}
+
+.task-modal-details-graph {
+  flex: 1;
 }
 
 /* Description */

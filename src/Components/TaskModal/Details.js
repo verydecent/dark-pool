@@ -1,37 +1,30 @@
 import React from 'react';
-
+import Gauge from '../Graphs/Gauge';
 // Need to build helper file for getting
 
 const Details = ({
-
+  subtasks
 }) => {
   return (
     <div className='task-modal-details'>
-      <label>Details</label>
       {/* Details */}
       <ol>
         <li>
-          <div className='task-modal-details-group'>
-            <span className='task-modal-details-group-field'>Subtasks Remaining:</span>
-            <span className='task-modal-details-group-data'>25</span>
-          </div>
+          Subtasks Remaining:
+          <span className='task-modal-details-group-data'>25</span>
         </li>
         <li>
-          <div className='task-modal-details-group'>
-            <span className='task-modal-details-group-field'>Subtasks Complete:</span>
-            <span className='task-modal-details-group-data'>75</span>
-          </div>
+          Subtasks Complete:
+          <span className='task-modal-details-group-data'>75</span>
         </li>
         <li>
-          <div className='task-modal-details-group'>
-            <span className='task-modal-details-group-field'>Subtasks Total:</span>
-            <span className='task-modal-details-group-data'>100</span>
-          </div>
+          Subtasks Total:
+          <span className='task-modal-details-group-data'>100</span>
         </li>
       </ol>
       {/* Graph */}
       <div className='task-modal-details-graph'>
-
+        <Gauge subtasks={subtasks} />
       </div>
     </div>
   );

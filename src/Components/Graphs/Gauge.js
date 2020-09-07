@@ -3,8 +3,7 @@ import {
   PieChart,
   Pie,
   Cell,
-  Label,
-  Text
+  Legend
 } from 'recharts';
 import shortid from 'shortid';
 
@@ -18,6 +17,20 @@ const subtasksComplete = subtasks => {
   return count;
 };
 
+const COLORS = ['#01B074', '#4A4B4F'];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
 const Gauge = ({
   subtasks
 }) => {
@@ -26,38 +39,17 @@ const Gauge = ({
   const total = subtasksTotal(subtasksUpdated);
   const remaining = total - complete;
   const percentComplete = `${Math.round((complete / total) * 100)} %`;
-  const data = [{ name: 'Group A', value: complete }, { name: 'Group B', value: remaining }];
-  // Blue Bar
-  // const COLORS = ['#005EA6', '#4A4B4F'];
-  // Green Bar
-  const COLORS = ['#01B074', '#4A4B4F'];
-
+  const data = [{ name: 'Completed', value: complete }, { name: 'Remaining', value: remaining }];
 
   return (
-    <PieChart width={200} height={300}>
+    <PieChart width={200} height={200}>
+      <Legend />
       <Pie
         data={data}
-        cx={100}
-        cy={200}
-        innerRadius={60}
-        outerRadius={80}
-        fill='transparent'
-        stroke='none'
-        paddingAngle={0}
+        labelLine={false}
+        label={renderCustomizedLabel}
       >
-        {
-          data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={shortid.generate()} />)
-        }
-        <Label
-          style={{
-            fontSize: 20,
-            fill: '#fff'
-          }}
-          value={`${remaining === 0 ? 'Complete!' : percentComplete}`}
-          offset={0}
-          position="center"
-        />
-
+        {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={shortid.generate()} />)}
       </Pie>
     </PieChart >
   );

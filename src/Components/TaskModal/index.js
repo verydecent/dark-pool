@@ -42,7 +42,8 @@ const TaskModal = ({
           toggleModal={toggleModal}
         />
         <Details
-        // Values
+          // Values
+          subtasks={subtasks}
         // Methods
         />
         <div className='task-modal-overflow-container'>
