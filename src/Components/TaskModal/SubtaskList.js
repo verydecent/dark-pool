@@ -12,7 +12,6 @@ const SubtaskList = ({
   toggleSubtask,
   deleteSubtask
 }) => {
-
   const subtasksMapped = subtasks.map(subtask => {
     return (
       <Subtask

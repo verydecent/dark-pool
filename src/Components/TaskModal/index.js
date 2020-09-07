@@ -14,7 +14,6 @@ const TaskModal = ({
   taskDescription,
   taskDateCreated,
   subtasks,
-
   // methods
   toggleModal,
   handleChange,
@@ -26,7 +25,6 @@ const TaskModal = ({
   updateSubtask,
   deleteSubtask,
 }) => {
-  console.log('taskModal rerendering')
   return (
     <div className='task-modal'>
       <Overlay
