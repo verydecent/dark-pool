@@ -7,6 +7,7 @@ export const getCompleteSubtaskAmount = (subtasks) => {
   for (let i = 0; i < subtasks.length; i++) {
     if (subtasks[i].complete) count += 1;
   }
+  return count;
 };
 
 export const getIncommpleteSubtaskAmount = (subtasks) => {
@@ -14,4 +15,5 @@ export const getIncommpleteSubtaskAmount = (subtasks) => {
   for (let i = 0; i < subtasks.length; i++) {
     if (!subtasks[i].complete) count += 1;
   }
+  return count;
 };

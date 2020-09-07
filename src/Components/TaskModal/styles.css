@@ -25,7 +25,6 @@
 .task-modal-overflow-container {
   height: 340px;
   overflow-y: scroll;
-  scrollbar-color: yellow red;
 }
 
 /* Overlay */
