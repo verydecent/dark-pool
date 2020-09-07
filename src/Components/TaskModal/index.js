@@ -4,6 +4,7 @@ import { Times } from '../FAIcons';
 import Subtask from '../Subtask';
 import HalfPieChart from '../Graphs/HalfPieChart';
 import Overlay from './Overlay';
+import Header from './Header'
 
 const TaskModal = ({
   // values
@@ -29,20 +30,33 @@ const TaskModal = ({
     <div className='task-modal'>
       <Overlay toggleModal={toggleModal} />
 
-      {/* Header */}
-      {/* Graph/Details */}
-      {/* Description Area */}
-      {/* Subtask List */}
 
       <div className='task-modal-container'>
-        <div className='task-modal-content-header'>
-          <h1 className='task-modal-content-title'>
-            {taskTitle}
-          </h1>
-          <div onClick={() => toggleModal()}>
-            <Times />
-          </div>
+
+        {/* Header */}
+        <Header
+          taskTitle={taskTitle}
+          toggleModal={toggleModal}
+        />
+
+        {/* Description Area */}
+        <div className='task-modal-description'>
+
         </div>
+        {/* Graph/Details */}
+        <div className='task-modal-details'>
+
+        </div>
+        {/* Subtask List */}
+        <div className='task-modal-subtasks'>
+
+        </div>
+
+
+
+
+
+
         <div className='task-modal-content-body'>
 
           {/* TOP */}
