@@ -27,7 +27,7 @@ const SubtaskList = ({
         deleteSubtask={deleteSubtask}
       />
     );
-  })
+  });
 
   return (
     <div className='task-modal-subtask-list'>
