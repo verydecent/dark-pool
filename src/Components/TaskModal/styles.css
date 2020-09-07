@@ -41,6 +41,30 @@
   padding-right: 30px;
 }
 
+/* Description */
+
+.task-modal-description {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.task-modal-description-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-modal-description-form label {
+  color: white;
+}
+
+.task-modal-description-form textarea {
+  border-radius: 4px;
+  resize: none;
+  height: 100px;
+}
+
+
+
 
 /* 
 .task-modal-content-header {

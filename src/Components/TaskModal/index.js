@@ -5,6 +5,7 @@ import Subtask from '../Subtask';
 import HalfPieChart from '../Graphs/HalfPieChart';
 import Overlay from './Overlay';
 import Header from './Header'
+import Description from './Description';
 
 const TaskModal = ({
   // values
@@ -40,9 +41,11 @@ const TaskModal = ({
         />
 
         {/* Description Area */}
-        <div className='task-modal-description'>
-
-        </div>
+        <Description
+          taskDescription={taskDescription}
+          handleChange={handleChange}
+          updateTask={updateTask}
+        />
         {/* Graph/Details */}
         <div className='task-modal-details'>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Overlay = ({
+  // Methods
   toggleModal
 }) => {
   return (
