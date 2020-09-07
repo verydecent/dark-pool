@@ -30,10 +30,10 @@ const Subtask = ({
           e.preventDefault();
           updateSubtask(taskId, subtaskId);
         }}
-      // onBlur={(e) => {
-      //   e.preventDefault();
-      //   updateSubtask(taskId, subtaskId);
-      // }}
+        onBlur={(e) => {
+          e.preventDefault();
+          updateSubtask(taskId, subtaskId);
+        }}
       >
         <input
           className='subtask-checkbox'
