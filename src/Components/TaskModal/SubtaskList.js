@@ -31,15 +31,21 @@ const SubtaskList = ({
 
   return (
     <div className='task-modal-subtask-list'>
-      Subtask list
+      <label>Subtask list</label>
+      {/* Subtasks */}
+      {subtasksMapped}
       <button
         className='task-modal-subtask-list-button'
         onClick={(e) => addSubtask(e, taskId)}
       >
         Create Subtask
       </button>
-      {/* Subtasks */}
-      {subtasksMapped}
+      <button
+        className='task-modal-subtask-list-button'
+        onClick={() => deleteTask()}
+      >
+        Delete Task
+        </button>
     </div>
   );
 }

@@ -35,11 +35,7 @@ const TaskModal = ({
         // Methods
         toggleModal={toggleModal}
       />
-
-
       <div className='task-modal-container'>
-
-        {/* Header */}
         <Header
           // Values
           taskTitle={taskTitle}
@@ -47,8 +43,6 @@ const TaskModal = ({
           handleChange={handleChange}
           toggleModal={toggleModal}
         />
-
-        {/* Description Area */}
         <Description
           // Values
           taskDescription={taskDescription}
@@ -56,7 +50,6 @@ const TaskModal = ({
           handleChange={handleChange}
           updateTask={updateTask}
         />
-        {/* Graph/Details */}
         <Details
         // Values
         // Methods
@@ -71,8 +64,9 @@ const TaskModal = ({
           toggleSubtask={toggleSubtask}
           updateSubtask={updateSubtask}
           deleteSubtask={deleteSubtask}
+          // deleteTask method button inside of SubtaskList Component
+          deleteTask={deleteTask}
         />
-        <button onClick={() => deleteTask()}>Delete Task</button>
       </div>
     </div >
   );

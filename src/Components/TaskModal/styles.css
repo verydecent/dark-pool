@@ -37,7 +37,7 @@
 /* Header */
 
 .task-modal-header {
-  height: 50px;
+  height: 60px;
   border-bottom: 1px solid #fff;
   display: flex;
   justify-content: space-between;
@@ -50,9 +50,16 @@
   width: 100%;
 }
 
-.task-modal-header-form textarea {
+.task-modal-header-form input {
   width: 100%;
-  border-radius: 4px;
+  background: #424242;
+  color: #fff;
+  border: none;
+  height: 44px;
+}
+
+.task-modal-header-form input:hover {
+  border-bottom: 1px solid #fff;
 }
 
 /* Description */
@@ -72,8 +79,12 @@
 }
 
 .task-modal-description-form textarea {
+  margin-top: 19px;
   border-radius: 4px;
-  height: 100px;
+  height: 88px;
+  background: #424242;
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 /* Details */
@@ -85,8 +96,14 @@
 
 /* Subtask List */
 .task-modal-subtask-list {
+  display: flex;
+  flex-direction: column;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.task-modal-subtask-list label {
+  color: #fff;
 }
 
 .task-modal-subtask-list-button {
@@ -96,4 +113,5 @@
   background: transparent;
   color: #fff;
   cursor: pointer;
+  margin-bottom: 14px;
 }
