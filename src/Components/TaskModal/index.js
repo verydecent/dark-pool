@@ -36,6 +36,7 @@ const TaskModal = ({
       <div className='task-modal-container'>
         <Header
           // Values
+          taskId={taskId}
           taskTitle={taskTitle}
           // Methods
           updateTask={updateTask}

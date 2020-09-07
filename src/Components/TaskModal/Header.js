@@ -3,6 +3,7 @@ import { Times } from '../FAIcons'
 
 const Header = ({
   // Values
+  taskId,
   taskTitle,
   // Methods
   handleChange,
@@ -13,8 +14,8 @@ const Header = ({
     <div className='task-modal-header'>
       <form
         className='task-modal-header-form'
-        onSubmit={(e) => updateTask(e)}
-        onBlur={(e) => updateTask(e)}
+        onSubmit={(e) => updateTask(e, taskId)}
+        onBlur={(e) => updateTask(e, taskId)}
       >
         <input
           placeholder='Edit your task title by clicking here'

@@ -9,7 +9,7 @@ const ButtonContainer = ({
 }) => {
   return (
     <div className='task-modal-button-container'>
-      <button className='task-modal-button' onClick={() => deleteTask()}>
+      <button className='task-modal-button' onClick={() => deleteTask(taskId)}>
         Delete Task
       </button>
       <button className='task-modal-button' onClick={(e) => addSubtask(e, taskId)}>

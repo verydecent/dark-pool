@@ -163,7 +163,7 @@ class TaskView extends React.Component {
     });
   }
 
-  updateTask(e) {
+  updateTask(e, taskId) {
     console.log('updateTask()');
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
@@ -174,7 +174,7 @@ class TaskView extends React.Component {
       description: this.state.taskDescription
     };
 
-    axios.put(`task/${this.state.taskId}`, updatedTask)
+    axios.put(`task/${taskId}`, updatedTask)
       .then((response) => {
         const arrayWithUpdatedTask = this.state.tasks.map(task => {
           if (task._id === response.data._id) {
@@ -196,12 +196,12 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  deleteTask() {
+  deleteTask(taskId) {
     console.log('deleteTask()');
-    axios.delete(`task/${this.state.taskId}`)
+    axios.delete(`task/${taskId}`)
       .then(response => {
         const taskRemoved = this.state.tasks.filter(task => {
-          if (task._id === this.state.taskId) return;
+          if (task._id === taskId) return;
           return task;
         });
 

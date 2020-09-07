@@ -2,6 +2,7 @@ import React from 'react';
 
 const Description = ({
   // Values
+  taskId,
   taskDescription,
   // Methods
   handleChange,
@@ -11,8 +12,8 @@ const Description = ({
     <div className='task-modal-description'>
       <form
         className='task-modal-description-form'
-        onSubmit={(e) => updateTask(e)}
-        onBlur={(e) => updateTask(e)}
+        onSubmit={(e) => updateTask(e, taskId)}
+        onBlur={(e) => updateTask(e, taskId)}
       >
         <label>Description</label>
         <textarea
