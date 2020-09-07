@@ -6,6 +6,7 @@ import {
   Label,
   Text
 } from 'recharts';
+import shortid from 'shortid';
 
 const subtasksTotal = subtasks => subtasks.length;
 const subtasksComplete = subtasks => {
@@ -26,7 +27,9 @@ const HalfPieChart = ({
   const remaining = total - complete;
   const percentComplete = `${Math.round((complete / total) * 100)} %`;
   const data = [{ name: 'Group A', value: complete }, { name: 'Group B', value: remaining }];
-  // const COLORS = ['#005EA6', '#4A4B4F']; Blue
+  // Blue Bar
+  // const COLORS = ['#005EA6', '#4A4B4F'];
+  // Green Bar
   const COLORS = ['#01B074', '#4A4B4F'];
 
 
@@ -45,7 +48,7 @@ const HalfPieChart = ({
         paddingAngle={0}
       >
         {
-          data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
+          data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={shortid.generate()} />)
         }
         <Label
           style={{
