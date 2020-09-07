@@ -41,6 +41,15 @@
   padding-right: 30px;
 }
 
+.task-modal-header-form {
+  width: 100%;
+}
+
+.task-modal-header-form textarea {
+  width: 100%;
+  border-radius: 4px;
+}
+
 /* Description */
 
 .task-modal-description {
@@ -59,7 +68,6 @@
 
 .task-modal-description-form textarea {
   border-radius: 4px;
-  resize: none;
   height: 100px;
 }
 

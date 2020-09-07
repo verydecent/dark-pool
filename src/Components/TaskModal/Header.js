@@ -5,11 +5,24 @@ const Header = ({
   // Values
   taskTitle,
   // Methods
-  toggleModal
+  handleChange,
+  toggleModal,
+  updateTask
 }) => {
   return (
     <div className='task-modal-header'>
-      <span>{taskTitle}</span>
+      <form
+        className='task-modal-header-form'
+        onSubmit={(e) => updateTask(e)}
+        onBlur={(e) => updateTask(e)}
+      >
+        <textarea
+          placeholder='Edit your task title by clicking here'
+          name='taskTitle'
+          value={taskTitle}
+          onChange={(e) => handleChange(e)}
+        />
+      </form>
       <div onClick={() => toggleModal()}>
         <Times />
       </div>

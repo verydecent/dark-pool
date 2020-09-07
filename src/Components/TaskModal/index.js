@@ -36,6 +36,7 @@ const TaskModal = ({
 
         {/* Header */}
         <Header
+          handleChange={handleChange}
           taskTitle={taskTitle}
           toggleModal={toggleModal}
         />
