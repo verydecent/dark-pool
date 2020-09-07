@@ -18,7 +18,7 @@ const subtasksComplete = subtasks => {
   return count;
 };
 
-const HalfPieChart = ({
+const Gauge = ({
   subtasks
 }) => {
   const subtasksUpdated = subtasks ? subtasks : [];
@@ -39,8 +39,6 @@ const HalfPieChart = ({
         data={data}
         cx={100}
         cy={200}
-        startAngle={180}
-        endAngle={0}
         innerRadius={60}
         outerRadius={80}
         fill='transparent'
@@ -65,4 +63,4 @@ const HalfPieChart = ({
   );
 }
 
-export default HalfPieChart;
+export default Gauge;
