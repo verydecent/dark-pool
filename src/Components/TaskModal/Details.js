@@ -7,6 +7,10 @@ const Details = ({
 }) => {
   return (
     <div className='task-modal-details'>
+      {/* Graph */}
+      <div className='task-modal-details-graph'>
+        <Gauge subtasks={subtasks} />
+      </div>
       {/* Details */}
       <ol>
         <li>
@@ -22,10 +26,6 @@ const Details = ({
           <span className='task-modal-details-group-data'>100</span>
         </li>
       </ol>
-      {/* Graph */}
-      <div className='task-modal-details-graph'>
-        <Gauge subtasks={subtasks} />
-      </div>
     </div>
   );
 }

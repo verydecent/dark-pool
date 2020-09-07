@@ -24,7 +24,8 @@
 
 .task-modal-overflow-container {
   height: 340px;
-  overflow: auto;
+  overflow-y: scroll;
+  scrollbar-color: yellow red;
 }
 
 /* Overlay */
@@ -116,7 +117,8 @@
   background: #424242;
   color: #fff;
   border: 1px solid #fff;
-  padding-left: 10px;
+  padding-left: 12px;
+  padding-top: 8px;
 }
 
 /* Subtask List */

@@ -16,6 +16,7 @@ const Description = ({
       >
         <label>Description</label>
         <textarea
+          placeholder='Describe your task'
           name='taskDescription'
           value={taskDescription}
           onChange={(e) => handleChange(e)}
