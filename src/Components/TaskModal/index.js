@@ -38,6 +38,7 @@ const TaskModal = ({
           // Values
           taskTitle={taskTitle}
           // Methods
+          updateTask={updateTask}
           handleChange={handleChange}
           toggleModal={toggleModal}
         />
