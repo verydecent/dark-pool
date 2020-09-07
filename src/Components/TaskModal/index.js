@@ -46,6 +46,13 @@ const TaskModal = ({
           subtasks={subtasks}
         // Methods
         />
+        <ButtonContainer
+          // Values
+          taskId={taskId}
+          // Methods
+          addSubtask={addSubtask}
+          deleteTask={deleteTask}
+        />
         <div className='task-modal-overflow-container'>
           <Description
             // Values
@@ -65,13 +72,6 @@ const TaskModal = ({
             deleteSubtask={deleteSubtask}
           />
         </div>
-        <ButtonContainer
-          // Values
-          taskId={taskId}
-          // Methods
-          addSubtask={addSubtask}
-          deleteTask={deleteTask}
-        />
       </div>
     </div>
   );
