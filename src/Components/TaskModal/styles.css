@@ -18,8 +18,8 @@
 }
 
 .task-modal-content {
-  width: 900px;
-  height: 870px;
+  width: 600px;
+  height: 600px;
   z-index: 999;
   position: absolute;
   top: 50%;

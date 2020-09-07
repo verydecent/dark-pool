@@ -3,6 +3,7 @@ import './styles.css';
 import { Times } from '../FAIcons';
 import Subtask from '../Subtask';
 import HalfPieChart from '../Graphs/HalfPieChart';
+import Overlay from './Overlay';
 
 const TaskModal = ({
   // values
@@ -23,9 +24,10 @@ const TaskModal = ({
   updateSubtask,
   deleteSubtask,
 }) => {
+  console.log('taskModal rerendering')
   return (
     <div className='task-modal'>
-      <div className='task-modal-overlay' onClick={() => toggleModal()}></div>
+      <Overlay toggleModal={toggleModal} />
       <div className='task-modal-content'>
         <div className='task-modal-content-header'>
           <h1 className='task-modal-content-title'>
