@@ -8,7 +8,7 @@ const withNav = Component => (props) => {
 		<div className='app-view'>
 			<SideNav {...props} />
 			<div className='main-view'>
-				<HeaderNav />
+				{/* <HeaderNav /> */}
 				<div className='dashboard-view'>
 					<Component />
 				</div>
