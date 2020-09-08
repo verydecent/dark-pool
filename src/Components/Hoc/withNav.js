@@ -6,9 +6,9 @@ import './styles.css';
 const withNav = Component => (props) => {
 	return (
 		<div className='app-view'>
-			<HeaderNav />
+			<SideNav {...props} />
 			<div className='main-view'>
-				<SideNav {...props} />
+				<HeaderNav />
 				<div className='dashboard-view'>
 					<Component />
 				</div>

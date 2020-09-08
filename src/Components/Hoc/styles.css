@@ -1,9 +1,8 @@
 /* Contains Top Header and Main View */
 
 .app-view {
-	height: 100vh;
+	max-height: 100vh;
 	display: flex;
-	flex-direction: column;
 }
 
 /* Contains SideNav and Dashboard View */
@@ -11,13 +10,12 @@
 	/* This flex 1 allows the second child in the column to fill remaining space */
 	flex: 1;
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 }
 
 /* Dashboard View */
 
 .dashboard-view {
-  width: 100%;
-	height: 100%;
-	padding: 30px;
+	margin: 30px;
 }

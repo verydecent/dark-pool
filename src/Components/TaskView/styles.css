@@ -2,7 +2,6 @@
 
 /* Parent Container */
 .task-view {
-  height: 100%;
   width: 100%;
   border: 1px solid orange;
 }
@@ -17,4 +16,10 @@
   border-bottom: 1px solid var(--dashboard-border-color);
   padding-left: 20px;
   padding-right: 20px;
+}
+
+/* Task List */
+
+.task-view-list {
+  overflow-y: scroll;
 }

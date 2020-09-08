@@ -26,7 +26,7 @@ const TaskList = ({
   });
 
   return (
-    <div className='task-view-tasks-list'>
+    <div className='task-view-list'>
       {TasksMapped}
     </div>
   );
