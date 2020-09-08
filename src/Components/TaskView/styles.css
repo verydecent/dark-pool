@@ -1,10 +1,13 @@
 @import '../../Root/variables.css';
 
+/* Parent Container */
 .task-view {
   height: 100%;
   width: 100%;
   border: 1px solid orange;
 }
+
+/* Header */
 
 .task-view-header {
   height: 60px;
