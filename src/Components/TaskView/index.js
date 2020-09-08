@@ -390,70 +390,68 @@ class TaskView extends React.Component {
       )
       : null;
 
-
     return (
-      <div className='view'>
-        <div className='task-view-container'>
-          {/* HEADER */}
-          <div className='task-view-header-container'>
-            <h2 className='task-view-title'>Daily Tasks</h2>
-            <div onClick={() => this.createTask()}>
-              <Plus />
+
+      <div className='task-view-container'>
+        {/* HEADER */}
+        <div className='task-view-header-container'>
+          <h2 className='task-view-title'>Daily Tasks</h2>
+          <div onClick={() => this.createTask()}>
+            <Plus />
+          </div>
+        </div>
+
+        {/* BODY */}
+        <div className='task-view-body-container'>
+          {/* BODY HEADER */}
+          <div className='task-view-body-container-header'>
+            <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
+            <div className='task-view-carousel-buttons'>
+              <div onClick={(e) => this.parseNextDate(e)}>
+                <AngleRight />
+              </div>
+              <div onClick={(e) => this.parsePrevDate(e)}>
+                <AngleLeft />
+              </div>
             </div>
           </div>
-
-          {/* BODY */}
-          <div className='task-view-body-container'>
-            {/* BODY HEADER */}
-            <div className='task-view-body-container-header'>
-              <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
-              <div className='task-view-carousel-buttons'>
-                <div onClick={(e) => this.parseNextDate(e)}>
-                  <AngleRight />
-                </div>
-                <div onClick={(e) => this.parsePrevDate(e)}>
-                  <AngleLeft />
-                </div>
-              </div>
+          {/* Turn into component */}
+          <div className='task-view-data-container'>
+            <div className='task-view-graph-container'>
+              {/* <HalfPieChart subtasks=/> */}
             </div>
-            {/* Turn into component */}
-            <div className='task-view-data-container'>
-              <div className='task-view-graph-container'>
-                {/* <HalfPieChart subtasks=/> */}
-              </div>
-              <div className='task-view-graph-container'>
-                Tasks complete /{this.state.tasks.length}
-                <br />
+            <div className='task-view-graph-container'>
+              Tasks complete /{this.state.tasks.length}
+              <br />
                 Subtasks complete {subtasksComplete()} / {subtasksTotal()}
-              </div>
-
-            </div>
-            {/* Turn this into a component later */}
-            <div className='task-view-list-header-container'>
-              {/* COLUMN */}
-              <div className='task-view-list-header-container-column'>
-                <h2>Title</h2>
-              </div>
-              {/* COLUMN */}
-              <div className='task-view-list-header-container-column'>
-                <h2>% Complete</h2>
-              </div>
-              {/* COLUMN */}
-              <div className='task-view-list-header-container-column'>
-                <h2>Subtasks</h2>
-              </div>
-              {/* COLUMN */}
             </div>
 
-            <div className='task-view-list-container'>
-              {/* Tasks Mapped */}
-              {TasksMapped}
+          </div>
+          {/* Turn this into a component later */}
+          <div className='task-view-list-header-container'>
+            {/* COLUMN */}
+            <div className='task-view-list-header-container-column'>
+              <h2>Title</h2>
             </div>
+            {/* COLUMN */}
+            <div className='task-view-list-header-container-column'>
+              <h2>% Complete</h2>
+            </div>
+            {/* COLUMN */}
+            <div className='task-view-list-header-container-column'>
+              <h2>Subtasks</h2>
+            </div>
+            {/* COLUMN */}
+          </div>
+
+          <div className='task-view-list-container'>
+            {/* Tasks Mapped */}
+            {TasksMapped}
           </div>
         </div>
         {/* Modal */}
         {TaskModalConditional}
-      </div >
+      </div>
     );
   }
 }
