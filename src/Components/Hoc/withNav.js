@@ -9,7 +9,9 @@ const withNav = Component => (props) => {
 			<HeaderNav />
 			<div className='main-view'>
 				<SideNav {...props} />
-				<Component />
+				<div className='dashboard-view'>
+					<Component />
+				</div>
 			</div>
 		</div>
 	);
