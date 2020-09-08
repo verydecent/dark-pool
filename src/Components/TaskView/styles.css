@@ -1,46 +1,17 @@
-.task-view-container {
+@import '../../Root/variables.css';
+
+.task-view {
+  height: 100%;
+  width: 100%;
+  border: 1px solid orange;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.task-view-header-container {
+.task-view-header {
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
-  border-bottom: 1px solid #EFF2F5;
-
-
-
-  padding-left: 42px;
-  padding-right: 42px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.task-view-body-container {
-  padding-left: 42px;
-  padding-right: 42px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-.task-view-body-container-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2rem;
-  padding-bottom: 16px;
-}
-
-.task-view-list-container {
-  /* border: 1px solid red; */
-}
-
-.task-view-list-header-container {
-  display: flex;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #EFF2F5;
-}
-
-.task-view-list-header-container-column {
-  width: 33%;
+  border-bottom: 1px solid var(--dashboard-border-color);
 }
