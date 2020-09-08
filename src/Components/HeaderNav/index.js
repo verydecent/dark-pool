@@ -4,7 +4,7 @@ import './styles.css';
 const HeaderNav = () => {
   return (
     <div className='header-nav-container'>
-      Header Nav Here
+
     </div>
   );
 }
