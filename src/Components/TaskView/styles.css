@@ -2,8 +2,7 @@
 
 /* Parent Container */
 .task-view {
-  width: 100%;
-  border: 1px solid orange;
+  
 }
 
 /* Header */
@@ -21,5 +20,4 @@
 /* Task List */
 
 .task-view-list {
-  overflow-y: scroll;
 }

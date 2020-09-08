@@ -1,7 +1,6 @@
 .header-nav-container {
   width: 100%;
   background-color: #0D0D0D;;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  height: 60px;
   color: #fff;
 }
