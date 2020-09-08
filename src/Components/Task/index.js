@@ -13,12 +13,12 @@ const Task = ({
 }) => {
   return (
     <div
-      className='collection-box'
+      className='task'
       onClick={() => {
         toggleModal();
         selectTask(id, title, description, subtasks);
       }}>
-      <div className='collection-box-container'>
+      <div className=''>
         {title}
       </div>
     </div>
