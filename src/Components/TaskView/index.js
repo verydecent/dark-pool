@@ -1,8 +1,8 @@
 import React from 'react';
-import withNav from '../Hoc/withNav.js';
 import './styles.css';
-import Task from '../Task';
+import withNav from '../Hoc/withNav.js';
 import TaskModal from '../TaskModal';
+import TaskList from './TaskList';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
@@ -331,42 +331,6 @@ class TaskView extends React.Component {
   }
 
   render() {
-    const subtasksTotal = () => {
-      let count = 0;
-      this.state.tasks.forEach(task => {
-        count += task.subtasks.length;
-      });
-      return count;
-    }
-
-    const subtasksComplete = () => {
-      let completeSubtaskCount = 0;
-      this.state.tasks.forEach(task => {
-        task.subtasks.forEach(subtask => {
-          if (subtask.complete) completeSubtaskCount++
-        });
-      });
-      return completeSubtaskCount;
-    }
-
-    const TasksMapped = this.state.tasks.map(task => {
-      return (
-        <Task
-          // Values
-          key={task._id}
-          id={task._id}
-          title={task.title}
-          description={task.description}
-          subtasks={task.subtasks}
-          // Methods
-          toggleModal={this.toggleModal}
-          selectTask={this.selectTask}
-        />
-      );
-    });
-
-    console.log('subtasks from taskView', this.state.subtasks)
-
     const TaskModalConditional = this.state.isModalOpen
       ? (
         <TaskModal
@@ -392,65 +356,35 @@ class TaskView extends React.Component {
 
     return (
 
-      <div className='task-view-container'>
-        {/* HEADER */}
-        <div className='task-view-header-container'>
-          <h2 className='task-view-title'>Daily Tasks</h2>
-          <div onClick={() => this.createTask()}>
-            <Plus />
-          </div>
-        </div>
-
-        {/* BODY */}
-        <div className='task-view-body-container'>
-          {/* BODY HEADER */}
-          <div className='task-view-body-container-header'>
-            <h2 className='date-header'>{this.state.currentDate.format('llll')}</h2>
-            <div className='task-view-carousel-buttons'>
-              <div onClick={(e) => this.parseNextDate(e)}>
-                <AngleRight />
-              </div>
-              <div onClick={(e) => this.parsePrevDate(e)}>
-                <AngleLeft />
-              </div>
-            </div>
-          </div>
-          {/* Turn into component */}
-          <div className='task-view-data-container'>
-            <div className='task-view-graph-container'>
-              {/* <HalfPieChart subtasks=/> */}
-            </div>
-            <div className='task-view-graph-container'>
-              Tasks complete /{this.state.tasks.length}
-              <br />
-                Subtasks complete {subtasksComplete()} / {subtasksTotal()}
-            </div>
-
-          </div>
-          {/* Turn this into a component later */}
-          <div className='task-view-list-header-container'>
-            {/* COLUMN */}
-            <div className='task-view-list-header-container-column'>
-              <h2>Title</h2>
-            </div>
-            {/* COLUMN */}
-            <div className='task-view-list-header-container-column'>
-              <h2>% Complete</h2>
-            </div>
-            {/* COLUMN */}
-            <div className='task-view-list-header-container-column'>
-              <h2>Subtasks</h2>
-            </div>
-            {/* COLUMN */}
-          </div>
-
-          <div className='task-view-list-container'>
-            {/* Tasks Mapped */}
-            {TasksMapped}
-          </div>
-        </div>
-        {/* Modal */}
+      <div className='task-view'>
+        {/* Modal Section */}
         {TaskModalConditional}
+
+        {/* Header Section */}
+        <div className='task-view-header'>
+          <div className='task-view-header-title'>
+            Tasks List
+          </div>
+          <div className='task-view-header-cta'>
+            <button onClick={() => this.createTask()}>
+              <Plus /> Create Task
+            </button>
+            <button onClick={(e) => this.parsePrevDate(e)}>
+              <AngleLeft /> Go To Previous Date
+            </button>
+            <button onClick={(e) => this.parseNextDate(e)}>
+              <AngleRight /> Go To Next Date
+            </button>
+          </div>
+        </div>
+
+
+        {/* Task List Section */}
+        <TaskList
+          tasks={this.state.tasks}
+          toggleModal={this.toggleModal}
+          selectTask={this.selectTask}
+        />
       </div>
     );
   }
