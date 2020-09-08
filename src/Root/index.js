@@ -30,9 +30,7 @@ library.add(
 
 const Root = () => {
   return (
-    <div className='root-container'>
-      <Routes />
-    </div>
+    <Routes />
   );
 }
 
