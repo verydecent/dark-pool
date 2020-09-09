@@ -370,13 +370,8 @@ class TaskView extends React.Component {
           {TaskModalConditional}
 
           {/* Header Section */}
-          <Header />
+          <Header createTask={this.createTask} />
 
-          <div className='task-view-header-cta'>
-            <button className='task-view-button' onClick={() => this.createTask()}>
-              Create Task
-            </button>
-          </div>
 
           <div className='task-view-field-header'>
             <div className='task-view-field'>Task Title</div>
