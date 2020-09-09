@@ -1,7 +1,6 @@
 @import '../../Root/variables.css';
 
 .date-view {
-  background: var(--view-background-color);
   border-radius: 4px;
   width: 100%;
   padding-left: 20px;
@@ -10,4 +9,5 @@
   padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  border: 1px solid var(--view-border-color);
 }
