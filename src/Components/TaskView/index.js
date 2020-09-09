@@ -3,12 +3,13 @@ import './styles.css';
 import withNav from '../Hoc/withNav.js';
 import DateView from '../DateView';
 import TaskModal from '../TaskModal';
-import TaskList from './TaskList';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment'
 import Header from './Header'
+import ListHeader from './ListHeader';
+import List from './List';
 
 class TaskView extends React.Component {
   constructor() {
@@ -371,18 +372,10 @@ class TaskView extends React.Component {
 
           {/* Header Section */}
           <Header createTask={this.createTask} />
-
-
-          <div className='task-view-field-header'>
-            <div className='task-view-field'>Task Title</div>
-            <div className='task-view-field'>Subtask Total</div>
-            <div className='task-view-field'>Remaining Subtasks</div>
-            <div className='task-view-field'>Percent Complete</div>
-          </div>
-
-
+          {/* List Header */}
+          <ListHeader />
           {/* Task List Section */}
-          <TaskList
+          <List
             tasks={this.state.tasks}
             toggleModal={this.toggleModal}
             selectTask={this.selectTask}
