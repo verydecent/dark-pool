@@ -20,28 +20,49 @@
   align-items: center;
 }
 
+/* Logo */
+
 .sidenav-logo a:hover {
   color: #E44B6F;
 }
 
-.sidenav-link-li {
-  padding-left: 50px;
+/* Menu Items */
+
+.sidenav-links li {
   height: 50px;
   width: 100%;
-  display: flex;
-  align-items: center;
+
   font-weight: 400;
   color: #fff;
   letter-spacing: 0.8px;
   font-size: 1rem;
 }
 
-.sidenav-link-li:hover {
+.sidenav-links li:hover {
   background-color: #E44B6F;
   cursor: pointer;
 }
 
+.sidenav-links li  a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+
+/* Logout ~ Not using <a> */
+
+#logout {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+
+/* Icon */
+
 .sidenav-link-li-icon {
-  padding-right: 15px;
+  padding-right: 18px;
   font-size: 1.8rem;
 }

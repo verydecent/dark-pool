@@ -13,34 +13,42 @@ import {
 
 const adminNav = (
   <>
-    <li className='sidenav-link-li'>
-      <div className='sidenav-link-li-icon'>
-        <ChartBar />
-      </div>
-      <Link to='/app/admin'>Admin Dashboard</Link>
+    <li>
+      <Link to='/app/admin'>
+        <div className='sidenav-link-li-icon'>
+          <ChartBar />
+        </div>
+        Admin Dashboard
+      </Link>
     </li>
   </>
 );
 
 const subscriberNav = (
   <>
-    <li className='sidenav-link-li'>
-      <div className='sidenav-link-li-icon'>
-        <ChartBar />
-      </div>
-      <Link to='/app'>Dashboard</Link>
+    <li>
+      <Link to='/app'>
+        <div className='sidenav-link-li-icon'>
+          <ChartBar />
+        </div>
+        Dashboard
+      </Link>
     </li>
-    <li className='sidenav-link-li'>
-      <div className='sidenav-link-li-icon'>
-        <ListUl />
-      </div>
-      <Link to='/app/tasks'>Tasks</Link>
+    <li>
+      <Link to='/app/tasks'>
+        <div className='sidenav-link-li-icon'>
+          <ListUl />
+        </div>
+        Tasks
+        </Link>
     </li>
-    <li className='sidenav-link-li'>
-      <div className='sidenav-link-li-icon'>
-        <Calendar />
-      </div>
-      <Link to='/app/calendar'>Calendar</Link>
+    <li>
+      <Link to='/app/calendar'>
+        <div className='sidenav-link-li-icon'>
+          <Calendar />
+        </div>
+        Calendar
+      </Link>
     </li>
   </>
 );
@@ -52,17 +60,19 @@ const SideNav = (props) => {
         <div className='sidenav-logo'>
           <Link to='/'><h2>DarkPoolNotes</h2></Link>
         </div>
-        <ul className='sidenav-link-list'>
+        <ul className='sidenav-links'>
           {isAuthenticated() && isAuthenticated().role === 'admin' ? adminNav : null}
           {isAuthenticated() && isAuthenticated().role === 'subscriber' ? subscriberNav : null}
-          <li className='sidenav-link-li'>
-            <div className='sidenav-link-li-icon'>
-              <User />
-            </div>
-            <Link to='/app/account'>Account</Link>
+          <li>
+            <Link to='/app/account'>
+              <div className='sidenav-link-li-icon'>
+                <User />
+              </div>
+              Account
+            </Link>
           </li>
           <li
-            className='sidenav-link-li'
+            id='logout'
             style={{ cursor: 'pointer' }}
             onClick={() => logout(() => props.history.push('/'))}
           >
