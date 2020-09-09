@@ -9,8 +9,9 @@
 	/* Margin-left Has to be same length has SideNav width */
 	margin-left: 220px;
 	background: #EDF0F5;
-	display: flex;
-	flex-direction: column;
+	height: 100%;
+	/* display: flex;
+	flex-direction: column; */
 }
 
 /* Dashboard View */
