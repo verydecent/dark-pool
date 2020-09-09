@@ -9,6 +9,7 @@ import ButtonContainer from './ButtonContainer';
 
 const TaskModal = ({
   // values
+  isModalOpen,
   taskId,
   taskTitle,
   taskDescription,
@@ -25,57 +26,62 @@ const TaskModal = ({
   updateSubtask,
   deleteSubtask,
 }) => {
-  return (
-    <div className='task-modal'>
-      <Overlay
-        // Methods
-        toggleModal={toggleModal}
-      />
-      <div className='task-modal-container'>
-        <Header
-          // Values
-          taskId={taskId}
-          taskTitle={taskTitle}
+  if (!isModalOpen) {
+    return null
+  }
+  else {
+    return (
+      <div className='task-modal'>
+        <Overlay
           // Methods
-          updateTask={updateTask}
-          handleChange={handleChange}
           toggleModal={toggleModal}
         />
-        <Details
-          // Values
-          subtasks={subtasks}
-        // Methods
-        />
-        <div className='task-modal-overflow-container'>
-          <Description
+        <div className='task-modal-container'>
+          <Header
             // Values
             taskId={taskId}
-            taskDescription={taskDescription}
+            taskTitle={taskTitle}
             // Methods
-            handleChange={handleChange}
             updateTask={updateTask}
+            handleChange={handleChange}
+            toggleModal={toggleModal}
           />
-          <SubtaskList
+          <Details
+            // Values
+            subtasks={subtasks}
+          // Methods
+          />
+          <div className='task-modal-overflow-container'>
+            <Description
+              // Values
+              taskId={taskId}
+              taskDescription={taskDescription}
+              // Methods
+              handleChange={handleChange}
+              updateTask={updateTask}
+            />
+            <SubtaskList
+              // Values
+              taskId={taskId}
+              subtasks={subtasks}
+              // Methods
+              handleChangeSubtask={handleChangeSubtask}
+              toggleSubtask={toggleSubtask}
+              updateSubtask={updateSubtask}
+              deleteSubtask={deleteSubtask}
+            />
+          </div>
+          <ButtonContainer
             // Values
             taskId={taskId}
-            subtasks={subtasks}
             // Methods
-            handleChangeSubtask={handleChangeSubtask}
-            toggleSubtask={toggleSubtask}
-            updateSubtask={updateSubtask}
-            deleteSubtask={deleteSubtask}
+            addSubtask={addSubtask}
+            deleteTask={deleteTask}
           />
         </div>
-        <ButtonContainer
-          // Values
-          taskId={taskId}
-          // Methods
-          addSubtask={addSubtask}
-          deleteTask={deleteTask}
-        />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default TaskModal;

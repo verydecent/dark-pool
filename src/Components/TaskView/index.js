@@ -334,27 +334,12 @@ class TaskView extends React.Component {
   }
 
   render() {
-    const TaskModalConditional = this.state.isModalOpen
-      ? (
-        <TaskModal
-          /* Values */
-          taskId={this.state.taskId}
-          taskTitle={this.state.taskTitle}
-          taskDescription={this.state.taskDescription}
-          subtasks={this.state.subtasks}
-          /* Method Props */
-          toggleModal={this.toggleModal}
-          handleChange={this.handleChange}
-          updateTask={this.updateTask}
-          deleteTask={this.deleteTask}
-          addSubtask={this.addSubtask}
-          handleChangeSubtask={this.handleChangeSubtask}
-          toggleSubtask={this.toggleSubtask}
-          updateSubtask={this.updateSubtask}
-          deleteSubtask={this.deleteSubtask}
-        />
-      )
-      : null;
+    // const TaskModalConditional = this.state.isModalOpen
+    //   ? (
+
+    //     />
+    //   )
+    //   : null;
 
     return (
       <>
@@ -363,11 +348,26 @@ class TaskView extends React.Component {
           parsePrevDate={this.parsePrevDate}
           date={this.state.currentDate}
         />
-
         <div className='task-view'>
           {/* Modal Section */}
-          {TaskModalConditional}
-
+          <TaskModal
+            /* Values */
+            isModalOpen={this.state.isModalOpen}
+            taskId={this.state.taskId}
+            taskTitle={this.state.taskTitle}
+            taskDescription={this.state.taskDescription}
+            subtasks={this.state.subtasks}
+            /* Method Props */
+            toggleModal={this.toggleModal}
+            handleChange={this.handleChange}
+            updateTask={this.updateTask}
+            deleteTask={this.deleteTask}
+            addSubtask={this.addSubtask}
+            handleChangeSubtask={this.handleChangeSubtask}
+            toggleSubtask={this.toggleSubtask}
+            updateSubtask={this.updateSubtask}
+            deleteSubtask={this.deleteSubtask}
+          />
           {/* Header Section */}
           <Header createTask={this.createTask} />
           {/* List Header */}
