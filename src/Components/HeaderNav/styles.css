@@ -1,0 +1,27 @@
+@import '../../Root/variables.css';
+
+.header-nav {
+  width: 100%;
+  height: var(--header-nav-height);
+  padding-left: var(--view-horizontal-margin);
+  padding-right: var(--view-horizontal-margin);
+  background-color: var(--header-nav-background-color);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header-nav-user-icon {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  /* background: #D9E1E8; */
+  background: #AEC0CC;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.4rem;
+}

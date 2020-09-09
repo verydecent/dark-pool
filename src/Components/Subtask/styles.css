@@ -1,0 +1,37 @@
+.subtask-form {
+  min-height: 44px;
+  border-radius: 4px;
+  border: 1px solid var(--view-border-color);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+.subtask-form:hover .subtask-input {
+  border-bottom: 1px solid var(--view-border-color);
+}
+
+.subtask-input:focus {
+  border-bottom: 1px solid var(--view-border-color);
+}
+
+.subtask-checkbox {
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.subtask-input {
+  min-height: 24px;
+  min-width: 500px;
+  margin-left: 24px;
+  border: none;
+  background: var(--view-background-color);
+}
+
+.subtask-exit-container {
+  margin-left: auto;
+  padding-right: 10px;
+}

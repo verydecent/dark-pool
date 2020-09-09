@@ -1,12 +1,20 @@
-.collection-box {
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 4px;
+@import '../../Root//global.css';
+
+.task {
   width: 100%;
-  padding: 16px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid var(--view-border-color);
+  cursor: pointer;
 }
 
-.collection-box-container {
-  color: rgba(255, 255, 255, 0.9);
+.task-cell {
+  flex: 1 1 100%;
+}
+
+.task-cell.title {
+  text-decoration: underline;
 }

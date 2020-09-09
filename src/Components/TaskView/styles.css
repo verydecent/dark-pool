@@ -1,33 +1,82 @@
+@import '../../Root/variables.css';
+
+/* Parent Container */
 .task-view {
-  background-color: #212121;
+  width: 100%;
   border-radius: 4px;
+  margin-top: 15px;
   height: 100%;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  border: 1px solid var(--view-border-color);
+  background: var(--view-background-color);
 }
 
-.task-view-container {
-}
+/* Header */
 
-.task-view-header-container {
+.task-view-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  padding: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.task-view-body-container {
-  padding: 16px;
+.task-view-header-cta {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.task-view-body-container-header {
+/* Subheader */
+
+.task-view-subheader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
-  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.task-view-list-container {
+/* Field */
 
+.task-view-field-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid var(--view-border-color);
+}
+
+.task-view-field {
+  flex: 1 1 100%;
+  font-weight: 700;
+}
+
+/* Task List */
+
+.task-view-list {
+  /* height: 500px; */
+  /* overflow-y: auto; */
+  min-height: 65vh;
+}
+
+/* Button */
+
+.task-view-button {
+  /* height: 40px; */
+  padding: 8px 20px;
+  margin-left: 6px;
+  border: 1px solid var(--button-background-color);
+  border-radius: 4px;
+  background: var(--button-background-color);
+  cursor: pointer;
+  color: #fff;
+}
+
+.task-view-button:hover {
+  background: #fff;
+  color: #000;
 }

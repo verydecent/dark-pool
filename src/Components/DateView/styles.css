@@ -1,0 +1,15 @@
+@import '../../Root/variables.css';
+
+.date-view {
+  border-radius: 4px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--view-border-color);
+  background: var(--view-background-color);
+}

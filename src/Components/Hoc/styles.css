@@ -1,10 +1,18 @@
-.app-view {
-	display: flex;
-	height: 100vh;
-  background: #121212;
+@import '../../Root/variables.css';
+
+.header-wrapper {
+	/* Margin-left === SideNav width */
+	margin-left: var(--side-nav-width);
+	height: 100%;
 }
 
-.main-view {
-	margin: 16px 24px;
-	width: 100%;
+.view-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: var(--view-vertical-margin);
+	margin-bottom: var(--view-vertical-margin);;
+	margin-left: var(--view-horizontal-margin);;
+	margin-right: var(--view-horizontal-margin);;
 }

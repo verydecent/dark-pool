@@ -1,25 +1,80 @@
+@import '../../Root/variables.css';
+
 .sidenav {
-	color: #fff;
-  width: 240px;
-	background-color: #212121;
-	height: 100%;
-  padding: 40px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: fixed;
+  width: var(--side-nav-width);
+  height: 100%;
+}
+
+.sidenav-container {
+  background-color: var(--side-nav-background-color);
+  height: 100%;
 }
 
 .sidenav-logo {
-  font-size: 24px;
+  height: var(--header-nav-height);
+  display: flex;
+  background-color: var(--header-nav-background-color);
+  justify-content: center;
+  align-items: center;
 }
 
-.sidenav-link-list {
-  padding-top: 32px;
+/* Logo */
+
+.sidenav-logo a:hover {
+  color: #E44B6F;
 }
 
-.sidenav-link-utilities {
+/* Menu Items */
+
+.sidenav-links li {
+  height: 60px;
+  width: 100%;
 }
 
-.sidenav-link {
-  height: 32px;
+.sidenav-links li:hover {
+  background-color: #E44B6F;
+  cursor: pointer;
+}
+
+.sidenav-links li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 48px;
+  color: var(--nav-font-color);
+}
+
+.sidenav-links li:hover .sidenav-icon {
+  color: #fff;
+}
+
+.sidenav-links li:hover .sidenav-text {
+  color: #fff;
+}
+
+/* Logout ~ Not using <a> */
+
+#logout {
+	color: var(--nav-font-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 48px;
+}
+
+/* Icon */
+
+.sidenav-icon {
+  padding-right: 16px;
+  font-size: 1.8rem;
+}
+
+/* Text */
+
+.sidenav-text {
+  font-weight: 300;
+  letter-spacing: 0.4px;
+  font-size: 1.2rem;
 }

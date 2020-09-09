@@ -9,31 +9,34 @@ import {
   faPlus,
   faAngleLeft,
   faAngleRight,
-  faCalendarAlt,
-  faClipboard,
-  faUser,
-  faChartLine,
-  faSignOutAlt
+  faListUl,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChartBar,
+  faCalendarAlt,
+  faUser,
+  faHandPeace,
+} from '@fortawesome/free-regular-svg-icons';
 
 library.add(
+  // Solid Icons
   faTimes,
   faPlus,
   faAngleLeft,
   faAngleRight,
+  faListUl,
+
+  // Regular Icons
+  faChartBar,
   faCalendarAlt,
-  faClipboard,
   faUser,
-  faChartLine,
-  faSignOutAlt
+  faHandPeace
 );
 
 const Root = () => {
   return (
-    <div className='root-container'>
-      <div className='root-container-inner'>
-        <Routes />
-      </div>
+    <div className='root'>
+      <Routes />
     </div>
   );
 }

@@ -11,21 +11,21 @@ class ProfileView extends React.Component {
   componentDidMount() {
     // const userId = this.props.match
     axios.get(`${process.env.API_URL}/user/`)
-    .then(response => {
-      console.log('Get User Info Success', response);
-      // this.setState({ })
-    })
-    .catch(error => {
-      console.log('Get User Info Error', error);
-    })
+      .then(response => {
+        console.log('Get User Info Success', response);
+        // this.setState({ })
+      })
+      .catch(error => {
+        console.log('Get User Info Error', error);
+      })
   }
 
   render() {
     return (
-      <>
+      <div className='view'>
         <Link to='/'>Go Home</Link>
         <h1>Profile View component</h1>
-      </>
+      </div>
     );
   }
 }

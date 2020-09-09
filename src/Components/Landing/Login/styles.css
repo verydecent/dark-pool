@@ -19,9 +19,6 @@
   font-size: 1.4rem;
 }
 
-.login-container-2 {
-}
-
 /* Action Elements */
 
 .login-action-container-1 {
@@ -46,7 +43,7 @@
 
 .form-input {
   padding: 10px;
-  min-height: 46px;
+  min-height: 44px;
   border-radius: 6px;
   width: 100%;
 }
