@@ -14,6 +14,22 @@ html {
   font-style: normal;
   font-weight: normal;
     src:
+      url('../../assets/fonts/Roboto-thin.ttf') format('ttf')
+  }
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+    src:
+      url('../../assets/fonts/Roboto-light.ttf') format('ttf')
+  }
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+    src:
       url('../../assets/fonts/Roboto-Regular.ttf') format('ttf')
   }
 
