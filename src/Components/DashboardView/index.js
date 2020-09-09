@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
         <br />
         Frontend:
         <br />
-        Error handling requests
+        Error handling requests and login/registration form
         <br />
 
         Come back for detail padding and font sizing and UI colors later, first get everything into place

@@ -130,6 +130,7 @@
 /* Button Container */
 
 .task-modal-button-container {
+  border-top: 1px solid var(--view-border-color);
   display: flex;
   justify-content: flex-end;
   padding-left: 20px;
