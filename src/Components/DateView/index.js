@@ -9,6 +9,7 @@ const DateView = ({
 }) => {
 
   const formatDate = date.format('LL');
+
   return (
     <div className='date-view'>
       {formatDate}
