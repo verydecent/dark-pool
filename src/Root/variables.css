@@ -1,5 +1,7 @@
 :root {
-  --view-border-color: #EFF2F5;
+  /* Nice grey border color */
+  --view-border-color: #000;
+  /* --view-border-color: #EFF2F5; */
   --view-background-color: #EDF0F5;
   --accent-color: #C6DBF0;;
 }
