@@ -1,14 +1,10 @@
 @import '../../Root/variables.css';
 
-/* Contains Top Header and Main View */
-/* Contains SideNav and Dashboard View */
 .header-wrapper {
-	/* Margin-left Has to be same length has SideNav width */
+	/* Margin-left === SideNav width */
 	margin-left: var(--side-nav-width);
 	height: 100%;
 }
-
-/* Dashboard View */
 
 .view-wrapper {
 	display: flex;
