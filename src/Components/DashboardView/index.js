@@ -24,6 +24,8 @@ class Dashboard extends React.Component {
         <br />
         Error handling requests and login/registration form
         <br />
+        Password confirmation for account and registration....
+        <br />
 
         Come back for detail padding and font sizing and UI colors later, first get everything into place
         <br />

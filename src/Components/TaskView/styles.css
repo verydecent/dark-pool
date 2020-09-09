@@ -66,10 +66,17 @@
 /* Button */
 
 .task-view-button {
-  padding: 6px 10px;
+  /* height: 40px; */
+  padding: 8px 20px;
   margin-left: 6px;
-  border: 1px solid #000;
+  border: 1px solid var(--button-background-color);
   border-radius: 4px;
-  background: transparent;
+  background: var(--button-background-color);
   cursor: pointer;
+  color: #fff;
+}
+
+.task-view-button:hover {
+  background: #fff;
+  color: #000;
 }
