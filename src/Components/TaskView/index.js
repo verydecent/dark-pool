@@ -358,7 +358,11 @@ class TaskView extends React.Component {
     const date = this.state.currentDate.format('LL')
     return (
       <>
-        <DateView date={date} />
+        <DateView
+          parseNextDate={this.parseNextDate}
+          parsePrevDate={this.parsePrevDate}
+          date={date}
+        />
 
         <div className='task-view'>
           {/* Modal Section */}
@@ -376,7 +380,7 @@ class TaskView extends React.Component {
 
             </div>
           </div>
-          <div className='task-view-subheader'>
+          {/* <div className='task-view-subheader'>
             <div>
               {this.state.currentDate.format('LL')}
             </div>
@@ -388,7 +392,7 @@ class TaskView extends React.Component {
                 <AngleRight /> Go To Next Date
             </button>
             </div>
-          </div>
+          </div> */}
 
           <div className='task-view-field-header'>
             <div className='task-view-field'>Title</div>
