@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from '../Task';
 
-const TaskList = ({
+const List = ({
   // Values
   tasks,
   // Methods
@@ -32,4 +32,4 @@ const TaskList = ({
   );
 }
 
-export default TaskList;
+export default List;
