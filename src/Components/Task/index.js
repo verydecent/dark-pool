@@ -18,7 +18,9 @@ const Task = ({
   const incomplete = getIncommpleteSubtaskAmount(subtasks);
   const complete = getCompleteSubtaskAmount(subtasks);
   const percent = getCompleteSubtaskPercent(complete, total);
-  console.log('percent', percent);
+  const ONEHUNDERDPERCENT = '100.0';
+
+  console.log('====', typeof percent);
 
   return (
     <div
@@ -28,7 +30,11 @@ const Task = ({
         selectTask(id, title, description, subtasks);
       }}>
       {/* Title of Task */}
-      <div className='task-cell title'>
+      <div
+        className='task-cell title'
+        style={{
+          textDecoration: percent === ONEHUNDERDPERCENT ? 'line-through' : 'none'
+        }}>
         {title}
       </div>
       {/* Complete out of total Subtasks */}
