@@ -342,7 +342,6 @@ class TaskView extends React.Component {
           taskTitle={this.state.taskTitle}
           taskDescription={this.state.taskDescription}
           subtasks={this.state.subtasks}
-
           /* Method Props */
           toggleModal={this.toggleModal}
           handleChange={this.handleChange}
@@ -357,13 +356,12 @@ class TaskView extends React.Component {
       )
       : null;
 
-    const date = this.state.currentDate.format('LL')
     return (
       <>
         <DateView
           parseNextDate={this.parseNextDate}
           parsePrevDate={this.parsePrevDate}
-          date={date}
+          date={this.state.currentDate}
         />
 
         <div className='task-view'>

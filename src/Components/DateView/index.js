@@ -7,11 +7,11 @@ const DateView = ({
   parseNextDate,
   parsePrevDate
 }) => {
+
+  const formatDate = date.format('LL');
   return (
     <div className='date-view'>
-      <div>
-        {date}
-      </div>
+      {formatDate}
       <div>
         <button onClick={(e) => parsePrevDate(e)}>
           <AngleLeft />
