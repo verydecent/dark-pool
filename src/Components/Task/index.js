@@ -37,7 +37,7 @@ const Task = ({
       </div>
       {/* Complete out of total Subtasks */}
       <div className='task-cell'>
-        {`${complete}/${total}`}
+        {`${complete} / ${total}`}
       </div>
       {/* Remaining Subtasks to complete */}
       <div className='task-cell'>
@@ -45,7 +45,7 @@ const Task = ({
       </div>
       {/* Percent complete */}
       <div className='task-cell'>
-        {percent}%
+        {percent} %
       </div>
     </div>
   );
