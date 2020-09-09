@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Times } from '../FAIcons/index';
+import { getTotalSubtaskAmount, getCompleteSubtaskAmount, getIncommpleteSubtaskAmount, getCompleteSubtaskPercent } from '../../Utilities/subtaskHelpers';
 
 const Task = ({
   // Values
@@ -12,6 +13,13 @@ const Task = ({
   toggleModal,
   selectTask
 }) => {
+
+  const total = getTotalSubtaskAmount(subtasks);
+  const incomplete = getIncommpleteSubtaskAmount(subtasks);
+  const complete = getCompleteSubtaskAmount(subtasks);
+  const percent = getCompleteSubtaskPercent(complete, total);
+  console.log('percent', percent);
+
   return (
     <div
       className='task'
@@ -23,13 +31,13 @@ const Task = ({
         {title}
       </div>
       <div className='task-cell'>
-        {title}
+        {total}
       </div>
       <div className='task-cell'>
-        {title}
+        {`${complete} / ${total}`}
       </div>
       <div className='task-cell'>
-        {title}
+        {percent} %
       </div>
     </div>
   );

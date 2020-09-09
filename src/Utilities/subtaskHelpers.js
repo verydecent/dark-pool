@@ -17,3 +17,16 @@ export const getIncommpleteSubtaskAmount = (subtasks) => {
   }
   return count;
 };
+
+export const getCompleteSubtaskPercent = (complete, total) => {
+  if (complete === 0 && total === 0) {
+    return 0;
+  }
+  else {
+    // Reduce fraction to decimal
+    const decimal = complete / total;
+    // Multiply by 100 to get whole number percent
+    const percent = decimal * 100;
+    return percent;
+  }
+}
