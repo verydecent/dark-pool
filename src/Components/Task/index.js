@@ -27,17 +27,21 @@ const Task = ({
         toggleModal();
         selectTask(id, title, description, subtasks);
       }}>
-      <div className='task-cell'>
+      {/* Title of Task */}
+      <div className='task-cell title'>
         {title}
       </div>
+      {/* Complete out of total Subtasks */}
       <div className='task-cell'>
-        {total}
+        {`${complete}/${total}`}
       </div>
+      {/* Remaining Subtasks to complete */}
       <div className='task-cell'>
-        {`${complete} / ${total}`}
+        {incomplete}
       </div>
+      {/* Percent complete */}
       <div className='task-cell'>
-        {percent} %
+        {percent}%
       </div>
     </div>
   );

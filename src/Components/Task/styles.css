@@ -15,5 +15,6 @@
   flex: 1 1 100%;
 }
 
-.task-button {
+.task-cell.title {
+  text-decoration: underline;
 }

@@ -399,10 +399,10 @@ class TaskView extends React.Component {
           </div> */}
 
           <div className='task-view-field-header'>
-            <div className='task-view-field'>Title</div>
+            <div className='task-view-field'>Task Title</div>
             <div className='task-view-field'>Subtask Total</div>
-            <div className='task-view-field'>Incomplete/Complete</div>
-            <div className='task-view-field'>Percent</div>
+            <div className='task-view-field'>Remaining Subtasks</div>
+            <div className='task-view-field'>Percent Complete</div>
           </div>
 
 
