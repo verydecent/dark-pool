@@ -26,7 +26,7 @@ export const getCompleteSubtaskPercent = (complete, total) => {
     // Reduce fraction to decimal
     const decimal = complete / total;
     // Multiply by 100 to get whole number percent
-    const percent = decimal * 100;
+    const percent = (decimal * 100).toFixed(1);
     return percent;
   }
 }
