@@ -11,4 +11,5 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid var(--view-border-color);
+  background: var(--view-background-color);
 }
