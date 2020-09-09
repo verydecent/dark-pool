@@ -334,6 +334,7 @@ class TaskView extends React.Component {
   render() {
     return (
       <>
+        {/* Date View */}
         <DateView
           parseNextDate={this.parseNextDate}
           parsePrevDate={this.parsePrevDate}

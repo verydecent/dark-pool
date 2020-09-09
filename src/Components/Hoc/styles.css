@@ -2,13 +2,12 @@
 
 .app-view {
 	height: 100%;
-	display: flex;
 }
 
 /* Contains SideNav and Dashboard View */
 .main-view {
-	height: 100%;
-	width: 100%;
+	/* Margin-left Has to be same length has SideNav width */
+	margin-left: 220px;
 	background: #EDF0F5;
 	display: flex;
 	flex-direction: column;
@@ -17,7 +16,7 @@
 /* Dashboard View */
 
 .dashboard-view {
-	flex: 1;
+	/* flex: 1; */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

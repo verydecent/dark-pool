@@ -1,11 +1,10 @@
 .sidenav {
 	color: #fff;
-  width: 284px;
+  width: 220px;
 	background-color: #1A1A1A;
   padding: 30px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: fixed;
+  height: 100%;
 }
 
 .sidenav-logo {
@@ -21,11 +20,11 @@
   height: 48px;
   max-width: 242px;
   border-radius: 4px;
-  /* border: 1px solid white; */
   padding-left: 20px;
   display: flex;
   align-items: center;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: 800;
   color: #fff;
 }
 
