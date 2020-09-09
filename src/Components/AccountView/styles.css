@@ -26,6 +26,5 @@
   width: 100%;
   border: 1px solid var(--view-border-color);
   border-radius: 4px;
-  background: var(--view-background-color);
   cursor: pointer;
 }
