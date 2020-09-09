@@ -13,8 +13,7 @@
 }
 
 .sidenav-logo {
-  height: 60px;
-  font-size: 1.2rem;
+  height: var(--header-nav-height);
   display: flex;
   justify-content: center;
   align-items: center;

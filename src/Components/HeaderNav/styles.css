@@ -3,6 +3,6 @@
 .header-nav-container {
   width: 100%;
   background-color: var(--header-nav-background-color);
-  height: 60px;
+  height: var(--header-nav-height);
   color: #fff;
 }
