@@ -8,6 +8,7 @@ import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment'
+import Header from './Header'
 
 class TaskView extends React.Component {
   constructor() {
@@ -369,34 +370,13 @@ class TaskView extends React.Component {
           {TaskModalConditional}
 
           {/* Header Section */}
-          <div className='task-view-header'>
-            <div className='task-view-header-title'>
-              Task List
-          </div>
-            <div>
-              {/* <button className='task-view-button' onClick={() => this.createTask()}>
-                <Plus /> Create Task
-            </button> */}
-            </div>
-          </div>
+          <Header />
+
           <div className='task-view-header-cta'>
             <button className='task-view-button' onClick={() => this.createTask()}>
               Create Task
             </button>
           </div>
-          {/* <div className='task-view-subheader'>
-            <div>
-              {this.state.currentDate.format('LL')}
-            </div>
-            <div>
-              <button onClick={(e) => this.parsePrevDate(e)}>
-                <AngleLeft /> Go To Previous Date
-            </button>
-              <button onClick={(e) => this.parseNextDate(e)}>
-                <AngleRight /> Go To Next Date
-            </button>
-            </div>
-          </div> */}
 
           <div className='task-view-field-header'>
             <div className='task-view-field'>Task Title</div>
