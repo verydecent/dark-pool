@@ -17,13 +17,11 @@ class TaskView extends React.Component {
     this.state = {
       // Tasks
       tasks: [],
-
       // Selected task
       taskId: '',
       taskTitle: '',
       taskDescription: '',
       subtasks: [],
-
       // Helpers
       userId: isAuthenticated()._id,
       isModalOpen: false,
@@ -334,13 +332,6 @@ class TaskView extends React.Component {
   }
 
   render() {
-    // const TaskModalConditional = this.state.isModalOpen
-    //   ? (
-
-    //     />
-    //   )
-    //   : null;
-
     return (
       <>
         <DateView
