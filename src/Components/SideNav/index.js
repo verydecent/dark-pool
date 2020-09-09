@@ -11,49 +11,24 @@ import {
   PeaceOut
 } from '../FAIcons';
 
-const adminNav = (
-  <>
+const adminLink = isAuthenticated() && isAuthenticated.role === 'admin'
+  ? (
     <li>
       <Link to='/app/admin'>
-        <div className='sidenav-link-li-icon'>
+        <div className='sidenav-icon'>
           <ChartBar />
         </div>
-        Admin Dashboard
+        <span className='sidenav-text'>
+          Admin Dashboard
+      </span>
       </Link>
     </li>
-  </>
-);
+  )
+  : null;
 
-const subscriberNav = (
-  <>
-    <li>
-      <Link to='/app'>
-        <div className='sidenav-link-li-icon'>
-          <ChartBar />
-        </div>
-        Dashboard
-      </Link>
-    </li>
-    <li>
-      <Link to='/app/tasks'>
-        <div className='sidenav-link-li-icon'>
-          <ListUl />
-        </div>
-        Tasks
-        </Link>
-    </li>
-    <li>
-      <Link to='/app/calendar'>
-        <div className='sidenav-link-li-icon'>
-          <Calendar />
-        </div>
-        Calendar
-      </Link>
-    </li>
-  </>
-);
-
-const SideNav = (props) => {
+const SideNav = ({
+  history
+}) => {
   return (
     <div className='sidenav'>
       <div className='sidenav-container'>
@@ -61,26 +36,59 @@ const SideNav = (props) => {
           <Link to='/'><h2>DarkPoolNotes</h2></Link>
         </div>
         <ul className='sidenav-links'>
-          {isAuthenticated() && isAuthenticated().role === 'admin' ? adminNav : null}
-          {isAuthenticated() && isAuthenticated().role === 'subscriber' ? subscriberNav : null}
           <li>
-            <Link to='/app/account'>
-              <div className='sidenav-link-li-icon'>
-                <User />
+            <Link to='/app'>
+              <div className='sidenav-icon'>
+                <ChartBar />
               </div>
-              Account
+              <span className='sidenav-text'>
+                Dashboard
+              </span>
             </Link>
           </li>
+          <li>
+            <Link to='/app/tasks'>
+              <div className='sidenav-icon'>
+                <ListUl />
+              </div>
+              <span className='sidenav-text'>
+                Tasks
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link to='/app/calendar'>
+              <div className='sidenav-icon'>
+                <Calendar />
+              </div>
+              <span className='sidenav-text'>
+                Calendar
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link to='/app/account'>
+              <div className='sidenav-icon'>
+                <User />
+              </div>
+              <span className='sidenav-text'>
+                Account
+              </span>
+            </Link>
+          </li>
+          {/* Link option for Administrators */}
+          {adminLink}
           <li
             id='logout'
-            style={{ cursor: 'pointer' }}
-            onClick={() => logout(() => props.history.push('/'))}
+            onClick={() => logout(() => history.push('/'))}
           >
-            <div className='sidenav-link-li-icon'>
+            <div className='sidenav-icon'>
               <PeaceOut />
             </div>
-            Logout
-        </li>
+            <span className='sidenav-text'>
+              Logout
+            </span>
+          </li>
         </ul>
       </div>
     </div>
