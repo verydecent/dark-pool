@@ -58,7 +58,8 @@
 
 .task-view-list {
   /* height: 500px; */
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  min-height: 65vh;
 }
 
 /* Button */
