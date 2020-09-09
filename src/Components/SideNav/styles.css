@@ -3,7 +3,7 @@
 .sidenav {
   position: fixed;
 	color: #fff;
-  width: 200px;
+  width: var(--side-nav-width);
   height: 100%;
 }
 
