@@ -20,8 +20,6 @@ const Task = ({
   const percent = getCompleteSubtaskPercent(complete, total);
   const ONEHUNDERDPERCENT = '100.0';
 
-  console.log('====', typeof percent);
-
   return (
     <div
       className='task'

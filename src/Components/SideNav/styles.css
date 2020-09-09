@@ -1,34 +1,31 @@
 .sidenav {
+  position: fixed;
 	color: #fff;
   width: 220px;
 	background-color: #1A1A1A;
-  padding: 30px 24px 24px;
-  position: fixed;
   height: 100%;
 }
 
 .sidenav-logo {
-  font-size: 1.6rem;
-  text-align: center;
+  font-size: 1.2rem;
 }
 
 .sidenav-link-list {
-  padding-top: 48px;
+  /* padding-top: 48px; */
 }
 
 .sidenav-link-li {
   height: 48px;
   max-width: 242px;
   border-radius: 4px;
-  padding-left: 20px;
   display: flex;
   align-items: center;
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 400;
   color: #fff;
 }
 
 .sidenav-link-li-icon {
-  padding-right: 20px;
-  font-size: 1.6rem;
+  padding-right: 16px;
+  font-size: 1.2rem;
 }
