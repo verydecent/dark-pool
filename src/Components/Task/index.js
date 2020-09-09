@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import { Times } from '../FAIcons/index';
 
 const Task = ({
   // Values
@@ -18,7 +19,16 @@ const Task = ({
         toggleModal();
         selectTask(id, title, description, subtasks);
       }}>
-      <div className=''>
+      <div className='task-cell'>
+        {title}
+      </div>
+      <div className='task-cell'>
+        {title}
+      </div>
+      <div className='task-cell'>
+        {title}
+      </div>
+      <div className='task-cell'>
         {title}
       </div>
     </div>

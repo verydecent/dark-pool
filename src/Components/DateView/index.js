@@ -14,10 +14,10 @@ const DateView = ({
       </div>
       <div>
         <button onClick={(e) => parsePrevDate(e)}>
-          <AngleLeft /> Go To Previous Date
+          <AngleLeft />
         </button>
         <button onClick={(e) => parseNextDate(e)}>
-          <AngleRight /> Go To Next Date
+          <AngleRight />
         </button>
       </div>
     </div>

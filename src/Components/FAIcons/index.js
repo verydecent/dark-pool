@@ -5,7 +5,8 @@ import './styles.css';
 export const Times = () => {
   return (
     <div className='button-icon'>
-      <FontAwesomeIcon icon='times' color='rgba(255, 255, 255, 0.6)' />
+      <FontAwesomeIcon icon='times' />
+      {/* <FontAwesomeIcon icon='times' color='rgba(255, 255, 255, 0.6)' /> */}
     </div>
   );
 }

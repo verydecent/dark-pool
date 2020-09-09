@@ -373,12 +373,16 @@ class TaskView extends React.Component {
             <div className='task-view-header-title'>
               Task List
           </div>
-            <div className='task-view-header-cta'>
-              <button onClick={() => this.createTask()}>
+            <div>
+              {/* <button className='task-view-button' onClick={() => this.createTask()}>
                 <Plus /> Create Task
-            </button>
-
+            </button> */}
             </div>
+          </div>
+          <div className='task-view-header-cta'>
+            <button className='task-view-button' onClick={() => this.createTask()}>
+              Create Task
+            </button>
           </div>
           {/* <div className='task-view-subheader'>
             <div>
@@ -396,9 +400,9 @@ class TaskView extends React.Component {
 
           <div className='task-view-field-header'>
             <div className='task-view-field'>Title</div>
-            <div className='task-view-field'>Incomplete Subtasks</div>
-            <div className='task-view-field'>Complete Subtasks</div>
-            <div className='task-view-field'>Total Subtasks</div>
+            <div className='task-view-field'>Percent</div>
+            <div className='task-view-field'>Incomplete/Complete</div>
+            <div className='task-view-field'>Total</div>
           </div>
 
 
