@@ -2,7 +2,9 @@
 
 /* Parent Container */
 .task-view {
-  
+  border: 1px solid red;
+  height: 800px;
+  width: 50%;
 }
 
 /* Header */
