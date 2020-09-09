@@ -2,7 +2,6 @@
 
 .sidenav {
   position: fixed;
-	color: #fff;
   width: var(--side-nav-width);
   height: 100%;
 }
@@ -38,17 +37,27 @@
   cursor: pointer;
 }
 
-.sidenav-links li  a{
+.sidenav-links li a {
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   padding-left: 48px;
+	color: var(--nav-font-color);
+}
+
+.sidenav-links li:hover .sidenav-icon {
+  color: #fff;
+}
+
+.sidenav-links li:hover .sidenav-text {
+  color: #fff;
 }
 
 /* Logout ~ Not using <a> */
 
 #logout {
+	color: var(--nav-font-color);
   cursor: pointer;
   display: flex;
   align-items: center;
