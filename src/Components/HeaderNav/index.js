@@ -1,10 +1,13 @@
 import React from 'react';
+import { User } from '../FAIcons/index';
 import './styles.css';
 
 const HeaderNav = () => {
   return (
-    <div className='header-nav-container'>
-
+    <div className='header-nav'>
+      <div className='header-nav-user-icon'>
+        <User />
+      </div>
     </div>
   );
 }

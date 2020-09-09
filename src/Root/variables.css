@@ -1,11 +1,14 @@
 :root {
-  --view-border-color: #000;
-  --view-background-color: #fff;
-  --accent-color: #C6DBF0;
+  --nav-font-color: #D9E1E8;
+
   --header-nav-height: 60px;
   --header-nav-background-color: #282C37;
+
   --side-nav-background-color: #313540;
   --side-nav-width: 200px;
+
+  --view-border-color: #000;
+  --view-background-color: #fff;
   --view-vertical-margin: 30px;
   --view-horizontal-margin: 30px;
 }
