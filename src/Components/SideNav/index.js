@@ -3,13 +3,19 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 import { logout } from '../../Utilities/helpers';
 import { isAuthenticated } from '../../Utilities/helpers';
-import { CalendarAlt, Clipboard, User, ChartLine, SignOut } from '../FAIcons';
+import {
+  ChartBar,
+  ListUl,
+  Calendar,
+  User,
+  PeaceOut
+} from '../FAIcons';
 
 const adminNav = (
   <>
     <li className='sidenav-link-li'>
       <div className='sidenav-link-li-icon'>
-        <ChartLine />
+        <ChartBar />
       </div>
       <Link to='/app/admin'>Admin Dashboard</Link>
     </li>
@@ -20,25 +26,22 @@ const subscriberNav = (
   <>
     <li className='sidenav-link-li'>
       <div className='sidenav-link-li-icon'>
-        <ChartLine />
+        <ChartBar />
       </div>
       <Link to='/app'>Dashboard</Link>
     </li>
     <li className='sidenav-link-li'>
       <div className='sidenav-link-li-icon'>
-        <Clipboard />
+        <ListUl />
       </div>
       <Link to='/app/tasks'>Tasks</Link>
     </li>
     <li className='sidenav-link-li'>
       <div className='sidenav-link-li-icon'>
-        <CalendarAlt />
+        <Calendar />
       </div>
       <Link to='/app/calendar'>Calendar</Link>
     </li>
-    {/* <li className='sidenav-link-li'>
-      <Link to='/app/profile'>Profile</Link>
-    </li> */}
   </>
 );
 
@@ -64,7 +67,7 @@ const SideNav = (props) => {
             onClick={() => logout(() => props.history.push('/'))}
           >
             <div className='sidenav-link-li-icon'>
-              <SignOut />
+              <PeaceOut />
             </div>
             Logout
         </li>
