@@ -15,5 +15,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 30px;
+	margin-top: var(--view-vertical-margin);
+	margin-bottom: var(--view-vertical-margin);;
+	margin-left: var(--view-horizontal-margin);;
+	margin-right: var(--view-horizontal-margin);;
 }
