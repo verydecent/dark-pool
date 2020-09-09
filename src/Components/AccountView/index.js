@@ -82,9 +82,12 @@ class AccountView extends React.Component {
 
     return (
       <div className='account-view'>
-        <h1>Account View Component</h1>
-        <p>Update your user info</p>
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
+        <h1>Account Information</h1>
+        <form
+          className='account-view-form'
+          onSubmit={(e) => this.handleSubmit(e)}
+        >
+          <label>Email</label>
           <input
             name='email'
             value={email}
@@ -92,6 +95,7 @@ class AccountView extends React.Component {
             disabled={true}
             onChange={(e) => this.handleChange(e)}
           />
+          <label>Role</label>
           <input
             name='role'
             value={role}
@@ -99,6 +103,7 @@ class AccountView extends React.Component {
             disabled={true}
             onChange={(e) => this.handleChange(e)}
           />
+          <label>Username</label>
           <input
             name='username'
             value={username}
@@ -106,6 +111,7 @@ class AccountView extends React.Component {
             type='text'
             onChange={(e) => this.handleChange(e)}
           />
+          <label>Password</label>
           <input
             name='password'
             value={password}

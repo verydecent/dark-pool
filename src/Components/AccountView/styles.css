@@ -1,8 +1,31 @@
 .account-view {
-  width: 100%;
+  width: 400px;
   border-radius: 4px;
-  height: 65vh;
+  height: 100%;
   padding-top: 20px;
   padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   border: 1px solid var(--view-border-color);
+}
+
+.account-view h1 {
+  text-align: center;
+}
+
+.account-view-form input {
+  height: 40px;
+  width: 100%;
+  border: 1px solid var(--view-border-color);
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.account-view-form button {
+  height: 40px;
+  width: 100%;
+  border: 1px solid var(--view-border-color);
+  border-radius: 4px;
+  background: var(--view-background-color);
+  cursor: pointer;
 }
