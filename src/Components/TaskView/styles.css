@@ -7,7 +7,7 @@
   margin-top: 15px;
   height: 100%;
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   border: 1px solid var(--view-border-color);
 }
 
@@ -22,7 +22,6 @@
 }
 
 .task-view-header-cta {
-  height: 60px;
   display: flex;
   justify-content: flex-end;
   padding-left: 20px;
@@ -66,6 +65,7 @@
 
 .task-view-button {
   padding: 6px 10px;
+  margin-left: 6px;
   border: 1px solid #000;
   border-radius: 4px;
   background: transparent;

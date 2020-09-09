@@ -14,11 +14,13 @@ const DateView = ({
     <div className='date-view'>
       {formatDate}
       <div>
-        <button onClick={(e) => parsePrevDate(e)}>
-          <AngleLeft />
+        <button className='task-view-button' onClick={(e) => parsePrevDate(e)}>
+          {/* <AngleLeft /> */}
+          Yesterday
         </button>
-        <button onClick={(e) => parseNextDate(e)}>
-          <AngleRight />
+        <button className='task-view-button' onClick={(e) => parseNextDate(e)}>
+          {/* <AngleRight /> */}
+          Tomorrow
         </button>
       </div>
     </div>
