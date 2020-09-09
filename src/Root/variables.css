@@ -1,5 +1,7 @@
 :root {
   --view-border-color: #000;
   --view-background-color: #fff;
-  --accent-color: #C6DBF0;;
+  --accent-color: #C6DBF0;
+  --header-nav-background-color: #282C37;
+  --side-nav-background-color: #313540;
 }

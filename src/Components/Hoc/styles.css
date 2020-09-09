@@ -2,7 +2,7 @@
 /* Contains SideNav and Dashboard View */
 .header-wrapper {
 	/* Margin-left Has to be same length has SideNav width */
-	margin-left: 220px;
+	margin-left: 200px;
 	height: 100%;
 }
 
