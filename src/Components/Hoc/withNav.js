@@ -5,11 +5,11 @@ import './styles.css';
 
 const withNav = Component => (props) => {
 	return (
-		<div className='app-view'>
+		<div>
 			<SideNav {...props} />
-			<div className='main-view'>
+			<div className='header-wrapper'>
 				<HeaderNav />
-				<div className='dashboard-view'>
+				<div className='view-wrapper'>
 					<Component />
 				</div>
 			</div>

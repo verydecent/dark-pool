@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import withNav from '../Hoc/withNav';
+import './styles.css';
 
 class CalendarView extends React.Component {
   constructor() {
@@ -149,7 +150,7 @@ class CalendarView extends React.Component {
     });
 
     return (
-      <div className='view'>
+      <div className='calendar-view'>
         <h2>
           Calendar
 					</h2>

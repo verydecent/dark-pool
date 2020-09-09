@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import withNav from '../Hoc/withNav';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
+import './styles.css';
 
 class AccountView extends React.Component {
   constructor(props) {
@@ -80,7 +81,7 @@ class AccountView extends React.Component {
     const { username, password, role, email, buttonText } = this.state;
 
     return (
-      <div className='view'>
+      <div className='account-view'>
         <h1>Account View Component</h1>
         <p>Update your user info</p>
         <form className='' onSubmit={(e) => this.handleSubmit(e)}>
