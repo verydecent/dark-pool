@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import withNav from '../Hoc/withNav.js';
+import DateView from '../DateView';
 import TaskModal from '../TaskModal';
 import TaskList from './TaskList';
 import { Plus, AngleLeft, AngleRight } from '../FAIcons';
@@ -354,38 +355,57 @@ class TaskView extends React.Component {
       )
       : null;
 
+    const date = this.state.currentDate.format('LL')
     return (
+      <>
+        <DateView date={date} />
 
-      <div className='task-view'>
-        {/* Modal Section */}
-        {TaskModalConditional}
+        <div className='task-view'>
+          {/* Modal Section */}
+          {TaskModalConditional}
 
-        {/* Header Section */}
-        <div className='task-view-header'>
-          <div className='task-view-header-title'>
-            Tasks List
+          {/* Header Section */}
+          <div className='task-view-header'>
+            <div className='task-view-header-title'>
+              Task List
           </div>
-          <div className='task-view-header-cta'>
-            <button onClick={() => this.createTask()}>
-              <Plus /> Create Task
+            <div className='task-view-header-cta'>
+              <button onClick={() => this.createTask()}>
+                <Plus /> Create Task
             </button>
-            <button onClick={(e) => this.parsePrevDate(e)}>
-              <AngleLeft /> Go To Previous Date
-            </button>
-            <button onClick={(e) => this.parseNextDate(e)}>
-              <AngleRight /> Go To Next Date
-            </button>
+
+            </div>
           </div>
+          <div className='task-view-subheader'>
+            <div>
+              {this.state.currentDate.format('LL')}
+            </div>
+            <div>
+              <button onClick={(e) => this.parsePrevDate(e)}>
+                <AngleLeft /> Go To Previous Date
+            </button>
+              <button onClick={(e) => this.parseNextDate(e)}>
+                <AngleRight /> Go To Next Date
+            </button>
+            </div>
+          </div>
+
+          <div className='task-view-field-header'>
+            <div className='task-view-field'>Title</div>
+            <div className='task-view-field'>Incomplete Subtasks</div>
+            <div className='task-view-field'>Complete Subtasks</div>
+            <div className='task-view-field'>Total Subtasks</div>
+          </div>
+
+
+          {/* Task List Section */}
+          <TaskList
+            tasks={this.state.tasks}
+            toggleModal={this.toggleModal}
+            selectTask={this.selectTask}
+          />
         </div>
-
-
-        {/* Task List Section */}
-        <TaskList
-          tasks={this.state.tasks}
-          toggleModal={this.toggleModal}
-          selectTask={this.selectTask}
-        />
-      </div>
+      </>
     );
   }
 }

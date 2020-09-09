@@ -3,6 +3,7 @@
 /* Parent Container */
 .task-view {
   border: 1px solid red;
+  background: #fff;
   height: 100%;
   width: 100%;
   border-radius: 4px;
@@ -15,12 +16,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--dashboard-border-color);
   padding-left: 20px;
   padding-right: 20px;
+  border-bottom: 1px solid var(--dashboard-border-color);
+}
+
+/* Subheader */
+
+.task-view-subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid var(--dashboard-border-color);
+}
+
+/* Field */
+
+.task-view-field-header {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.task-view-field {
+  flex: 1 1 auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid purple;
 }
 
 /* Task List */
 
 .task-view-list {
 }
+
