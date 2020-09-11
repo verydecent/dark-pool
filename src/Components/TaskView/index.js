@@ -3,7 +3,6 @@ import './styles.css';
 import withNav from '../Hoc/withNav.js';
 import DateView from '../DateView';
 import TaskModal from '../TaskModal';
-import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment'
@@ -50,7 +49,6 @@ class TaskView extends React.Component {
   }
 
   componentDidMount() {
-    console.log('cdm');
     const { userId } = this.state;
 
     const today = moment().startOf('day');
