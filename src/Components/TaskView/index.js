@@ -249,7 +249,6 @@ class TaskView extends React.Component {
     // In order to keep things immutable, create a fresh array that will be set to state later
     // Immutability keeps increases trackability and performance
     // How idk I need to research that more
-    console.log('e', e.target.value)
 
     const subtasksClone = this.state.subtasks.map(subtask => {
       if (subtask._id === subtaskId) {
