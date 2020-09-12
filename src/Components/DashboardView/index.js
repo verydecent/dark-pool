@@ -70,7 +70,6 @@ const renderTooltipContent = (o) => {
     <ul>
       {
         payload.map((entry, index) => {
-          console.log('entry', entry.value);
           return (
             <li key={`item-${index}`} style={{ color: '#000', fontWeight: 700, fontSize: 20 }}>
               {`Percent Complete: ${Number.isNaN(entry.value) ? '0%' : toPercent(entry.value)}`}
