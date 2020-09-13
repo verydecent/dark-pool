@@ -1,5 +1,5 @@
 import React from 'react';
-import Gauge from '../Graphs/Gauge';
+import Gauge from '../Graphs/Modal/Gauge';
 import {
   getCompleteSubtaskAmount,
   getIncommpleteSubtaskAmount,
