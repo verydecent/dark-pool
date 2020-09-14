@@ -3,6 +3,8 @@ import './styles.css';
 import shortid from 'shortid';
 
 const DatePicker = ({
+  isMonthTableVisible,
+  toggleMonthTable,
   getFirstDayOfMonth,
   getWeekdays,
   getAllMonths,
@@ -65,47 +67,55 @@ const DatePicker = ({
 
   // Creating Month selector
   const MonthList = () => {
-    const months = getAllMonths().map(month => {
+    if (!isMonthTableVisible) {
+      return null;
+    }
+    else {
+      const months = getAllMonths().map(month => {
+        return (
+          <td
+            key={shortid.generate()}
+            onClick={() => setMonth(month)}
+          >{month}</td>
+        );
+      });
+      let rows = [];
+      let cells = [];
+
+      months.forEach((month, i) => {
+        if (i % 3 !== 0 || i === 0) {
+          cells.push(month);
+        }
+        else {
+          rows.push(cells);
+          cells = [];
+          cells.push(month);
+        }
+      });
+      rows.push(cells);
+
+      const list = rows.map(month => <tr key={shortid.generate(month)}>{month}</tr>);
+
       return (
-        <td
-          key={shortid.generate()}
-          onClick={() => setMonth(month)}
-        >{month}</td>
+        <table>
+          <thead>
+            <tr>
+              <th colSpan='4'>Select a Month</th>
+            </tr>
+          </thead>
+          <tbody>{list}</tbody>
+        </table>
       );
-    });
-    let rows = [];
-    let cells = [];
-
-    months.forEach((month, i) => {
-      if (i % 3 !== 0 || i === 0) {
-        cells.push(month);
-      }
-      else {
-        rows.push(cells);
-        cells = [];
-        cells.push(month);
-      }
-    });
-    rows.push(cells);
-
-    const list = rows.map(month => <tr key={shortid.generate(month)}>{month}</tr>);
-
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th colSpan='4'>Select a Month</th>
-          </tr>
-        </thead>
-        <tbody>{list}</tbody>
-      </table>
-    );
+    }
   }
 
   return (
     <div className='date-picker'>
       <div className='date-picker-container'>
-        <div className='date-picker-month'>
+        <div
+          className='date-picker-month'
+          onClick={() => toggleMonthTable()}
+        >
           <h1>{getMonth()}</h1>
         </div>
         {MonthList()}

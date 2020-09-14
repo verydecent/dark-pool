@@ -100,7 +100,8 @@ class DashboardView extends React.Component {
       userId: isAuthenticated()._id,
 
       // View
-      isDatePickerModalOpen: true,
+      isModalVisible: true,
+      isMonthTableVisible: false,
       // Graph
       chartTimeFrame: 'day',
 
@@ -110,6 +111,7 @@ class DashboardView extends React.Component {
 
     // View methods
     this.toggleModal = this.toggleModal.bind(this);
+    this.toggleMonthTable = this.toggleMonthTable.bind(this);
 
     // Graph methods
     this.selectView = this.selectView.bind(this);
@@ -135,7 +137,11 @@ class DashboardView extends React.Component {
   }
 
   toggleModal() {
-    this.setState({ ...this.state, isDatePickerModalOpen: !this.state.isDatePickerModalOpen });
+    this.setState({ ...this.state, isModalVisible: !this.state.isModalVisible });
+  }
+
+  toggleMonthTable() {
+    this.setState({ ...this.state, isMonthTableVisible: !this.state.isMonthTableVisible });
   }
 
   // Date Picker methods
@@ -183,6 +189,7 @@ class DashboardView extends React.Component {
 
     this.setState({
       ...this.state,
+      isMonthTableVisible: false,
       dateObject: dateObject
     });
   }
@@ -204,8 +211,10 @@ class DashboardView extends React.Component {
     return (
       <div className='dashboard-view'>
         <DatePickerModal
-          isDatePickerModalOpen={this.state.isDatePickerModalOpen}
+          isModalVisible={this.state.isModalVisible}
+          isMonthTableVisible={this.state.isMonthTableVisible}
           toggleModal={this.toggleModal}
+          toggleMonthTable={this.toggleMonthTable}
           getFirstDayOfMonth={this.getFirstDayOfMonth}
           getWeekdays={this.getWeekdays}
           getAllMonths={this.getAllMonths}
