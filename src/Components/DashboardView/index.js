@@ -124,6 +124,7 @@ class DashboardView extends React.Component {
     this.getToday = this.getToday.bind(this);
     this.getMonth = this.getMonth.bind(this);
     this.setMonth = this.setMonth.bind(this);
+    this.getYear = this.getYear.bind(this);
   }
 
   selectView(timeFrame) {
@@ -188,6 +189,10 @@ class DashboardView extends React.Component {
     return this.state.dateObject.format('MMMM');
   }
 
+  getYear() {
+    return this.state.dateObject.format('Y');
+  }
+
   setMonth(month) {
     const monthNumber = this.getAllMonths().indexOf(month);
     let dateObject = Object.assign({}, this.state.dateObject);
@@ -227,6 +232,7 @@ class DashboardView extends React.Component {
           getDaysInMonth={this.getDaysInMonth}
           getToday={this.getToday}
           getMonth={this.getMonth}
+          getYear={this.getYear}
           setMonth={this.setMonth}
         />
         <ButtonList />
