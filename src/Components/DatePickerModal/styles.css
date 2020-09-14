@@ -37,6 +37,22 @@
 /* Date Picker */
 
 .date-picker {
+  width: 100%;
+}
+
+.date-picker-container {
+  width: 100%;
+}
+
+.date-picker-container table {
+  width: 100%;
+}
+
+.date-picker-month {
+  text-align: center;
+  width: 100%;
+  background: #BD0C25;
+  color: #fff;
 }
 
 .date-picker-weekdays-header {

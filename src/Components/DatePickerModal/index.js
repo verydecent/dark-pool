@@ -10,8 +10,10 @@ const DatePickerModal = ({
   toggleModal,
   getFirstDayOfMonth,
   getWeekdays,
+  getAllMonths,
   getDaysInMonth,
-  getToday
+  getToday,
+  getMonth
 }) => {
   if (!isDatePickerModalOpen) {
     return null;
@@ -24,8 +26,10 @@ const DatePickerModal = ({
           <DatePicker
             getFirstDayOfMonth={getFirstDayOfMonth}
             getWeekdays={getWeekdays}
+            getAllMonths={getAllMonths}
             getDaysInMonth={getDaysInMonth}
             getToday={getToday}
+            getMonth={getMonth}
           />
         </div>
       </div>

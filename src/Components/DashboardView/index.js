@@ -117,8 +117,10 @@ class DashboardView extends React.Component {
     // Date Picker methods
     this.getFirstDayOfMonth = this.getFirstDayOfMonth.bind(this);
     this.getWeekdays = this.getWeekdays.bind(this);
+    this.getAllMonths = this.getAllMonths.bind(this);
     this.getDaysInMonth = this.getDaysInMonth.bind(this);
     this.getToday = this.getToday.bind(this);
+    this.getMonth = this.getMonth.bind(this);
   }
 
   selectView(timeFrame) {
@@ -132,7 +134,6 @@ class DashboardView extends React.Component {
   }
 
   toggleModal() {
-    console.log('toggleM')
     this.setState({ ...this.state, isDatePickerModalOpen: !this.state.isDatePickerModalOpen });
   }
 
@@ -150,6 +151,12 @@ class DashboardView extends React.Component {
     return weekdays;
   }
 
+  getAllMonths() {
+    const months = moment.months();
+
+    return months;
+  }
+
   getDaysInMonth() {
     const { dateObject } = this.state;
     const daysInMonth = dateObject.daysInMonth();
@@ -162,6 +169,13 @@ class DashboardView extends React.Component {
     const today = dateObject.format('D');
 
     return today;
+  }
+
+  getMonth() {
+    const { dateObject } = this.state;
+    const month = dateObject.format('MMMM');
+
+    return month;
   }
 
 
@@ -185,8 +199,10 @@ class DashboardView extends React.Component {
           toggleModal={this.toggleModal}
           getFirstDayOfMonth={this.getFirstDayOfMonth}
           getWeekdays={this.getWeekdays}
+          getAllMonths={this.getAllMonths}
           getDaysInMonth={this.getDaysInMonth}
           getToday={this.getToday}
+          getMonth={this.getMonth}
         />
         <ButtonList />
         {/* {DayConditonal} */}
