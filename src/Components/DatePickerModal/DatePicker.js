@@ -75,11 +75,10 @@ const DatePicker = ({
         return (
           <td
             key={shortid.generate()}
-            onClick={() => {
-              toggleMonthTable();
-              setMonth(month);
-            }}
-          >{month}</td>
+            onClick={() => setMonth(month)}
+          >
+            {month}
+          </td >
         );
       });
       let rows = [];
@@ -111,7 +110,7 @@ const DatePicker = ({
       );
     }
   }
-
+  console.log(isMonthTableVisible)
   return (
     <div className='date-picker'>
       <div className='date-picker-container'>
@@ -121,17 +120,21 @@ const DatePicker = ({
         >
           <h1>{getMonth()}</h1>
         </div>
-        {MonthList()}
-        <table>
-          <thead>
-            <tr className='date-picker-weekdays-header'>
-              {weekdaysHeader}
-            </tr>
-          </thead>
-          <tbody className='date-picker-weekdays-body'>
-            {monthDaysBody}
-          </tbody>
-        </table>
+        {isMonthTableVisible && MonthList()}
+        {
+          !isMonthTableVisible && (
+            <table>
+              <thead>
+                <tr className='date-picker-weekdays-header'>
+                  {weekdaysHeader}
+                </tr>
+              </thead>
+              <tbody className='date-picker-weekdays-body'>
+                {monthDaysBody}
+              </tbody>
+            </table>
+          )
+        }
       </div>
     </div>
   );

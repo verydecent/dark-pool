@@ -145,7 +145,7 @@ class DashboardView extends React.Component {
 
   toggleMonthTable() {
     this.setState({
-      ...this.state,
+      // ...this.state,
       isMonthTableVisible: !this.state.isMonthTableVisible
     });
   }
@@ -195,7 +195,8 @@ class DashboardView extends React.Component {
 
     this.setState({
       ...this.state,
-      dateObject: dateObject
+      dateObject: dateObject,
+      isMonthTableVisible: !this.state.isMonthTableVisible
     });
   }
 
