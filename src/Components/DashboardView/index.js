@@ -97,7 +97,7 @@ class DashboardView extends React.Component {
     super();
     this.state = {
       userId: isAuthenticated()._id,
-      isDatePickerModalOpen: false,
+      isDatePickerModalOpen: true,
 
       day: '',
       month: '',

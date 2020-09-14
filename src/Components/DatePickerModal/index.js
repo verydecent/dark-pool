@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import Overlay from './Overlay';
-import { isDate } from 'moment';
+import DatePicker from './DatePicker';
 
 const DatePickerModal = ({
   // Values
@@ -17,7 +17,7 @@ const DatePickerModal = ({
       <div className='date-picker-modal'>
         <Overlay toggleModal={toggleModal} />
         <div className='date-picker-modal-container'>
-          Container
+          <DatePicker />
         </div>
       </div>
     );
