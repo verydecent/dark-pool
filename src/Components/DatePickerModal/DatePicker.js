@@ -20,7 +20,7 @@ const DatePicker = ({
   const blanksInMonth = [];
   for (let d = 0; d < getFirstDayOfMonth(); d++) {
     blanksInMonth.push(
-      <td key={d} className='date-picker-body-cells'></td>
+      <td key={d} className='date-picker-body-cells blank'></td>
     );
   }
 
