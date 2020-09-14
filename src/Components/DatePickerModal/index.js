@@ -7,7 +7,9 @@ const DatePickerModal = ({
   // Values
   isDatePickerModalOpen,
   // Methods
-  toggleModal
+  toggleModal,
+  getFirstDayOfMonth,
+  getWeekdays
 }) => {
   if (!isDatePickerModalOpen) {
     return null;
@@ -17,7 +19,10 @@ const DatePickerModal = ({
       <div className='date-picker-modal'>
         <Overlay toggleModal={toggleModal} />
         <div className='date-picker-modal-container'>
-          <DatePicker />
+          <DatePicker
+            getFirstDayOfMonth={getFirstDayOfMonth}
+            getWeekdays={getWeekdays}
+          />
         </div>
       </div>
     );

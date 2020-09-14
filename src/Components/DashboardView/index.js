@@ -17,6 +17,7 @@ import {
 } from 'recharts';
 import Day from '../Graphs/Day';
 import DatePickerModal from '../DatePickerModal';
+import moment from 'moment';
 
 
 /*
@@ -97,16 +98,25 @@ class DashboardView extends React.Component {
     super();
     this.state = {
       userId: isAuthenticated()._id,
-      isDatePickerModalOpen: true,
 
-      day: '',
-      month: '',
-      year: '',
+      // View
+      isDatePickerModalOpen: true,
+      // Graph
       chartTimeFrame: 'day',
+
+      // Date Picker
+      dateObject: moment()
     };
 
-    this.selectView = this.selectView.bind(this);
+    // View methods
     this.toggleModal = this.toggleModal.bind(this);
+
+    // Graph methods
+    this.selectView = this.selectView.bind(this);
+
+    // Date Picker methods
+    this.getFirstDayOfMonth = this.getFirstDayOfMonth.bind(this);
+    this.getWeekdays = this.getWeekdays.bind(this);
   }
 
   selectView(timeFrame) {
@@ -124,30 +134,21 @@ class DashboardView extends React.Component {
     this.setState({ ...this.state, isDatePickerModalOpen: !this.state.isDatePickerModalOpen });
   }
 
+  // Date Picker methods
+  getFirstDayOfMonth() {
+    const { dateObject } = this.state;
+    const firstDayOfMonth = moment(dateObject).startOf('month').format('d');
+
+    return firstDayOfMonth;
+  }
+
+  getWeekdays() {
+    const weekdays = moment.weekdaysShort();
+    return weekdays;
+  }
+
 
   render() {
-    // Handle percent calculations here?
-    // Would run every rerender might be performance loss, maybe can do it only when componentMounts and onClick
-    // For now run it here
-    // Make an array with objects month complete:
-
-
-    // Recharts note
-    // Make sure that dataKeys match the given dataKey to component prop
-
-    // Make one for week
-    // Need actualy date of Monday too relative to the current week we're in. So if Tuesday , grab last Monday. If Saturday grab last Monday
-    // -> Begininng of Monday to end of Sunday, grab percent average for each date and recreate array with 7 objects Mon - Sun with percent average for each date
-
-    // Month
-    // -> Beginning of 1st of Month to end of Last day of Month
-    // -> Arrray with 31 objects with average daily percent
-
-    // Year
-    // -> Jan 1st - Dec 31st
-    // Array of 12 Objects
-    // Average percent of each month
-
     const ButtonList = () => (
       <>
         <button onClick={() => this.selectView('day')}>Day View</button>
@@ -165,6 +166,8 @@ class DashboardView extends React.Component {
         <DatePickerModal
           isDatePickerModalOpen={this.state.isDatePickerModalOpen}
           toggleModal={this.toggleModal}
+          getFirstDayOfMonth={this.getFirstDayOfMonth}
+          getWeekdays={this.getWeekdays}
         />
         <ButtonList />
         {/* {DayConditonal} */}
