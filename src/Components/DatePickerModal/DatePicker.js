@@ -65,7 +65,14 @@ const DatePicker = ({
 
   // Creating Month selector
   const MonthList = () => {
-    const months = getAllMonths().map(month => <td key={shortid.generate()}>{month}</td>);
+    const months = getAllMonths().map(month => {
+      return (
+        <td
+          key={shortid.generate()}
+          onClick={() => setMonth(month)}
+        >{month}</td>
+      );
+    });
     let rows = [];
     let cells = [];
 
@@ -81,15 +88,7 @@ const DatePicker = ({
     });
     rows.push(cells);
 
-    const list = rows.map(month => {
-      return (
-        <tr
-          key={shortid.generate(month)}
-          onClick={() => setMonth(month)}>
-          {month}
-        </tr>
-      )
-    });
+    const list = rows.map(month => <tr key={shortid.generate(month)}>{month}</tr>);
 
     return (
       <table>

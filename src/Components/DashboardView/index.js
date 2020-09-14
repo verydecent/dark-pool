@@ -173,10 +173,7 @@ class DashboardView extends React.Component {
   }
 
   getMonth() {
-    const { dateObject } = this.state;
-    const month = dateObject.format('MMMM');
-
-    return month;
+    return this.state.dateObject.format('MMMM');
   }
 
   setMonth(month) {
@@ -187,7 +184,7 @@ class DashboardView extends React.Component {
     this.setState({
       ...this.state,
       dateObject: dateObject
-    }, console.log(this.state.dateObject));
+    });
   }
 
 
