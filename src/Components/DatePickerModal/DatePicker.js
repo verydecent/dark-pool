@@ -13,7 +13,7 @@ const DatePicker = ({
 
   const weekdaysHeader = getWeekdays().map(day => {
     return (
-      <th key={day} className='date-picker-header-cells'>
+      <th key={shortid.generate()} className='date-picker-header-cells'>
         {day}
       </th>
     )
@@ -23,7 +23,7 @@ const DatePicker = ({
   const blanksInMonth = [];
   for (let d = 0; d < getFirstDayOfMonth(); d++) {
     blanksInMonth.push(
-      <td key={d} className='date-picker-body-cells blank'></td>
+      <td key={shortid.generate()} className='date-picker-body-cells blank'></td>
     );
   }
 
@@ -63,28 +63,36 @@ const DatePicker = ({
   });
 
   // Creating Month selector
-  const months = [];
-  getAllMonths().map(month => {
-    months.push(
-      <td>{month}</td>
+  const MonthList = () => {
+    const months = getAllMonths().map(month => <td key={shortid.generate()}>{month}</td>);
+    let rows = [];
+    let cells = [];
+
+    months.forEach((month, i) => {
+      if (i % 3 !== 0 || i === 0) {
+        cells.push(month);
+      }
+      else {
+        rows.push(cells);
+        cells = [];
+        cells.push(month);
+      }
+    });
+    rows.push(cells);
+
+    const list = rows.map(d => <tr key={shortid.generate()}>{d}</tr>);
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th colSpan='4'>Select a Month</th>
+          </tr>
+        </thead>
+        <tbody>{list}</tbody>
+      </table>
     );
-  });
-
-  let monthRows = [];
-  let monthCells = [];
-
-  months.forEach((row, i) => {
-    if (i % 3 !== 0 || i == 0) {
-      monthCells.push(monthRows);
-    }
-    else {
-      monthRows.push(monthCells);
-      monthCells = [];
-      monthCells.push(row);
-    }
-  });
-
-  console.log(months);
+  }
 
   return (
     <div className='date-picker'>
@@ -92,6 +100,7 @@ const DatePicker = ({
         <div className='date-picker-month'>
           <h1>{getMonth()}</h1>
         </div>
+        {MonthList()}
         <table>
           <thead>
             <tr className='date-picker-weekdays-header'>
