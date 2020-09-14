@@ -8,7 +8,8 @@ const DatePicker = ({
   getAllMonths,
   getDaysInMonth,
   getToday,
-  getMonth
+  getMonth,
+  setMonth
 }) => {
 
   const weekdaysHeader = getWeekdays().map(day => {
@@ -80,7 +81,15 @@ const DatePicker = ({
     });
     rows.push(cells);
 
-    const list = rows.map(d => <tr key={shortid.generate()}>{d}</tr>);
+    const list = rows.map(month => {
+      return (
+        <tr
+          key={shortid.generate(month)}
+          onClick={() => setMonth(month)}>
+          {month}
+        </tr>
+      )
+    });
 
     return (
       <table>

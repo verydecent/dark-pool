@@ -13,7 +13,8 @@ const DatePickerModal = ({
   getAllMonths,
   getDaysInMonth,
   getToday,
-  getMonth
+  getMonth,
+  setMonth
 }) => {
   if (!isDatePickerModalOpen) {
     return null;
@@ -30,6 +31,7 @@ const DatePickerModal = ({
             getDaysInMonth={getDaysInMonth}
             getToday={getToday}
             getMonth={getMonth}
+            setMonth={setMonth}
           />
         </div>
       </div>

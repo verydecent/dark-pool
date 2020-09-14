@@ -121,6 +121,7 @@ class DashboardView extends React.Component {
     this.getDaysInMonth = this.getDaysInMonth.bind(this);
     this.getToday = this.getToday.bind(this);
     this.getMonth = this.getMonth.bind(this);
+    this.setMonth = this.setMonth.bind(this);
   }
 
   selectView(timeFrame) {
@@ -214,6 +215,7 @@ class DashboardView extends React.Component {
           getDaysInMonth={this.getDaysInMonth}
           getToday={this.getToday}
           getMonth={this.getMonth}
+          setMonth={this.setMonth}
         />
         <ButtonList />
         {/* {DayConditonal} */}
