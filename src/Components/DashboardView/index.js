@@ -137,11 +137,17 @@ class DashboardView extends React.Component {
   }
 
   toggleModal() {
-    this.setState({ ...this.state, isModalVisible: !this.state.isModalVisible });
+    this.setState({
+      ...this.state,
+      isModalVisible: !this.state.isModalVisible
+    });
   }
 
   toggleMonthTable() {
-    this.setState({ ...this.state, isMonthTableVisible: !this.state.isMonthTableVisible });
+    this.setState({
+      ...this.state,
+      isMonthTableVisible: !this.state.isMonthTableVisible
+    });
   }
 
   // Date Picker methods
@@ -189,7 +195,6 @@ class DashboardView extends React.Component {
 
     this.setState({
       ...this.state,
-      isMonthTableVisible: false,
       dateObject: dateObject
     });
   }

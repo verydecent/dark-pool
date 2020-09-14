@@ -75,7 +75,10 @@ const DatePicker = ({
         return (
           <td
             key={shortid.generate()}
-            onClick={() => setMonth(month)}
+            onClick={() => {
+              toggleMonthTable();
+              setMonth(month);
+            }}
           >{month}</td>
         );
       });
