@@ -16,6 +16,7 @@ import {
   CartesianGrid
 } from 'recharts';
 import Day from '../Graphs/Day';
+import DatePickerModal from '../DatePickerModal';
 
 
 /*
@@ -96,11 +97,16 @@ class DashboardView extends React.Component {
     super();
     this.state = {
       userId: isAuthenticated()._id,
+      isDatePickerModalOpen: false,
+
+      day: '',
+      month: '',
+      year: '',
       chartTimeFrame: 'day',
-      datePickerModalVisible: false
     };
 
     this.selectView = this.selectView.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   selectView(timeFrame) {
@@ -111,6 +117,11 @@ class DashboardView extends React.Component {
         chartTimeFrame: timeFrame
       }
     });
+  }
+
+  toggleModal() {
+    console.log('toggleM')
+    this.setState({ ...this.state, isDatePickerModalOpen: !this.state.isDatePickerModalOpen });
   }
 
 
@@ -143,6 +154,7 @@ class DashboardView extends React.Component {
         <button onClick={() => this.selectView('week')}>Week View</button>
         <button onClick={() => this.selectView('month')}>Month View</button>
         <button onClick={() => this.selectView('year')}>Year View</button>
+        <button onClick={() => this.toggleModal()}>Date Picker</button>
       </>
     );
 
@@ -150,8 +162,12 @@ class DashboardView extends React.Component {
 
     return (
       <div className='dashboard-view'>
+        <DatePickerModal
+          isDatePickerModalOpen={this.state.isDatePickerModalOpen}
+          toggleModal={this.toggleModal}
+        />
         <ButtonList />
-        {DayConditonal}
+        {/* {DayConditonal} */}
       </div>
     );
   }
