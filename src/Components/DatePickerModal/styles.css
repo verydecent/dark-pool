@@ -40,17 +40,19 @@
 }
 
 .date-picker-weekdays-header {
-  display: flex;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
 }
 
-.date-picker-weekdays {
-  flex: 1;
+.date-picker-header-cells {
   height: 50px;
+  width: 50px;
   border-left: 1px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.date-picker-body-cells {
+  height: 50px;
+  width: 50px;
+  border: 1px solid #000;
 }
