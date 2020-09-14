@@ -62,3 +62,11 @@
 .blank {
   background: pink
 }
+
+.today {
+  border-radius: 50%;
+  border: 1px solid blue;
+  color: blue;
+  font-weight: 700;
+  text-decoration: underline;
+}

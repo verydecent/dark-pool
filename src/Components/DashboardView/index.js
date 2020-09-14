@@ -118,6 +118,7 @@ class DashboardView extends React.Component {
     this.getFirstDayOfMonth = this.getFirstDayOfMonth.bind(this);
     this.getWeekdays = this.getWeekdays.bind(this);
     this.getDaysInMonth = this.getDaysInMonth.bind(this);
+    this.getToday = this.getToday.bind(this);
   }
 
   selectView(timeFrame) {
@@ -156,6 +157,13 @@ class DashboardView extends React.Component {
     return daysInMonth;
   }
 
+  getToday() {
+    const { dateObject } = this.state;
+    const today = dateObject.format('D');
+
+    return today;
+  }
+
 
   render() {
     const ButtonList = () => (
@@ -178,6 +186,7 @@ class DashboardView extends React.Component {
           getFirstDayOfMonth={this.getFirstDayOfMonth}
           getWeekdays={this.getWeekdays}
           getDaysInMonth={this.getDaysInMonth}
+          getToday={this.getToday}
         />
         <ButtonList />
         {/* {DayConditonal} */}

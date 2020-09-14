@@ -6,6 +6,7 @@ const DatePicker = ({
   getFirstDayOfMonth,
   getWeekdays,
   getDaysInMonth,
+  getToday
 }) => {
 
   const weekdaysHeader = getWeekdays().map(day => {
@@ -27,8 +28,10 @@ const DatePicker = ({
   // Days in month
   const daysInMonth = [];
   for (let d = 1; d <= getDaysInMonth(); d++) {
+    const today = d == getToday() ? 'today' : '';
+
     daysInMonth.push(
-      <td key={shortid.generate()} className='date-picker-body-cells'>
+      <td key={shortid.generate()} className={`date-picker-body-cells ${today}`}>
         {d}
       </td>
     );
@@ -40,17 +43,14 @@ const DatePicker = ({
 
   totalSlots.forEach((row, i) => {
     if (i % 7 === 0 && i !== 0) {
-      console.log('push to rows');
       rows.push(cells); // when reach next week we contain all td in last week to rows 
       cells = []; // empty container 
       cells.push(row); // in current loop we still push current row to new container
     }
     else {
-      console.log('push to cells');
       cells.push(row); // if index not equal 7 that means not go to next week
     }
     if (i === totalSlots.length - 1) { // when end loop we add remain date
-      console.log('push rest to rows');
       rows.push(cells);
     }
   });
