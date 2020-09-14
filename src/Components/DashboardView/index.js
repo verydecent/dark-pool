@@ -97,6 +97,7 @@ class DashboardView extends React.Component {
     this.state = {
       userId: isAuthenticated()._id,
       chartTimeFrame: 'day',
+      datePickerModalVisible: false
     };
 
     this.selectView = this.selectView.bind(this);
