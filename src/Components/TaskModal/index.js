@@ -27,7 +27,7 @@ const TaskModal = ({
   deleteSubtask,
 }) => {
   if (!isModalOpen) {
-    return null
+    return null;
   }
   else {
     return (
