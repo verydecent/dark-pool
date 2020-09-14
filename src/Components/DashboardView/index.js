@@ -178,6 +178,17 @@ class DashboardView extends React.Component {
     return month;
   }
 
+  setMonth(month) {
+    const monthNumber = this.getAllMonths().indexOf(month);
+    let dateObject = Object.assign({}, this.state.dateObject);
+    dateObject = moment(dateObject).set('month', monthNumber);
+
+    this.setState({
+      ...this.state,
+      dateObject: dateObject
+    }, console.log(this.state.dateObject));
+  }
+
 
   render() {
     const ButtonList = () => (
