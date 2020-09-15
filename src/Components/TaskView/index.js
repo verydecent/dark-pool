@@ -51,11 +51,15 @@ class TaskView extends React.Component {
   componentDidMount() {
     const { userId } = this.state;
 
-    const today = moment().startOf('day');
-    const beginningOfTodayToDate = today.startOf('day').toDate();
-    const endOfTodayToDate = moment(today).endOf('day').toDate();
+    let date = Object.assign({}, this.state.currentDate);
+    date = moment(date);
+    let beginning;
+    let end;
 
-    axios.get(`task/${userId}?start_date=${beginningOfTodayToDate}&end_date=${endOfTodayToDate}`)
+    beginning = date.startOf('day').toDate();
+    end = date.endOf('day').toDate();
+
+    axios.get(`task/${userId}?start_date=${beginning}&end_date=${end}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
