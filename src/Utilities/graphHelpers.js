@@ -45,7 +45,6 @@ export const barChartDayData = (tasks) => {
     }
   });
 
-  console.log(data);
   return data;
 }
 
