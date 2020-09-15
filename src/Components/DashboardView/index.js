@@ -7,6 +7,7 @@ import DatePickerModal from '../DatePickerModal';
 import moment from 'moment';
 import shortid from 'shortid';
 import axios from '../../Utilities/axiosConfig';
+import GraphContainer from './GraphContainer';
 
 /*
 Graph options
@@ -90,7 +91,7 @@ class DashboardView extends React.Component {
       isYearTableVisible: false,
       isMonthTableVisible: false,
       // Graph
-      chartTimeFrame: 'day',
+      graphTimeFrame: 'day',
 
       // Date Picker
       dateObject: moment(),
@@ -157,7 +158,7 @@ class DashboardView extends React.Component {
     this.setState(prevState => {
       return {
         ...prevState,
-        chartTimeFrame: timeFrame,
+        graphTimeFrame: timeFrame,
         beginning: beginning,
         end: end,
       }
@@ -362,8 +363,6 @@ class DashboardView extends React.Component {
       </div>
     );
 
-
-
     return (
       <div className='dashboard-view'>
         <DatePickerModal
@@ -390,12 +389,10 @@ class DashboardView extends React.Component {
         />
         <div className='dashboard-view-container'>
           <ButtonList />
-          {this.state.chartTimeFrame === 'day' && <Day />}
-          {this.state.chartTimeFrame === 'isoWeek' && <Day />}
-          {this.state.chartTimeFrame === 'month' && <Day />}
-          {this.state.chartTimeFrame === 'year' && <Day />}
+          <GraphContainer
+            graphTimeFrame={this.state.graphTimeFrame}
+          />
         </div>
-        {/* {DayConditonal} */}
       </div>
     );
   }
