@@ -9,26 +9,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-const toPercent = (decimal, fixed = 0) => {
-  return `${(decimal * 100).toFixed(fixed)}%`;
-};
 
-const renderTooltipContent = (o) => {
-  const { payload, label } = o;
-  return (
-    <ul>
-      {
-        payload.map((entry, index) => {
-          return (
-            <li key={`item-${index}`} style={{ color: '#000', fontWeight: 700, fontSize: 20 }}>
-              {`Percent Complete: ${Number.isNaN(entry.value) ? '0%' : toPercent(entry.value)}`}
-            </li>
-          )
-        })
-      }
-    </ul>
-  );
-};
 
 const DayBarChart = ({
   data
@@ -47,18 +28,23 @@ const DayBarChart = ({
         dataKey="title"
       />
       <YAxis
-        // type='number'
-        // domain={[0, 100]}
-        // label='Percent'
-        tickFormatter={toPercent}
       />
-      <Tooltip
-        cursor={{ fill: 'grey', stroke: '#000', strokeWidth: 1 }}
-        content={renderTooltipContent}
+      <Tooltip />
+      <Bar
+        dataKey='total'
+        fill="#000"
+        barSize={30}
+        background={false}
       />
       <Bar
-        dataKey='percent'
-        fill="#82ca9d"
+        dataKey='complete'
+        fill="#0000ff"
+        barSize={30}
+        background={false}
+      />
+      <Bar
+        dataKey='incomplete'
+        fill="#ff0000"
         barSize={30}
         background={false}
       />
