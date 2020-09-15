@@ -353,16 +353,16 @@ class DashboardView extends React.Component {
 
   render() {
     const ButtonList = () => (
-      <>
+      <div>
         <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
         <button onClick={() => this.selectTimeFrame('isoWeek')}>Week View</button>
         <button onClick={() => this.selectTimeFrame('month')}>Month View</button>
         <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
         <button onClick={() => this.toggleModal()}>Date Picker</button>
-      </>
+      </div>
     );
 
-    const DayConditonal = this.state.chartTimeFrame === 'day' ? <Day /> : null;
+
 
     return (
       <div className='dashboard-view'>
@@ -388,7 +388,13 @@ class DashboardView extends React.Component {
           // Prouces JSX
           yearTable={this.yearTable}
         />
-        <ButtonList />
+        <div className='dashboard-view-container'>
+          <ButtonList />
+          {this.state.chartTimeFrame === 'day' && <Day />}
+          {this.state.chartTimeFrame === 'isoWeek' && <Day />}
+          {this.state.chartTimeFrame === 'month' && <Day />}
+          {this.state.chartTimeFrame === 'year' && <Day />}
+        </div>
         {/* {DayConditonal} */}
       </div>
     );
