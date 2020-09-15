@@ -23,7 +23,8 @@ const DatePickerModal = ({
   getYear,
   yearTable,
   onPrev,
-  onNext
+  onNext,
+  onDayClick
 }) => {
   if (!isModalVisible) {
     return null;
@@ -50,6 +51,7 @@ const DatePickerModal = ({
             yearTable={yearTable}
             onPrev={onPrev}
             onNext={onNext}
+            onDayClick={onDayClick}
           />
         </div>
       </div>

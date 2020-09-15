@@ -18,7 +18,8 @@ const DatePicker = ({
   getYear,
   yearTable,
   onPrev,
-  onNext
+  onNext,
+  onDayClick
 }) => {
 
   const weekdaysHeader = getWeekdays().map(day => {
@@ -43,7 +44,7 @@ const DatePicker = ({
     const today = d == getToday() ? 'today' : '';
 
     daysInMonth.push(
-      <td key={shortid.generate()} className={`date-picker-body-cells ${today}`}>
+      <td onClick={(e) => onDayClick(e, d)} key={shortid.generate()} className={`date-picker-body-cells ${today}`}>
         {d}
       </td>
     );
@@ -116,12 +117,6 @@ const DatePicker = ({
         </table>
       );
     }
-  }
-
-  // Year Table
-  const YearTable = () => {
-    const months = [];
-
   }
 
   return (

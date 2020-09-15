@@ -110,7 +110,8 @@ class DashboardView extends React.Component {
       chartTimeFrame: 'day',
 
       // Date Picker
-      dateObject: moment()
+      dateObject: moment(),
+      selectedDay: ''
     };
 
     // View methods
@@ -135,6 +136,7 @@ class DashboardView extends React.Component {
     this.setYear = this.setYear.bind(this);
     this.onPrev = this.onPrev.bind(this);
     this.onNext = this.onNext.bind(this);
+    this.onDayClick = this.onDayClick.bind(this);
   }
 
   selectView(timeFrame) {
@@ -327,7 +329,12 @@ class DashboardView extends React.Component {
     });
   }
 
-
+  onDayClick(e, d) {
+    this.setState({
+      ...this.state,
+      selectedDay: d
+    }, () => console.log('Selected day', d));
+  }
 
   render() {
     const ButtonList = () => (
@@ -362,6 +369,7 @@ class DashboardView extends React.Component {
           setMonth={this.setMonth}
           onPrev={this.onPrev}
           onNext={this.onNext}
+          onDayClick={this.onDayClick}
           // Prouces JSX
           yearTable={this.yearTable}
         />
