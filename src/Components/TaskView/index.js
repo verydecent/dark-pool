@@ -3,7 +3,6 @@ import './styles.css';
 import withNav from '../Hoc/withNav.js';
 import DateView from '../DateView';
 import TaskModal from '../TaskModal';
-import { Plus, AngleLeft, AngleRight } from '../FAIcons';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment'
@@ -50,14 +49,13 @@ class TaskView extends React.Component {
   }
 
   componentDidMount() {
-    console.log('cdm');
     const { userId } = this.state;
 
     const today = moment().startOf('day');
-    const todayToDate = today.startOf('day').toDate();
+    const beginningOfTodayToDate = today.startOf('day').toDate();
     const endOfTodayToDate = moment(today).endOf('day').toDate();
 
-    axios.get(`task/${userId}?start_date=${todayToDate}&end_date=${endOfTodayToDate}`)
+    axios.get(`task/${userId}?start_date=${beginningOfTodayToDate}&end_date=${endOfTodayToDate}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -251,7 +249,6 @@ class TaskView extends React.Component {
     // In order to keep things immutable, create a fresh array that will be set to state later
     // Immutability keeps increases trackability and performance
     // How idk I need to research that more
-    console.log('e', e.target.value)
 
     const subtasksClone = this.state.subtasks.map(subtask => {
       if (subtask._id === subtaskId) {

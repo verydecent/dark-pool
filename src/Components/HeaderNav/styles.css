@@ -1,6 +1,6 @@
 @import '../../Root/variables.css';
 
-.header-nav {
+.header-nav-top {
   width: 100%;
   height: var(--header-nav-height);
   padding-left: var(--view-horizontal-margin);
@@ -24,4 +24,17 @@
   align-items: center;
 
   font-size: 1.4rem;
+}
+
+.header-nav-bottom {
+  width: 100%;
+  height: 55px;
+  padding-left: var(--view-horizontal-margin);
+  padding-right: var(--view-horizontal-margin);
+  background-color: #ffffff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid #000;
 }

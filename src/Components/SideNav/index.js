@@ -29,12 +29,11 @@ const adminLink = isAuthenticated() && isAuthenticated.role === 'admin'
 const SideNav = ({
   history
 }) => {
-  console.log(history);
   return (
     <div className='sidenav'>
       <div className='sidenav-container'>
         <div className='sidenav-logo'>
-          <Link to='/'><h2>DarkPoolNotes</h2></Link>
+          <Link to='/'><h2>DarkPool</h2></Link>
         </div>
         <ul className='sidenav-links'>
           <li style={{ background: history.location.pathname === '/app' ? '#E44B6F' : '' }}>
