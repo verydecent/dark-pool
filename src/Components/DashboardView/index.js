@@ -20,6 +20,7 @@ import DatePickerModal from '../DatePickerModal';
 import moment from 'moment';
 import { faStarAndCrescent } from '@fortawesome/free-solid-svg-icons';
 import shortid from 'shortid';
+import axios from '../../Utilities/axiosConfig';
 
 
 /*
@@ -102,7 +103,7 @@ class DashboardView extends React.Component {
       userId: isAuthenticated()._id,
 
       // View
-      isModalVisible: true,
+      isModalVisible: false,
       isDateTableVisible: true,
       isYearTableVisible: false,
       isMonthTableVisible: false,
@@ -137,6 +138,12 @@ class DashboardView extends React.Component {
     this.onPrev = this.onPrev.bind(this);
     this.onNext = this.onNext.bind(this);
     this.onDayClick = this.onDayClick.bind(this);
+
+    // HTTP Request handlers
+    this.getTasksByDay = this.getTasksByDay.bind(this);
+    this.getTasksByWeek = this.getTasksByWeek.bind(this);
+    this.getTasksByMonth = this.getTasksByMonth.bind(this);
+    this.getTasksByYear = this.getTasksByYear.bind(this);
   }
 
   selectView(timeFrame) {
@@ -334,6 +341,61 @@ class DashboardView extends React.Component {
       ...this.state,
       selectedDay: d
     }, () => console.log('Selected day', d));
+  }
+
+
+  // Calling data based on View
+  callData() {
+    // Need current time frame
+    // Then change to start/end of date
+    // axios.get()
+
+    // Set data to state and have it passed down to <TimeFrame data = {this.state.data} /> ?
+    // Select Date: Day, Week, Month, Year
+    // Axios call based on this
+    // Set to state, then pass down to each component, Day, Week, Month, Year
+    // Inside each of those components, we will apply graph data helper functions and then pass to individual graphs
+  }
+
+
+  getTasksByDay() {
+    axios.get('/')
+      .then(response => {
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
+
+  getTasksByWeek() {
+    axios.get('/')
+      .then(response => {
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
+
+  getTasksByMonth() {
+    axios.get('/')
+      .then(response => {
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
+
+  getTasksByYear() {
+    axios.get('/')
+      .then(response => {
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
   }
 
   render() {
