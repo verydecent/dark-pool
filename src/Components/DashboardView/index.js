@@ -92,7 +92,7 @@ class DashboardView extends React.Component {
       isMonthTableVisible: false,
       // Graph
       timeFrame: 'day',
-      graphType: 'line',
+      graphType: 'bar',
       // Tasks for Graph
       tasks: [],
 

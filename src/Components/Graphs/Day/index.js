@@ -1,8 +1,6 @@
 import React from 'react';
-import DayLineChart from './DayLineChart';
-import DayBarChart from './DayBarChart';
-import DayAreaChart from './DayAreaChart';
 import { barChartDayData, lineChartDayData, areaChartDayData } from '../../../Utilities/graphHelpers';
+import { LineGraph, BarGraph, AreaGraph } from '../Day/graphs';
 
 const DayContainer = ({
   tasks,
@@ -25,9 +23,9 @@ const DayContainer = ({
   const barData = barChartDayData(tasks);
   const areaData = areaChartDayData(tasks);
 
-  const LineChartConditional = graphType === 'line' ? <DayLineChart data={lineData} /> : null;
-  const BarChartConditional = graphType === 'bar' ? <DayBarChart data={barData} /> : null;
-  const AreaChartConditional = graphType === 'area' ? <DayAreaChart data={areaData} /> : null;
+  const LineChartConditional = graphType === 'line' ? <LineGraph data={lineData} /> : null;
+  const BarChartConditional = graphType === 'bar' ? <BarGraph data={barData} /> : null;
+  const AreaChartConditional = graphType === 'area' ? <AreaGraph data={areaData} /> : null;
 
   return (
     <div className=''>

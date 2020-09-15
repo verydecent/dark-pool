@@ -6,16 +6,12 @@ export const lineChartDayData = (tasks) => {
     task.subtasks.forEach(task => {
       if (task.complete) completedCount += 1;
     });
-    const incomplete = total - completedCount;
+    const percent = completedCount / total;
 
-    const dataUnit = {
+    return {
       title: task.title,
-      total: total,
-      complete: completedCount,
-      incomplete: incomplete
-    }
-
-    return dataUnit;
+      percent: percent
+    };
   });
 
   return data;
