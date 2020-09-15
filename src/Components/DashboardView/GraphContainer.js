@@ -3,17 +3,18 @@ import Day from '../Graphs/Day';
 
 const GraphContainer = ({
   // Values
+  graphType,
   tasks,
-  graphTimeFrame,
+  timeFrame,
   // Methods
   selectGraphType
 }) => {
   return (
     <div className='dashboard-view-graph-container'>
-      {graphTimeFrame === 'day' && <Day selectGraphType={selectGraphType} tasks={tasks} />}
-      {graphTimeFrame === 'isoWeek' && <Day />}
-      {graphTimeFrame === 'month' && <Day />}
-      {graphTimeFrame === 'year' && <Day />}
+      {timeFrame === 'day' && <Day selectGraphType={selectGraphType} tasks={tasks} graphType={graphType} />}
+      {timeFrame === 'isoWeek' && <Day />}
+      {timeFrame === 'month' && <Day />}
+      {timeFrame === 'year' && <Day />}
     </div>
   )
 }

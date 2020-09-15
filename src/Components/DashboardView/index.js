@@ -45,7 +45,7 @@ level 2 buttons => {
 
 State = {
   view: (can be day, view, week, month) default - day
-  chartType: (can be percentBarChart, tasksLineChart, subtaskLineChart) default - overall percent complete
+  graphType: (can be percentBarChart, tasksLineChart, subtaskLineChart) default - overall percent complete
 }
 
 
@@ -91,8 +91,8 @@ class DashboardView extends React.Component {
       isYearTableVisible: false,
       isMonthTableVisible: false,
       // Graph
-      graphTimeFrame: 'day',
-      graphChartType: 'line',
+      timeFrame: 'day',
+      graphType: 'line',
       // Tasks for Graph
       tasks: [],
 
@@ -174,7 +174,7 @@ class DashboardView extends React.Component {
   selectGraphType(type) {
     this.setState({
       ...this.state,
-      graphChartType: type
+      graphType: type
     });
   }
 
@@ -190,7 +190,7 @@ class DashboardView extends React.Component {
     this.setState(prevState => {
       return {
         ...prevState,
-        graphTimeFrame: timeFrame,
+        timeFrame: timeFrame,
         beginning: beginning,
         end: end,
       }
@@ -422,9 +422,9 @@ class DashboardView extends React.Component {
         <div className='dashboard-view-container'>
           <ButtonList />
           <GraphContainer
-            graphTimeFrame={this.state.graphTimeFrame}
+            timeFrame={this.state.timeFrame}
             tasks={this.state.tasks}
-
+            graphType={this.state.graphType}
             selectGraphType={this.selectGraphType}
           />
         </div>

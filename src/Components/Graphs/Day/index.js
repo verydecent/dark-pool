@@ -2,56 +2,41 @@ import React from 'react';
 import DayLineChart from './DayLineChart';
 import DayBarChart from './DayBarChart';
 import DayAreaChart from './DayAreaChart';
-import axios from '../../../Utilities/axiosConfig';
-import moment from 'moment';
-import { isAuthenticated } from '../../../Utilities/helpers';
 import { barChartDayData, lineChartDayData, areaChartDayData } from '../../../Utilities/graphHelpers';
 
-class DayChart extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      chartType: 'area',
-    }
+const DayContainer = ({
+  tasks,
+  graphType,
+  selectGraphType
+}) => {
+  console.log(tasks)
+  console.log(graphType)
+  console.log(selectGraphType)
 
-    this.selectChart = this.selectChart.bind(this);
-  }
+  const ButtonList = () => (
+    <>
+      <button onClick={() => selectGraphType('bar')}>Bar Chart</button>
+      <button onClick={() => selectGraphType('line')}>Line Chart</button>
+      <button onClick={() => selectGraphType('area')}>Area Chart</button>
+    </>
+  );
 
-  selectChart(chartType) {
-    this.setState({ chartType });
-  }
+  const lineData = lineChartDayData(tasks);
+  const barData = barChartDayData(tasks);
+  const areaData = areaChartDayData(tasks);
 
-  render() {
-    // default render will be percent complete
+  const LineChartConditional = graphType === 'line' ? <DayLineChart data={lineData} /> : null;
+  const BarChartConditional = graphType === 'bar' ? <DayBarChart data={barData} /> : null;
+  const AreaChartConditional = graphType === 'area' ? <DayAreaChart data={areaData} /> : null;
 
-    const ButtonList = () => (
-      <>
-        <button onClick={() => this.selectChart('bar')}>Bar Chart</button>
-        <button onClick={() => this.selectChart('line')}>Line Chart</button>
-        <button onClick={() => this.selectChart('area')}>Area Chart</button>
-      </>
-    );
-
-    const lineData = lineChartDayData(this.props.tasks);
-    const barData = barChartDayData(this.props.tasks);
-    const areaData = areaChartDayData(this.props.tasks);
-
-    const LineChartConditional = this.state.chartType === 'line' ? <DayLineChart data={lineData} /> : null;
-    const BarChartConditional = this.state.chartType === 'bar' ? <DayBarChart data={barData} /> : null;
-    const AreaChartConditional = this.state.chartType === 'area' ? <DayAreaChart data={areaData} /> : null;
-
-    return (
-      <div
-        className=''
-        style={{ width: 1000, height: 1000 }}
-      >
-        <ButtonList />
-        {LineChartConditional}
-        {BarChartConditional}
-        {AreaChartConditional}
-      </div>
-    );
-  }
+  return (
+    <div className=''>
+      <ButtonList />
+      {LineChartConditional}
+      {BarChartConditional}
+      {AreaChartConditional}
+    </div>
+  )
 }
 
-export default DayChart;
+export default DayContainer;
