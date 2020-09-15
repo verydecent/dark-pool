@@ -12,6 +12,7 @@ const DatePickerModal = ({
   // Methods
   toggleModal,
   toggleMonthTable,
+  toggleYearTable,
   getFirstDayOfMonth,
   getWeekdays,
   getAllMonths,
@@ -20,7 +21,9 @@ const DatePickerModal = ({
   getMonth,
   setMonth,
   getYear,
-  yearTable
+  yearTable,
+  onPrev,
+  onNext
 }) => {
   if (!isModalVisible) {
     return null;
@@ -35,6 +38,7 @@ const DatePickerModal = ({
             isMonthTableVisible={isMonthTableVisible}
             isYearTableVisible={isYearTableVisible}
             toggleMonthTable={toggleMonthTable}
+            toggleYearTable={toggleYearTable}
             getFirstDayOfMonth={getFirstDayOfMonth}
             getWeekdays={getWeekdays}
             getAllMonths={getAllMonths}
@@ -44,6 +48,8 @@ const DatePickerModal = ({
             setMonth={setMonth}
             getYear={getYear}
             yearTable={yearTable}
+            onPrev={onPrev}
+            onNext={onNext}
           />
         </div>
       </div>

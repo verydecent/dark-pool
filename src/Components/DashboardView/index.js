@@ -116,6 +116,7 @@ class DashboardView extends React.Component {
     // View methods
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleMonthTable = this.toggleMonthTable.bind(this);
+    this.toggleYearTable = this.toggleYearTable.bind(this);
 
     // Graph methods
     this.selectView = this.selectView.bind(this);
@@ -132,6 +133,8 @@ class DashboardView extends React.Component {
     this.getDates = this.getDates.bind(this);
     this.yearTable = this.yearTable.bind(this);
     this.setYear = this.setYear.bind(this);
+    this.onPrev = this.onPrev.bind(this);
+    this.onNext = this.onNext.bind(this);
   }
 
   selectView(timeFrame) {
@@ -154,7 +157,16 @@ class DashboardView extends React.Component {
   toggleMonthTable() {
     this.setState({
       // ...this.state,
-      isMonthTableVisible: !this.state.isMonthTableVisible
+      isMonthTableVisible: !this.state.isMonthTableVisible,
+      isDateTableVisible: !this.state.isDateTableVisible
+    });
+  }
+
+  toggleYearTable() {
+    this.setState({
+      ...this.state,
+      isYearTableVisible: !this.state.isYearTableVisible,
+      isDateTableVisible: !this.state.isDateTableVisible
     });
   }
 
@@ -212,7 +224,8 @@ class DashboardView extends React.Component {
     this.setState({
       ...this.state,
       dateObject: dateObject,
-      isMonthTableVisible: !this.state.isMonthTableVisible
+      isMonthTableVisible: !this.state.isMonthTableVisible,
+      isDateTableVisible: !this.state.isDateTableVisible
     });
   }
 
@@ -231,7 +244,7 @@ class DashboardView extends React.Component {
   // Produces JSX for year table
 
   yearTable(year) {
-    const nextTen = moment().set('year', year).add('year', 12).format('Y');
+    const nextTen = moment().set('year', year).add(12, 'year').format('Y');
 
     const twelveYears = this.getDates(year, nextTen);
 
@@ -282,9 +295,38 @@ class DashboardView extends React.Component {
     let dateObject = Object.assign({}, this.state.dateObject);
     dateObject = moment(dateObject).set('year', year);
     this.setState({
+      isYearTableVisible: !this.state.isYearTableVisible,
+      isMonthTableVisible: !this.state.isMonthTableVisible,
       dateObject: dateObject
     });
   }
+
+  onPrev() {
+    let curr = '';
+    if (this.state.isMonthTableVisible) {
+      curr = 'month';
+    }
+    else {
+      curr = 'year';
+    }
+    this.setState({
+      dateObject: this.state.dateObject.subtract(1, curr)
+    });
+  }
+
+  onNext() {
+    let curr = '';
+    if (this.state.isMonthTableVisible) {
+      curr = 'month';
+    }
+    else {
+      curr = 'year';
+    }
+    this.setState({
+      dateObject: this.state.dateObject.add(1, curr)
+    });
+  }
+
 
 
   render() {
@@ -309,6 +351,7 @@ class DashboardView extends React.Component {
           isYearTableVisible={this.state.isYearTableVisible}
           toggleModal={this.toggleModal}
           toggleMonthTable={this.toggleMonthTable}
+          toggleYearTable={this.toggleYearTable}
           getFirstDayOfMonth={this.getFirstDayOfMonth}
           getWeekdays={this.getWeekdays}
           getAllMonths={this.getAllMonths}
@@ -317,6 +360,8 @@ class DashboardView extends React.Component {
           getMonth={this.getMonth}
           getYear={this.getYear}
           setMonth={this.setMonth}
+          onPrev={this.onPrev}
+          onNext={this.onNext}
           // Prouces JSX
           yearTable={this.yearTable}
         />
