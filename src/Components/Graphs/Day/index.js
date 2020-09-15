@@ -1,5 +1,5 @@
 import React from 'react';
-import { barChartDayData, lineChartDayData, areaChartDayData } from '../../../Utilities/graphHelpers';
+import { barChartDayData, lineChartDayData, areaChartDayData } from './helpers';
 import { LineGraph, BarGraph, AreaGraph } from '../Day/graphs';
 
 const DayContainer = ({
