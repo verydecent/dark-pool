@@ -2,7 +2,7 @@ import React from 'react';
 import { barChartDayData, lineChartDayData, areaChartDayData } from './helpers';
 import { LineGraph, BarGraph, AreaGraph } from '../Day/graphs';
 
-const DayContainer = ({
+const YearContainer = ({
   tasks,
   graphType
 }) => {
@@ -23,4 +23,4 @@ const DayContainer = ({
   )
 }
 
-export default DayContainer;
+export default YearContainer;
