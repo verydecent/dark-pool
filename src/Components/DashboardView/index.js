@@ -116,7 +116,8 @@ class DashboardView extends React.Component {
     };
 
     // HTTP Request handlers
-    this.getTasksByTimeFrame = this.getTasksByDay.bind(this);
+    this.getTasksByTimeFrame = this.getTasksByTimeFrame.bind(this);
+
     // Graph methods
     this.selectTimeFrame = this.selectTimeFrame.bind(this);
 
