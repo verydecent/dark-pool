@@ -112,7 +112,9 @@ class DashboardView extends React.Component {
 
       // Date Picker
       dateObject: moment(),
-      selectedDay: ''
+      selectedDay: '',
+      beginning: '',
+      end: ''
     };
 
     // HTTP Request handlers
@@ -156,15 +158,24 @@ class DashboardView extends React.Component {
       })
       .catch(error => {
         console.log('error', error);
-      })
+      });
   }
 
   selectTimeFrame(timeFrame) {
-    console.log('timeFrame', timeFrame);
+    let beginning;
+    let end;
+    let date = Object.assign({}, this.state.dateObject);
+
+    date = moment(date);
+    beginning = date.startOf(timeFrame).toDate();
+    end = date.endOf(timeFrame).toDate();
+
     this.setState(prevState => {
       return {
         ...prevState,
-        chartTimeFrame: timeFrame
+        chartTimeFrame: timeFrame,
+        beginning: beginning,
+        end: end,
       }
     });
   }
