@@ -115,13 +115,16 @@ class DashboardView extends React.Component {
       selectedDay: ''
     };
 
+    // HTTP Request handlers
+    this.getTasksByTimeFrame = this.getTasksByDay.bind(this);
+    // Graph methods
+    this.selectTimeFrame = this.selectTimeFrame.bind(this);
+
     // View methods
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleMonthTable = this.toggleMonthTable.bind(this);
     this.toggleYearTable = this.toggleYearTable.bind(this);
 
-    // Graph methods
-    this.selectView = this.selectView.bind(this);
 
     // Date Picker methods
     this.getFirstDayOfMonth = this.getFirstDayOfMonth.bind(this);
@@ -138,15 +141,24 @@ class DashboardView extends React.Component {
     this.onPrev = this.onPrev.bind(this);
     this.onNext = this.onNext.bind(this);
     this.onDayClick = this.onDayClick.bind(this);
-
-    // HTTP Request handlers
-    this.getTasksByDay = this.getTasksByDay.bind(this);
-    this.getTasksByWeek = this.getTasksByWeek.bind(this);
-    this.getTasksByMonth = this.getTasksByMonth.bind(this);
-    this.getTasksByYear = this.getTasksByYear.bind(this);
   }
 
-  selectView(timeFrame) {
+  getTasksByTimeFrame() {
+    // Time frame can be day, week, month, or year
+    const { timeFrame } = this.state;
+    // Make 4 backend endpoints based on timeframe
+    const url = `http://localhost:3000/tasks/${timeFrame}`;
+    axios.get('/')
+      .then(response => {
+        // Then setState
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
+
+  selectTimeFrame(timeFrame) {
     console.log('timeFrame', timeFrame);
     this.setState(prevState => {
       return {
@@ -343,68 +355,13 @@ class DashboardView extends React.Component {
     }, () => console.log('Selected day', d));
   }
 
-
-  // Calling data based on View
-  callData() {
-    // Need current time frame
-    // Then change to start/end of date
-    // axios.get()
-
-    // Set data to state and have it passed down to <TimeFrame data = {this.state.data} /> ?
-    // Select Date: Day, Week, Month, Year
-    // Axios call based on this
-    // Set to state, then pass down to each component, Day, Week, Month, Year
-    // Inside each of those components, we will apply graph data helper functions and then pass to individual graphs
-  }
-
-
-  getTasksByDay() {
-    axios.get('/')
-      .then(response => {
-        console.log('response', response);
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
-  }
-
-  getTasksByWeek() {
-    axios.get('/')
-      .then(response => {
-        console.log('response', response);
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
-  }
-
-  getTasksByMonth() {
-    axios.get('/')
-      .then(response => {
-        console.log('response', response);
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
-  }
-
-  getTasksByYear() {
-    axios.get('/')
-      .then(response => {
-        console.log('response', response);
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
-  }
-
   render() {
     const ButtonList = () => (
       <>
-        <button onClick={() => this.selectView('day')}>Day View</button>
-        <button onClick={() => this.selectView('week')}>Week View</button>
-        <button onClick={() => this.selectView('month')}>Month View</button>
-        <button onClick={() => this.selectView('year')}>Year View</button>
+        <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
+        <button onClick={() => this.selectTimeFrame('week')}>Week View</button>
+        <button onClick={() => this.selectTimeFrame('month')}>Month View</button>
+        <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
         <button onClick={() => this.toggleModal()}>Date Picker</button>
       </>
     );
