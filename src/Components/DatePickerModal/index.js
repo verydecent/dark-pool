@@ -6,7 +6,9 @@ import DatePicker from './DatePicker';
 const DatePickerModal = ({
   // Values
   isModalVisible,
+  isDateTableVisible,
   isMonthTableVisible,
+  isYearTableVisible,
   // Methods
   toggleModal,
   toggleMonthTable,
@@ -29,7 +31,9 @@ const DatePickerModal = ({
         <Overlay toggleModal={toggleModal} />
         <div className='date-picker-modal-container'>
           <DatePicker
+            isDateTableVisible={isDateTableVisible}
             isMonthTableVisible={isMonthTableVisible}
+            isYearTableVisible={isYearTableVisible}
             toggleMonthTable={toggleMonthTable}
             getFirstDayOfMonth={getFirstDayOfMonth}
             getWeekdays={getWeekdays}

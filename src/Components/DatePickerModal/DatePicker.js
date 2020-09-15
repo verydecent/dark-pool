@@ -3,7 +3,9 @@ import './styles.css';
 import shortid from 'shortid';
 
 const DatePicker = ({
+  isDateTableVisible,
   isMonthTableVisible,
+  isYearTableVisible,
   toggleMonthTable,
   getFirstDayOfMonth,
   getWeekdays,
@@ -126,10 +128,10 @@ const DatePicker = ({
           <h1 onClick={() => toggleMonthTable()}>{getMonth()}</h1>
           <h1>{getYear()}</h1>
         </div>
-        {isMonthTableVisible && yearTable(getYear())}
+        {isYearTableVisible && yearTable(getYear())}
         {isMonthTableVisible && MonthList()}
         {
-          !isMonthTableVisible && (
+          isDateTableVisible && (
             <table>
               <thead>
                 <tr className='date-picker-weekdays-header'>

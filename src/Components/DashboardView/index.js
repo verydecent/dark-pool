@@ -103,6 +103,8 @@ class DashboardView extends React.Component {
 
       // View
       isModalVisible: true,
+      isDateTableVisible: true,
+      isYearTableVisible: false,
       isMonthTableVisible: false,
       // Graph
       chartTimeFrame: 'day',
@@ -302,7 +304,9 @@ class DashboardView extends React.Component {
       <div className='dashboard-view'>
         <DatePickerModal
           isModalVisible={this.state.isModalVisible}
+          isDateTableVisible={this.state.isDateTableVisible}
           isMonthTableVisible={this.state.isMonthTableVisible}
+          isYearTableVisible={this.state.isYearTableVisible}
           toggleModal={this.toggleModal}
           toggleMonthTable={this.toggleMonthTable}
           getFirstDayOfMonth={this.getFirstDayOfMonth}
