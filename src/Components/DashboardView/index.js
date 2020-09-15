@@ -2,29 +2,13 @@ import React from 'react';
 import withNav from '../Hoc/withNav';
 import './styles.css';
 import { isAuthenticated } from '../../Utilities/helpers';
-import {
-  AreaChart,
-  Area,
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid, Cell
-} from 'recharts';
 import Day from '../Graphs/Day';
 import DatePickerModal from '../DatePickerModal';
 import moment from 'moment';
-import { faStarAndCrescent } from '@fortawesome/free-solid-svg-icons';
 import shortid from 'shortid';
 import axios from '../../Utilities/axiosConfig';
 
-
 /*
-
 Graph options
 
 Showing percentage complete
@@ -35,7 +19,6 @@ Showing amounts of subtasks
 - Total
 - Complete
 - Incomplete
-
 
 Helpers
 
@@ -84,7 +67,6 @@ Year
   beginningOfJanuraryFirst(SelectedYear) - endOfDecemberThirtyFirst(selectedYear)
 
 
-
 Have dashboard control view selection while graph class components are responsible for making the proper get request
 
 Would be expensive to make request for YTD data
@@ -118,7 +100,7 @@ class DashboardView extends React.Component {
     };
 
     // HTTP Request handlers
-    this.getTasksByTimeFrame = this.getTasksByTimeFrame.bind(this);
+    this.getTasks = this.getTasks.bind(this);
 
     // Graph methods
     this.selectTimeFrame = this.selectTimeFrame.bind(this);
@@ -146,12 +128,13 @@ class DashboardView extends React.Component {
     this.onDayClick = this.onDayClick.bind(this);
   }
 
-  getTasksByTimeFrame() {
+  getTasks() {
     // Time frame can be day, week, month, or year
-    const { timeFrame } = this.state;
+    const { userId, beginning, end } = this.state;
+    console.log(this.state)
+
     // Make 4 backend endpoints based on timeframe
-    const url = `http://localhost:3000/tasks/${timeFrame}`;
-    axios.get('/')
+    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
       .then(response => {
         // Then setState
         console.log('response', response);
@@ -162,6 +145,7 @@ class DashboardView extends React.Component {
   }
 
   selectTimeFrame(timeFrame) {
+    console.log('selectTF')
     let beginning;
     let end;
     let date = Object.assign({}, this.state.dateObject);
@@ -177,7 +161,7 @@ class DashboardView extends React.Component {
         beginning: beginning,
         end: end,
       }
-    });
+    }, () => this.getTasks());
   }
 
   toggleModal() {
@@ -371,7 +355,7 @@ class DashboardView extends React.Component {
     const ButtonList = () => (
       <>
         <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
-        <button onClick={() => this.selectTimeFrame('week')}>Week View</button>
+        <button onClick={() => this.selectTimeFrame('isoWeek')}>Week View</button>
         <button onClick={() => this.selectTimeFrame('month')}>Month View</button>
         <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
         <button onClick={() => this.toggleModal()}>Date Picker</button>
