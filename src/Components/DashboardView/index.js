@@ -132,7 +132,7 @@ class DashboardView extends React.Component {
   }
 
   componentDidMount() {
-    const userId = isAuthenticated()._id;
+    const { userId } = this.state;
     let beginning = moment().startOf('day').toDate();
     let end = moment().endOf('day').toDate();
 
@@ -153,7 +153,6 @@ class DashboardView extends React.Component {
   getTasks() {
     // Time frame can be day, week, month, or year
     const { userId, beginning, end } = this.state;
-    console.log(this.state)
 
     // Make 4 backend endpoints based on timeframe
     axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
@@ -171,7 +170,6 @@ class DashboardView extends React.Component {
   }
 
   selectTimeFrame(timeFrame) {
-    console.log('selectTF')
     let beginning;
     let end;
     let date = Object.assign({}, this.state.dateObject);
@@ -416,6 +414,7 @@ class DashboardView extends React.Component {
           <ButtonList />
           <GraphContainer
             graphTimeFrame={this.state.graphTimeFrame}
+            tasks={this.state.tasks}
           />
         </div>
       </div>
