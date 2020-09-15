@@ -17,7 +17,8 @@ const DatePickerModal = ({
   getToday,
   getMonth,
   setMonth,
-  getYear
+  getYear,
+  yearTable
 }) => {
   if (!isModalVisible) {
     return null;
@@ -38,6 +39,7 @@ const DatePickerModal = ({
             getMonth={getMonth}
             setMonth={setMonth}
             getYear={getYear}
+            yearTable={yearTable}
           />
         </div>
       </div>

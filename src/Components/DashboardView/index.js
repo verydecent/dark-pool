@@ -13,11 +13,13 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  CartesianGrid
+  CartesianGrid, Cell
 } from 'recharts';
 import Day from '../Graphs/Day';
 import DatePickerModal from '../DatePickerModal';
 import moment from 'moment';
+import { faStarAndCrescent } from '@fortawesome/free-solid-svg-icons';
+import shortid from 'shortid';
 
 
 /*
@@ -125,6 +127,9 @@ class DashboardView extends React.Component {
     this.getMonth = this.getMonth.bind(this);
     this.setMonth = this.setMonth.bind(this);
     this.getYear = this.getYear.bind(this);
+    this.getDates = this.getDates.bind(this);
+    this.yearTable = this.yearTable.bind(this);
+    this.setYear = this.setYear.bind(this);
   }
 
   selectView(timeFrame) {
@@ -193,6 +198,10 @@ class DashboardView extends React.Component {
     return this.state.dateObject.format('Y');
   }
 
+  getNextTenYears() {
+    return moment().set('year',)
+  }
+
   setMonth(month) {
     const monthNumber = this.getAllMonths().indexOf(month);
     let dateObject = Object.assign({}, this.state.dateObject);
@@ -202,6 +211,76 @@ class DashboardView extends React.Component {
       ...this.state,
       dateObject: dateObject,
       isMonthTableVisible: !this.state.isMonthTableVisible
+    });
+  }
+
+  getDates(startDate, endDate) {
+    const dateArray = [];
+    let currentDate = moment(startDate);
+    const stopDate = moment(endDate);
+    while (currentDate <= stopDate) {
+      dateArray.push(moment(currentDate).format('YYYY'));
+      currentDate = moment(currentDate).add(1, 'year');
+    }
+
+    return dateArray;
+  }
+
+  // Produces JSX for year table
+
+  yearTable(year) {
+    const nextTen = moment().set('year', year).add('year', 12).format('Y');
+
+    const twelveYears = this.getDates(year, nextTen);
+
+    const months = twelveYears.map(year => {
+      return (
+        <td
+          key={shortid.generate()}
+          className=''
+          onClick={e => {
+            this.setYear(year)
+          }}
+        >
+          {year}
+        </td>
+      );
+    });
+
+    let rows = [];
+    let cells = [];
+
+    months.forEach((row, i) => {
+      if (i % 3 !== 0 || i == 0) {
+        cells.push(row);
+      }
+      else {
+        rows.push(cells);
+        cells = [];
+        cells.push(row);
+      }
+    });
+    rows.push(cells);
+
+    const YearList = rows.map((d, i) => <tr key={shortid.generate()}>{d}</tr>);
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th colSpan='4'>Select a Year</th>
+          </tr>
+        </thead>
+        <tbody>{YearList}</tbody>
+      </table>
+    );
+  }
+
+  setYear(year) {
+    let dateObject = Object.assign({}, this.state.dateObject);
+    dateObject = moment(dateObject).set('year', year);
+    this.setState({
+      dateObject: dateObject
     });
   }
 
@@ -234,6 +313,8 @@ class DashboardView extends React.Component {
           getMonth={this.getMonth}
           getYear={this.getYear}
           setMonth={this.setMonth}
+          // Prouces JSX
+          yearTable={this.yearTable}
         />
         <ButtonList />
         {/* {DayConditonal} */}

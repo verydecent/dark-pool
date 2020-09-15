@@ -12,7 +12,8 @@ const DatePicker = ({
   getToday,
   getMonth,
   setMonth,
-  getYear
+  getYear,
+  yearTable
 }) => {
 
   const weekdaysHeader = getWeekdays().map(day => {
@@ -112,6 +113,12 @@ const DatePicker = ({
     }
   }
 
+  // Year Table
+  const YearTable = () => {
+    const months = [];
+
+  }
+
   return (
     <div className='date-picker'>
       <div className='date-picker-container'>
@@ -119,6 +126,7 @@ const DatePicker = ({
           <h1 onClick={() => toggleMonthTable()}>{getMonth()}</h1>
           <h1>{getYear()}</h1>
         </div>
+        {isMonthTableVisible && yearTable(getYear())}
         {isMonthTableVisible && MonthList()}
         {
           !isMonthTableVisible && (
