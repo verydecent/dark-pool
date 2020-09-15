@@ -27,7 +27,9 @@ export const barChartDayData = (tasks) => {
     if (task.subtasks.length === 0) {
       return {
         title: task.title,
-        percent: 0
+        total: 0,
+        complete: 0,
+        incomplete: 0
       }
     }
     else {
@@ -37,11 +39,13 @@ export const barChartDayData = (tasks) => {
       });
 
       const total = task.subtasks.length;
-      const result = completedCount / total;
+      const incomplete = total - completedCount;
 
       return {
         title: task.title,
-        percent: result
+        total: total,
+        complete: completedCount,
+        incomplete: incomplete
       }
     }
   });
