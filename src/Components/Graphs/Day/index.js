@@ -22,7 +22,6 @@ class DayChart extends React.Component {
   }
 
   render() {
-    console.log('props', this.props);
     // default render will be percent complete
 
     const ButtonList = () => (
@@ -33,9 +32,9 @@ class DayChart extends React.Component {
       </>
     );
 
-    const lineData = lineChartDayData(this.state.tasks);
-    const barData = barChartDayData(this.state.tasks);
-    const areaData = areaChartDayData(this.state.tasks);
+    const lineData = lineChartDayData(this.props.tasks);
+    const barData = barChartDayData(this.props.tasks);
+    const areaData = areaChartDayData(this.props.tasks);
 
     const LineChartConditional = this.state.chartType === 'line' ? <DayLineChart data={lineData} /> : null;
     const BarChartConditional = this.state.chartType === 'bar' ? <DayBarChart data={barData} /> : null;

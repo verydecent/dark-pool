@@ -92,6 +92,7 @@ class DashboardView extends React.Component {
       isMonthTableVisible: false,
       // Graph
       graphTimeFrame: 'day',
+      graphChartType: 'line',
       // Tasks for Graph
       tasks: [],
 
@@ -107,6 +108,7 @@ class DashboardView extends React.Component {
 
     // Graph methods
     this.selectTimeFrame = this.selectTimeFrame.bind(this);
+    this.selectGraphType = this.selectGraphType.bind(this);
 
     // View methods
     this.toggleModal = this.toggleModal.bind(this);
@@ -167,6 +169,13 @@ class DashboardView extends React.Component {
       .catch(error => {
         console.log('error', error);
       });
+  }
+
+  selectGraphType(type) {
+    this.setState({
+      ...this.state,
+      graphChartType: type
+    });
   }
 
   selectTimeFrame(timeFrame) {
@@ -415,6 +424,8 @@ class DashboardView extends React.Component {
           <GraphContainer
             graphTimeFrame={this.state.graphTimeFrame}
             tasks={this.state.tasks}
+
+            selectGraphType={this.selectGraphType}
           />
         </div>
       </div>

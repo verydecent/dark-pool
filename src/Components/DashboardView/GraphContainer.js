@@ -6,10 +6,11 @@ const GraphContainer = ({
   tasks,
   graphTimeFrame,
   // Methods
+  selectGraphType
 }) => {
   return (
     <div className='dashboard-view-graph-container'>
-      {graphTimeFrame === 'day' && <Day tasks={tasks} />}
+      {graphTimeFrame === 'day' && <Day selectGraphType={selectGraphType} tasks={tasks} />}
       {graphTimeFrame === 'isoWeek' && <Day />}
       {graphTimeFrame === 'month' && <Day />}
       {graphTimeFrame === 'year' && <Day />}

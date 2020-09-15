@@ -1,4 +1,4 @@
-// Produce data for Day Line Chart
+// Line graph will display percent complete
 export const lineChartDayData = (tasks) => {
   const data = tasks.map(task => {
     const total = task.subtasks.length;
@@ -21,6 +21,7 @@ export const lineChartDayData = (tasks) => {
   return data;
 }
 
+// Bar graph will display total, complete, incomplete
 export const barChartDayData = (tasks) => {
   const data = tasks.map(task => {
     if (task.subtasks.length === 0) {
@@ -48,6 +49,7 @@ export const barChartDayData = (tasks) => {
   return data;
 }
 
+// Area graph will show complete, incomplete
 export const areaChartDayData = (tasks) => {
   const data = tasks.map(task => {
     if (task.subtasks.length === 0) {
