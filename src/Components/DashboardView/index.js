@@ -92,6 +92,8 @@ class DashboardView extends React.Component {
       isMonthTableVisible: false,
       // Graph
       graphTimeFrame: 'day',
+      // Tasks for Graph
+      tasks: [],
 
       // Date Picker
       dateObject: moment(),
@@ -129,6 +131,25 @@ class DashboardView extends React.Component {
     this.onDayClick = this.onDayClick.bind(this);
   }
 
+  componentDidMount() {
+    const userId = isAuthenticated()._id;
+    let beginning = moment().startOf('day').toDate();
+    let end = moment().endOf('day').toDate();
+
+    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
+      .then(response => {
+        // Then setState
+        console.log('response', response);
+        this.setState({
+          ...this.state,
+          tasks: response.data
+        });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }
+
   getTasks() {
     // Time frame can be day, week, month, or year
     const { userId, beginning, end } = this.state;
@@ -139,6 +160,10 @@ class DashboardView extends React.Component {
       .then(response => {
         // Then setState
         console.log('response', response);
+        this.setState({
+          ...this.state,
+          tasks: response.data
+        });
       })
       .catch(error => {
         console.log('error', error);
