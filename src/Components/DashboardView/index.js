@@ -2,28 +2,14 @@ import React from 'react';
 import withNav from '../Hoc/withNav';
 import './styles.css';
 import { isAuthenticated } from '../../Utilities/helpers';
-import {
-  AreaChart,
-  Area,
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid, Cell
-} from 'recharts';
 import Day from '../Graphs/Day';
 import DatePickerModal from '../DatePickerModal';
 import moment from 'moment';
-import { faStarAndCrescent } from '@fortawesome/free-solid-svg-icons';
 import shortid from 'shortid';
-
+import axios from '../../Utilities/axiosConfig';
+import GraphContainer from './GraphContainer';
 
 /*
-
 Graph options
 
 Showing percentage complete
@@ -34,7 +20,6 @@ Showing amounts of subtasks
 - Total
 - Complete
 - Incomplete
-
 
 Helpers
 
@@ -60,7 +45,7 @@ level 2 buttons => {
 
 State = {
   view: (can be day, view, week, month) default - day
-  chartType: (can be percentBarChart, tasksLineChart, subtaskLineChart) default - overall percent complete
+  graphType: (can be percentBarChart, tasksLineChart, subtaskLineChart) default - overall percent complete
 }
 
 
@@ -83,7 +68,6 @@ Year
   beginningOfJanuraryFirst(SelectedYear) - endOfDecemberThirtyFirst(selectedYear)
 
 
-
 Have dashboard control view selection while graph class components are responsible for making the proper get request
 
 Would be expensive to make request for YTD data
@@ -102,25 +86,35 @@ class DashboardView extends React.Component {
       userId: isAuthenticated()._id,
 
       // View
-      isModalVisible: true,
+      isModalVisible: false,
       isDateTableVisible: true,
       isYearTableVisible: false,
       isMonthTableVisible: false,
       // Graph
-      chartTimeFrame: 'day',
+      timeFrame: 'day',
+      graphType: 'bar',
+      // Tasks for Graph
+      tasks: [],
 
       // Date Picker
       dateObject: moment(),
-      selectedDay: ''
+      selectedDay: '',
+      beginning: '',
+      end: ''
     };
+
+    // HTTP Request handlers
+    this.getTasks = this.getTasks.bind(this);
+
+    // Graph methods
+    this.selectTimeFrame = this.selectTimeFrame.bind(this);
+    this.selectGraphType = this.selectGraphType.bind(this);
 
     // View methods
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleMonthTable = this.toggleMonthTable.bind(this);
     this.toggleYearTable = this.toggleYearTable.bind(this);
 
-    // Graph methods
-    this.selectView = this.selectView.bind(this);
 
     // Date Picker methods
     this.getFirstDayOfMonth = this.getFirstDayOfMonth.bind(this);
@@ -139,14 +133,65 @@ class DashboardView extends React.Component {
     this.onDayClick = this.onDayClick.bind(this);
   }
 
-  selectView(timeFrame) {
-    console.log('timeFrame', timeFrame);
+  componentDidMount() {
+    const { userId } = this.state;
+    let beginning = moment().startOf('day').toDate();
+    let end = moment().endOf('day').toDate();
+
+    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          tasks: response.data
+        });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }
+
+  getTasks() {
+    // Time frame can be day, week, month, or year
+    const { userId, beginning, end } = this.state;
+    // Make 4 backend endpoints based on timeframe
+    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
+      .then(response => {
+        console.log()
+        // Then setState
+        this.setState({
+          ...this.state,
+          tasks: response.data
+        });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }
+
+  selectGraphType(type) {
+    this.setState({
+      ...this.state,
+      graphType: type
+    });
+  }
+
+  selectTimeFrame(timeFrame) {
+    let beginning;
+    let end;
+    let date = Object.assign({}, this.state.dateObject);
+
+    date = moment(date);
+    beginning = date.startOf(timeFrame).toDate();
+    end = date.endOf(timeFrame).toDate();
+
     this.setState(prevState => {
       return {
         ...prevState,
-        chartTimeFrame: timeFrame
+        timeFrame: timeFrame,
+        beginning: beginning,
+        end: end,
       }
-    });
+    }, () => this.getTasks());
   }
 
   toggleModal() {
@@ -338,16 +383,14 @@ class DashboardView extends React.Component {
 
   render() {
     const ButtonList = () => (
-      <>
-        <button onClick={() => this.selectView('day')}>Day View</button>
-        <button onClick={() => this.selectView('week')}>Week View</button>
-        <button onClick={() => this.selectView('month')}>Month View</button>
-        <button onClick={() => this.selectView('year')}>Year View</button>
+      <div>
+        <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
+        <button onClick={() => this.selectTimeFrame('isoWeek')}>Week View</button>
+        <button onClick={() => this.selectTimeFrame('month')}>Month View</button>
+        <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
         <button onClick={() => this.toggleModal()}>Date Picker</button>
-      </>
+      </div>
     );
-
-    const DayConditonal = this.state.chartTimeFrame === 'day' ? <Day /> : null;
 
     return (
       <div className='dashboard-view'>
@@ -373,8 +416,16 @@ class DashboardView extends React.Component {
           // Prouces JSX
           yearTable={this.yearTable}
         />
-        <ButtonList />
-        {/* {DayConditonal} */}
+        <div className='dashboard-view-container'>
+          <ButtonList />
+          <GraphContainer
+            dateObject={this.state.dateObject}
+            timeFrame={this.state.timeFrame}
+            tasks={this.state.tasks}
+            graphType={this.state.graphType}
+            selectGraphType={this.selectGraphType}
+          />
+        </div>
       </div>
     );
   }
