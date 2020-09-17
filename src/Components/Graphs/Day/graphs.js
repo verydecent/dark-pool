@@ -26,26 +26,6 @@ const toPercent = (decimal, fixed = 0) => {
   return `${(decimal * 100).toFixed(fixed)}%`;
 };
 
-const renderAreaChartTooltipContent = (o) => {
-  const { payload, label } = o;
-  const total = payload.reduce((result, entry) => (result + entry.value), 0);
-
-  return (
-    <div className="customized-tooltip-content">
-      <p className="total">{`${label} (Total: ${total})`}</p>
-      <ul className="list">
-        {
-          payload.map((entry, index) => (
-            <li key={`item-${index}`} style={{ color: entry.color }}>
-              {`${entry.name}: ${entry.value} (${getPercent(entry.value, total)})`}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  );
-};
-
 const renderLineChartTooltipContent = (o) => {
   const { payload, label } = o;
   return (

@@ -41,16 +41,16 @@ export const formatData = (weekObj) => {
     const dayTasks = weekObj[i];
 
     if (dayTasks.length === 0) {
-      data[i - 1] = {
-        day: days[i - 1],
+      data.push({
+        day: days[i],
         percent: 0
-      }
+      });
     }
     else {
-      data[i - 1] = {
-        day: days[i - 1],
+      data.push({
+        day: days[i],
         percent: findDailyPercentComplete(dayTasks)
-      }
+      });
     }
   }
 
