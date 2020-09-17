@@ -1,4 +1,4 @@
-export const sortDays = tasks => {
+export const sortWeek = tasks => {
   const weekdays = {};
   const numbersInAWeek = 7;
 
@@ -14,7 +14,7 @@ export const sortDays = tasks => {
   return weekdays;
 }
 
-export const findPercentComplete = tasks => {
+export const findDailyPercentComplete = tasks => {
   let total = 0;
   let completed = 0;
 
@@ -37,7 +37,7 @@ export const formatData = (weekObj) => {
   const data = [];
   const keys = Object.keys(weekObj);
 
-  for (let i = 1; i < keys.length + 1; i++) {
+  for (let i = 1; i <= keys.length; i++) {
     const dayTasks = weekObj[i];
 
     if (dayTasks.length === 0) {
@@ -49,7 +49,7 @@ export const formatData = (weekObj) => {
     else {
       data[i - 1] = {
         day: days[i - 1],
-        percent: findPercentComplete(dayTasks)
+        percent: findDailyPercentComplete(dayTasks)
       }
     }
   }
