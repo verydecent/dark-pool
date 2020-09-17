@@ -66,7 +66,6 @@ export const LineGraph = ({
       />
       <YAxis
         tickFormatter={toPercent}
-        interval={0}
       />
       <CartesianGrid
         strokeDasharray="3 3"
