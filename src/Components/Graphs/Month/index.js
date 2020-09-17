@@ -1,20 +1,19 @@
 import React from 'react';
-
+import { sortMonth, formatData } from './helpers';
+import { LineGraph } from './graphs';
 
 const MonthContainer = ({
   tasks,
-  graphType
+  graphType,
+  dateObject
 }) => {
+  const sortedData = sortMonth(tasks, dateObject.daysInMonth());
 
-  // const LineChartConditional = graphType === 'line' ? <LineGraph data={lineData} /> : null;
-  // const BarChartConditional = graphType === 'bar' ? <BarGraph data={barData} /> : null;
-  // const AreaChartConditional = graphType === 'area' ? <AreaGraph data={areaData} /> : null;
+  const percentData = formatData(sortedData);
 
   return (
     <div className=''>
-      {/* {LineChartConditional}
-      {BarChartConditional}
-      {AreaChartConditional} */}
+      {graphType === 'line' && <LineGraph data={percentData} />}
     </div>
   )
 }

@@ -55,7 +55,6 @@ const renderLineChartTooltipContent = (o) => {
 export const LineGraph = ({
   data
 }) => {
-  console.log(data);
   return (
     <LineChart
       width={1000}
