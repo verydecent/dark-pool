@@ -4,42 +4,50 @@ import moment from 'moment';
 // Then we only ahve a couple of functions that calculate for complete, incomplete, total, and percent complete etc.
 
 export const sortIntoWeekDays = tasks => {
-  const days = {
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-    5: [],
-    6: [],
-    7: []
-  };
+  console.log(tasks);
+  if (tasks.length === 0) {
+    return null;
+  }
+  else {
+    const days = {
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: []
+    };
 
-  tasks.forEach(task => {
-    const day = moment(task.createAt).day();
-    if (day === 1) {
-      days[1].push(task);
-    }
-    else if (day === 2) {
-      days[2].push(task);
-    }
-    else if (day === 3) {
-      days[3].push(task);
-    }
-    else if (day === 4) {
-      days[4].push(task);
-    }
-    else if (day === 5) {
-      days[5].push(task);
-    }
-    else if (day === 6) {
-      days[6].push(task);
-    }
-    else if (day === 7) {
-      days[7].push(task);
-    }
-  });
+    tasks.forEach(task => {
+      const mongooseDate = task.createdAt;
+      const day = moment(mongooseDate).day();
 
-  return days;
+      if (day === 1) {
+        days[1].push(task);
+      }
+      else if (day === 2) {
+        days[2].push(task);
+      }
+      else if (day === 3) {
+        days[3].push(task);
+      }
+      else if (day === 4) {
+        days[4].push(task);
+      }
+      else if (day === 5) {
+        days[5].push(task);
+      }
+      else if (day === 6) {
+        days[6].push(task);
+      }
+      else if (day === 7) {
+        days[7].push(task);
+      }
+    });
+
+    return days;
+  }
 }
 
 // Daily percent complete of Task from array of Subtasks complete
@@ -56,6 +64,7 @@ export const getDailyPercentage = dailyTasks => {
 }
 
 export const formatWeeklyData = (tasks) => {
+
   const sortedTasks = sortIntoWeekDays(tasks);
 
   const keys = Object.keys(sortedTasks);
