@@ -1,5 +1,4 @@
-// Tasks will be from jan 1 - Dec 31
-// Loop and sort into object with 12 properties representing each month
+import { findDailyPercentComplete } from "../Week/helpers";
 
 export const sortYear = tasks => {
   const year = {};
@@ -11,9 +10,33 @@ export const sortYear = tasks => {
 
   for (let x = 0; x < tasks.length; x++) {
     const month = new Date(tasks[x].createdAt).getMonth();
-    console.log('month', month);
     year[month].push(tasks[x]);
   }
 
   return year;
+}
+
+export const formData = yearObj => {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const data = [];
+  const keys = Object.keys(yearObj);
+
+  for (let i = 0; i < keys.length; i++) {
+    const monthlyTasks = yearObj[i];
+
+    if (monthlyTasks.length === 0) {
+      data.push({
+        month: months[i],
+        percent: 0
+      });
+    }
+    else {
+      data.push({
+        month: months[i],
+        percent: findDailyPercentComplete(monthlyTasks)
+      });
+    }
+  }
+
+  return data;
 }
