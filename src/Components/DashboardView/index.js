@@ -419,6 +419,7 @@ class DashboardView extends React.Component {
         <div className='dashboard-view-container'>
           <ButtonList />
           <GraphContainer
+            dateObject={this.state.dateObject}
             timeFrame={this.state.timeFrame}
             tasks={this.state.tasks}
             graphType={this.state.graphType}
