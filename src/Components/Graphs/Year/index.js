@@ -1,24 +1,18 @@
 import React from 'react';
-import { barChartDayData, lineChartDayData, areaChartDayData } from './helpers';
-import { LineGraph, BarGraph, AreaGraph } from '../Day/graphs';
+import { sortYear } from './helpers';
+import { LineGraph } from '../Day/graphs';
 
 const YearContainer = ({
   tasks,
   graphType
 }) => {
-  const lineData = lineChartDayData(tasks);
-  const barData = barChartDayData(tasks);
-  const areaData = areaChartDayData(tasks);
+  const lineData = sortYear(tasks);
 
-  const LineChartConditional = graphType === 'line' ? <LineGraph data={lineData} /> : null;
-  const BarChartConditional = graphType === 'bar' ? <BarGraph data={barData} /> : null;
-  const AreaChartConditional = graphType === 'area' ? <AreaGraph data={areaData} /> : null;
+  // const percentData = formData(lineData);
 
   return (
     <div className=''>
-      {LineChartConditional}
-      {BarChartConditional}
-      {AreaChartConditional}
+      {graphType === 'line' && <LineGraph /* data={percentData} */ />}
     </div>
   )
 }
