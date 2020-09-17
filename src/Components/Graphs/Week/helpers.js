@@ -1,171 +1,58 @@
-import moment from 'moment';
+export const sortDays = tasks => {
+  const weekdays = {};
+  const numbersInAWeek = 7;
 
-// seperators for x axis  weeks - 7 days, months - 28 - 31, year - 12
-// Then we only ahve a couple of functions that calculate for complete, incomplete, total, and percent complete etc.
-
-export const sortIntoWeekDays = tasks => {
-  console.log(tasks);
-  if (tasks.length === 0) {
-    return null;
+  for (let d = 1; d <= numbersInAWeek; d++) {
+    weekdays[d] = [];
   }
-  else {
-    const days = {
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: []
-    };
 
-    tasks.forEach(task => {
-      const mongooseDate = task.createdAt;
-      const day = moment(mongooseDate).day();
-
-      if (day === 1) {
-        days[1].push(task);
-      }
-      else if (day === 2) {
-        days[2].push(task);
-      }
-      else if (day === 3) {
-        days[3].push(task);
-      }
-      else if (day === 4) {
-        days[4].push(task);
-      }
-      else if (day === 5) {
-        days[5].push(task);
-      }
-      else if (day === 6) {
-        days[6].push(task);
-      }
-      else if (day === 7) {
-        days[7].push(task);
-      }
-    });
-
-    return days;
-  }
-}
-
-// Daily percent complete of Task from array of Subtasks complete
-export const getDailyPercentage = dailyTasks => {
-  let subtasksTotal = 0;
-  let subtasksComplete = 0;
-
-  dailyTasks.forEach(task => {
-    subtasksTotal += task.subtasks.length;
-    task.subtasks.forEach(subtask => subtask.complete ? subtasksComplete += 1 : null);
+  tasks.forEach(task => {
+    const day = new Date(task.createdAt).getDay();
+    weekdays[day].push(task);
   });
 
-  return subtasksComplete / subtasksTotal;
+  return weekdays;
 }
 
-export const formatWeeklyData = (tasks) => {
+export const findPercentComplete = tasks => {
+  let total = 0;
+  let completed = 0;
 
-  const sortedTasks = sortIntoWeekDays(tasks);
+  for (let i = 0; i < tasks.length; i++) {
+    total += tasks[i].subtasks.length;
+    for (let x = 0; x < tasks[i].subtasks.length; x++) {
+      if (tasks[i].subtasks[x].complete) {
+        completed += 1;
+      }
+    }
+  }
 
-  const keys = Object.keys(sortedTasks);
+  const percent = parseFloat((completed / total).toFixed(2));
 
+  return percent;
+}
+
+export const formatData = (weekObj) => {
+  const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
   const data = [];
+  const keys = Object.keys(weekObj);
 
-  for (let i = 0; i < keys.length; i++) {
-    const dailyPercent = getDailyPercentage(sortedTasks[i]);
-    data.push(dailyPercent);
+  for (let i = 1; i < keys.length + 1; i++) {
+    const dayTasks = weekObj[i];
+
+    if (dayTasks.length === 0) {
+      data[i - 1] = {
+        day: days[i - 1],
+        percent: 0
+      }
+    }
+    else {
+      data[i - 1] = {
+        day: days[i - 1],
+        percent: findPercentComplete(dayTasks)
+      }
+    }
   }
 
   return data;
 }
-
-// Line Chart final data output
-
-/* const data = [
-
-  {
-    day: 'Monday',
-    percent: 1
-  },
-  {
-    day: 'Tuesday',
-    percent: 1
-  },
-  {
-    day: 'Wednesday',
-    percent: 1
-  },
-  {
-    day: 'Thursday',
-    percent: 1
-  },
-  {
-    day: 'Friday',
-    percent: 1
-  },
-  {
-    day: 'Saturday',
-    percent: 1
-  },
-  {
-    day: 'Sunday',
-    percent: 1
-  }
-
-] */
-
-// Bar Chart final data output
-
-/* const data = [
-
-  {
-    day: 'Monday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  },
-  {
-    day: 'Tuesday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  },
-  {
-    day: 'Wednesday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  },
-  {
-    day: 'Thursday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  },
-  {
-    day: 'Friday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  },
-  {
-    day: 'Saturday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  },
-  {
-    day: 'Sunday',
-    total: 10,
-    complete: 7
-    incomplete: 3
-
-  }
-
-] */

@@ -1,18 +1,20 @@
 import React from 'react';
-import { barGraphData } from './helpers';
+import { sortDays, formatData } from './helpers';
 import { LineGraph } from './graphs';
 
 const WeekContainer = ({
   tasks,
   graphType
 }) => {
-  console.log(barGraphData(tasks));
+  const sortedData = sortDays(tasks);
 
-  const LineChartConditional = graphType === 'line' && <LineGraph data={lineData} />;
+  const percentFormat = formatData(sortedData);
+  console.log('percentFormat', percentFormat);
+  // const LineChartConditional = graphType === 'line' && <LineGraph data={lineData} />;
 
   return (
     <div className=''>
-      {LineChartConditional}
+      {/* {LineChartConditional} */}
     </div>
   )
 }
