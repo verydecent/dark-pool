@@ -13,8 +13,6 @@ export const sortMonth = (tasks, daysInMonth) => {
     monthDays[day].push(tasks[x]);
   }
 
-  console.log(monthDays)
-
   return monthDays;
 }
 
