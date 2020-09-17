@@ -1,9 +1,10 @@
 import React from 'react';
-import { LineChart, Line, xAxis, yAxis } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 export const LineGraph = ({
   data
 }) => {
+  console.log(data);
   return (
     <LineChart
       width={1000}
