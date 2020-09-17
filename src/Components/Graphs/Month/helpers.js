@@ -4,7 +4,7 @@ export const sortMonth = (tasks, daysInMonth) => {
   const monthDays = {};
   const days = daysInMonth;
 
-  for (let i = 1; i <= days; i++) {
+  for (let i = 0; i < days; i++) {
     monthDays[i] = [];
   }
 
@@ -13,6 +13,8 @@ export const sortMonth = (tasks, daysInMonth) => {
     monthDays[day].push(tasks[x]);
   }
 
+  console.log(monthDays)
+
   return monthDays;
 }
 
@@ -20,20 +22,19 @@ export const formatData = (monthObj) => {
   const keys = Object.keys(monthObj);
   const data = [];
 
-  for (let i = 1; i <= keys.length; i++) {
-    const index = i - 1;
+  for (let i = 0; i < keys.length; i++) {
+    const date = parseInt(keys[i]) + 1;
     if (monthObj[i].length === 0) {
-      const o = {
-        date: keys[index],
+      data.push({
+        date: date,
         percent: 0
-      }
-      data[index] = o;
+      });
     }
     else {
-      data[index] = {
-        date: monthObj[index],
+      data.push({
+        date: date,
         percent: findDailyPercentComplete(monthObj[i])
-      }
+      })
     }
   }
 
