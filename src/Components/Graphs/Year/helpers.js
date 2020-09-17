@@ -10,9 +10,10 @@ export const sortYear = tasks => {
   }
 
   for (let x = 0; x < tasks.length; x++) {
-    const month = new Date(tasks[x].createdAt).getMonth;
-    year[month] = (tasks[x]);
+    const month = new Date(tasks[x].createdAt).getMonth();
+    console.log('month', month);
+    year[month].push(tasks[x]);
   }
 
-  console.log('year', year);
+  return year;
 }
