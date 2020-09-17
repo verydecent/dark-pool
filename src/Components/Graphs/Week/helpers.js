@@ -2,7 +2,7 @@ export const sortWeek = tasks => {
   const weekdays = {};
   const numbersInAWeek = 7;
 
-  for (let d = 1; d <= numbersInAWeek; d++) {
+  for (let d = 0; d < numbersInAWeek; d++) {
     weekdays[d] = [];
   }
 
@@ -37,7 +37,7 @@ export const formatData = (weekObj) => {
   const data = [];
   const keys = Object.keys(weekObj);
 
-  for (let i = 1; i <= keys.length; i++) {
+  for (let i = 0; i < keys.length; i++) {
     const dayTasks = weekObj[i];
 
     if (dayTasks.length === 0) {
