@@ -1,5 +1,6 @@
 import React from 'react';
 import Day from '../Graphs/Day';
+import Week from '../Graphs/Week';
 
 const GraphContainer = ({
   // Values
@@ -22,8 +23,8 @@ const GraphContainer = ({
     <div className='dashboard-view-graph-container'>
 
       <GraphTypeButtons />
-      {timeFrame === 'day' && <Day selectGraphType={selectGraphType} tasks={tasks} graphType={graphType} />}
-      {timeFrame === 'isoWeek' && <Day />}
+      {timeFrame === 'day' && <Day tasks={tasks} graphType={graphType} />}
+      {timeFrame === 'isoWeek' && <Week tasks={tasks} graphType={graphType} />}
       {timeFrame === 'month' && <Day />}
       {timeFrame === 'year' && <Day />}
     </div>

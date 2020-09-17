@@ -140,8 +140,6 @@ class DashboardView extends React.Component {
 
     axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
       .then(response => {
-        // Then setState
-        console.log('response', response);
         this.setState({
           ...this.state,
           tasks: response.data
@@ -160,7 +158,6 @@ class DashboardView extends React.Component {
     axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
       .then(response => {
         // Then setState
-        console.log('response', response);
         this.setState({
           ...this.state,
           tasks: response.data
