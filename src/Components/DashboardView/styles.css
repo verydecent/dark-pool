@@ -9,3 +9,6 @@
 	border: 1px solid var(--view-border-color);
 	background: var(--view-background-color);
 }
+
+.dashboard-view-graph-container {
+}

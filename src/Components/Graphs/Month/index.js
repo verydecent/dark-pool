@@ -1,6 +1,6 @@
 import React from 'react';
-import { sortMonth, formatData } from './helpers';
-import { LineGraph } from './graphs';
+import { sortMonth, formatData } from './helper';
+import { LineGraph } from '../dashboardGraphs';
 
 const MonthContainer = ({
   tasks,

@@ -1,6 +1,6 @@
 import React from 'react';
-import { barChartDayData, lineChartDayData, areaChartDayData } from './helpers';
-import { LineGraph, BarGraph, AreaGraph } from '../Day/graphs';
+import { barChartDayData, lineChartDayData, areaChartDayData } from './helper';
+import { LineGraph, BarGraph, AreaGraph } from '../dashboardGraphs';
 
 const DayContainer = ({
   tasks,

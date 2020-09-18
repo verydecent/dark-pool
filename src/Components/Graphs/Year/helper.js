@@ -1,4 +1,4 @@
-import { findDailyPercentComplete } from "../Week/helpers";
+import { findDailyPercentComplete } from "../Week/helper";
 
 export const sortYear = tasks => {
   const year = {};

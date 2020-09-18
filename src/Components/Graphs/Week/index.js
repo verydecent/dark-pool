@@ -1,6 +1,6 @@
 import React from 'react';
-import { sortWeek, formatData } from './helpers';
-import { LineGraph } from './graphs';
+import { sortWeek, formatData } from './helper';
+import { LineGraph } from '../dashboardGraphs';
 
 const WeekContainer = ({
   tasks,

@@ -1,6 +1,6 @@
 import React from 'react';
-import { sortYear, formData } from './helpers';
-import { LineGraph } from '../Day/graphs';
+import { sortYear, formData } from './helper';
+import { LineGraph } from '../dashboardGraphs';
 
 const YearContainer = ({
   tasks,
