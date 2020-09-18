@@ -8,7 +8,7 @@ const Header = ({
       <div className='task-view-header'>
         <div className='task-view-header-title'>
           <h1 className='header-1'>
-            Task List
+            Tasks
           </h1>
         </div>
       </div>
