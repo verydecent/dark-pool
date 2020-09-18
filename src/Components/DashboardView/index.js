@@ -402,46 +402,46 @@ class DashboardView extends React.Component {
 
     return (
       <>
-        <div className='dashboard-view-header'>
+        <div className='data-view'>
 
-          <div className='dashboard-view-header-left'>
-            <div className='dashboard-view-header-top'>
+          <div className='data-view-header-left'>
+            <div className='data-view-header-top'>
               Dashboard Overview
             </div>
-            <div className='dashboard-view-header-bottom'>
-              <div className='dashboard-view-data-box-container'>
-                <div className='dashboard-view-data-box'>
-                  <span className='dashboard-view-data-title'>
+            <div className='data-view-header-bottom'>
+              <div className='data-view-box-container'>
+                <div className='data-view-box'>
+                  <span className='data-view-title'>
                     Subtasks Incomplete
                   </span>
-                  <span className='dashboard-view-data-number'>
+                  <span className='data-view-number'>
                     1234
                   </span>
                 </div>
-                <div className='dashboard-view-data-box'>
-                  <span className='dashboard-view-data-title'>
+                <div className='data-view-box'>
+                  <span className='data-view-title'>
                     Subtasks Completed
                   </span>
-                  <span className='dashboard-view-data-number'>
+                  <span className='data-view-number'>
                     1234
                   </span>
                 </div>
-                <div className='dashboard-view-data-box'>
-                  <span className='dashboard-view-data-title'>
+                <div className='data-view-box'>
+                  <span className='data-view-title'>
                     Subtasks Total
                   </span>
-                  <span className='dashboard-view-data-number'>
+                  <span className='data-view-number'>
                     1234
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <div className='dashboard-view-header-right'>
-            <div className='dashboard-view-header-top'>
+          <div className='data-view-header-right'>
+            <div className='data-view-header-top'>
               Other Title
             </div>
-            <div className='dashboard-view-header-bottom'>
+            <div className='data-view-header-bottom'>
 
             </div>
           </div>
@@ -470,8 +470,15 @@ class DashboardView extends React.Component {
             yearTable={this.yearTable}
           />
           <div className='dashboard-view-container'>
-            <TimeFrameButtons />
-            <GraphTypeButtons />
+            <div className='dashboard-view-header'>
+              <div className='dashboard-view-header-title'>
+                Daily Graph (Weekly, Monthly, Yearly...)
+              </div>
+              <div className='dashboard-view-button-list'>
+                <TimeFrameButtons />
+                <GraphTypeButtons />
+              </div>
+            </div>
             <GraphContainer
               dateObject={this.state.dateObject}
               tasks={this.state.tasks}

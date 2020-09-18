@@ -21,10 +21,11 @@
 /* Header Section */
 .dashboard-view-header {
 	display: flex;
+	justify-content: space-between;
 	width: 100%;
 }
 
-.dashboard-view-header-left {
+.data-view-header-left {
 	width: calc(60% - var(--between-view-margin));
 	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);
@@ -35,7 +36,7 @@
 	padding-right: var(--view-horizontal-padding);
 }
 
-.dashboard-view-header-right {
+.data-view-header-right {
 	width: 40%;
 	margin-left: auto;
 	border-radius: var(--view-border-radius);
@@ -49,12 +50,20 @@
 
 /* Data Box */
 
-.dashboard-view-data-box-container {
+.data-view-box-container {
 	display: flex;
 	justify-content: space-between;
 }
 
-.dashboard-view-data-box {
+.data-view-box {
 	display: flex;
 	flex-direction: column;
+}
+
+
+/* Data View */
+
+.data-view {
+	display: flex;
+	width: 100%;
 }
