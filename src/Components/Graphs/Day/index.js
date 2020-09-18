@@ -10,15 +10,11 @@ const DayContainer = ({
   const barData = barChartDayData(tasks);
   const areaData = areaChartDayData(tasks);
 
-  const LineChartConditional = graphType === 'line' ? <LineGraph data={lineData} /> : null;
-  const BarChartConditional = graphType === 'bar' ? <BarGraph data={barData} /> : null;
-  const AreaChartConditional = graphType === 'area' ? <AreaGraph data={areaData} /> : null;
-
   return (
     <div className=''>
-      {LineChartConditional}
-      {BarChartConditional}
-      {AreaChartConditional}
+      {graphType === 'line' && <LineGraph data={lineData} xAxisDataKey='title' />}
+      {graphType === 'bar' && <BarGraph data={barData} />}
+      {graphType === 'area' && <AreaGraph data={areaData} />}
     </div>
   )
 }
