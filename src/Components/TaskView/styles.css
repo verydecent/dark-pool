@@ -4,7 +4,7 @@
 .task-view {
   width: 100%;
 	border-radius: var(--view-border-radius);
-  margin-top: 15px;
+  margin-top: var(--between-view-margin);
   height: 100%;
   padding-top: 20px;
   padding-bottom: 30px;

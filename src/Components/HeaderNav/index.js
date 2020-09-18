@@ -10,9 +10,9 @@ const HeaderNav = () => {
           <User />
         </div>
       </div>
-      <div className='header-nav-bottom'>
+      {/* <div className='header-nav-bottom'>
 
-      </div>
+      </div> */}
     </div>
   );
 }
