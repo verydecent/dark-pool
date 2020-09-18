@@ -11,6 +11,11 @@
   --button-background-color: #418BCA;
   
   --outer-background-color: #F3F3F4;
+
+  /* Task List */
+  --task-list-header-background-color: #F5F5F5;
+  --task-list-body-background-color: #F9F9F9;
+  --task-list-horizontal-padding: 10px;
   
   /* View Baackground */
   --view-background-color: #FFFFFF;
