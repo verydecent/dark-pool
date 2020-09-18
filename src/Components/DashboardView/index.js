@@ -401,13 +401,30 @@ class DashboardView extends React.Component {
       </>
     );
 
+    const graphTitle = () => {
+      if (this.state.timeFrame === 'day') {
+        return 'Daily Graph'
+      }
+      else if (this.state.timeFrame === 'isoWeek') {
+        return 'Weekly Graph'
+      }
+      else if (this.state.timeFrame === 'month') {
+        return 'Monthly Graph'
+      }
+      else if (this.state.timeFrame === 'year') {
+        return 'Yearly Graph'
+      }
+    }
+
     return (
       <>
         <div className='data-view'>
 
           <div className='data-view-header-left'>
             <div className='data-view-header-top'>
-              Dashboard Overview
+              <h1 className='header-1'>
+                Dashboard Overview
+              </h1>
             </div>
             <div className='data-view-header-bottom'>
               <div className='data-view-box-container'>
@@ -440,7 +457,9 @@ class DashboardView extends React.Component {
           </div>
           <div className='data-view-header-right'>
             <div className='data-view-header-top'>
-              Other Title
+              <h1 className='header-1'>
+                Something Else Here
+              </h1>
             </div>
             <div className='data-view-header-bottom'>
 
@@ -473,7 +492,9 @@ class DashboardView extends React.Component {
           <div className='dashboard-view-container'>
             <div className='dashboard-view-header'>
               <div className='dashboard-view-header-title'>
-                Daily Graph (Weekly, Monthly, Yearly...)
+                <h1 className='header-1'>
+                  {graphTitle()}
+                </h1>
               </div>
               <div className='dashboard-view-button-list'>
                 <TimeFrameButtons />
