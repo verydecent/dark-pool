@@ -65,7 +65,8 @@ const renderLineChartTooltipContent = (o) => {
 
 // Graphs
 export const LineGraph = ({
-  data
+  data,
+  xAxisDataKey,
 }) => {
   return (
     <ResponsiveContainer width='99%' height={500}>
@@ -73,7 +74,7 @@ export const LineGraph = ({
         data={data}
         margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
         <XAxis
-          dataKey="title"
+          dataKey={xAxisDataKey}
         />
         <YAxis
           tickFormatter={toPercent}

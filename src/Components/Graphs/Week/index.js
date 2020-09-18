@@ -12,7 +12,7 @@ const WeekContainer = ({
 
   return (
     <div className=''>
-      {graphType === 'line' && <LineGraph data={percentData} />}
+      {graphType === 'line' && <LineGraph data={percentData} xAxisDataKey='day' />}
     </div>
   )
 }
