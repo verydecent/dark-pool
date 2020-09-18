@@ -382,7 +382,7 @@ class DashboardView extends React.Component {
   }
 
   render() {
-    const ButtonList = () => (
+    const TimeFrameButtons = () => (
       <div>
         <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
         <button onClick={() => this.selectTimeFrame('isoWeek')}>Week View</button>
@@ -390,6 +390,14 @@ class DashboardView extends React.Component {
         <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
         <button onClick={() => this.toggleModal()}>Date Picker</button>
       </div>
+    );
+
+    const GraphTypeButtons = () => (
+      <>
+        <button onClick={() => this.selectGraphType('bar')}>Bar Chart</button>
+        <button onClick={() => this.selectGraphType('line')}>Line Chart</button>
+        <button onClick={() => this.selectGraphType('area')}>Area Chart</button>
+      </>
     );
 
     return (
@@ -401,7 +409,32 @@ class DashboardView extends React.Component {
               Dashboard Overview
             </div>
             <div className='dashboard-view-header-bottom'>
-
+              <div className='dashboard-view-data-box-container'>
+                <div className='dashboard-view-data-box'>
+                  <span className='dashboard-view-data-title'>
+                    Subtasks Incomplete
+                  </span>
+                  <span className='dashboard-view-data-number'>
+                    1234
+                  </span>
+                </div>
+                <div className='dashboard-view-data-box'>
+                  <span className='dashboard-view-data-title'>
+                    Subtasks Completed
+                  </span>
+                  <span className='dashboard-view-data-number'>
+                    1234
+                  </span>
+                </div>
+                <div className='dashboard-view-data-box'>
+                  <span className='dashboard-view-data-title'>
+                    Subtasks Total
+                  </span>
+                  <span className='dashboard-view-data-number'>
+                    1234
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
           <div className='dashboard-view-header-right'>
@@ -437,7 +470,8 @@ class DashboardView extends React.Component {
             yearTable={this.yearTable}
           />
           <div className='dashboard-view-container'>
-            <ButtonList />
+            <TimeFrameButtons />
+            <GraphTypeButtons />
             <GraphContainer
               dateObject={this.state.dateObject}
               timeFrame={this.state.timeFrame}
