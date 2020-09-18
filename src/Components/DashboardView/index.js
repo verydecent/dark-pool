@@ -419,7 +419,6 @@ class DashboardView extends React.Component {
     return (
       <>
         <div className='data-view'>
-
           <div className='data-view-header-left'>
             <div className='data-view-header-top'>
               <h1 className='header-1'>
@@ -430,26 +429,26 @@ class DashboardView extends React.Component {
               <div className='data-view-box-container'>
                 <div className='data-view-box'>
                   <span className='data-view-title'>
-                    Subtasks Incomplete
+                    Incomplete
                   </span>
                   <span className='data-view-number'>
-                    {getSubtaskIncompleteFromTasks(this.state.tasks)}
+                    {getSubtaskIncompleteFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
                 <div className='data-view-box'>
                   <span className='data-view-title'>
-                    Subtasks Completed
+                    Completed
                   </span>
                   <span className='data-view-number'>
-                    {getSubtaskCompletedFromTasks(this.state.tasks)}
+                    {getSubtaskCompletedFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
                 <div className='data-view-box'>
                   <span className='data-view-title'>
-                    Subtasks Total
+                    Total
                   </span>
                   <span className='data-view-number'>
-                    {getSubtaskTotalFromTasks(this.state.tasks)}
+                    {getSubtaskTotalFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
               </div>
@@ -462,7 +461,7 @@ class DashboardView extends React.Component {
               </h1>
             </div>
             <div className='data-view-header-bottom'>
-
+              Bottom
             </div>
           </div>
         </div>

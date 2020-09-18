@@ -60,6 +60,27 @@
 	flex-direction: column;
 }
 
+.data-view-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	padding-top: 12px;
+	padding-bottom: 10px;
+	/* padding-bottom: var(--view-bottom-padding); */
+}
+
+.data-view-number {
+	color: var(--header-1-color);
+	font-size: 2.4rem;
+	/* font-weight: 100; */
+	color: var(--primary-color);
+	padding-top: 4px;
+	padding-bottom: 10px;
+}
+
+.data-view-mini {
+	font-size: 1.2rem;
+	color: var(--header-1-color);
+}
 
 /* Data View */
 

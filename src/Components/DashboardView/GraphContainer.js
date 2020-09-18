@@ -5,7 +5,6 @@ import Month from '../Graphs/Month';
 import Year from '../Graphs/Year';
 
 const GraphContainer = ({
-  // Values
   graphType,
   tasks,
   timeFrame,

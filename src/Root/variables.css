@@ -12,6 +12,10 @@
   
   --outer-background-color: #F3F3F4;
 
+  /* Primary */
+
+  --primary-color: #E44B6F;
+
   /* Task List */
   --task-list-header-background-color: #F5F5F5;
   --task-list-body-background-color: #F9F9F9;
