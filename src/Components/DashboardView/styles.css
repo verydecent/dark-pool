@@ -4,9 +4,12 @@
 	margin-top: var(--between-view-margin);
 	width: 100%;
 	border-radius: var(--view-border-radius);
-	padding-top: 20px;
-	padding-bottom: 30px;
 	background: var(--view-background-color);
+
+	padding-top: var(--view-padding-top);
+	padding-bottom: var(--view-padding-bottom);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 }
 
 .dashboard-view-graph-container {
@@ -21,16 +24,22 @@
 .dashboard-view-header-left {
 	width: calc(60% - var(--between-view-margin));
 	border-radius: var(--view-border-radius);
-	padding-top: 20px;
-	padding-bottom: 30px;
 	background: var(--view-background-color);
+
+	padding-top: var(--view-padding-top);
+	padding-bottom: var(--view-padding-bottom);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 }
 
 .dashboard-view-header-right {
 	width: 40%;
 	margin-left: auto;
 	border-radius: var(--view-border-radius);
-	padding-top: 20px;
-	padding-bottom: 30px;
 	background: var(--view-background-color);
+
+	padding-top: var(--view-padding-top);
+	padding-bottom: var(--view-padding-bottom);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 }

@@ -9,13 +9,23 @@
 
   --view-border-color: #000;
   --view-background-color: #FFFFFF;
-  --view-vertical-margin: 30px;
-  --view-horizontal-margin: 30px;
-  --between-view-margin: 15px;
-
+  
   --button-background-color: #418BCA;
 
   --outer-background-color: #F3F3F4;
 
   --view-border-radius: 2px;
+
+  /* View Margin */
+  --view-vertical-margin: 30px;
+  --view-horizontal-margin: 30px;
+
+  /* View Padding */
+  --view-top-padding: 20px;
+  --view-horizontal-padding: 20px;
+  --view-bottom-padding: 30px;
+
+  /* Between Margin */
+  --between-view-margin: 15px;
+
 }

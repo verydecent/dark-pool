@@ -397,10 +397,20 @@ class DashboardView extends React.Component {
         <div className='dashboard-view-header'>
 
           <div className='dashboard-view-header-left'>
-            yeeet
+            <div className='dashboard-view-header-top'>
+              Dashboard Overview
+            </div>
+            <div className='dashboard-view-header-bottom'>
+
+            </div>
           </div>
           <div className='dashboard-view-header-right'>
-            yaaaa
+            <div className='dashboard-view-header-top'>
+              Other Title
+            </div>
+            <div className='dashboard-view-header-bottom'>
+
+            </div>
           </div>
         </div>
         <div className='dashboard-view'>
