@@ -8,6 +8,7 @@ import moment from 'moment';
 import shortid from 'shortid';
 import axios from '../../Utilities/axiosConfig';
 import GraphContainer from './GraphContainer';
+import { getSubtaskTotalFromTasks, getSubtaskCompletedFromTasks, getSubtaskIncompleteFromTasks } from '../../Utilities/subtaskHelpers';
 
 /*
 Graph options
@@ -431,7 +432,7 @@ class DashboardView extends React.Component {
                     Subtasks Total
                   </span>
                   <span className='data-view-number'>
-                    1234
+                    {getSubtaskTotalFromTasks(this.state.tasks)}
                   </span>
                 </div>
               </div>
