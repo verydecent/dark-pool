@@ -416,7 +416,7 @@ class DashboardView extends React.Component {
                     Subtasks Incomplete
                   </span>
                   <span className='data-view-number'>
-                    1234
+                    {getSubtaskIncompleteFromTasks(this.state.tasks)}
                   </span>
                 </div>
                 <div className='data-view-box'>
@@ -424,7 +424,7 @@ class DashboardView extends React.Component {
                     Subtasks Completed
                   </span>
                   <span className='data-view-number'>
-                    1234
+                    {getSubtaskCompletedFromTasks(this.state.tasks)}
                   </span>
                 </div>
                 <div className='data-view-box'>

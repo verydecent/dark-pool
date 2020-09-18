@@ -11,11 +11,17 @@ export const getSubtaskTotalFromTasks = tasks => {
 }
 
 export const getSubtaskCompletedFromTasks = tasks => {
-  let total = 0;
+  let completed = 0;
 
   for (let i = 0; i < tasks.length; i++) {
-    total += tasks[i].subtasks.length;
+    for (let x = 0; x < tasks[i].subtasks.length; x++) {
+      if (tasks[i].subtasks[x].complete) {
+        completed += 1;
+      }
+    }
   }
+
+  return completed
 }
 
 export const getSubtaskIncompleteFromTasks = tasks => {
@@ -23,7 +29,14 @@ export const getSubtaskIncompleteFromTasks = tasks => {
 
   for (let i = 0; i < tasks.length; i++) {
     total += tasks[i].subtasks.length;
+    for (let x = 0; x < tasks[i].subtasks.length; x++) {
+      if (tasks[i].subtasks[x].complete) {
+        total -= 1;
+      }
+    }
   }
+
+  return total;
 }
 
 // Helpers for just subtask array used in Modal of Task View
