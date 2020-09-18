@@ -6,8 +6,8 @@
 	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);
 
-	padding-top: var(--view-padding-top);
-	padding-bottom: var(--view-padding-bottom);
+	padding-top: var(--view-top-padding);
+	padding-bottom: var(--view-bottom-padding);
 	padding-left: var(--view-horizontal-padding);
 	padding-right: var(--view-horizontal-padding);
 }
@@ -16,6 +16,9 @@
 
 }
 
+
+
+/* Header Section */
 .dashboard-view-header {
 	display: flex;
 	width: 100%;
@@ -26,8 +29,8 @@
 	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);
 
-	padding-top: var(--view-padding-top);
-	padding-bottom: var(--view-padding-bottom);
+	padding-top: var(--view-top-padding);
+	padding-bottom: var(--view-top-padding);
 	padding-left: var(--view-horizontal-padding);
 	padding-right: var(--view-horizontal-padding);
 }
@@ -38,8 +41,20 @@
 	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);
 
-	padding-top: var(--view-padding-top);
-	padding-bottom: var(--view-padding-bottom);
+	padding-top: var(--view-top-padding);
+	padding-bottom: var(--view-bottom-padding);
 	padding-left: var(--view-horizontal-padding);
 	padding-right: var(--view-horizontal-padding);
+}
+
+/* Data Box */
+
+.dashboard-view-data-box-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.dashboard-view-data-box {
+	display: flex;
+	flex-direction: column;
 }

@@ -474,10 +474,9 @@ class DashboardView extends React.Component {
             <GraphTypeButtons />
             <GraphContainer
               dateObject={this.state.dateObject}
-              timeFrame={this.state.timeFrame}
               tasks={this.state.tasks}
+              timeFrame={this.state.timeFrame}
               graphType={this.state.graphType}
-              selectGraphType={this.selectGraphType}
             />
           </div>
         </div>

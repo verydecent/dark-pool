@@ -24,8 +24,6 @@
 .task-view-header-cta {
   display: flex;
   justify-content: flex-end;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 /* Subheader */
