@@ -7,13 +7,16 @@
   --side-nav-background-color: #313540;
   --side-nav-width: 200px;
 
-  --view-border-color: #000;
-  --view-background-color: #FFFFFF;
   
   --button-background-color: #418BCA;
-
+  
   --outer-background-color: #F3F3F4;
-
+  
+  /* View Baackground */
+  --view-background-color: #FFFFFF;
+  
+  /* Border */
+  --view-border: 1px solid #e7eaec;
   --view-border-radius: 2px;
 
   /* View Margin */

@@ -7,7 +7,7 @@
   align-items: center;
   padding-left: var(--view-horizontal-padding);
   padding-right: var(--view-horizontal-padding);
-  border-bottom: 1px solid var(--view-border-color);
+  border-bottom: var(--view-border);
   cursor: pointer;
 }
 
