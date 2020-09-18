@@ -1,14 +1,36 @@
 @import '../../Root/variables.css';
 
 .dashboard-view {
+	margin-top: var(--view-vertical-margin);
 	width: 100%;
-	border-radius: 4px;
-	/* height: ; */
+	border-radius: var(--view-border-radius);
 	padding-top: 20px;
 	padding-bottom: 30px;
-	border: 1px solid var(--view-border-color);
 	background: var(--view-background-color);
 }
 
 .dashboard-view-graph-container {
+
+}
+
+.dashboard-view-header {
+	display: flex;
+	width: 100%;
+}
+
+.dashboard-view-header-left {
+	width: calc(60% - var(--view-horizontal-margin));
+	border-radius: var(--view-border-radius);
+	padding-top: 20px;
+	padding-bottom: 30px;
+	background: var(--view-background-color);
+}
+
+.dashboard-view-header-right {
+	width: 40%;
+	margin-left: auto;
+	border-radius: var(--view-border-radius);
+	padding-top: 20px;
+	padding-bottom: 30px;
+	background: var(--view-background-color);
 }

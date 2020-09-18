@@ -393,40 +393,51 @@ class DashboardView extends React.Component {
     );
 
     return (
-      <div className='dashboard-view'>
-        <DatePickerModal
-          isModalVisible={this.state.isModalVisible}
-          isDateTableVisible={this.state.isDateTableVisible}
-          isMonthTableVisible={this.state.isMonthTableVisible}
-          isYearTableVisible={this.state.isYearTableVisible}
-          toggleModal={this.toggleModal}
-          toggleMonthTable={this.toggleMonthTable}
-          toggleYearTable={this.toggleYearTable}
-          getFirstDayOfMonth={this.getFirstDayOfMonth}
-          getWeekdays={this.getWeekdays}
-          getAllMonths={this.getAllMonths}
-          getDaysInMonth={this.getDaysInMonth}
-          getToday={this.getToday}
-          getMonth={this.getMonth}
-          getYear={this.getYear}
-          setMonth={this.setMonth}
-          onPrev={this.onPrev}
-          onNext={this.onNext}
-          onDayClick={this.onDayClick}
-          // Prouces JSX
-          yearTable={this.yearTable}
-        />
-        <div className='dashboard-view-container'>
-          <ButtonList />
-          <GraphContainer
-            dateObject={this.state.dateObject}
-            timeFrame={this.state.timeFrame}
-            tasks={this.state.tasks}
-            graphType={this.state.graphType}
-            selectGraphType={this.selectGraphType}
-          />
+      <>
+        <div className='dashboard-view-header'>
+
+          <div className='dashboard-view-header-left'>
+            yeeet
+          </div>
+          <div className='dashboard-view-header-right'>
+            yaaaa
+          </div>
         </div>
-      </div>
+        <div className='dashboard-view'>
+          <DatePickerModal
+            isModalVisible={this.state.isModalVisible}
+            isDateTableVisible={this.state.isDateTableVisible}
+            isMonthTableVisible={this.state.isMonthTableVisible}
+            isYearTableVisible={this.state.isYearTableVisible}
+            toggleModal={this.toggleModal}
+            toggleMonthTable={this.toggleMonthTable}
+            toggleYearTable={this.toggleYearTable}
+            getFirstDayOfMonth={this.getFirstDayOfMonth}
+            getWeekdays={this.getWeekdays}
+            getAllMonths={this.getAllMonths}
+            getDaysInMonth={this.getDaysInMonth}
+            getToday={this.getToday}
+            getMonth={this.getMonth}
+            getYear={this.getYear}
+            setMonth={this.setMonth}
+            onPrev={this.onPrev}
+            onNext={this.onNext}
+            onDayClick={this.onDayClick}
+            // Prouces JSX
+            yearTable={this.yearTable}
+          />
+          <div className='dashboard-view-container'>
+            <ButtonList />
+            <GraphContainer
+              dateObject={this.state.dateObject}
+              timeFrame={this.state.timeFrame}
+              tasks={this.state.tasks}
+              graphType={this.state.graphType}
+              selectGraphType={this.selectGraphType}
+            />
+          </div>
+        </div>
+      </>
     );
   }
 }

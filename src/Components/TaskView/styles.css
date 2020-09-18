@@ -3,12 +3,11 @@
 /* Parent Container */
 .task-view {
   width: 100%;
-  border-radius: 4px;
+	border-radius: var(--view-border-radius);
   margin-top: 15px;
   height: 100%;
   padding-top: 20px;
   padding-bottom: 30px;
-  border: 1px solid var(--view-border-color);
   background: var(--view-background-color);
 }
 

@@ -8,9 +8,13 @@
   --side-nav-width: 200px;
 
   --view-border-color: #000;
-  --view-background-color: #D9E2E7;
+  --view-background-color: #FFFFFF;
   --view-vertical-margin: 30px;
   --view-horizontal-margin: 30px;
 
   --button-background-color: #418BCA;
+
+  --outer-background-color: #F3F3F4;
+
+  --view-border-radius: 2px;
 }
