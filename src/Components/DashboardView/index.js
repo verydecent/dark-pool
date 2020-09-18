@@ -169,26 +169,29 @@ class DashboardView extends React.Component {
       });
   }
 
-  selectGraphType(type) {
+  selectGraphType(e) {
+    const { value } = e.target;
+
     this.setState({
       ...this.state,
-      graphType: type
+      graphType: value
     });
   }
 
-  selectTimeFrame(timeFrame) {
+  selectTimeFrame(e) {
+    const { value } = e.target;
     let beginning;
     let end;
     let date = Object.assign({}, this.state.dateObject);
 
     date = moment(date);
-    beginning = date.startOf(timeFrame).toDate();
-    end = date.endOf(timeFrame).toDate();
+    beginning = date.startOf(value).toDate();
+    end = date.endOf(value).toDate();
 
     this.setState(prevState => {
       return {
         ...prevState,
-        timeFrame: timeFrame,
+        timeFrame: value,
         beginning: beginning,
         end: end,
       }
@@ -384,35 +387,46 @@ class DashboardView extends React.Component {
 
   render() {
     const TimeFrameButtons = () => (
-      <div>
-        <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
-        <button onClick={() => this.selectTimeFrame('isoWeek')}>Week View</button>
-        <button onClick={() => this.selectTimeFrame('month')}>Month View</button>
-        <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
-        <button onClick={() => this.toggleModal()}>Date Picker</button>
-      </div>
+      <select value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
+        <option value='day'>Day View</option>
+        <option value='isoWeek'>Week View</option>
+        <option value='month'>Month View</option>
+        <option value='year'>Year View</option>
+      </select>
     );
 
     const GraphTypeButtons = () => (
-      <>
-        <button onClick={() => this.selectGraphType('bar')}>Bar Chart</button>
-        <button onClick={() => this.selectGraphType('line')}>Line Chart</button>
-        <button onClick={() => this.selectGraphType('area')}>Area Chart</button>
-      </>
+      <select value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
+        <option value='line'>Line Graph</option>
+        <option value='bar'>Bar Graph</option>
+        <option value='area'>Area View</option>
+      </select>
     );
 
-    const graphTitle = () => {
+    const timeFrametitle = () => {
       if (this.state.timeFrame === 'day') {
-        return 'Daily Graph'
+        return 'Daily'
       }
       else if (this.state.timeFrame === 'isoWeek') {
-        return 'Weekly Graph'
+        return 'Weekly'
       }
       else if (this.state.timeFrame === 'month') {
-        return 'Monthly Graph'
+        return 'Monthly'
       }
       else if (this.state.timeFrame === 'year') {
-        return 'Yearly Graph'
+        return 'Yearly'
+      }
+    }
+
+    const graphTypeTitle = () => {
+      if (this.state.graphType === 'line') {
+        return 'Line Graph'
+      }
+      else if (this.state.graphType === 'area') {
+        return 'Area Graph'
+      }
+      else if (this.state.graphType === 'bar') {
+        return 'Bar Graph'
       }
     }
 
@@ -422,7 +436,7 @@ class DashboardView extends React.Component {
           <div className='data-view-header-left'>
             <div className='data-view-header-top'>
               <h1 className='header-1'>
-                Dashboard Overview
+                Dashboard
               </h1>
             </div>
             <div className='data-view-header-bottom'>
@@ -492,7 +506,7 @@ class DashboardView extends React.Component {
             <div className='dashboard-view-header'>
               <div className='dashboard-view-header-title'>
                 <h1 className='header-1'>
-                  {graphTitle()}
+                  {`${timeFrametitle()} ${graphTypeTitle()} `}
                 </h1>
               </div>
               <div className='dashboard-view-button-list'>
