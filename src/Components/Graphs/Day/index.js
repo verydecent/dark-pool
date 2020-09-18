@@ -13,8 +13,8 @@ const DayContainer = ({
   return (
     <div className=''>
       {graphType === 'line' && <LineGraph data={lineData} xAxisDataKey='title' />}
-      {graphType === 'bar' && <BarGraph data={barData} />}
-      {graphType === 'area' && <AreaGraph data={areaData} />}
+      {graphType === 'bar' && <BarGraph data={barData} xAxisDataKey='title' />}
+      {graphType === 'area' && <AreaGraph data={areaData} xAxisDataKey='title' />}
     </div>
   )
 }
