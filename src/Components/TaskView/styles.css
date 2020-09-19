@@ -43,6 +43,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  height: 50px;
   background-color: var(--task-list-header-background-color);
   border: var(--view-border);
   padding-left: var(--task-list-horizontal-padding);
