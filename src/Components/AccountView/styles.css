@@ -1,5 +1,5 @@
 .account-view {
-  width: 600px;
+  width: 450px;
   border-radius: 4px;
   height: 100%;
   padding-top: var(--modal-top-padding);
@@ -46,15 +46,4 @@
 .account-view-button-container {
   display: flex;
   justify-content: flex-end;
-}
-
-.account-view-form button {
-  height: 32px;
-  line-height: 32px;
-  width: 118px;
-  border: 1px solid var(--view-border-color);
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: var(--button-background-color);
-  color: #fff;
 }

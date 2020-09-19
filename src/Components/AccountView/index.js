@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import withNav from '../Hoc/withNav';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
+import Button from '../Button';
 import './styles.css';
 
 class AccountView extends React.Component {
@@ -120,7 +121,7 @@ class AccountView extends React.Component {
             onChange={(e) => this.handleChange(e)}
           />
           <div className='account-view-button-container'>
-            <button className='account-view-button'>{buttonText}</button>
+            <Button>{buttonText}</Button>
           </div>
         </form>
       </div>

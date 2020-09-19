@@ -1,0 +1,10 @@
+.button {
+  height: 32px;
+  line-height: 32px;
+  width: 118px;
+  border: 1px solid var(--view-border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--button-background-color);
+  color: #fff;
+}
