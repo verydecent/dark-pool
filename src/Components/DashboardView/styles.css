@@ -16,13 +16,18 @@
 
 }
 
-
-
 /* Header Section */
 .dashboard-view-header {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	padding-bottom: var(--h1-padding-bottom);
+}
+
+/* Data View */
+
+.data-view-header-top {
+	padding-bottom: var(--h1-padding-bottom);
 }
 
 .data-view-header-left {
@@ -64,7 +69,6 @@
 	font-size: 1.4rem;
 	font-weight: 600;
 	padding-bottom: 10px;
-	/* padding-bottom: var(--view-bottom-padding); */
 }
 
 .data-view-number {

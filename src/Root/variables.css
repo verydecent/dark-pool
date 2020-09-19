@@ -42,5 +42,17 @@
 
   /* Header 1 */
   --header-1-color: #676a6c;
+  --h1-padding-bottom: 15px;
 
+  /* Modals */
+  --modal-horizontal-padding: 32px;
+  --modal-top-padding: 8px;
+  --modal-bottom-padding: 16px;
+
+  /* Font  */
+  --font-color: #676a6c;
+
+  /* Input */
+
+  --input-border-color: #cbd4db;
 }

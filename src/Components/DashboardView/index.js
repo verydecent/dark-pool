@@ -471,7 +471,7 @@ class DashboardView extends React.Component {
           <div className='data-view-header-right'>
             <div className='data-view-header-top'>
               <h1 className='header-1'>
-                Something Else Here
+                Current Daily Progress
               </h1>
             </div>
             <div className='data-view-header-bottom'>

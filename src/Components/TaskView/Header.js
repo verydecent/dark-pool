@@ -11,12 +11,12 @@ const Header = ({
             Tasks
           </h1>
         </div>
-      </div>
-      <div className='task-view-header-cta'>
         <button className='task-view-button' onClick={() => createTask()}>
           Create Task
         </button>
       </div>
+      {/* <div className='task-view-header-cta'>
+      </div> */}
     </>
   );
 }
