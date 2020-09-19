@@ -6,9 +6,11 @@ const Button = ({
   onClick
 }) => {
   if (onClick) {
-    <button className='button' onClick={() => onClick()}>
-      {children}
-    </button>
+    return (
+      <button className='button' onClick={() => onClick()}>
+        {children}
+      </button>
+    )
   }
   else {
     return (
