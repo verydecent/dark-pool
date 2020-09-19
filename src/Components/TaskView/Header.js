@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button';
 
 const Header = ({
   createTask
@@ -11,12 +12,10 @@ const Header = ({
             Tasks
           </h1>
         </div>
-        <button className='task-view-button' onClick={() => createTask()}>
+        <Button onClick={createTask}>
           Create Task
-        </button>
+        </Button>
       </div>
-      {/* <div className='task-view-header-cta'>
-      </div> */}
     </>
   );
 }
