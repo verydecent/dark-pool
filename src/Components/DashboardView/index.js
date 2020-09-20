@@ -8,8 +8,15 @@ import moment from 'moment';
 import shortid from 'shortid';
 import axios from '../../Utilities/axiosConfig';
 import GraphContainer from './GraphContainer';
-import { getSubtaskTotalFromTasks, getSubtaskCompletedFromTasks, getSubtaskIncompleteFromTasks } from '../../Utilities/subtaskHelpers';
 import { TaskGauge, SubtaskGauge } from '../Graphs/dashboardGraphs';
+import {
+  getSubtaskTotalFromTasks,
+  getSubtaskCompletedFromTasks,
+  getSubtaskIncompleteFromTasks,
+  getTaskTotal,
+  getTaskCompleted,
+  getTaskIncomplete
+} from '../../Utilities/subtaskHelpers';
 /*
 Graph options
 
@@ -449,7 +456,7 @@ class DashboardView extends React.Component {
                     {getSubtaskIncompleteFromTasks(this.state.tasks)} <span className='data-view-mini'>tasks</span>
                   </span>
                   <span className='data-view-number subtasks'>
-                    {getSubtaskIncompleteFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                    {getTaskIncomplete(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
                 <div className='data-view-box'>
@@ -460,7 +467,7 @@ class DashboardView extends React.Component {
                     {getSubtaskCompletedFromTasks(this.state.tasks)} <span className='data-view-mini'>tasks</span>
                   </span>
                   <span className='data-view-number subtasks'>
-                    {getSubtaskCompletedFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                    {getTaskCompleted(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
                 <div className='data-view-box'>
@@ -471,7 +478,7 @@ class DashboardView extends React.Component {
                     {getSubtaskTotalFromTasks(this.state.tasks)} <span className='data-view-mini'>tasks</span>
                   </span>
                   <span className='data-view-number subtasks'>
-                    {getSubtaskTotalFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                    {getTaskTotal(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
               </div>
@@ -480,7 +487,7 @@ class DashboardView extends React.Component {
           <div className='data-view-header-right'>
             <div className='data-view-header-top'>
               <h1 className='header-1'>
-                Current Daily Progress
+                Daily Progress
               </h1>
             </div>
             <div className='data-view-header-bottom'>

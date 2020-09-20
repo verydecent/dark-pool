@@ -95,8 +95,8 @@ export const LineGraph = ({
           dataKey="percent"
           stroke="#E44B6F"
           fill="#fff"
-          activeDot={{ r: 8 }}
-          dot={{ r: 8 }}
+          activeDot={{ r: 10 }}
+          dot={{ r: 10 }}
         />
       </LineChart>
     </ResponsiveContainer>

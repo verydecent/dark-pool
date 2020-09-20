@@ -1,3 +1,17 @@
+// Task Helpers to see amount of tasks complete
+
+export const getTaskTotal = tasks => {
+  return tasks.length;
+}
+
+export const getTaskCompleted = tasks => {
+  return tasks.length;
+}
+
+export const getTaskIncomplete = tasks => {
+  return tasks.length;
+}
+
 // Helpers that receive array of tasks with subtask arrays
 
 export const getSubtaskTotalFromTasks = tasks => {
