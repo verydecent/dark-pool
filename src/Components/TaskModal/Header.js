@@ -17,12 +17,14 @@ const Header = ({
         onSubmit={(e) => updateTask(e, taskId)}
         onBlur={(e) => updateTask(e, taskId)}
       >
-        <input
-          placeholder='Edit your task title by clicking here'
-          name='taskTitle'
-          value={taskTitle}
-          onChange={(e) => handleChange(e)}
-        />
+        <h1 className='header-1'>
+          <input
+            placeholder='Task Title..'
+            name='taskTitle'
+            value={taskTitle}
+            onChange={(e) => handleChange(e)}
+          />
+        </h1>
       </form>
       <div onClick={() => toggleModal()}>
         <Times />

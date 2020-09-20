@@ -15,9 +15,8 @@ const Description = ({
         onSubmit={(e) => updateTask(e, taskId)}
         onBlur={(e) => updateTask(e, taskId)}
       >
-        <label>Description</label>
         <textarea
-          placeholder='Describe your task'
+          placeholder='Task Description'
           name='taskDescription'
           value={taskDescription}
           onChange={(e) => handleChange(e)}

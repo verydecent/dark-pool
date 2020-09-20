@@ -19,7 +19,8 @@
   transform: translate(-50%, -50%);
   background-color: var(--view-background-color);
   border-radius: 4px;
-  border: 1px solid var(--view-border-color);
+  padding-top: var(--modal-top-padding);
+  padding-bottom: var(--modal-bottom-padding);
 }
 
 .task-modal-overflow-container {
@@ -42,13 +43,13 @@
 /* Header */
 
 .task-modal-header {
-  height: 60px;
-  border-bottom: 1px solid var(--view-border-color);
+  border-bottom: 1px solid var(--input-border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 30px;
+  padding-left: var(--modal-horizontal-padding);
+  padding-right: var(--modal-horizontal-padding);
+  margin-bottom: 16px;
 }
 
 .task-modal-header-form {
@@ -59,22 +60,14 @@
   width: 100%;
   background: var(--view-background-color);
   border: var(--view-border-color);
-  height: 44px;
-}
-
-.task-modal-header-form input:hover {
-  border-bottom: 1px solid var(--view-border-color);
-}
-
-.task-modal-header-form input:focus {
-  border-bottom: 1px solid var(--view-border-color);
+  height: 40px;
 }
 
 /* Details */
 
 .task-modal-details {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--modal-horizontal-padding);
+  padding-right: var(--modal-horizontal-padding);
   display: flex;
 }
 
@@ -100,8 +93,8 @@
 /* Description */
 
 .task-modal-description {
-  padding-left: 20px;
-  padding-right: 5px;
+  padding-left: var(--modal-horizontal-padding);
+  padding-right: 16px;
 }
 
 .task-modal-description-form {
@@ -113,9 +106,14 @@
   border-radius: 4px;
   height: 100px;
   background: var(--view-background-color);
-  border: 1px solid var(--view-border-color);
+  border: 1px solid var(--input-border-color);
   padding-left: 12px;
   padding-top: 8px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.task-modal-description-form textarea:hover {
+  border-color: var(--input-form-hover-color);
 }
 
 /* Subtask List */
@@ -123,28 +121,39 @@
 .task-modal-subtask-list {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  padding-right: 5px;
+  padding-left: var(--modal-horizontal-padding);
+  padding-right: 16px;
+  padding-top: 16px;
 }
 
 /* Button Container */
 
 .task-modal-button-container {
-  border-top: 1px solid var(--view-border-color);
+  border-top: 1px solid var(--input-border-color);
   display: flex;
-  justify-content: flex-end;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  padding-left: var(--modal-horizontal-padding);
+  padding-right: var(--modal-horizontal-padding);
+  margin-top: 16px;
+  padding-top: 16px;
 }
 
 .task-modal-button {
-  padding: 6px 10px;
-  border: 1px solid var(--view-border-color);
+  line-height: 32px;
+  width: 118px;
+  height: 32px;
+  border: 1px solid var(--input-border-color);
   border-radius: 4px;
-  background: transparent;
   cursor: pointer;
-  margin-top: 6px;
-  margin-left: 12px;
+  color: #fff;
+}
+
+.delete {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.create {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
 }

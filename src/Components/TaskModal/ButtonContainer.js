@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button';
 
 const ButtonContainer = ({
   // Values
@@ -9,10 +10,10 @@ const ButtonContainer = ({
 }) => {
   return (
     <div className='task-modal-button-container'>
-      <button className='task-modal-button' onClick={() => deleteTask(taskId)}>
+      <button className='task-modal-button delete' onClick={() => deleteTask(taskId)}>
         Delete Task
       </button>
-      <button className='task-modal-button' onClick={(e) => addSubtask(e, taskId)}>
+      <button className='task-modal-button create' onClick={(e) => addSubtask(e, taskId)}>
         Create Subtask
       </button>
     </div>

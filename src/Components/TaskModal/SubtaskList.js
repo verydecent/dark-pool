@@ -6,7 +6,6 @@ const SubtaskList = ({
   taskId,
   subtasks,
   // Methods
-  addSubtask,
   handleChangeSubtask,
   updateSubtask,
   toggleSubtask,
@@ -30,7 +29,6 @@ const SubtaskList = ({
 
   return (
     <div className='task-modal-subtask-list'>
-      <label>Subtask list</label>
       <div className='task-modal-subtask-list-mapped'>
         {subtasksMapped}
       </div>

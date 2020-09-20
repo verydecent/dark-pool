@@ -43,6 +43,10 @@
   margin-bottom: 32px;
 }
 
+.account-view-form input:hover {
+  border-color: var(--input-form-hover-color);
+}
+
 .account-view-button-container {
   display: flex;
   justify-content: flex-end;
