@@ -11,8 +11,11 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  ResponsiveContainer
-} from 'recharts';
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell
+} from 'recharts'
 
 // Area Chart helpers
 const getPercent = (value, total) => {
@@ -176,5 +179,55 @@ export const AreaGraph = ({
         />
       </AreaChart>
     </ResponsiveContainer>
+  );
+}
+
+// Gauge helpers
+const COLORS = ['#418BCA', '#4A4B4F'];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+export const Gauge = ({
+  tasks
+}) => {
+  let total = 0;
+  let completed = 0;
+  tasks.forEach(task => {
+    total += task.subtasks.length;
+    task.subtasks.forEach(subtask => {
+      if (subtask.complete) {
+        completed += 1;
+      }
+    });
+  });
+  console.log('total', total);
+
+  const incomplete = total - completed;
+
+  const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
+  // do one for tasks complete, and subtasks complete ? 
+  console.log(data);
+  return (
+    <PieChart width={200} height={200}>
+      <Legend />
+      <Pie
+        data={data}
+        dataKey='value'
+        labelLine={false}
+        label={renderCustomizedLabel}
+      >
+        {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index} />)}
+      </Pie>
+    </PieChart >
   );
 }

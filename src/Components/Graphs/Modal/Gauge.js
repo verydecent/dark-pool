@@ -17,7 +17,7 @@ const subtasksComplete = subtasks => {
   return count;
 };
 
-const COLORS = ['#01B074', '#4A4B4F'];
+const COLORS = ['#418BCA', '#4A4B4F'];
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;

@@ -48,6 +48,8 @@
   border: var(--view-border);
   padding-left: var(--task-list-horizontal-padding);
   padding-right: var(--task-list-horizontal-padding);
+  font-size: 1.2rem;
+  color: var(--header-1-color);
 }
 
 .task-view-field {
@@ -60,6 +62,7 @@
 .task-view-list {
   background-color: var(--task-list-body-background-color);
   border: var(--view-border);
+  font-size: 1.2rem;
 }
 
 /* Button */

@@ -9,7 +9,7 @@ import shortid from 'shortid';
 import axios from '../../Utilities/axiosConfig';
 import GraphContainer from './GraphContainer';
 import { getSubtaskTotalFromTasks, getSubtaskCompletedFromTasks, getSubtaskIncompleteFromTasks } from '../../Utilities/subtaskHelpers';
-
+import { Gauge } from '../Graphs/dashboardGraphs';
 /*
 Graph options
 
@@ -475,7 +475,7 @@ class DashboardView extends React.Component {
               </h1>
             </div>
             <div className='data-view-header-bottom'>
-              Bottom
+              <Gauge tasks={this.state.tasks} />
             </div>
           </div>
         </div>
