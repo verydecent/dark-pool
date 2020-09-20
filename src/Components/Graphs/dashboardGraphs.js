@@ -227,7 +227,7 @@ export const SubtaskGauge = ({
   const completed = getSubtaskCompletedFromTasks(tasks);
   const incomplete = getSubtaskIncompleteFromTasks(tasks);
 
-  const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
+  const data = [{ name: 'Subtasks Incomplete', value: incomplete }, { name: 'Subtasks Completed', value: completed }];
   // do one for tasks complete, and subtasks complete ?
   return (
     <ResponsiveContainer width='99%' height={225}>
@@ -255,7 +255,7 @@ export const TaskGauge = ({
   const completed = getTaskCompleted(tasks);
   const incomplete = getTaskIncomplete(tasks);
 
-  const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
+  const data = [{ name: 'Tasks Incomplete', value: incomplete }, { name: 'Tasks Completed', value: completed }];
   // do one for tasks complete, and subtasks complete ? 
   return (
     <ResponsiveContainer width='99%' height={225}>
