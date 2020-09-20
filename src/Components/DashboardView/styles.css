@@ -70,19 +70,22 @@
 }
 
 .data-view-title {
-	font-size: 1.4rem;
+	margin-top: 15px;
+	font-size: 1.2rem;
 	font-weight: 600;
+	color: #4A4B4F;
 }
 
 .data-view-number {
 	color: var(--header-1-color);
 	font-size: 2.4rem;
 	color: var(--secondary-color);
+	margin-top: 20px;
 }
 
 .data-view-mini {
-	font-size: 1.2rem;
-	color: var(--header-1-color);
+	font-size: 1rem;
+	color: #000;
 }
 
 .tasks {

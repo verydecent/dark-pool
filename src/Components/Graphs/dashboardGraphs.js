@@ -230,7 +230,7 @@ export const SubtaskGauge = ({
   const data = [{ name: 'Subtasks Incomplete', value: incomplete }, { name: 'Subtasks Completed', value: completed }];
   // do one for tasks complete, and subtasks complete ?
   return (
-    <ResponsiveContainer width='99%' height={225}>
+    <ResponsiveContainer width='99%' height={200}>
       <PieChart
         margin={gaugeMargin}
       >
@@ -258,7 +258,7 @@ export const TaskGauge = ({
   const data = [{ name: 'Tasks Incomplete', value: incomplete }, { name: 'Tasks Completed', value: completed }];
   // do one for tasks complete, and subtasks complete ? 
   return (
-    <ResponsiveContainer width='99%' height={225}>
+    <ResponsiveContainer width='99%' height={200}>
       <PieChart
         margin={gaugeMargin}
       >
