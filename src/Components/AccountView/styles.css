@@ -10,16 +10,17 @@
 
 .account-view-header {
   border-bottom: 1px solid var(--input-border-color);
-  margin-bottom: 16px;
+  padding-bottom: 8px;
   padding-right: var(--modal-horizontal-padding);
   padding-left: var(--modal-horizontal-padding);
 }
 
 .account-view h1 {
-  margin-bottom: 16px;
+
 }
 
 .account-view-form {
+  margin-top: 16px;
   padding-right: var(--modal-horizontal-padding);
   padding-left: var(--modal-horizontal-padding);
 }

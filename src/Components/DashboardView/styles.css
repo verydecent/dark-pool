@@ -74,6 +74,7 @@
 }
 
 .data-view-title {
+	margin-top: 15px;
 	font-size: 1.2rem;
 	font-weight: 600;
 	color: #4A4B4F;
