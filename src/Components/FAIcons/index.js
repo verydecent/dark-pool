@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import './styles.css';
 // Icons used on SideNav Component
 
 export const ChartBar = () => <FontAwesomeIcon icon={['far', 'chart-bar']} />
@@ -15,7 +15,10 @@ export const PeaceOut = () => <FontAwesomeIcon icon={['far', 'hand-peace']} />
 
 // Everything else
 
-export const Times = () => <FontAwesomeIcon icon='times' />
+export const Times = () => <div className='times-icon'>
+  <FontAwesomeIcon icon='times' />
+</div>
+
 
 export const Plus = () => <FontAwesomeIcon icon='plus' />
 
