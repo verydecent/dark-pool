@@ -197,7 +197,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
-export const Gauge = ({
+export const SubtaskGauge = ({
   tasks
 }) => {
   let total = 0;
@@ -225,6 +225,43 @@ export const Gauge = ({
         dataKey='value'
         labelLine={false}
         label={renderCustomizedLabel}
+        innerRadius={15}
+      >
+        {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index} />)}
+      </Pie>
+    </PieChart >
+  );
+}
+
+export const TaskGauge = ({
+  tasks
+}) => {
+  let total = 0;
+  let completed = 0;
+  tasks.forEach(task => {
+    total += task.subtasks.length;
+    task.subtasks.forEach(subtask => {
+      if (subtask.complete) {
+        completed += 1;
+      }
+    });
+  });
+  console.log('total', total);
+
+  const incomplete = total - completed;
+
+  const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
+  // do one for tasks complete, and subtasks complete ? 
+  console.log(data);
+  return (
+    <PieChart width={200} height={200}>
+      <Legend />
+      <Pie
+        data={data}
+        dataKey='value'
+        labelLine={false}
+        label={renderCustomizedLabel}
+        innerRadius={15}
       >
         {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index} />)}
       </Pie>

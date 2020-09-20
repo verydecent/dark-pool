@@ -9,12 +9,11 @@
 
   
   --button-background-color: #418BCA;
-  
   --outer-background-color: #F3F3F4;
 
-  /* Primary */
-
+  /* Colors */
   --primary-color: #E44B6F;
+  --secondary-color: #418BCA;
 
   /* Task List */
   --task-list-header-background-color: #F5F5F5;
