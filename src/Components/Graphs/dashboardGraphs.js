@@ -31,6 +31,13 @@ const margin = {
   right: 20
 }
 
+const gaugeMargin = {
+  top: 0,
+  bottom: 20,
+  left: 10,
+  right: 10
+}
+
 // Area Chart helpers
 const getPercent = (value, total) => {
   const ratio = total > 0 ? value / total : 0;
@@ -224,7 +231,7 @@ export const SubtaskGauge = ({
   return (
     <ResponsiveContainer width='99%' height={250}>
       <PieChart
-        margin={margin}
+        margin={gaugeMargin}
       >
         <Legend />
         <Pie
@@ -252,7 +259,7 @@ export const TaskGauge = ({
   return (
     <ResponsiveContainer width='99%' height={250}>
       <PieChart
-        margin={margin}
+        margin={gaugeMargin}
       >
         <Legend />
         <Pie
