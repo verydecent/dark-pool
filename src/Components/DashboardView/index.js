@@ -410,6 +410,13 @@ class DashboardView extends React.Component {
       </select>
     );
 
+    const currentTimeFrame = timeFrame => {
+      if (timeFrame === 'day') return this.state.dateObject.format('dddd LL');
+      else if (timeFrame === 'isoWeek') return `Week of ${this.state.dateObject.format('LL')}`;
+      else if (timeFrame === 'month') return this.state.dateObject.format('MMMM YYYY');
+      else if (timeFrame === 'year') return this.state.dateObject.format('YYYY');
+    }
+
     const timeFrametitle = () => {
       if (this.state.timeFrame === 'day') {
         return 'Daily'
@@ -541,7 +548,7 @@ class DashboardView extends React.Component {
               </div>
               <div className='dashboard-view-button-list'>
                 <div className='data-view-title'>
-                  {this.state.dateObject.format('LL')}
+                  {currentTimeFrame(this.state.timeFrame)}
                 </div>
                 <div>
                   <TimeFrameButtons />
