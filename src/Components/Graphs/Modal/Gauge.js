@@ -44,6 +44,7 @@ const Gauge = ({
     <PieChart width={200} height={200}>
       <Legend />
       <Pie
+        dataKey='value'
         data={data}
         labelLine={false}
         label={renderCustomizedLabel}
