@@ -2,14 +2,13 @@
 
 .header-wrapper {
 	margin-left: var(--side-nav-width);
-	height: 100vh;
+	height: 100%;
 	background: var(--outer-background-color);
 }
 
 .view-wrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	margin-top: var(--view-vertical-margin);
 	margin-bottom: var(--view-vertical-margin);;
