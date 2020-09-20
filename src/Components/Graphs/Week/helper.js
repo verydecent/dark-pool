@@ -1,3 +1,5 @@
+import { getTaskCompleted, getTaskIncomplete, getTaskTotal } from "../../../Utilities/subtaskHelpers";
+
 export const sortWeek = tasks => {
   const weekdays = {};
   const numbersInAWeek = 7;
@@ -32,7 +34,7 @@ export const findDailyPercentComplete = tasks => {
   return percent;
 }
 
-export const formatData = (weekObj) => {
+export const formatLineData = (weekObj) => {
   const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
   const data = [];
   const keys = Object.keys(weekObj);
@@ -50,6 +52,64 @@ export const formatData = (weekObj) => {
       data.push({
         day: days[i],
         percent: findDailyPercentComplete(dayTasks)
+      });
+    }
+  }
+
+  return data;
+}
+
+export const formatBarData = (weekObj) => {
+  const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+  const data = [];
+  const keys = Object.keys(weekObj);
+
+
+  for (let i = 0; i < keys.length; i++) {
+    const dayTasks = weekObj[i];
+
+    if (dayTasks.length === 0) {
+      data.push({
+        day: days[i],
+        total: 0,
+        incomplete: 0,
+        complete: 0
+      });
+    }
+    else {
+      data.push({
+        day: days[i],
+        total: getTaskTotal(dayTasks),
+        complete: getTaskCompleted(dayTasks),
+        incomplete: getTaskIncomplete(dayTasks)
+      });
+    }
+  }
+
+  return data;
+}
+
+export const formatAreaData = (weekObj) => {
+  const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+  const data = [];
+  const keys = Object.keys(weekObj);
+
+
+  for (let i = 0; i < keys.length; i++) {
+    const dayTasks = weekObj[i];
+
+    if (dayTasks.length === 0) {
+      data.push({
+        day: days[i],
+        incomplete: 0,
+        complete: 0
+      });
+    }
+    else {
+      data.push({
+        day: days[i],
+        complete: getTaskCompleted(dayTasks),
+        incomplete: getTaskIncomplete(dayTasks)
       });
     }
   }

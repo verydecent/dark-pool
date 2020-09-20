@@ -51,7 +51,6 @@ const renderAreaChartTooltipContent = (o) => {
 
   return (
     <div className="customized-tooltip-content">
-      <p className="total">{`${label} (Total: ${total})`}</p>
       <ul className="list">
         {
           payload.map((entry, index) => (
@@ -127,6 +126,7 @@ export const LineGraph = ({
 
 export const BarGraph = ({
   data,
+  xAxisDataKey
 }) => {
   return (
     <ResponsiveContainer width='99%' height={500}>
@@ -138,7 +138,7 @@ export const BarGraph = ({
           strokeDasharray='3 3'
         />
         <XAxis
-          dataKey="title"
+          dataKey={xAxisDataKey}
         />
         <YAxis />
         <Tooltip />
@@ -167,7 +167,8 @@ export const BarGraph = ({
 }
 
 export const AreaGraph = ({
-  data
+  data,
+  xAxisDataKey
 }) => {
   return (
     <ResponsiveContainer width='99%' height={500}>
@@ -177,12 +178,11 @@ export const AreaGraph = ({
         margin={margin}
       >
         <XAxis
-          dataKey="title"
+          dataKey={xAxisDataKey}
         />
         <YAxis
           tickFormatter={toPercent}
         />
-        {/* <Tooltip /> */}
         <Tooltip
           content={renderAreaChartTooltipContent}
         />
