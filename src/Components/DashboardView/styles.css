@@ -31,7 +31,7 @@
 }
 
 .data-view-header-left {
-	width: calc(60% - var(--between-view-margin));
+	width: calc(40% - var(--between-view-margin));
 	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);
 
@@ -42,7 +42,7 @@
 }
 
 .data-view-header-right {
-	width: calc(20% - var(--between-view-margin));
+	width: calc(30% - var(--between-view-margin));
 	margin-left: auto;
 	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);

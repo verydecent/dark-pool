@@ -27,15 +27,15 @@ import {
 const margin = {
   top: 20,
   bottom: 20,
-  left: 20,
+  left: 0,
   right: 20
 }
 
 const gaugeMargin = {
   top: 0,
   bottom: 20,
-  left: 10,
-  right: 10
+  left: 0,
+  right: 0
 }
 
 // Area Chart helpers
@@ -143,23 +143,24 @@ export const BarGraph = ({
         <YAxis />
         <Tooltip />
         <Bar
-          dataKey='total'
-          fill="#000"
-          barSize={30}
+          dataKey='incomplete'
+          fill="#E44B6F"
+          barSize={20}
           background={false}
         />
         <Bar
           dataKey='complete'
-          fill="#0000ff"
-          barSize={30}
+          fill="#418BCA"
+          barSize={20}
           background={false}
         />
         <Bar
-          dataKey='incomplete'
-          fill="#ff0000"
-          barSize={30}
+          dataKey='total'
+          fill="#4A4B4F"
+          barSize={20}
           background={false}
         />
+
       </BarChart>
     </ResponsiveContainer>
   );
@@ -189,15 +190,15 @@ export const AreaGraph = ({
           type='monotone'
           dataKey='complete'
           stackId="1"
-          stroke='#8884d8'
-          fill='#8884d8'
+          stroke='#418BCA'
+          fill='#418BCA'
         />
         <Area
           type='monotone'
           dataKey='incomplete'
           stackId="1"
-          stroke='#82ca9d'
-          fill='#82ca9d'
+          stroke='#E44B6F'
+          fill='#E44B6F'
         />
       </AreaChart>
     </ResponsiveContainer>
@@ -229,7 +230,7 @@ export const SubtaskGauge = ({
   const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ?
   return (
-    <ResponsiveContainer width='99%' height={250}>
+    <ResponsiveContainer width='99%' height={225}>
       <PieChart
         margin={gaugeMargin}
       >
@@ -257,7 +258,7 @@ export const TaskGauge = ({
   const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ? 
   return (
-    <ResponsiveContainer width='99%' height={250}>
+    <ResponsiveContainer width='99%' height={225}>
       <PieChart
         margin={gaugeMargin}
       >
