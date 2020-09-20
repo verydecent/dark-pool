@@ -540,8 +540,13 @@ class DashboardView extends React.Component {
                 </h1>
               </div>
               <div className='dashboard-view-button-list'>
-                <TimeFrameButtons />
-                <GraphTypeButtons />
+                <div className='data-view-title'>
+                  {this.state.dateObject.format('LL')}
+                </div>
+                <div>
+                  <TimeFrameButtons />
+                  <GraphTypeButtons />
+                </div>
               </div>
             </div>
             <GraphContainer

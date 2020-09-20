@@ -18,10 +18,14 @@
 
 /* Header Section */
 .dashboard-view-header {
-	display: flex;
-	justify-content: space-between;
 	width: 100%;
 	padding-bottom: var(--h1-padding-bottom);
+}
+
+.dashboard-view-button-list {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /* Data View */
@@ -70,7 +74,6 @@
 }
 
 .data-view-title {
-	margin-top: 15px;
 	font-size: 1.2rem;
 	font-weight: 600;
 	color: #4A4B4F;
