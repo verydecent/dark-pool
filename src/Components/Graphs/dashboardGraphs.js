@@ -23,6 +23,14 @@ import {
   getTaskIncomplete
 } from '../../Utilities/subtaskHelpers';
 
+// Global Margin
+const margin = {
+  top: 10,
+  bottom: 10,
+  left: 10,
+  right: 10
+}
+
 // Area Chart helpers
 const getPercent = (value, total) => {
   const ratio = total > 0 ? value / total : 0;
@@ -81,7 +89,8 @@ export const LineGraph = ({
     <ResponsiveContainer width='99%' height={500}>
       <LineChart
         data={data}
-        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+        margin={margin}
+      >
         <XAxis
           dataKey={xAxisDataKey}
         />
@@ -105,7 +114,7 @@ export const LineGraph = ({
           dot={{ r: 10 }}
         />
       </LineChart>
-    </ResponsiveContainer>
+    </ResponsiveContainer >
   );
 }
 
@@ -115,7 +124,7 @@ export const BarGraph = ({
   return (
     <ResponsiveContainer width='99%' height={500}>
       <BarChart
-        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+        margin={margin}
         data={data}
       >
         <CartesianGrid
@@ -157,7 +166,7 @@ export const AreaGraph = ({
       <AreaChart
         data={data}
         stackOffset="expand"
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        margin={margin}
       >
         <XAxis
           dataKey="title"
@@ -213,18 +222,22 @@ export const SubtaskGauge = ({
   const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ?
   return (
-    <PieChart width={200} height={200}>
-      <Legend />
-      <Pie
-        data={data}
-        dataKey='value'
-        labelLine={false}
-        label={renderCustomizedLabel}
-        innerRadius={12}
+    <ResponsiveContainer width='99%' height={200}>
+      <PieChart
+        margin={margin}
       >
-        {data.map((entry, index) => <Cell fill={SUBTASKCOLORS[index % SUBTASKCOLORS.length]} key={index} />)}
-      </Pie>
-    </PieChart >
+        <Legend />
+        <Pie
+          data={data}
+          dataKey='value'
+          labelLine={false}
+          label={renderCustomizedLabel}
+          innerRadius={12}
+        >
+          {data.map((entry, index) => <Cell fill={SUBTASKCOLORS[index % SUBTASKCOLORS.length]} key={index} />)}
+        </Pie>
+      </PieChart >
+    </ResponsiveContainer>
   );
 }
 
@@ -237,17 +250,21 @@ export const TaskGauge = ({
   const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ? 
   return (
-    <PieChart width={200} height={200}>
-      <Legend />
-      <Pie
-        data={data}
-        dataKey='value'
-        labelLine={false}
-        label={renderCustomizedLabel}
-        innerRadius={12}
+    <ResponsiveContainer width='99%' height={200}>
+      <PieChart
+        margin={margin}
       >
-        {data.map((entry, index) => <Cell fill={TASKCOLORS[index % TASKCOLORS.length]} key={index} />)}
-      </Pie>
-    </PieChart >
+        <Legend />
+        <Pie
+          data={data}
+          dataKey='value'
+          labelLine={false}
+          label={renderCustomizedLabel}
+          innerRadius={12}
+        >
+          {data.map((entry, index) => <Cell fill={TASKCOLORS[index % TASKCOLORS.length]} key={index} />)}
+        </Pie>
+      </PieChart >
+    </ResponsiveContainer>
   );
 }

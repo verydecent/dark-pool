@@ -41,7 +41,7 @@ const Gauge = ({
   const data = [{ name: 'Subtasks Completed', value: complete }, { name: 'Subtasks Remaining', value: remaining }];
 
   return (
-    <PieChart width={200} height={200}>
+    <PieChart width={250} height={250} margin={{ top: 10, bottom: 10, left: 10, right: 10 }}>
       <Legend />
       <Pie
         dataKey='value'

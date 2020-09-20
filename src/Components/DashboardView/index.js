@@ -487,12 +487,23 @@ class DashboardView extends React.Component {
           <div className='data-view-header-right'>
             <div className='data-view-header-top'>
               <h1 className='header-1'>
-                Daily Progress
+                Task Progress
               </h1>
             </div>
             <div className='data-view-header-bottom'>
               <div className='data-view-gauge-container'>
                 <TaskGauge tasks={this.state.tasks} />
+              </div>
+            </div>
+          </div>
+          <div className='data-view-header-right'>
+            <div className='data-view-header-top'>
+              <h1 className='header-1'>
+                Subtask Progress
+              </h1>
+            </div>
+            <div className='data-view-header-bottom'>
+              <div className='data-view-gauge-container'>
                 <SubtaskGauge tasks={this.state.tasks} />
               </div>
             </div>
