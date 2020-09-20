@@ -193,6 +193,7 @@ export const AreaGraph = ({
           stackId="1"
           stroke='#418BCA'
           fill='#418BCA'
+          strokeWidth={2}
         />
         <Area
           type='monotone'
@@ -200,6 +201,7 @@ export const AreaGraph = ({
           stackId="1"
           stroke='#E44B6F'
           fill='#E44B6F'
+          strokeWidth={2}
         />
       </AreaChart>
     </ResponsiveContainer>
