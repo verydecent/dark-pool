@@ -394,7 +394,7 @@ class DashboardView extends React.Component {
 
   render() {
     const TimeFrameButtons = () => (
-      <select value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
+      <select className='dropdown-button' value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
         <option value='day'>Day View</option>
         <option value='isoWeek'>Week View</option>
         <option value='month'>Month View</option>
@@ -403,7 +403,7 @@ class DashboardView extends React.Component {
     );
 
     const GraphTypeButtons = () => (
-      <select value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
+      <select className='dropdown-button' value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
         <option value='line'>Line Graph</option>
         <option value='bar'>Bar Graph</option>
         <option value='area'>Area View</option>
