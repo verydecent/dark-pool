@@ -118,6 +118,7 @@ export const LineGraph = ({
           fill="#F3F3F4"
           activeDot={{ r: 10 }}
           dot={{ r: 10 }}
+          strokeWidth={3}
         />
       </LineChart>
     </ResponsiveContainer >
