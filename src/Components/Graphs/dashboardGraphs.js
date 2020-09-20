@@ -16,6 +16,12 @@ import {
   Pie,
   Cell
 } from 'recharts'
+import {
+  getSubtaskIncompleteFromTasks,
+  getSubtaskCompletedFromTasks,
+  getTaskCompleted,
+  getTaskIncomplete
+} from '../../Utilities/subtaskHelpers';
 
 // Area Chart helpers
 const getPercent = (value, total) => {
@@ -201,18 +207,8 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export const SubtaskGauge = ({
   tasks
 }) => {
-  let total = 0;
-  let completed = 0;
-  tasks.forEach(task => {
-    total += task.subtasks.length;
-    task.subtasks.forEach(subtask => {
-      if (subtask.complete) {
-        completed += 1;
-      }
-    });
-  });
-
-  const incomplete = total - completed;
+  const completed = getSubtaskCompletedFromTasks(tasks);
+  const incomplete = getSubtaskIncompleteFromTasks(tasks);
 
   const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ?
@@ -235,18 +231,8 @@ export const SubtaskGauge = ({
 export const TaskGauge = ({
   tasks
 }) => {
-  let total = 0;
-  let completed = 0;
-  tasks.forEach(task => {
-    total += task.subtasks.length;
-    task.subtasks.forEach(subtask => {
-      if (subtask.complete) {
-        completed += 1;
-      }
-    });
-  });
-
-  const incomplete = total - completed;
+  const completed = getTaskCompleted(tasks);
+  const incomplete = getTaskIncomplete(tasks);
 
   const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ? 
