@@ -25,10 +25,10 @@ import {
 
 // Global Margin
 const margin = {
-  top: 10,
-  bottom: 10,
-  left: 10,
-  right: 10
+  top: 20,
+  bottom: 20,
+  left: 20,
+  right: 20
 }
 
 // Area Chart helpers
@@ -222,7 +222,7 @@ export const SubtaskGauge = ({
   const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ?
   return (
-    <ResponsiveContainer width='99%' height={200}>
+    <ResponsiveContainer width='99%' height={250}>
       <PieChart
         margin={margin}
       >
@@ -250,7 +250,7 @@ export const TaskGauge = ({
   const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ? 
   return (
-    <ResponsiveContainer width='99%' height={200}>
+    <ResponsiveContainer width='99%' height={250}>
       <PieChart
         margin={margin}
       >
