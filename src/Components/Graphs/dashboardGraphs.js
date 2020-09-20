@@ -211,7 +211,6 @@ export const SubtaskGauge = ({
       }
     });
   });
-  console.log('total', total);
 
   const incomplete = total - completed;
 
@@ -251,7 +250,6 @@ export const TaskGauge = ({
 
   const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ? 
-  console.log(data);
   return (
     <PieChart width={200} height={200}>
       <Legend />

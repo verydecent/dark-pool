@@ -453,10 +453,10 @@ class DashboardView extends React.Component {
                     Incomplete
                   </span>
                   <span className='data-view-number tasks'>
-                    {getSubtaskIncompleteFromTasks(this.state.tasks)} <span className='data-view-mini'>tasks</span>
+                    {getTaskIncomplete(this.state.tasks)} <span className='data-view-mini'>tasks</span>
                   </span>
                   <span className='data-view-number subtasks'>
-                    {getTaskIncomplete(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                    {getSubtaskIncompleteFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
                 <div className='data-view-box'>
@@ -464,10 +464,10 @@ class DashboardView extends React.Component {
                     Completed
                   </span>
                   <span className='data-view-number tasks'>
-                    {getSubtaskCompletedFromTasks(this.state.tasks)} <span className='data-view-mini'>tasks</span>
+                    {getTaskCompleted(this.state.tasks)} <span className='data-view-mini'>tasks</span>
                   </span>
                   <span className='data-view-number subtasks'>
-                    {getTaskCompleted(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                    {getSubtaskCompletedFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
                 <div className='data-view-box'>
@@ -475,10 +475,10 @@ class DashboardView extends React.Component {
                     Total
                   </span>
                   <span className='data-view-number tasks'>
-                    {getSubtaskTotalFromTasks(this.state.tasks)} <span className='data-view-mini'>tasks</span>
+                    {getTaskTotal(this.state.tasks)} <span className='data-view-mini'>tasks</span>
                   </span>
                   <span className='data-view-number subtasks'>
-                    {getTaskTotal(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                    {getSubtaskTotalFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
                   </span>
                 </div>
               </div>

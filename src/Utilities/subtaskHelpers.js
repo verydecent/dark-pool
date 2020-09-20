@@ -5,11 +5,25 @@ export const getTaskTotal = tasks => {
 }
 
 export const getTaskCompleted = tasks => {
-  return tasks.length;
+  let completedTotal = 0;
+  tasks.forEach(task => {
+    const subtaskTotal = task.subtasks.length;
+    let subtasksCompleted = 0;
+    task.subtasks.forEach(subtask => {
+      if (subtask.complete) {
+        subtasksCompleted += 1;
+      }
+    });
+    if (subtaskTotal === subtasksCompleted && subtaskTotal !== 0) {
+      completedTotal += 1;
+    }
+  });
+
+  return completedTotal;
 }
 
 export const getTaskIncomplete = tasks => {
-  return tasks.length;
+  return getTaskTotal(tasks) - getTaskCompleted(tasks);
 }
 
 // Helpers that receive array of tasks with subtask arrays
