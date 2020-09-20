@@ -1,3 +1,74 @@
+// Task Helpers to see amount of tasks complete
+
+export const getTaskTotal = tasks => {
+  return tasks.length;
+}
+
+export const getTaskCompleted = tasks => {
+  let completedTotal = 0;
+  tasks.forEach(task => {
+    const subtaskTotal = task.subtasks.length;
+    let subtasksCompleted = 0;
+    task.subtasks.forEach(subtask => {
+      if (subtask.complete) {
+        subtasksCompleted += 1;
+      }
+    });
+    if (subtaskTotal === subtasksCompleted && subtaskTotal !== 0) {
+      completedTotal += 1;
+    }
+  });
+
+  return completedTotal;
+}
+
+export const getTaskIncomplete = tasks => {
+  return getTaskTotal(tasks) - getTaskCompleted(tasks);
+}
+
+// Helpers that receive array of tasks with subtask arrays
+
+export const getSubtaskTotalFromTasks = tasks => {
+  let total = 0;
+
+  for (let i = 0; i < tasks.length; i++) {
+    total += tasks[i].subtasks.length;
+  }
+
+  return total;
+}
+
+export const getSubtaskCompletedFromTasks = tasks => {
+  let completed = 0;
+
+  for (let i = 0; i < tasks.length; i++) {
+    for (let x = 0; x < tasks[i].subtasks.length; x++) {
+      if (tasks[i].subtasks[x].complete) {
+        completed += 1;
+      }
+    }
+  }
+
+  return completed
+}
+
+export const getSubtaskIncompleteFromTasks = tasks => {
+  let total = 0;
+
+  for (let i = 0; i < tasks.length; i++) {
+    total += tasks[i].subtasks.length;
+    for (let x = 0; x < tasks[i].subtasks.length; x++) {
+      if (tasks[i].subtasks[x].complete) {
+        total -= 1;
+      }
+    }
+  }
+
+  return total;
+}
+
+// Helpers for just subtask array used in Modal of Task View
+
 export const getTotalSubtaskAmount = (subtasks) => {
   return subtasks.length;
 };

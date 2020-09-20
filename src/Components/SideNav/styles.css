@@ -22,7 +22,7 @@
 /* Logo */
 
 .sidenav-logo a:hover {
-  color: #E44B6F;
+  color: var(--primary-color);
 }
 
 /* Menu Items */
@@ -33,7 +33,7 @@
 }
 
 .sidenav-links li:hover {
-  background-color: #E44B6F;
+  background-color: var(--primary-color);
   cursor: pointer;
 }
 

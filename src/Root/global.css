@@ -76,16 +76,16 @@ a:visited {
 }
 
 .header-1 {
-  font-size: 2.4rem;
-  /* color: rgba(255, 255, 255, 0.9); */
+  font-size: 2.0rem;
+  /* color: var(--header-1-color); */
 }
 
 .header-2 {
   font-size: 1.6rem;
-  /* color: rgba(255, 255, 255, 0.9); */
+  /* color: var(--header-1-color); */
 }
 
 .header-3 {
   font-size: 1.2rem;
-  /* color: rgba(255, 255, 255, 0.9); */
+  /* color: var(--header-1-color); */
 }

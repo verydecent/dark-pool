@@ -8,7 +8,15 @@ import moment from 'moment';
 import shortid from 'shortid';
 import axios from '../../Utilities/axiosConfig';
 import GraphContainer from './GraphContainer';
-
+import { TaskGauge, SubtaskGauge } from '../Graphs/dashboardGraphs';
+import {
+  getSubtaskTotalFromTasks,
+  getSubtaskCompletedFromTasks,
+  getSubtaskIncompleteFromTasks,
+  getTaskTotal,
+  getTaskCompleted,
+  getTaskIncomplete
+} from '../../Utilities/subtaskHelpers';
 /*
 Graph options
 
@@ -168,26 +176,29 @@ class DashboardView extends React.Component {
       });
   }
 
-  selectGraphType(type) {
+  selectGraphType(e) {
+    const { value } = e.target;
+
     this.setState({
       ...this.state,
-      graphType: type
+      graphType: value
     });
   }
 
-  selectTimeFrame(timeFrame) {
+  selectTimeFrame(e) {
+    const { value } = e.target;
     let beginning;
     let end;
     let date = Object.assign({}, this.state.dateObject);
 
     date = moment(date);
-    beginning = date.startOf(timeFrame).toDate();
-    end = date.endOf(timeFrame).toDate();
+    beginning = date.startOf(value).toDate();
+    end = date.endOf(value).toDate();
 
     this.setState(prevState => {
       return {
         ...prevState,
-        timeFrame: timeFrame,
+        timeFrame: value,
         beginning: beginning,
         end: end,
       }
@@ -382,51 +393,166 @@ class DashboardView extends React.Component {
   }
 
   render() {
-    const ButtonList = () => (
-      <div>
-        <button onClick={() => this.selectTimeFrame('day')}>Day View</button>
-        <button onClick={() => this.selectTimeFrame('isoWeek')}>Week View</button>
-        <button onClick={() => this.selectTimeFrame('month')}>Month View</button>
-        <button onClick={() => this.selectTimeFrame('year')}>Year View</button>
-        <button onClick={() => this.toggleModal()}>Date Picker</button>
-      </div>
+    const TimeFrameButtons = () => (
+      <select value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
+        <option value='day'>Day View</option>
+        <option value='isoWeek'>Week View</option>
+        <option value='month'>Month View</option>
+        <option value='year'>Year View</option>
+      </select>
     );
 
+    const GraphTypeButtons = () => (
+      <select value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
+        <option value='line'>Line Graph</option>
+        <option value='bar'>Bar Graph</option>
+        <option value='area'>Area View</option>
+      </select>
+    );
+
+    const timeFrametitle = () => {
+      if (this.state.timeFrame === 'day') {
+        return 'Daily'
+      }
+      else if (this.state.timeFrame === 'isoWeek') {
+        return 'Weekly'
+      }
+      else if (this.state.timeFrame === 'month') {
+        return 'Monthly'
+      }
+      else if (this.state.timeFrame === 'year') {
+        return 'Yearly'
+      }
+    }
+
+    const graphTypeTitle = () => {
+      if (this.state.graphType === 'line') {
+        return 'Line Graph'
+      }
+      else if (this.state.graphType === 'area') {
+        return 'Area Graph'
+      }
+      else if (this.state.graphType === 'bar') {
+        return 'Bar Graph'
+      }
+    }
+
     return (
-      <div className='dashboard-view'>
-        <DatePickerModal
-          isModalVisible={this.state.isModalVisible}
-          isDateTableVisible={this.state.isDateTableVisible}
-          isMonthTableVisible={this.state.isMonthTableVisible}
-          isYearTableVisible={this.state.isYearTableVisible}
-          toggleModal={this.toggleModal}
-          toggleMonthTable={this.toggleMonthTable}
-          toggleYearTable={this.toggleYearTable}
-          getFirstDayOfMonth={this.getFirstDayOfMonth}
-          getWeekdays={this.getWeekdays}
-          getAllMonths={this.getAllMonths}
-          getDaysInMonth={this.getDaysInMonth}
-          getToday={this.getToday}
-          getMonth={this.getMonth}
-          getYear={this.getYear}
-          setMonth={this.setMonth}
-          onPrev={this.onPrev}
-          onNext={this.onNext}
-          onDayClick={this.onDayClick}
-          // Prouces JSX
-          yearTable={this.yearTable}
-        />
-        <div className='dashboard-view-container'>
-          <ButtonList />
-          <GraphContainer
-            dateObject={this.state.dateObject}
-            timeFrame={this.state.timeFrame}
-            tasks={this.state.tasks}
-            graphType={this.state.graphType}
-            selectGraphType={this.selectGraphType}
-          />
+      <>
+        <div className='data-view'>
+          <div className='data-view-header-left'>
+            <div className='data-view-header-top'>
+              <h1 className='header-1'>
+                Dashboard
+              </h1>
+            </div>
+            <div className='data-view-header-bottom'>
+              <div className='data-view-box-container'>
+                <div className='data-view-box'>
+                  <span className='data-view-title'>
+                    Incomplete
+                  </span>
+                  <span className='data-view-number tasks'>
+                    {getTaskIncomplete(this.state.tasks)} <span className='data-view-mini'>tasks</span>
+                  </span>
+                  <span className='data-view-number subtasks'>
+                    {getSubtaskIncompleteFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                  </span>
+                </div>
+                <div className='data-view-box'>
+                  <span className='data-view-title'>
+                    Completed
+                  </span>
+                  <span className='data-view-number tasks'>
+                    {getTaskCompleted(this.state.tasks)} <span className='data-view-mini'>tasks</span>
+                  </span>
+                  <span className='data-view-number subtasks'>
+                    {getSubtaskCompletedFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                  </span>
+                </div>
+                <div className='data-view-box'>
+                  <span className='data-view-title'>
+                    Total
+                  </span>
+                  <span className='data-view-number tasks'>
+                    {getTaskTotal(this.state.tasks)} <span className='data-view-mini'>tasks</span>
+                  </span>
+                  <span className='data-view-number subtasks'>
+                    {getSubtaskTotalFromTasks(this.state.tasks)} <span className='data-view-mini'>subtasks</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='data-view-header-right'>
+            <div className='data-view-header-top'>
+              <h1 className='header-1'>
+                Task Progress
+              </h1>
+            </div>
+            <div className='data-view-header-bottom'>
+              <div className='data-view-gauge-container'>
+                <TaskGauge tasks={this.state.tasks} />
+              </div>
+            </div>
+          </div>
+          <div className='data-view-header-right'>
+            <div className='data-view-header-top'>
+              <h1 className='header-1'>
+                Subtask Progress
+              </h1>
+            </div>
+            <div className='data-view-header-bottom'>
+              <div className='data-view-gauge-container'>
+                <SubtaskGauge tasks={this.state.tasks} />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div className='dashboard-view'>
+          <DatePickerModal
+            isModalVisible={this.state.isModalVisible}
+            isDateTableVisible={this.state.isDateTableVisible}
+            isMonthTableVisible={this.state.isMonthTableVisible}
+            isYearTableVisible={this.state.isYearTableVisible}
+            toggleModal={this.toggleModal}
+            toggleMonthTable={this.toggleMonthTable}
+            toggleYearTable={this.toggleYearTable}
+            getFirstDayOfMonth={this.getFirstDayOfMonth}
+            getWeekdays={this.getWeekdays}
+            getAllMonths={this.getAllMonths}
+            getDaysInMonth={this.getDaysInMonth}
+            getToday={this.getToday}
+            getMonth={this.getMonth}
+            getYear={this.getYear}
+            setMonth={this.setMonth}
+            onPrev={this.onPrev}
+            onNext={this.onNext}
+            onDayClick={this.onDayClick}
+            // Prouces JSX
+            yearTable={this.yearTable}
+          />
+          <div className='dashboard-view-container'>
+            <div className='dashboard-view-header'>
+              <div className='dashboard-view-header-title'>
+                <h1 className='header-1'>
+                  {`${timeFrametitle()} ${graphTypeTitle()} `}
+                </h1>
+              </div>
+              <div className='dashboard-view-button-list'>
+                <TimeFrameButtons />
+                <GraphTypeButtons />
+              </div>
+            </div>
+            <GraphContainer
+              dateObject={this.state.dateObject}
+              tasks={this.state.tasks}
+              timeFrame={this.state.timeFrame}
+              graphType={this.state.graphType}
+            />
+          </div>
+        </div>
+      </>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import withNav from '../Hoc/withNav';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
+import Button from '../Button';
 import './styles.css';
 
 class AccountView extends React.Component {
@@ -82,7 +83,9 @@ class AccountView extends React.Component {
 
     return (
       <div className='account-view'>
-        <h1>Account Information</h1>
+        <div className='account-view-header'>
+          <h1 className='header-1'>My Account Settings</h1>
+        </div>
         <form
           className='account-view-form'
           onSubmit={(e) => this.handleSubmit(e)}
@@ -107,7 +110,6 @@ class AccountView extends React.Component {
           <input
             name='username'
             value={username}
-            placeholder='username'
             type='text'
             onChange={(e) => this.handleChange(e)}
           />
@@ -115,11 +117,12 @@ class AccountView extends React.Component {
           <input
             name='password'
             value={password}
-            placeholder='password'
             type='password'
             onChange={(e) => this.handleChange(e)}
           />
-          <button>{buttonText}</button>
+          <div className='account-view-button-container'>
+            <Button>{buttonText}</Button>
+          </div>
         </form>
       </div>
     );

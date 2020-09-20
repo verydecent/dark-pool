@@ -7,10 +7,51 @@
   --side-nav-background-color: #313540;
   --side-nav-width: 200px;
 
-  --view-border-color: #000;
-  --view-background-color: #D9E2E7;
+  
+  --button-background-color: #418BCA;
+  --outer-background-color: #F3F3F4;
+
+  /* Colors */
+  --primary-color: #E44B6F;
+  --secondary-color: #418BCA;
+
+  /* Task List */
+  --task-list-header-background-color: #F5F5F5;
+  --task-list-body-background-color: #F9F9F9;
+  --task-list-horizontal-padding: 10px;
+  
+  /* View Baackground */
+  --view-background-color: #FFFFFF;
+  
+  /* Border */
+  --view-border: 1px solid #e7eaec;
+  --view-border-radius: 2px;
+
+  /* View Margin */
   --view-vertical-margin: 30px;
   --view-horizontal-margin: 30px;
 
-  --button-background-color: #418BCA;
+  /* View Padding */
+  --view-top-padding: 20px;
+  --view-horizontal-padding: 20px;
+  --view-bottom-padding: 30px;
+
+  /* Between Margin */
+  --between-view-margin: 15px;
+
+  /* Header 1 */
+  --header-1-color: #676a6c;
+  --h1-padding-bottom: 15px;
+
+  /* Modals */
+  --modal-horizontal-padding: 32px;
+  --modal-top-padding: 8px;
+  --modal-bottom-padding: 16px;
+
+  /* Font  */
+  --font-color: #676a6c;
+
+  /* Input */
+
+  --input-border-color: #cbd4db;
 }

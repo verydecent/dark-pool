@@ -5,9 +5,9 @@
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-bottom: 1px solid var(--view-border-color);
+  padding-left: var(--task-list-horizontal-padding);
+  padding-right: var(--task-list-horizontal-padding);
+  border-bottom: var(--view-border);
   cursor: pointer;
 }
 

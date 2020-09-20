@@ -1,18 +1,22 @@
 import React from 'react';
-import { sortYear, formData } from './helpers';
-import { LineGraph } from '../Day/graphs';
+import { sortYear, formatLineData, formatBarData, formatAreaData } from './helper';
+import { LineGraph, BarGraph, AreaGraph } from '../dashboardGraphs';
 
 const YearContainer = ({
   tasks,
   graphType
 }) => {
-  const lineData = sortYear(tasks);
+  const sortedData = sortYear(tasks);
 
-  const percentData = formData(lineData);
+  const lineData = formatLineData(sortedData);
+  const barData = formatBarData(sortedData);
+  const areaData = formatAreaData(sortedData);
 
   return (
     <div className=''>
-      {graphType === 'line' && <LineGraph data={percentData} />}
+      {graphType === 'line' && <LineGraph data={lineData} xAxisDataKey='month' />}
+      {graphType === 'bar' && <BarGraph data={barData} xAxisDataKey='month' />}
+      {graphType === 'area' && <AreaGraph data={areaData} xAxisDataKey='month' />}
     </div>
   )
 }

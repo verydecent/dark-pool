@@ -1,31 +1,49 @@
 .account-view {
-  width: 400px;
+  width: 450px;
   border-radius: 4px;
   height: 100%;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: var(--modal-top-padding);
+  padding-bottom: var(--modal-bottom-padding);
   border: 1px solid var(--view-border-color);
   background: var(--view-background-color);
 }
 
+.account-view-header {
+  border-bottom: 1px solid var(--input-border-color);
+  margin-bottom: 16px;
+  padding-right: var(--modal-horizontal-padding);
+  padding-left: var(--modal-horizontal-padding);
+}
+
 .account-view h1 {
-  text-align: center;
+  margin-bottom: 16px;
+}
+
+.account-view-form {
+  padding-right: var(--modal-horizontal-padding);
+  padding-left: var(--modal-horizontal-padding);
+}
+
+.account-view-form label {
+  font-size: 1.2rem;
+  color: var(--font-color);
+  font-weight: 600;
+  padding-bottom: 8px;
 }
 
 .account-view-form input {
-  height: 40px;
+  height: 32px;
   width: 100%;
-  border: 1px solid var(--view-border-color);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: 1px solid var(--input-border-color);
   border-radius: 4px;
-  margin-bottom: 15px;
+  margin-bottom: 32px;
 }
 
-.account-view-form button {
-  height: 40px;
-  width: 100%;
-  border: 1px solid var(--view-border-color);
-  border-radius: 4px;
-  cursor: pointer;
+.account-view-button-container {
+  display: flex;
+  justify-content: flex-end;
 }

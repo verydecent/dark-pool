@@ -17,7 +17,7 @@ const subtasksComplete = subtasks => {
   return count;
 };
 
-const COLORS = ['#01B074', '#4A4B4F'];
+const COLORS = ['#418BCA', '#4A4B4F'];
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -41,9 +41,14 @@ const Gauge = ({
   const data = [{ name: 'Subtasks Completed', value: complete }, { name: 'Subtasks Remaining', value: remaining }];
 
   return (
-    <PieChart width={200} height={200}>
+    <PieChart
+      width={250}
+      height={250}
+      margin={{ top: 15, bottom: 15, left: 15, right: 15 }}
+    >
       <Legend />
       <Pie
+        dataKey='value'
         data={data}
         labelLine={false}
         label={renderCustomizedLabel}

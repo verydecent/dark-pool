@@ -31,7 +31,6 @@
   height: 55px;
   padding-left: var(--view-horizontal-margin);
   padding-right: var(--view-horizontal-margin);
-  background-color: #ffffff;
   color: #fff;
   display: flex;
   align-items: center;

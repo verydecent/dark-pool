@@ -1,6 +1,6 @@
 import React from 'react';
-import { sortWeek, formatData } from './helpers';
-import { LineGraph } from './graphs';
+import { sortWeek, formatAreaData, formatLineData, formatBarData } from './helper';
+import { LineGraph, BarGraph, AreaGraph } from '../dashboardGraphs';
 
 const WeekContainer = ({
   tasks,
@@ -8,11 +8,15 @@ const WeekContainer = ({
 }) => {
   const sortedData = sortWeek(tasks);
 
-  const percentData = formatData(sortedData);
+  const lineData = formatLineData(sortedData);
+  const barData = formatBarData(sortedData);
+  const areaData = formatAreaData(sortedData);
 
   return (
     <div className=''>
-      {graphType === 'line' && <LineGraph data={percentData} />}
+      {graphType === 'line' && <LineGraph data={lineData} xAxisDataKey='day' />}
+      {graphType === 'bar' && <BarGraph data={barData} xAxisDataKey='day' />}
+      {graphType === 'area' && <AreaGraph data={areaData} xAxisDataKey='day' />}
     </div>
   )
 }

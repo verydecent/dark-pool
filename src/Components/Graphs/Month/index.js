@@ -1,6 +1,6 @@
 import React from 'react';
-import { sortMonth, formatData } from './helpers';
-import { LineGraph } from './graphs';
+import { sortMonth, formatLineData, formatBarData, formatAreaData } from './helper';
+import { LineGraph, AreaGraph, BarGraph } from '../dashboardGraphs';
 
 const MonthContainer = ({
   tasks,
@@ -9,11 +9,15 @@ const MonthContainer = ({
 }) => {
   const sortedData = sortMonth(tasks, dateObject.daysInMonth());
 
-  const percentData = formatData(sortedData);
+  const lineData = formatLineData(sortedData);
+  const barData = formatBarData(sortedData);
+  const areaData = formatAreaData(sortedData);
 
   return (
     <div className=''>
-      {graphType === 'line' && <LineGraph data={percentData} />}
+      {graphType === 'line' && <LineGraph data={lineData} xAxisDataKey='date' />}
+      {graphType === 'area' && <AreaGraph data={areaData} xAxisDataKey='date' />}
+      {graphType === 'bar' && <BarGraph data={barData} xAxisDataKey='date' />}
     </div>
   )
 }

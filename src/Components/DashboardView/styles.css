@@ -1,11 +1,104 @@
 @import '../../Root/variables.css';
 
 .dashboard-view {
+	margin-top: var(--between-view-margin);
 	width: 100%;
-	border-radius: 4px;
-	/* height: ; */
-	padding-top: 20px;
-	padding-bottom: 30px;
-	border: 1px solid var(--view-border-color);
+	border-radius: var(--view-border-radius);
 	background: var(--view-background-color);
+
+	padding-top: var(--view-top-padding);
+	padding-bottom: var(--view-bottom-padding);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+}
+
+.dashboard-view-graph-container {
+
+}
+
+/* Header Section */
+.dashboard-view-header {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: var(--h1-padding-bottom);
+}
+
+/* Data View */
+
+.data-view-header-top {
+	padding-bottom: var(--h1-padding-bottom);
+}
+
+.data-view-header-left {
+	width: calc(40% - var(--between-view-margin));
+	border-radius: var(--view-border-radius);
+	background: var(--view-background-color);
+
+	padding-top: var(--view-top-padding);
+	padding-bottom: var(--view-top-padding);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+}
+
+.data-view-header-right {
+	width: calc(30% - var(--between-view-margin));
+	margin-left: auto;
+	border-radius: var(--view-border-radius);
+	background: var(--view-background-color);
+
+	padding-top: var(--view-top-padding);
+	padding-bottom: var(--view-bottom-padding);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+}
+
+.data-view-gauge-container {
+	display: flex;
+}
+
+/* Data Box */
+
+.data-view-box-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.data-view-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.data-view-title {
+	margin-top: 15px;
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #4A4B4F;
+}
+
+.data-view-number {
+	color: var(--header-1-color);
+	font-size: 2.4rem;
+	color: var(--secondary-color);
+	margin-top: 20px;
+}
+
+.data-view-mini {
+	font-size: 1rem;
+	color: #000;
+}
+
+.tasks {
+	color: var(--primary-color);
+}
+
+.subtasks {
+	color: var(--secondary-color);
+}
+
+/* Data View */
+
+.data-view {
+	display: flex;
+	width: 100%;
 }
