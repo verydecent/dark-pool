@@ -53,6 +53,10 @@
 	padding-right: var(--view-horizontal-padding);
 }
 
+.data-view-gauge-container {
+	display: flex;
+}
+
 /* Data Box */
 
 .data-view-box-container {

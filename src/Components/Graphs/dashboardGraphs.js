@@ -183,7 +183,8 @@ export const AreaGraph = ({
 }
 
 // Gauge helpers
-const COLORS = ['#418BCA', '#4A4B4F'];
+const TASKCOLORS = ['#E44B6F', '#4A4B4F'];
+const SUBTASKCOLORS = ['#418BCA', '#4A4B4F'];
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -215,8 +216,7 @@ export const SubtaskGauge = ({
   const incomplete = total - completed;
 
   const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
-  // do one for tasks complete, and subtasks complete ? 
-  console.log(data);
+  // do one for tasks complete, and subtasks complete ?
   return (
     <PieChart width={200} height={200}>
       <Legend />
@@ -225,9 +225,9 @@ export const SubtaskGauge = ({
         dataKey='value'
         labelLine={false}
         label={renderCustomizedLabel}
-        innerRadius={15}
+        innerRadius={12}
       >
-        {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index} />)}
+        {data.map((entry, index) => <Cell fill={SUBTASKCOLORS[index % SUBTASKCOLORS.length]} key={index} />)}
       </Pie>
     </PieChart >
   );
@@ -246,7 +246,6 @@ export const TaskGauge = ({
       }
     });
   });
-  console.log('total', total);
 
   const incomplete = total - completed;
 
@@ -261,9 +260,9 @@ export const TaskGauge = ({
         dataKey='value'
         labelLine={false}
         label={renderCustomizedLabel}
-        innerRadius={15}
+        innerRadius={12}
       >
-        {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index} />)}
+        {data.map((entry, index) => <Cell fill={TASKCOLORS[index % TASKCOLORS.length]} key={index} />)}
       </Pie>
     </PieChart >
   );
