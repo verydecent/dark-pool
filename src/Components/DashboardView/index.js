@@ -485,8 +485,8 @@ class DashboardView extends React.Component {
             </div>
             <div className='data-view-header-bottom'>
               <div className='data-view-gauge-container'>
-                <SubtaskGauge tasks={this.state.tasks} />
                 <TaskGauge tasks={this.state.tasks} />
+                <SubtaskGauge tasks={this.state.tasks} />
               </div>
             </div>
           </div>

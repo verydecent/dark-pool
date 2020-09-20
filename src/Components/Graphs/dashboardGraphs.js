@@ -249,7 +249,7 @@ export const TaskGauge = ({
 
   const incomplete = total - completed;
 
-  const data = [{ name: 'Subtasks Completed', value: completed }, { name: 'Subtasks Incomplete', value: incomplete }]
+  const data = [{ name: 'Tasks Completed', value: completed }, { name: 'Tasks Incomplete', value: incomplete }]
   // do one for tasks complete, and subtasks complete ? 
   console.log(data);
   return (
