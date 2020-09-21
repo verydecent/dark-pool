@@ -1,20 +1,13 @@
 import React from 'react';
 import Button from '../Button';
 
-const Header = ({
-  createTask
-}) => {
+const Header = () => {
   return (
-    <>
-      <div className='task-view-header'>
-        <h1 className='header-1'>
-          Tasks
-        </h1>
-        <Button onClick={createTask}>
-          Create Task
-        </Button>
-      </div>
-    </>
+    <div className='task-view-header'>
+      <h1 className='header-1'>
+        Tasks
+      </h1>
+    </div>
   );
 }
 
