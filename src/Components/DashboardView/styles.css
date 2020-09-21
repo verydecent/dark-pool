@@ -94,7 +94,6 @@
 }
 
 .data-view-number {
-	color: var(--header-1-color);
 	font-size: 2.4rem;
 	color: var(--secondary-color);
 	margin-top: 20px;
@@ -106,11 +105,11 @@
 }
 
 .tasks {
-	color: var(--primary-color);
+	/* color: var(--primary-color); */
 }
 
 .subtasks {
-	color: var(--secondary-color);
+	/* color: var(--secondary-color); */
 }
 
 /* Data View */

@@ -6,11 +6,9 @@
 	border-radius: var(--view-border-radius);
   margin-top: var(--between-view-margin);
   height: 100%;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  padding-top: var(--view-top-padding);
+  padding-bottom: var(--view-bottom-padding);
   background: var(--view-background-color);
-  padding-left: var(--view-horizontal-padding);
-  padding-right: var(--view-horizontal-padding);
 }
 
 /* Header */
@@ -19,7 +17,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: var(--h1-padding-bottom);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--input-border-color);
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
 }
 
 .task-view-header-cta {
@@ -46,8 +47,8 @@
   height: 50px;
   background-color: var(--task-list-header-background-color);
   border: var(--view-border);
-  padding-left: var(--task-list-horizontal-padding);
-  padding-right: var(--task-list-horizontal-padding);
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
   font-size: 1.2rem;
   color: var(--header-1-color);
 }
@@ -63,6 +64,8 @@
   background-color: var(--task-list-body-background-color);
   border: var(--view-border);
   font-size: 1.2rem;
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
 }
 
 /* Button */

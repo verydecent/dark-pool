@@ -7,11 +7,9 @@ const Header = ({
   return (
     <>
       <div className='task-view-header'>
-        <div className='task-view-header-title'>
-          <h1 className='header-1'>
-            Tasks
-          </h1>
-        </div>
+        <h1 className='header-1'>
+          Tasks
+        </h1>
         <Button onClick={createTask}>
           Create Task
         </Button>
