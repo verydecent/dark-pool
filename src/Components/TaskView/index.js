@@ -5,8 +5,9 @@ import DateView from '../DateView';
 import TaskModal from '../TaskModal';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
-import moment from 'moment'
-import Header from './Header'
+import moment from 'moment';
+import Header from './Header';
+import Subheader from './Subheader';
 import ListHeader from './ListHeader';
 import List from './List';
 
@@ -362,8 +363,10 @@ class TaskView extends React.Component {
             deleteSubtask={this.deleteSubtask}
           />
           {/* Header Section */}
-          <Header createTask={this.createTask} />
-          {/* List Header */}
+          <Header />
+          {/* Subheader Section */}
+          <Subheader createTask={this.createTask} />
+          {/* List Header Section */}
           <ListHeader />
           {/* Task List Section */}
           <List
