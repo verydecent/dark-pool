@@ -8,30 +8,48 @@
 
 	padding-top: var(--view-top-padding);
 	padding-bottom: var(--view-bottom-padding);
-	padding-left: var(--view-horizontal-padding);
-	padding-right: var(--view-horizontal-padding);
-}
-
-.dashboard-view-graph-container {
-
 }
 
 /* Header Section */
 .dashboard-view-header {
 	width: 100%;
-	padding-bottom: var(--h1-padding-bottom);
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--input-border-color);
+	margin-bottom: 16px;
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+	display: flex;
+	justify-content: space-between;
 }
+
+/* Graph Section */
+.dashboard-view-graph-container {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+/* Buttons list */
 
 .dashboard-view-button-list {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	/* margin-right: 24px; */
 }
 
 /* Data View */
 
 .data-view-header-top {
-	padding-bottom: var(--h1-padding-bottom);
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--input-border-color);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+	margin-bottom: 16px;
+}
+
+.data-view-header-bottom {
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 }
 
 .data-view-header-left {
@@ -41,8 +59,6 @@
 
 	padding-top: var(--view-top-padding);
 	padding-bottom: var(--view-top-padding);
-	padding-left: var(--view-horizontal-padding);
-	padding-right: var(--view-horizontal-padding);
 }
 
 .data-view-header-right {
@@ -53,8 +69,6 @@
 
 	padding-top: var(--view-top-padding);
 	padding-bottom: var(--view-bottom-padding);
-	padding-left: var(--view-horizontal-padding);
-	padding-right: var(--view-horizontal-padding);
 }
 
 .data-view-gauge-container {
@@ -74,7 +88,6 @@
 }
 
 .data-view-title {
-	margin-top: 15px;
 	font-size: 1.2rem;
 	font-weight: 600;
 	color: #4A4B4F;

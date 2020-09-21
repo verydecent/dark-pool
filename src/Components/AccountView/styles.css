@@ -15,10 +15,6 @@
   padding-left: var(--modal-horizontal-padding);
 }
 
-.account-view h1 {
-
-}
-
 .account-view-form {
   margin-top: 16px;
   padding-right: var(--modal-horizontal-padding);

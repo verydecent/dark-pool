@@ -541,15 +541,13 @@ class DashboardView extends React.Component {
           />
           <div className='dashboard-view-container'>
             <div className='dashboard-view-header'>
-              <div className='dashboard-view-header-title'>
-                <h1 className='header-1'>
-                  {`${timeFrametitle()} ${graphTypeTitle()} `}
-                </h1>
-              </div>
-              <div className='dashboard-view-button-list'>
-                <div className='data-view-title'>
+              <h1 className='header-1'>
+                {`${timeFrametitle()} ${graphTypeTitle()}  `}
+                <span className='data-view-title'>
                   {currentTimeFrame(this.state.timeFrame)}
-                </div>
+                </span>
+              </h1>
+              <div className='dashboard-view-button-list'>
                 <div>
                   <TimeFrameButtons />
                   <GraphTypeButtons />
