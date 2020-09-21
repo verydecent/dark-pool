@@ -11,7 +11,11 @@ const GraphContainer = ({
   dateObject,
 }) => {
   if (tasks.length === 0) {
-    return 'Not enough data, please make some task entries';
+    return (
+      <div className='dashboard-view-warning'>
+        No Tasks/Subtask data, please make some entries under the Task section
+      </div>
+    );
   }
   else {
     return (

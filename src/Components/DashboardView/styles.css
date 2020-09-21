@@ -22,6 +22,18 @@
 	justify-content: space-between;
 }
 
+/* Warning */
+
+.dashboard-view-warning {
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+	font-size: 1.6rem;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 /* Graph Section */
 .dashboard-view-graph-container {
 	padding-left: 8px;
