@@ -19,6 +19,7 @@
   align-items: center;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--input-border-color);
+  margin-bottom: 16px;
   padding-left: var(--view-horizontal-padding);
   padding-right: var(--view-horizontal-padding);
 }
@@ -39,6 +40,10 @@
 }
 
 /* Field */
+.task-view-field-header-wrapper {
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
+}
 
 .task-view-field-header {
   width: 100%;
@@ -47,8 +52,8 @@
   height: 50px;
   background-color: var(--task-list-header-background-color);
   border: var(--view-border);
-  padding-left: var(--view-horizontal-padding);
-  padding-right: var(--view-horizontal-padding);
+  padding-left: var(--task-list-horizontal-padding);
+  padding-right: var(--task-list-horizontal-padding);
   font-size: 1.2rem;
   color: var(--header-1-color);
 }
@@ -64,8 +69,8 @@
   background-color: var(--task-list-body-background-color);
   border: var(--view-border);
   font-size: 1.2rem;
-  padding-left: var(--view-horizontal-padding);
-  padding-right: var(--view-horizontal-padding);
+  margin-left: var(--view-horizontal-padding);
+  margin-right: var(--view-horizontal-padding);
 }
 
 /* Button */
