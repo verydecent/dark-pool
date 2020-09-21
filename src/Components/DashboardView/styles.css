@@ -18,8 +18,14 @@
 	margin-bottom: 16px;
 	padding-left: var(--view-horizontal-padding);
 	padding-right: var(--view-horizontal-padding);
+}
+
+.dashboard-view-subheader {
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 /* Warning */
@@ -117,11 +123,11 @@
 }
 
 .tasks {
-	/* color: var(--primary-color); */
+	color: var(--primary-color);
 }
 
 .subtasks {
-	/* color: var(--secondary-color); */
+	color: var(--secondary-color);
 }
 
 /* Data View */
