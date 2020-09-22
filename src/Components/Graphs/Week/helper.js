@@ -2,7 +2,7 @@ import { getTaskCompleted, getTaskIncomplete, getTaskTotal } from "../../../Util
 
 export const sortWeek = tasks => {
   const weekdays = {};
-  const numbersInAWeek = 7;
+  const numbersInAWeek = 7; // Including 0 as Monday
 
   for (let d = 0; d < numbersInAWeek; d++) {
     weekdays[d] = [];
@@ -10,7 +10,8 @@ export const sortWeek = tasks => {
 
   tasks.forEach(task => {
     const day = new Date(task.createdAt).getDay();
-    weekdays[day].push(task);
+    const backOne = day - 1;
+    weekdays[backOne].push(task);
   });
 
   return weekdays;
