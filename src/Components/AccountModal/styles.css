@@ -37,6 +37,9 @@
   padding-bottom: 8px;
   padding-right: var(--modal-horizontal-padding);
   padding-left: var(--modal-horizontal-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .account-view-form {
