@@ -7,7 +7,6 @@ import {
   ChartBar,
   ListUl,
   Calendar,
-  User,
   PeaceOut
 } from '../FAIcons';
 
