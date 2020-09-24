@@ -12,12 +12,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 const HeaderNav = ({
-  isAccountModalOpen,
   toggleAccountModal
 }) => {
   return (
     <div className='header-nav'>
-      <AccountView />
+      <AccountView toggleAccountModal={toggleAccountModal} />
       <div className='header-nav-top'>
         <div className='header-nav-user-icon' onClick={() => toggleAccountModal()}>
           <User />
