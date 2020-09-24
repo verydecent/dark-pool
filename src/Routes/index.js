@@ -15,7 +15,6 @@ import ResetPassword from '../Components/Landing/ResetPassword';
 import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
 import CalendarView from '../Components/CalendarView';
-import AccountView from '../Components/AccountView';
 import ProfileView from '../Components/ProfileView';
 
 import ProtectedAdmin from '../Components/ProtectedAdmin';
@@ -41,11 +40,10 @@ const Routes = () => {
         <ProtectedRoute exact path='/app' component={DashboardView} />
         <ProtectedRoute exact path='/app/tasks' component={TaskView} />
         <ProtectedRoute exact path='/app/calendar' component={CalendarView} />
-        <ProtectedRoute exact path='/app/account' component={AccountView} />
 
         {/* App - Admin */}
         <AdminRoute exact path='/app/admin' component={ProtectedAdmin} />
-        
+
       </Switch>
     </BrowserRouter>
   );
