@@ -66,16 +66,6 @@ const SideNav = ({
               </span>
             </Link>
           </li>
-          <li style={{ background: history.location.pathname === '/app/account' ? '#E44B6F' : '' }}>
-            <Link to='/app/account'>
-              <div className='sidenav-icon' style={{ color: history.location.pathname === '/app/account' ? '#fff' : '' }}>
-                <User />
-              </div>
-              <span className='sidenav-text' style={{ color: history.location.pathname === '/app/account' ? '#fff' : '' }}>
-                Account
-              </span>
-            </Link>
-          </li>
           {/* Link option for Administrators */}
           {adminLink}
           <li
