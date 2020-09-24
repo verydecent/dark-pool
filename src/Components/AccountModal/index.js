@@ -4,7 +4,7 @@ import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/
 import Button from '../Button';
 import './styles.css';
 
-class AccountView extends React.Component {
+class AccountModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -128,4 +128,4 @@ class AccountView extends React.Component {
   }
 }
 
-export default AccountView;
+export default AccountModal;
