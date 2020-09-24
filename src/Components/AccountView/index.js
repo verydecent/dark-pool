@@ -1,13 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import withNav from '../Hoc/withNav';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
 import Button from '../Button';
 import './styles.css';
 
 class AccountView extends React.Component {
   constructor(props) {
-    super(props)
     this.state = {
       email: "",
       username: "",
@@ -129,4 +127,4 @@ class AccountView extends React.Component {
   }
 }
 
-export default withNav(AccountView);
+export default AccountView;
