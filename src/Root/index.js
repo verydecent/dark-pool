@@ -35,15 +35,12 @@ library.add(
   faHandPeace
 );
 
-const Root = () => {
-  return (
-    <div className='root'>
-      <Provider store={store}>
-        <Routes />
-      </Provider>
-    </div>
-  );
-}
+const Root = () =>
+  <div className='root'>
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  </div>
 
 ReactDOM.render(
   <Root />,

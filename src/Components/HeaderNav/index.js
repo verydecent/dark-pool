@@ -4,7 +4,12 @@ import './styles.css';
 import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/Actions';
 
-const mapStateToProps = {};
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    isAccountModalOpen: state.isAccountModalOpen
+  }
+};
 
 const mapDispatchToProps = dispatch => {
   console.log('dispatch', dispatch(toggleAccountModal()));
@@ -26,4 +31,4 @@ const HeaderNav = (props) => {
   );
 }
 
-export default connect(null, mapDispatchToProps)(HeaderNav);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderNav);
