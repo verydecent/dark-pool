@@ -18,6 +18,7 @@ import {
   faHandPeace,
 } from '@fortawesome/free-regular-svg-icons';
 import { Provider } from 'react-redux';
+import store from '../Redux/store';
 
 library.add(
   // Solid Icons
@@ -37,7 +38,9 @@ library.add(
 const Root = () => {
   return (
     <div className='root'>
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     </div>
   );
 }
