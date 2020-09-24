@@ -3,7 +3,7 @@ import { User } from '../FAIcons/index';
 import './styles.css';
 import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/Actions';
-import AccountView from '../AccountView';
+import AccountView from '../AccountModal';
 
 const mapStateToProps = state => {
   return {
