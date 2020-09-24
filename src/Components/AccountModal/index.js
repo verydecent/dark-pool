@@ -101,7 +101,7 @@ class AccountModal extends React.Component {
           <div className='account-view'>
             <div className='account-view-header'>
               <h1 className='header-1'>My Account Settings</h1>
-              <div onClick={() => toggleAccountModal()}>
+              <div onClick={() => this.props.toggleAccountModal()}>
                 <Times />
               </div>
             </div>
