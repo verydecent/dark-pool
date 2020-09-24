@@ -24,7 +24,6 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-
         <ProtectedRoute path='/protected' component={Protected} />
 
         {/* Landing */}
@@ -43,7 +42,6 @@ const Routes = () => {
 
         {/* App - Admin */}
         <AdminRoute exact path='/app/admin' component={ProtectedAdmin} />
-
       </Switch>
     </BrowserRouter>
   );
