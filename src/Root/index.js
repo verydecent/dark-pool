@@ -17,6 +17,7 @@ import {
   faUser,
   faHandPeace,
 } from '@fortawesome/free-regular-svg-icons';
+import { Provider } from 'react-redux';
 
 library.add(
   // Solid Icons
