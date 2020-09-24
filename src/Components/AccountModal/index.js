@@ -4,6 +4,8 @@ import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/
 import Button from '../Button';
 import { connect } from 'react-redux';
 import './styles.css';
+import { Times } from '../FAIcons';
+import { toggleAccountModal } from '../../Redux/Actions';
 
 const mapStateToProps = state => {
   return {
@@ -94,11 +96,14 @@ class AccountModal extends React.Component {
       return (
         <div className='account-modal'>
           {/* Overlay */}
-          <div className='account-modal-overlay' />
+          <div className='account-modal-overlay' onClick={() => this.props.toggleAccountModal()} />
 
           <div className='account-view'>
             <div className='account-view-header'>
               <h1 className='header-1'>My Account Settings</h1>
+              <div onClick={() => toggleAccountModal()}>
+                <Times />
+              </div>
             </div>
             <form
               className='account-view-form'
