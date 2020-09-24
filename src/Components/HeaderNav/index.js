@@ -5,25 +5,22 @@ import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/Actions';
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     isAccountModalOpen: state.isAccountModalOpen
   }
 };
 
 const mapDispatchToProps = dispatch => {
-  console.log('dispatch', dispatch(toggleAccountModal()));
   return {
     toggleAccountModal: () => dispatch(toggleAccountModal())
   }
 };
 
-const HeaderNav = (props) => {
-  console.log(props.toggleAccountModal())
+const HeaderNav = ({ isAccountModalOpen, toggleAccountModal }) => {
   return (
     <div className='header-nav'>
       <div className='header-nav-top'>
-        <div className='header-nav-user-icon' onClick={() => props.toggleAccountModal()}>
+        <div className='header-nav-user-icon' onClick={() => toggleAccountModal()}>
           <User />
         </div>
       </div>
