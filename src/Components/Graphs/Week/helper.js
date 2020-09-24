@@ -11,7 +11,9 @@ export const sortWeek = tasks => {
   tasks.forEach(task => {
     const day = new Date(task.createdAt).getDay();
     const backOne = day - 1;
-    weekdays[backOne].push(task);
+    if (weekdays[backOne]) {
+      weekdays[backOne].push(task);
+    }
   });
 
   return weekdays;
