@@ -3,6 +3,7 @@ import { User } from '../FAIcons/index';
 import './styles.css';
 import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/Actions';
+import AccountView from '../AccountView';
 
 const mapStateToProps = state => {
   return {
@@ -16,9 +17,13 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-const HeaderNav = ({ isAccountModalOpen, toggleAccountModal }) => {
+const HeaderNav = ({
+  isAccountModalOpen,
+  toggleAccountModal
+}) => {
   return (
     <div className='header-nav'>
+      {isAccountModalOpen && <AccountView />}
       <div className='header-nav-top'>
         <div className='header-nav-user-icon' onClick={() => toggleAccountModal()}>
           <User />

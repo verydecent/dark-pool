@@ -6,6 +6,7 @@ import './styles.css';
 
 class AccountView extends React.Component {
   constructor(props) {
+    super(props)
     this.state = {
       email: "",
       username: "",
