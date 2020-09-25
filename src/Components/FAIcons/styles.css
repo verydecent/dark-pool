@@ -1,0 +1,9 @@
+.times-icon {
+  cursor: pointer;
+  color: #6f7782;
+  font-size: 1.2rem;
+}
+
+.times-icon:hover {
+  color: var(--input-form-hover-color);
+}

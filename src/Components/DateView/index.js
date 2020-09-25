@@ -12,10 +12,12 @@ const DateView = ({
 
   return (
     <div className='date-view'>
-      <h1 className='header-1'>
-        {currentDate}
-      </h1>
-      <div>
+      <div className='date-view-header'>
+        <h1 className='header-1'>
+          {currentDate}
+        </h1>
+      </div>
+      <div className='date-view-body'>
         <button className='task-view-button' onClick={(e) => parsePrevDate(e)}>
           {/* <AngleLeft /> */}
           Yesterday

@@ -1,7 +1,31 @@
+.account-modal {
+  z-index: 990;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.account-modal-overlay {
+  z-index: 995;
+  width: 100%;
+  height: 100%;
+  background: rgba(39,50,64,.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .account-view {
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 450px;
   border-radius: 4px;
-  height: 100%;
+  height: auto;
   padding-top: var(--modal-top-padding);
   padding-bottom: var(--modal-bottom-padding);
   border: 1px solid var(--view-border-color);
@@ -10,16 +34,16 @@
 
 .account-view-header {
   border-bottom: 1px solid var(--input-border-color);
-  margin-bottom: 16px;
+  padding-bottom: 8px;
   padding-right: var(--modal-horizontal-padding);
   padding-left: var(--modal-horizontal-padding);
-}
-
-.account-view h1 {
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .account-view-form {
+  margin-top: 16px;
   padding-right: var(--modal-horizontal-padding);
   padding-left: var(--modal-horizontal-padding);
 }
@@ -41,6 +65,10 @@
   border: 1px solid var(--input-border-color);
   border-radius: 4px;
   margin-bottom: 32px;
+}
+
+.account-view-form input:hover {
+  border-color: var(--input-form-hover-color);
 }
 
 .account-view-button-container {

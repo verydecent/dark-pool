@@ -6,20 +6,19 @@
 	border-radius: var(--view-border-radius);
   margin-top: var(--between-view-margin);
   height: 100%;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  padding-top: var(--view-top-padding);
+  padding-bottom: var(--view-bottom-padding);
   background: var(--view-background-color);
-  padding-left: var(--view-horizontal-padding);
-  padding-right: var(--view-horizontal-padding);
 }
 
 /* Header */
 
 .task-view-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: var(--h1-padding-bottom);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--input-border-color);
+  margin-bottom: 16px;
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
 }
 
 .task-view-header-cta {
@@ -33,11 +32,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
+  margin-bottom: 16px;
+}
+
+.task-view-date-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4A4B4F;
 }
 
 /* Field */
+.task-view-field-header-wrapper {
+  padding-left: var(--view-horizontal-padding);
+  padding-right: var(--view-horizontal-padding);
+}
 
 .task-view-field-header {
   width: 100%;
@@ -46,8 +56,6 @@
   height: 50px;
   background-color: var(--task-list-header-background-color);
   border: var(--view-border);
-  padding-left: var(--task-list-horizontal-padding);
-  padding-right: var(--task-list-horizontal-padding);
   font-size: 1.2rem;
   color: var(--header-1-color);
 }
@@ -55,6 +63,11 @@
 .task-view-field {
   flex: 1 1 100%;
   font-weight: 700;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-right: var(--view-border);
+  padding-left: var(--task-list-horizontal-padding);
 }
 
 /* Task List */
@@ -63,6 +76,8 @@
   background-color: var(--task-list-body-background-color);
   border: var(--view-border);
   font-size: 1.2rem;
+  margin-left: var(--view-horizontal-padding);
+  margin-right: var(--view-horizontal-padding);
 }
 
 /* Button */

@@ -6,7 +6,20 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   font-family: 'Roboto', sans-serif;
-  /* color: rgba(255, 255, 255, 0.9); */
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+.root {
+  height: 100%;
+  background-color: var(--outer-background-color);
 }
 
 @font-face {
@@ -68,11 +81,6 @@ a:hover {
 }
 a:visited {
   color: #fff;
-}
-
-.root {
-  /* height: 100vh;
-  width: 100%; */
 }
 
 .header-1 {

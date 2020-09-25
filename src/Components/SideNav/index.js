@@ -7,7 +7,6 @@ import {
   ChartBar,
   ListUl,
   Calendar,
-  User,
   PeaceOut
 } from '../FAIcons';
 
@@ -63,16 +62,6 @@ const SideNav = ({
               </div>
               <span className='sidenav-text' style={{ color: history.location.pathname === '/app/calendar' ? '#fff' : '' }}>
                 Calendar
-              </span>
-            </Link>
-          </li>
-          <li style={{ background: history.location.pathname === '/app/account' ? '#E44B6F' : '' }}>
-            <Link to='/app/account'>
-              <div className='sidenav-icon' style={{ color: history.location.pathname === '/app/account' ? '#fff' : '' }}>
-                <User />
-              </div>
-              <span className='sidenav-text' style={{ color: history.location.pathname === '/app/account' ? '#fff' : '' }}>
-                Account
               </span>
             </Link>
           </li>

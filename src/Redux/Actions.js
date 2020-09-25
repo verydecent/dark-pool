@@ -1,3 +1,9 @@
-export const ADD_TODO = 'ADD_TODO';
-export const REMOVE_TODO = 'REMOVE_TODO';
+import { TOGGLE_ACCOUNT_MODAL } from './constants';
 
+const toggleAccountModal = () => ({
+  type: TOGGLE_ACCOUNT_MODAL
+});
+
+export {
+  toggleAccountModal
+}

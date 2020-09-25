@@ -114,10 +114,11 @@ export const LineGraph = ({
         <Line
           type="monotone"
           dataKey="percent"
-          stroke="#E44B6F"
-          fill="#fff"
+          stroke="#418BCA"
+          fill="#F3F3F4"
           activeDot={{ r: 10 }}
           dot={{ r: 10 }}
+          strokeWidth={3}
         />
       </LineChart>
     </ResponsiveContainer >
@@ -192,6 +193,7 @@ export const AreaGraph = ({
           stackId="1"
           stroke='#418BCA'
           fill='#418BCA'
+          strokeWidth={2}
         />
         <Area
           type='monotone'
@@ -199,6 +201,7 @@ export const AreaGraph = ({
           stackId="1"
           stroke='#E44B6F'
           fill='#E44B6F'
+          strokeWidth={2}
         />
       </AreaChart>
     </ResponsiveContainer>
@@ -206,8 +209,8 @@ export const AreaGraph = ({
 }
 
 // Gauge helpers
-const TASKCOLORS = ['#E44B6F', '#4A4B4F'];
-const SUBTASKCOLORS = ['#418BCA', '#4A4B4F'];
+const TASKCOLORS = ['#4A4B4F', '#E44B6F'];
+const SUBTASKCOLORS = ['#4A4B4F', '#418BCA'];
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;

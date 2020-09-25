@@ -18,23 +18,23 @@
   /* Task List */
   --task-list-header-background-color: #F5F5F5;
   --task-list-body-background-color: #F9F9F9;
-  --task-list-horizontal-padding: 10px;
+  --task-list-horizontal-padding: 16px;
   
   /* View Baackground */
   --view-background-color: #FFFFFF;
   
   /* Border */
   --view-border: 1px solid #e7eaec;
-  --view-border-radius: 2px;
+  --view-border-radius: 4px;
 
   /* View Margin */
   --view-vertical-margin: 30px;
   --view-horizontal-margin: 30px;
 
   /* View Padding */
-  --view-top-padding: 20px;
-  --view-horizontal-padding: 20px;
-  --view-bottom-padding: 30px;
+  --view-top-padding: 8px;
+  --view-horizontal-padding: 32px;
+  --view-bottom-padding: 16px;
 
   /* Between Margin */
   --between-view-margin: 15px;
@@ -54,4 +54,5 @@
   /* Input */
 
   --input-border-color: #cbd4db;
+  --input-form-hover-color: #4A4B4F;
 }

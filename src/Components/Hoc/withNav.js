@@ -5,7 +5,7 @@ import './styles.css';
 
 const withNav = Component => (props) => {
 	return (
-		<div>
+		<>
 			<SideNav {...props} />
 			<div className='header-wrapper'>
 				<HeaderNav />
@@ -13,7 +13,7 @@ const withNav = Component => (props) => {
 					<Component />
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 

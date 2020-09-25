@@ -5,14 +5,17 @@
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: var(--task-list-horizontal-padding);
-  padding-right: var(--task-list-horizontal-padding);
   border-bottom: var(--view-border);
   cursor: pointer;
 }
 
 .task-cell {
   flex: 1 1 100%;
+  border-right: var(--view-border);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: var(--task-list-horizontal-padding);
 }
 
 .task-cell.title {

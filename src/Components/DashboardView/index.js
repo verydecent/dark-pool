@@ -394,7 +394,7 @@ class DashboardView extends React.Component {
 
   render() {
     const TimeFrameButtons = () => (
-      <select value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
+      <select className='dropdown-button' value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
         <option value='day'>Day View</option>
         <option value='isoWeek'>Week View</option>
         <option value='month'>Month View</option>
@@ -403,12 +403,19 @@ class DashboardView extends React.Component {
     );
 
     const GraphTypeButtons = () => (
-      <select value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
+      <select className='dropdown-button' value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
         <option value='line'>Line Graph</option>
         <option value='bar'>Bar Graph</option>
         <option value='area'>Area View</option>
       </select>
     );
+
+    const currentTimeFrame = timeFrame => {
+      if (timeFrame === 'day') return this.state.dateObject.format('dddd LL');
+      else if (timeFrame === 'isoWeek') return `Week of ${this.state.dateObject.format('LL')}`;
+      else if (timeFrame === 'month') return this.state.dateObject.format('MMMM YYYY');
+      else if (timeFrame === 'year') return this.state.dateObject.format('YYYY');
+    }
 
     const timeFrametitle = () => {
       if (this.state.timeFrame === 'day') {
@@ -534,14 +541,19 @@ class DashboardView extends React.Component {
           />
           <div className='dashboard-view-container'>
             <div className='dashboard-view-header'>
-              <div className='dashboard-view-header-title'>
-                <h1 className='header-1'>
-                  {`${timeFrametitle()} ${graphTypeTitle()} `}
-                </h1>
-              </div>
+              <h1 className='header-1'>
+                {`${timeFrametitle()} ${graphTypeTitle()}  `}
+              </h1>
+            </div>
+            <div className='dashboard-view-subheader'>
+              <span className='data-view-title'>
+                {currentTimeFrame(this.state.timeFrame)}
+              </span>
               <div className='dashboard-view-button-list'>
-                <TimeFrameButtons />
-                <GraphTypeButtons />
+                <div>
+                  <TimeFrameButtons />
+                  <GraphTypeButtons />
+                </div>
               </div>
             </div>
             <GraphContainer

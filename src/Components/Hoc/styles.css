@@ -2,17 +2,16 @@
 
 .header-wrapper {
 	margin-left: var(--side-nav-width);
-	height: 100vh;
 	background: var(--outer-background-color);
 }
 
 .view-wrapper {
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	margin-top: var(--view-vertical-margin);
-	margin-bottom: var(--view-vertical-margin);;
-	margin-left: var(--view-horizontal-margin);;
-	margin-right: var(--view-horizontal-margin);;
+	margin-left: var(--view-horizontal-margin);
+	margin-right: var(--view-horizontal-margin);
+	padding-bottom: var(--view-horizontal-margin);
 }

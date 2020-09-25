@@ -7,6 +7,7 @@ const WeekContainer = ({
   graphType
 }) => {
   const sortedData = sortWeek(tasks);
+  console.log(sortedData)
 
   const lineData = formatLineData(sortedData);
   const barData = formatBarData(sortedData);

@@ -8,26 +8,66 @@
 
 	padding-top: var(--view-top-padding);
 	padding-bottom: var(--view-bottom-padding);
-	padding-left: var(--view-horizontal-padding);
-	padding-right: var(--view-horizontal-padding);
-}
-
-.dashboard-view-graph-container {
-
 }
 
 /* Header Section */
 .dashboard-view-header {
+	width: 100%;
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--input-border-color);
+	margin-bottom: 16px;
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+}
+
+.dashboard-view-subheader {
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 	display: flex;
 	justify-content: space-between;
-	width: 100%;
-	padding-bottom: var(--h1-padding-bottom);
+	align-items: center;
+}
+
+/* Warning */
+
+.dashboard-view-warning {
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+	font-size: 1.6rem;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Graph Section */
+.dashboard-view-graph-container {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+/* Buttons list */
+
+.dashboard-view-button-list {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* margin-right: 24px; */
 }
 
 /* Data View */
 
 .data-view-header-top {
-	padding-bottom: var(--h1-padding-bottom);
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--input-border-color);
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
+	margin-bottom: 16px;
+}
+
+.data-view-header-bottom {
+	padding-left: var(--view-horizontal-padding);
+	padding-right: var(--view-horizontal-padding);
 }
 
 .data-view-header-left {
@@ -37,8 +77,6 @@
 
 	padding-top: var(--view-top-padding);
 	padding-bottom: var(--view-top-padding);
-	padding-left: var(--view-horizontal-padding);
-	padding-right: var(--view-horizontal-padding);
 }
 
 .data-view-header-right {
@@ -49,8 +87,6 @@
 
 	padding-top: var(--view-top-padding);
 	padding-bottom: var(--view-bottom-padding);
-	padding-left: var(--view-horizontal-padding);
-	padding-right: var(--view-horizontal-padding);
 }
 
 .data-view-gauge-container {
@@ -70,21 +106,19 @@
 }
 
 .data-view-title {
-	margin-top: 15px;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	font-weight: 600;
 	color: #4A4B4F;
 }
 
 .data-view-number {
-	color: var(--header-1-color);
 	font-size: 2.4rem;
 	color: var(--secondary-color);
 	margin-top: 20px;
 }
 
 .data-view-mini {
-	font-size: 1rem;
+	font-size: 1.3rem;
 	color: #000;
 }
 
@@ -101,4 +135,15 @@
 .data-view {
 	display: flex;
 	width: 100%;
+}
+
+.dropdown-button {
+	height: 24px;
+	border: none;
+	background: var(--task-list-header-background-color);
+	border-radius: 2px;
+	width: 118px;
+	border: 1px solid #000;
+	margin-right: 6px;
+	padding: 2px 8px;
 }
