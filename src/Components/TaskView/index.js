@@ -365,7 +365,10 @@ class TaskView extends React.Component {
           {/* Header Section */}
           <Header />
           {/* Subheader Section */}
-          <Subheader createTask={this.createTask} />
+          <Subheader
+            date={this.state.currentDate}
+            createTask={this.createTask}
+          />
           {/* List Header Section */}
           <ListHeader />
           {/* Task List Section */}
