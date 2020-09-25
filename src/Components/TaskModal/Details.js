@@ -23,15 +23,15 @@ const Details = ({
       {/* Details */}
       <ol>
         <li>
-          Subtasks Remaining:
+          Incomplete
           <span className='task-modal-details-group-data'>{remaining}</span>
         </li>
         <li>
-          Subtasks Complete:
+          Complete
           <span className='task-modal-details-group-data'>{complete}</span>
         </li>
         <li>
-          Subtasks Total:
+          Total
           <span className='task-modal-details-group-data'>{total}</span>
         </li>
       </ol>

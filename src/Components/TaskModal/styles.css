@@ -84,6 +84,12 @@
   font-size: 1.3rem;
 }
 
+.task-modal-details ol li {
+  color: #4A4B4F;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
 .task-modal-details-group-data {
   font-weight: 700;
   padding-left: 6px;
