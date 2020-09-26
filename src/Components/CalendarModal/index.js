@@ -18,9 +18,11 @@ class CalendarModal extends React.Component {
     this.months = moment.months();
   }
 
-  componentDidMount() {
-
-  }
+  getYear = () => this.state.dateContext.format('Y');
+  getMonth = () => this.state.dateContext.format('MMMM');
+  getDaysInMonth = () => this.state.dateContext.daysInMonth();
+  getCurrentDate = () => this.state.dateContext.get('date');
+  getCurrentDay = () => this.state.dateContext.format('D');
 
   render() {
     return (
