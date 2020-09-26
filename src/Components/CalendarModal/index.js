@@ -46,11 +46,21 @@ class CalendarModal extends React.Component {
       isYearNavOpen: !this.state.isYearNavOpen
     });
   }
-  onChangeYear = e => {
-    const year = e.target.value;
+  setYear = year => {
     let newDateContext = Object.assign({}, this.state.dateContext);
     newDateContext = moment(newDateContext).set('year', year);
     this.setState({ dateContext: newDateContext });
+  }
+  onChangeYear = e => {
+    const year = e.target.value;
+    this.setYear(year);
+  }
+  onKeyUpYear = e => {
+    if (e.which === 13 || e.which === 27) {
+      const year = e.target.value;
+      this.setYear(year);
+      this.toggleYearList();
+    }
   }
 
   render() {
@@ -120,6 +130,7 @@ class CalendarModal extends React.Component {
                   // Methods
                   toggleYearList={this.toggleYearList}
                   onChangeYear={this.onChangeYear}
+                  onKeyUpYear={this.onKeyUpYear}
                 />
               </td>
             </tr>

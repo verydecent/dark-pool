@@ -6,7 +6,7 @@ const YearNav = ({
   toggleYearList,
 
 
-  yearInput,
+  // yearInput,
   onKeyUpYear,
   showYearEditor,
   onChangeYear
@@ -18,8 +18,8 @@ const YearNav = ({
           className='calendar-year-editor'
           type='number'
           defaultValue={year}
-          ref={(yearInput) => yearInput = yearInput}
-          onKeyUp={() => onKeyUpYear()}
+          // ref={(yearInput) => yearInput = yearInput}
+          onKeyUp={(e) => onKeyUpYear(e)}
           onChange={(e) => onChangeYear(e)}
         />
         : <span
