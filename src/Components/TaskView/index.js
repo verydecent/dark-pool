@@ -10,6 +10,8 @@ import Header from './Header';
 import Subheader from './Subheader';
 import ListHeader from './ListHeader';
 import List from './List';
+import { connect } from 'react-redux';
+import CalendarModal from '../CalendarModal';
 
 class TaskView extends React.Component {
   constructor() {
@@ -114,7 +116,8 @@ class TaskView extends React.Component {
   }
 
   callTask() {
-    console.log('callTask()');
+    console.log('callTask()', this.props);
+
     const { currentDate } = this.state;
     const { userId } = this.state;
 
@@ -336,6 +339,7 @@ class TaskView extends React.Component {
   render() {
     return (
       <>
+        <CalendarModal />
         {/* Date View */}
         <DateView
           parseNextDate={this.parseNextDate}
@@ -383,4 +387,10 @@ class TaskView extends React.Component {
   }
 }
 
-export default withNav(TaskView);
+const mapStateToProps = state => {
+  return {
+    isCalendarModalOpen: state.isCalendarModalOpen
+  }
+}
+
+export default connect(mapStateToProps)(withNav(TaskView));

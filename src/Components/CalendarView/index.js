@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import withNav from '../Hoc/withNav';
 import './styles.css';
+import withNav from '../Hoc/withNav';
 
 class CalendarView extends React.Component {
   constructor() {
@@ -22,12 +22,11 @@ class CalendarView extends React.Component {
   }
 
   render() {
-    console.log(this.state.date);
     return (
       <div className='calendar-view'>
         <button onClick={this.changeDate}>Click it</button>
       </div>
-    )
+    );
   }
 }
 
