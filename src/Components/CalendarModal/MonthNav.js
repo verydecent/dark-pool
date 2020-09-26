@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectList from './SelectList';
+import SelectList from './MonthList';
 
 const MonthNav = ({
   isMonthNavOpen,
