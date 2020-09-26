@@ -10,7 +10,7 @@ const withNav = Component => (props) => {
 			<div className='header-wrapper'>
 				<HeaderNav />
 				<div className='view-wrapper'>
-					<Component />
+					<Component {...props} />
 				</div>
 			</div>
 		</>
