@@ -31,7 +31,6 @@ class CalendarModal extends React.Component {
   }
   toggleMonthList = () => {
     this.setState({
-      ...this.state,
       isMonthNavOpen: !this.state.isMonthNavOpen
     });
   }
@@ -39,7 +38,7 @@ class CalendarModal extends React.Component {
     const monthNumber = this.months.indexOf(newMonth);
     let newDateContext = Object.assign({}, this.state.dateContext);
     newDateContext = moment(newDateContext).set('month', monthNumber);
-    this.setState({ dateContext: newDateContext }, () => () => this.toggleMonthList());
+    this.setState({ dateContext: newDateContext }, () => this.toggleMonthList());
   }
 
   render() {
