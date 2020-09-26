@@ -15,8 +15,9 @@ const YearNav = ({
     <div className='calendar-year-nav'>
       {isYearNavOpen
         ? <input
-          deffaultValue={year}
           className='calendar-year-editor'
+          type='number'
+          defaultValue={year}
           ref={(yearInput) => yearInput = yearInput}
           onKeyUp={() => onKeyUpYear()}
           onChange={(e) => onChangeYear(e)}
