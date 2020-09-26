@@ -4,10 +4,14 @@ import SelectList from './SelectList';
 const MonthNav = ({
   isMonthNavOpen,
   month,
-  monthList
+  monthList,
+  onChangeMonth
 }) => {
   return (
-    <span className='label-month'>
+    <span
+      className='label-month'
+      onClick={(e) => onChangeMonth(e, month)}
+    >
       {month}
       {isMonthNavOpen && <SelectList monthList={monthList} />}
     </span>
