@@ -6,7 +6,7 @@ class CalendarModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      momentContext: moment(),
+      dateContext: moment(),
       today: moment(),
       isMonthTableOpen: false,
       isYearTableOpen: false,
@@ -15,6 +15,7 @@ class CalendarModal extends React.Component {
     // View helpers
     this.weekdays = moment.weekdays(); // ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     this.weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    this.months = moment.months();
   }
 
   componentDidMount() {
