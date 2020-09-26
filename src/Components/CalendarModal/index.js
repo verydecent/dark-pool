@@ -33,6 +33,12 @@ class CalendarModal extends React.Component {
     // Map weekdays i.e. Sun, Mon, Tue
     const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
 
+    // Creates the empty dates from previous months
+    const emptyDates = [];
+    for (let i = 0; i < this.getFirstDayOfMonth(); i++) {
+      emptyDates.push(<td className='calendar-empty-dates'></td>);
+    }
+
     return (
       <div className='calendar-modal'>
 
