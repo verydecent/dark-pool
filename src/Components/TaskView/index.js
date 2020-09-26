@@ -11,6 +11,7 @@ import Subheader from './Subheader';
 import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
+import CalendarModal from '../CalendarModal';
 
 class TaskView extends React.Component {
   constructor() {
@@ -339,6 +340,7 @@ class TaskView extends React.Component {
     console.log(this.props);
     return (
       <>
+        <CalendarModal />
         {/* Date View */}
         <DateView
           parseNextDate={this.parseNextDate}
@@ -387,9 +389,8 @@ class TaskView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('mstp', state);
   return {
-    testing: state
+    isCalendarModalOpen: state.isCalendarModalOpen
   }
 }
 
