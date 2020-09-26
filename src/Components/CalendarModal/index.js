@@ -10,7 +10,6 @@ class CalendarModal extends React.Component {
     super(props);
     this.state = {
       dateContext: moment(),
-      selectedDate: moment(),
       isMonthNavOpen: false,
       isYearNavOpen: false,
     }
@@ -81,8 +80,10 @@ class CalendarModal extends React.Component {
     this.setState({ dateContext });
   }
 
-  onClickDay = (e, day) => {
-    this.setState({ selectedDate: day });
+  onClickDay = day => {
+    let dateContext = Object.assign({}, this.state.dateContext);
+    dateContext = moment(this.state.dateContext).set('date', day);
+    this.setState({ dateContext: dateContext }, console.log(this.state.dateContext));
   }
 
   render() {
@@ -98,10 +99,10 @@ class CalendarModal extends React.Component {
     const daysInMonth = [];
     for (let d = 1; d <= this.getDaysInMonth(); d++) {
       const className = d == this.getCurrentDay() ? 'date current-date' : 'date';
-      const selectedDateClassName = d === this.state.selectedDate ? 'selected' : '';
+      const selectedDateClassName = d === this.state.dateContext.get('date') ? 'selected' : '';
       daysInMonth.push(
         <td key={d} className={className + ' ' + selectedDateClassName}>
-          <span onClick={e => this.onClickDay(e, d)}>{d}</span>
+          <span onClick={() => this.onClickDay(d)}>{d}</span>
         </td>);
     }
 
