@@ -75,15 +75,8 @@ class CalendarModal extends React.Component {
 
     return (
       <div className='calendar-modal' >
-
-        {/* Overlay */}
         < div className='calendar-overlay' />
-
-
         <table className='calendar'>
-
-
-          {/* Table Head */}
           <thead>
             <tr className='calendar-header'>
 
@@ -92,16 +85,12 @@ class CalendarModal extends React.Component {
 
             </tr>
           </thead>
-
-          {/* Table Body */}
           <tbody>
             <tr>
               {weekdays}
             </tr>
             {monthEl}
           </tbody>
-
-
         </table>
       </div>
     );
