@@ -1,12 +1,13 @@
 import React from 'react';
 
 const SelectList = ({
-  monthList
+  monthList,
+  changeMonth
 }) => {
   return monthList.map(data => {
     return (
       <div key={data}>
-        <a href='#'>
+        <a href='#' onClick={(e) => changeMonth(e, data)}>
           {data}
         </a>
       </div>

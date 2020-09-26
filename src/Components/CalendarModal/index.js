@@ -29,9 +29,14 @@ class CalendarModal extends React.Component {
     const firstDay = moment(dateContext).startOf('month').format('d');
     return firstDay;
   }
-  onChangeMonth = (e, month) => {
+  toggleMonthList = (e, month) => {
     e.preventDefault();
+    this.setState({
+      ...this.state,
+      isMonthNavOpen: !this.state.isMonthNavOpen
+    });
   }
+  changeMonth = () => { }
 
   render() {
     // Map weekdays i.e. Sun, Mon, Tue
@@ -85,10 +90,13 @@ class CalendarModal extends React.Component {
             <tr className='calendar-header'>
               <td colSpan='5'>
                 <MonthNav
+                  // Values
                   isMonthNavOpen={this.state.isMonthNavOpen}
                   month={this.getMonth()}
                   monthList={this.months}
-                  onChangeMonth={this.onChangeMonth}
+                  // Methods
+                  toggleMonthList={this.toggleMonthList}
+                  changeMonth={this.changeMonth}
                 />
               </td>
             </tr>
