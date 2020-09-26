@@ -4,7 +4,7 @@
   background-color: var(--secondary-color);
 }
 
-.label-month {
+.calendar-month-label, .calendar-year-label {
   cursor: pointer;
 }
 
