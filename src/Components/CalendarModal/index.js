@@ -31,8 +31,24 @@ class CalendarModal extends React.Component {
 
   render() {
     return (
-      <div className=''>
-        {this.getMonth()}
+      <div className='calendar-modal'>
+
+        <div className='calendar-overlay'>
+          {/* Overlay */}
+        </div>
+        <table className='calendar'>
+          <thead>
+            <tr className='calendar-header'>
+
+            </tr>
+            <tr>
+
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
       </div>
     );
   }
