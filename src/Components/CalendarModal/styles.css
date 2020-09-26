@@ -1,3 +1,8 @@
+.selected span {
+  color: red;
+  font-weight: 700;
+}
+
 .current-date span {
   color: #fff;
   border-radius: 50%;

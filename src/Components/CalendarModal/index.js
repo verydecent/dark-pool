@@ -10,7 +10,7 @@ class CalendarModal extends React.Component {
     super(props);
     this.state = {
       dateContext: moment(),
-      today: moment(),
+      selectedDate: moment(),
       isMonthNavOpen: false,
       isYearNavOpen: false,
     }
@@ -81,6 +81,10 @@ class CalendarModal extends React.Component {
     this.setState({ dateContext });
   }
 
+  onClickDay = (e, day) => {
+    this.setState({ selectedDate: day });
+  }
+
   render() {
     // Map weekdays i.e. Sun, Mon, Tue
     const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
@@ -94,9 +98,10 @@ class CalendarModal extends React.Component {
     const daysInMonth = [];
     for (let d = 1; d <= this.getDaysInMonth(); d++) {
       const className = d == this.getCurrentDay() ? 'date current-date' : 'date';
+      const selectedDateClassName = d === this.state.selectedDate ? 'selected' : '';
       daysInMonth.push(
-        <td key={d} className={className}>
-          <span>{d}</span>
+        <td key={d} className={className + ' ' + selectedDateClassName}>
+          <span onClick={e => this.onClickDay(e, d)}>{d}</span>
         </td>);
     }
 
