@@ -4,8 +4,10 @@ const YearNav = ({
   year
 }) => {
   return (
-    <div className=''>
-      {year}
+    <div className='calendar-year-nav'>
+      <span className='calendar-year-label'>
+        {year}
+      </span>
     </div>
   );
 }
