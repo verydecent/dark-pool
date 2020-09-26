@@ -71,11 +71,16 @@ class CalendarModal extends React.Component {
       }
     });
 
+    const monthEl = rows.map((d, i) => {
+      console.log(d);
+      return <tr key={i * 100}>{d}</tr>
+    });
+
     return (
-      <div className='calendar-modal'>
+      <div className='calendar-modal' >
 
         {/* Overlay */}
-        <div className='calendar-overlay' />
+        < div className='calendar-overlay' />
 
 
         <table className='calendar'>
@@ -96,6 +101,7 @@ class CalendarModal extends React.Component {
             <tr>
               {weekdays}
             </tr>
+            {monthEl}
           </tbody>
 
 
