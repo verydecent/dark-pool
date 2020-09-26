@@ -39,6 +39,15 @@ class CalendarModal extends React.Component {
       emptyDates.push(<td className='calendar-empty-dates'></td>);
     }
 
+    const daysInMonth = [];
+    for (let d = 1; d <= this.getDaysInMonth(); d++) {
+      const className = d === this.getCurrentDay() ? 'date current-date' : 'date';
+      daysInMonth.push(
+        <td key={d} className={className}>
+          <span>{d}</span>
+        </td>);
+    }
+
     return (
       <div className='calendar-modal'>
 
