@@ -48,6 +48,29 @@ class CalendarModal extends React.Component {
         </td>);
     }
 
+    // Combine empty dates and total days in month
+    const totalDateSlots = [...emptyDates, ...daysInMonth];
+    let rows = [];
+    let cells = [];
+
+    // Organize into mulitdimensional array modeling the month
+    totalDateSlots.forEach((row, i) => {
+      // If not 7th day (Sunday) then push to cells
+      if ((i % 7) !== 0 || i === 0) {
+        cells.push(row);
+      }
+      else {
+        const insertRow = cells.slice();
+        rows.push(insertRow);
+        cells = [];
+        cells.push(row);
+      }
+      if (i === totalDateSlots.length - 1) {
+        const insertRow = cells.slice();
+        rows.push(insertRow);
+      }
+    });
+
     return (
       <div className='calendar-modal'>
 
