@@ -41,6 +41,11 @@ class CalendarModal extends React.Component {
     newDateContext = moment(newDateContext).set('month', monthNumber);
     this.setState({ dateContext: newDateContext }, () => this.toggleMonthList());
   }
+  toggleYearList = () => {
+    this.setState({
+      isYearNavOpen: !this.state.isYearNavOpen
+    });
+  }
 
   render() {
     // Map weekdays i.e. Sun, Mon, Tue
@@ -103,7 +108,10 @@ class CalendarModal extends React.Component {
                   changeMonth={this.changeMonth}
                 />
                 <YearNav
+                  // Values
                   year={this.getYear()}
+                  // Methods
+                  toggleYearList={this.toggleYearList}
                 />
               </td>
             </tr>

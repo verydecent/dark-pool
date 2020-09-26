@@ -1,11 +1,15 @@
 import React from 'react';
 
 const YearNav = ({
-  year
+  year,
+  toggleYearList
 }) => {
   return (
     <div className='calendar-year-nav'>
-      <span className='calendar-year-label'>
+      <span
+        className='calendar-year-label'
+        onClick={() => toggleYearList()}
+      >
         {year}
       </span>
     </div>
