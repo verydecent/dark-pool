@@ -9,8 +9,8 @@ class CalendarModal extends React.Component {
     this.state = {
       dateContext: moment(),
       today: moment(),
-      isMonthTableOpen: false,
-      isYearTableOpen: false,
+      isMonthNavOpen: false,
+      isYearNavOpen: false,
     }
 
     // View helpers
@@ -81,7 +81,11 @@ class CalendarModal extends React.Component {
           <thead>
             <tr className='calendar-header'>
               <td colSpan='5'>
-                <MonthNav month={this.getMonth()} monthList={this.months} />
+                <MonthNav
+                  isMonthNavOpen={this.state.isMonthNavOpen}
+                  month={this.getMonth()}
+                  monthList={this.months}
+                />
               </td>
             </tr>
             <tr>
