@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 import './styles.css';
+import MonthNav from './MonthNav';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -79,7 +80,9 @@ class CalendarModal extends React.Component {
         <table className='calendar'>
           <thead>
             <tr className='calendar-header'>
-
+              <td colSpan='5'>
+                <MonthNav month={this.getMonth()} monthList={this.months} />
+              </td>
             </tr>
             <tr>
 
