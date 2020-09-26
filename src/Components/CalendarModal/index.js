@@ -71,10 +71,7 @@ class CalendarModal extends React.Component {
       }
     });
 
-    const monthEl = rows.map((d, i) => {
-      console.log(d);
-      return <tr key={i * 100}>{d}</tr>
-    });
+    const monthEl = rows.map((d, i) => <tr key={i * 100}>{d}</tr>);
 
     return (
       <div className='calendar-modal' >
