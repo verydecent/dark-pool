@@ -3,6 +3,7 @@ import React from 'react';
 import './styles.css';
 import MonthNav from './MonthNav';
 import YearNav from './YearNav';
+import { AngleLeft, AngleRight } from '../FAIcons';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -61,6 +62,11 @@ class CalendarModal extends React.Component {
       this.setYear(year);
       this.toggleYearList();
     }
+  }
+  onBlurYear = e => {
+    const year = e.target.value;
+    this.setYear(year);
+    this.toggleYearList();
   }
 
   render() {
@@ -126,12 +132,17 @@ class CalendarModal extends React.Component {
                 <YearNav
                   // Values
                   year={this.getYear()}
-                  is isYearNavOpen={this.state.isYearNavOpen}
+                  isYearNavOpen={this.state.isYearNavOpen}
                   // Methods
                   toggleYearList={this.toggleYearList}
                   onChangeYear={this.onChangeYear}
                   onKeyUpYear={this.onKeyUpYear}
+                  onBlurYear={this.onBlueYear}
                 />
+              </td>
+              <td colSpan='2'>
+                <AngleLeft />
+                <AngleRight />
               </td>
             </tr>
             <tr>
