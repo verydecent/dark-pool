@@ -6,17 +6,12 @@ const MonthNav = ({
   month,
   monthList
 }) => {
-  if (!isMonthNavOpen) {
-    return null;
-  }
-  else {
-    return (
-      <span className='label-month'>
-        {month}
-        <SelectList monthList={monthList} />
-      </span>
-    );
-  }
+  return (
+    <span className='label-month'>
+      {month}
+      {isMonthNavOpen && <SelectList monthList={monthList} />}
+    </span>
+  );
 }
 
 export default MonthNav;
