@@ -110,6 +110,7 @@ class CalendarModal extends React.Component {
                 <YearNav
                   // Values
                   year={this.getYear()}
+                  is isYearNavOpen={this.state.isYearNavOpen}
                   // Methods
                   toggleYearList={this.toggleYearList}
                 />
