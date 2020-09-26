@@ -23,11 +23,16 @@ class CalendarModal extends React.Component {
   getDaysInMonth = () => this.state.dateContext.daysInMonth();
   getCurrentDate = () => this.state.dateContext.get('date');
   getCurrentDay = () => this.state.dateContext.format('D');
+  getFirstDayOfMonth = () => {
+    const { dateContext } = this.state;
+    const firstDay = moment(dateContext).startOf('month').format('d');
+    return firstDay;
+  }
 
   render() {
     return (
       <div className=''>
-        Something
+        {this.getMonth()}
       </div>
     );
   }
