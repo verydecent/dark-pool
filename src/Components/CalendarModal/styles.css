@@ -3,3 +3,7 @@
   border-radius: 50%;
   background-color: var(--secondary-color);
 }
+
+.label-month {
+  cursor: pointer;
+}
