@@ -10,6 +10,7 @@ import Header from './Header';
 import Subheader from './Subheader';
 import ListHeader from './ListHeader';
 import List from './List';
+import { connect } from 'react-redux';
 
 class TaskView extends React.Component {
   constructor() {
@@ -114,7 +115,8 @@ class TaskView extends React.Component {
   }
 
   callTask() {
-    console.log('callTask()');
+    console.log('callTask()', this.props);
+
     const { currentDate } = this.state;
     const { userId } = this.state;
 
@@ -334,6 +336,7 @@ class TaskView extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <>
         {/* Date View */}
@@ -383,4 +386,11 @@ class TaskView extends React.Component {
   }
 }
 
-export default withNav(TaskView);
+const mapStateToProps = state => {
+  console.log('mstp', state);
+  return {
+    testing: state
+  }
+}
+
+export default connect(mapStateToProps)(withNav(TaskView));
