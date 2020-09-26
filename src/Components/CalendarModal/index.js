@@ -29,14 +29,18 @@ class CalendarModal extends React.Component {
     const firstDay = moment(dateContext).startOf('month').format('d');
     return firstDay;
   }
-  toggleMonthList = (e, month) => {
-    e.preventDefault();
+  toggleMonthList = () => {
     this.setState({
       ...this.state,
       isMonthNavOpen: !this.state.isMonthNavOpen
     });
   }
-  changeMonth = () => { }
+  changeMonth = newMonth => {
+    const monthNumber = this.months.indexOf(newMonth);
+    let newDateContext = Object.assign({}, this.state.dateContext);
+    newDateContext = moment(newDateContext).set('month', monthNumber);
+    this.setState({ dateContext: newDateContext }, () => () => this.toggleMonthList());
+  }
 
   render() {
     // Map weekdays i.e. Sun, Mon, Tue

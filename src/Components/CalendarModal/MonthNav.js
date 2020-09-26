@@ -9,13 +9,15 @@ const MonthNav = ({
   changeMonth
 }) => {
   return (
-    <span
-      className='label-month'
-      onClick={(e) => toggleMonthList(e, month)}
-    >
-      {month}
+    <div className='calendar-month-nav'>
+      <span
+        className='label-month'
+        onClick={() => toggleMonthList(month)}
+      >
+        {month}
+      </span>
       {isMonthNavOpen && <SelectList monthList={monthList} changeMonth={changeMonth} />}
-    </span>
+    </div>
   );
 }
 

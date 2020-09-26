@@ -7,7 +7,7 @@ const SelectList = ({
   return monthList.map(data => {
     return (
       <div key={data}>
-        <a href='#' onClick={(e) => changeMonth(e, data)}>
+        <a href='#' onClick={() => changeMonth(data)}>
           {data}
         </a>
       </div>
