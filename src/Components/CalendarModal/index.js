@@ -30,6 +30,9 @@ class CalendarModal extends React.Component {
   }
 
   render() {
+    // Map weekdays i.e. Sun, Mon, Tue
+    const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
+
     return (
       <div className='calendar-modal'>
 
