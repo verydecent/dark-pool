@@ -7,3 +7,11 @@
 .label-month {
   cursor: pointer;
 }
+
+.month-list-item {
+  cursor: pointer;
+}
+
+.month-list-item:hover {
+  text-decoration: underline;
+}
