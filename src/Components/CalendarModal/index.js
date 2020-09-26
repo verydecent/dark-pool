@@ -141,8 +141,12 @@ class CalendarModal extends React.Component {
                 />
               </td>
               <td colSpan='2'>
-                <AngleLeft />
-                <AngleRight />
+                <button>
+                  <AngleLeft />
+                </button>
+                <button>
+                  <AngleRight />
+                </button>
               </td>
             </tr>
             <tr>
