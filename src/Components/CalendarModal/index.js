@@ -69,6 +69,18 @@ class CalendarModal extends React.Component {
     this.toggleYearList();
   }
 
+  prevMonth = () => {
+    let dateContext = Object.assign({}, this.state.dateContext);
+    dateContext = moment(dateContext).subtract(1, 'month');
+    this.setState({ dateContext });
+  }
+
+  nextMonth = () => {
+    let dateContext = Object.assign({}, this.state.dateContext);
+    dateContext = moment(dateContext).add(1, 'month');
+    this.setState({ dateContext });
+  }
+
   render() {
     // Map weekdays i.e. Sun, Mon, Tue
     const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
@@ -141,10 +153,10 @@ class CalendarModal extends React.Component {
                 />
               </td>
               <td colSpan='2'>
-                <button>
+                <button onClick={this.prevMonth}>
                   <AngleLeft />
                 </button>
-                <button>
+                <button onClick={this.nextMonth}>
                   <AngleRight />
                 </button>
               </td>
