@@ -36,10 +36,14 @@ class CalendarModal extends React.Component {
     return (
       <div className='calendar-modal'>
 
-        <div className='calendar-overlay'>
-          {/* Overlay */}
-        </div>
+        {/* Overlay */}
+        <div className='calendar-overlay' />
+
+
         <table className='calendar'>
+
+
+          {/* Table Head */}
           <thead>
             <tr className='calendar-header'>
 
@@ -48,9 +52,15 @@ class CalendarModal extends React.Component {
 
             </tr>
           </thead>
-          <tbody>
 
+          {/* Table Body */}
+          <tbody>
+            <tr>
+              {weekdays}
+            </tr>
           </tbody>
+
+
         </table>
       </div>
     );
