@@ -137,7 +137,7 @@ class CalendarModal extends React.Component {
                   toggleYearList={this.toggleYearList}
                   onChangeYear={this.onChangeYear}
                   onKeyUpYear={this.onKeyUpYear}
-                  onBlurYear={this.onBlueYear}
+                  onBlurYear={this.onBlurYear}
                 />
               </td>
               <td colSpan='2'>

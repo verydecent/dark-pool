@@ -17,7 +17,7 @@ const YearNav = ({
           defaultValue={year}
           onKeyUp={e => onKeyUpYear(e)}
           onChange={e => onChangeYear(e)}
-          onBlur={e => onBlueYear(e)}
+          onBlur={e => onBlurYear(e)}
         />
         : <span
           className='calendar-year-label'
