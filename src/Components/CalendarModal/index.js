@@ -36,7 +36,7 @@ class CalendarModal extends React.Component {
     // Creates the empty dates from previous months
     const emptyDates = [];
     for (let i = 0; i < this.getFirstDayOfMonth(); i++) {
-      emptyDates.push(<td className='calendar-empty-dates'></td>);
+      emptyDates.push(<td key={i * 100} className='calendar-empty-dates'></td>);
     }
 
     const daysInMonth = [];
