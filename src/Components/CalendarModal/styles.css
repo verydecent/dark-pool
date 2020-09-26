@@ -14,4 +14,5 @@
 
 .month-list-item:hover {
   text-decoration: underline;
+  color: var(--secondary-color);
 }
