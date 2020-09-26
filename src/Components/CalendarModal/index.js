@@ -2,6 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import './styles.css';
 import MonthNav from './MonthNav';
+import YearNav from './YearNav';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -100,6 +101,9 @@ class CalendarModal extends React.Component {
                   // Methods
                   toggleMonthList={this.toggleMonthList}
                   changeMonth={this.changeMonth}
+                />
+                <YearNav
+                  year={this.getYear()}
                 />
               </td>
             </tr>
