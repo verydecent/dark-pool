@@ -168,7 +168,6 @@ class CalendarModal extends React.Component {
               </td>
             </tr>
             <tr>
-
             </tr>
           </thead>
           <tbody>
