@@ -3,14 +3,14 @@ import { User } from '../FAIcons/index';
 import './styles.css';
 import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/Actions';
-import AccountView from '../AccountModal';
+import AccountModal from '../AccountModal';
 
 const HeaderNav = ({
   toggleAccountModal
 }) => {
   return (
     <div className='header-nav'>
-      <AccountView toggleAccountModal={toggleAccountModal} />
+      <AccountModal toggleAccountModal={toggleAccountModal} />
       <div className='header-nav-top'>
         <div className='header-nav-user-icon' onClick={toggleAccountModal}>
           <User />
