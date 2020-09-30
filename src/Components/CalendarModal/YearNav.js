@@ -15,7 +15,11 @@ const YearNav = ({
           type='number'
           defaultValue={year}
           onChange={e => changeYear(e)}
-          // onKeyUp={toggleYearList}
+          onKeyUp={e => {
+            if (e.key === 'Enter' || e.key === 'Esc' || e.key === 'Escape') {
+              toggleYearList()
+            }
+          }}
           onBlur={toggleYearList}
         />
         : <span
