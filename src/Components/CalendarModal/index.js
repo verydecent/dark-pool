@@ -184,10 +184,16 @@ class CalendarModal extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isCalendarModalOpen: state.isCalendarModalOpen
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     toggleCalendarModal: () => dispatch(toggleCalendarModal())
   }
 }
 
-export default connect(null, mapDispatchToProps)(CalendarModal); 
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarModal); 
