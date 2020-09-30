@@ -50,7 +50,8 @@ const changeMonth = (state, month) => {
   dateContext = moment(dateContext).set('month', monthNumber);
   return {
     ...state,
-    dateContext
+    dateContext,
+    isMonthListOpen: false
   }
 }
 
