@@ -315,7 +315,6 @@ class TaskView extends React.Component {
       <>
         <CalendarModal />
         <div className='task-view'>
-          {/* Modal Section */}
           <TaskModal
             /* Values */
             isModalOpen={this.state.isModalOpen}
@@ -323,7 +322,7 @@ class TaskView extends React.Component {
             taskTitle={this.state.taskTitle}
             taskDescription={this.state.taskDescription}
             subtasks={this.state.subtasks}
-            /* Method Props */
+            /* Methods */
             toggleModal={this.toggleModal}
             handleChange={this.handleChange}
             updateTask={this.updateTask}
@@ -334,18 +333,14 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          {/* Header Section */}
           <Header />
-          {/* Subheader Section */}
           <Subheader
             date={this.state.currentDate}
             createTask={this.createTask}
             parseNextDate={this.parseNextDate}
             parsePrevDate={this.parsePrevDate}
           />
-          {/* List Header Section */}
           <ListHeader />
-          {/* Task List Section */}
           <List
             tasks={this.state.tasks}
             toggleModal={this.toggleModal}
