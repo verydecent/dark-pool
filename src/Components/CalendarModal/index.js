@@ -4,7 +4,6 @@ import './styles.css';
 import MonthNav from './MonthNav';
 import YearNav from './YearNav';
 import { AngleLeft, AngleRight } from '../FAIcons';
-import { toggleCalendarModal } from '../../Redux/Actions';
 import { connect } from 'react-redux';
 
 class CalendarModal extends React.Component {
