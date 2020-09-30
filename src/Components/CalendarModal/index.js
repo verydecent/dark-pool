@@ -4,6 +4,8 @@ import './styles.css';
 import MonthNav from './MonthNav';
 import YearNav from './YearNav';
 import { AngleLeft, AngleRight } from '../FAIcons';
+import { toggleCalendarModal } from '../../Redux/Actions';
+import { connect } from 'react-redux';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -182,4 +184,10 @@ class CalendarModal extends React.Component {
   }
 }
 
-export default CalendarModal;
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleCalendarModal: () => dispatch(toggleCalendarModal())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CalendarModal); 
