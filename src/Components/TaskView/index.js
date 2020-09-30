@@ -313,7 +313,10 @@ class TaskView extends React.Component {
   render() {
     return (
       <>
-        <CalendarModal />
+        <CalendarModal
+          isCalendarModalOpen={this.props.isCalendarModalOpen}
+          toggleCalendarModal={this.props.CalendarModal}
+        />
         <div className='task-view'>
           <TaskModal
             /* Values */
