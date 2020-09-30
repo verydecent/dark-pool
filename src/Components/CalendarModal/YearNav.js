@@ -1,4 +1,5 @@
 import React from 'react';
+import { toggleMonthList } from '../../Redux/actionCreators';
 
 const YearNav = ({
   year,
@@ -13,9 +14,9 @@ const YearNav = ({
           className='calendar-year-editor'
           type='number'
           defaultValue={year}
-          // onKeyUp={e => changeYear(e)}
           onChange={e => changeYear(e)}
-        // onBlur={e => changeYear(e)}
+          // onKeyUp={toggleYearList}
+          onBlur={toggleYearList}
         />
         : <span
           className='calendar-year-label'
