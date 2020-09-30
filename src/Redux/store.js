@@ -3,9 +3,13 @@ import reducer from './reducer';
 import moment from 'moment';
 
 const initialState = {
+  // Account Modal
   isAccountModalOpen: false,
+  // Calendar Modal
   isCalendarModalOpen: false,
-  dateContext: moment()
+  dateContext: moment(),
+  isMonthNavOpen: false,
+  isYearNavOpen: false,
 }
 
 const store = createStore(
