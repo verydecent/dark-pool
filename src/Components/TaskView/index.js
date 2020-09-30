@@ -11,7 +11,7 @@ import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
-import { toggleCalendarModal } from '../../Redux/Actions';
+import { toggleCalendarModal } from '../../Redux/actionCreators';
 
 class TaskView extends React.Component {
   constructor() {

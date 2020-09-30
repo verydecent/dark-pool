@@ -5,6 +5,7 @@ import MonthNav from './MonthNav';
 import YearNav from './YearNav';
 import { AngleLeft, AngleRight } from '../FAIcons';
 import { connect } from 'react-redux';
+import { toggleMonthList, toggleYearList } from '../../Redux/actionCreators';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class CalendarModal extends React.Component {
       isMonthNavOpen: false,
       isYearNavOpen: false,
     }
-
     // View helpers
     this.weekdays = moment.weekdays(); // ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     this.weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -206,4 +206,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(CalendarModal); 
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleMonthList: () => dispatch(toggleMonthList()),
+    toggleYearList: () => dispatch(toggleYearList())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarModal); 
