@@ -45,8 +45,7 @@ const toggleYearList = state => {
 }
 
 const changeMonth = (state, month) => {
-  const months = state.dateContext.months();
-  const monthNumber = months.indexOf(month);
+  const monthNumber = moment.months().indexOf(month);
   let dateContext = Object.assign({}, state.dateContext);
   dateContext = moment(dateContext).set('month', monthNumber);
   return {
