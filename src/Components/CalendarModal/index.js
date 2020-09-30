@@ -23,40 +23,51 @@ class CalendarModal extends React.Component {
   }
 
   getYear = () => this.state.dateContext.format('Y');
+
   getMonth = () => this.state.dateContext.format('MMMM');
+
   getDaysInMonth = () => this.state.dateContext.daysInMonth();
+
   getCurrentDate = () => this.state.dateContext.get('date');
+
   getCurrentDay = () => this.state.dateContext.format('D');
+
   getFirstDayOfMonth = () => {
     const { dateContext } = this.state;
     const firstDay = moment(dateContext).startOf('month').format('d');
     return firstDay;
   }
+
   toggleMonthList = () => {
     this.setState({
       isMonthNavOpen: !this.state.isMonthNavOpen
     });
   }
+
   changeMonth = newMonth => {
     const monthNumber = this.months.indexOf(newMonth);
     let newDateContext = Object.assign({}, this.state.dateContext);
     newDateContext = moment(newDateContext).set('month', monthNumber);
     this.setState({ dateContext: newDateContext }, () => this.toggleMonthList());
   }
+
   toggleYearList = () => {
     this.setState({
       isYearNavOpen: !this.state.isYearNavOpen
     });
   }
+
   setYear = year => {
     let newDateContext = Object.assign({}, this.state.dateContext);
     newDateContext = moment(newDateContext).set('year', year);
     this.setState({ dateContext: newDateContext });
   }
+
   onChangeYear = e => {
     const year = e.target.value;
     this.setYear(year);
   }
+
   onKeyUpYear = e => {
     if (e.which === 13 || e.which === 27) {
       const year = e.target.value;
@@ -89,6 +100,8 @@ class CalendarModal extends React.Component {
   }
 
   render() {
+
+    console.log(moment())
     // Map weekdays i.e. Sun, Mon, Tue
     const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
 
