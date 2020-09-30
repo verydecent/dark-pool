@@ -135,7 +135,7 @@ class CalendarModal extends React.Component {
 
     return (
       <div className='calendar-modal' >
-        <div className='calendar-overlay' />
+        <div className='calendar-modal-overlay' />
         <table className='calendar'>
           <thead>
             <tr className='calendar-header'>
