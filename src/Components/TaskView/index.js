@@ -29,29 +29,10 @@ class TaskView extends React.Component {
       isModalOpen: false,
       currentDate: moment(),
     };
-
-    // Main
-    this.handleChange = this.handleChange.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.parseNextDate = this.parseNextDate.bind(this);
-    this.parsePrevDate = this.parsePrevDate.bind(this);
-    this.callTask = this.callTask.bind(this);
-
-    // Task
-    this.createTask = this.createTask.bind(this);
-    this.selectTask = this.selectTask.bind(this);
-    this.updateTask = this.updateTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-
-    // Subtask
-    this.addSubtask = this.addSubtask.bind(this);
-    this.updateSubtask = this.updateSubtask.bind(this);
-    this.toggleSubtask = this.toggleSubtask.bind(this);
-    this.deleteSubtask = this.deleteSubtask.bind(this);
-    this.handleChangeSubtask = this.handleChangeSubtask.bind(this);
   }
 
   componentDidMount() {
+    console.log('props', this.props);
     const { userId } = this.state;
 
     let date = Object.assign({}, this.state.currentDate);
