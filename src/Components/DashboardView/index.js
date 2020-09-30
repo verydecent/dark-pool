@@ -544,11 +544,11 @@ class DashboardView extends React.Component {
               <h1 className='header-1'>
                 {`${timeFrametitle()} ${graphTypeTitle()}  `}
               </h1>
-            </div>
-            <div className='dashboard-view-subheader'>
               <span className='date-title'>
                 {currentTimeFrame(this.state.timeFrame)}
               </span>
+            </div>
+            <div className='dashboard-view-subheader'>
               <div className='dashboard-view-button-list'>
                 <div>
                   <TimeFrameButtons />

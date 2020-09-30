@@ -32,7 +32,6 @@ class TaskView extends React.Component {
   }
 
   componentDidMount() {
-    console.log('props', this.props);
     const { userId } = this.state;
 
     let date = Object.assign({}, this.state.currentDate);
@@ -317,9 +316,8 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          <Header />
+          <Header date={this.state.currentDate.format('dddd LL')} />
           <Subheader
-            date={this.state.currentDate}
             createTask={this.createTask}
             parseNextDate={this.parseNextDate}
             parsePrevDate={this.parsePrevDate}

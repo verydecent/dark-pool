@@ -18,6 +18,9 @@
 	margin-bottom: 16px;
 	padding-left: var(--view-horizontal-padding);
 	padding-right: var(--view-horizontal-padding);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .dashboard-view-subheader {
