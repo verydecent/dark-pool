@@ -10,12 +10,14 @@ import {
 
 const toggleAccountModal = state => {
   return {
+    ...state,
     isAccountModalOpen: !state.isAccountModalOpen
   }
 }
 
 const toggleCalendarModal = state => {
   return {
+    ...state,
     isCalendarModalOpen: !state.isCalendarModalOpen
   }
 }
@@ -23,18 +25,21 @@ const toggleCalendarModal = state => {
 const setToCurrentDate = state => {
   const newDateContext = moment();
   return {
+    ...state,
     dateContext: newDateContext
   }
 }
 
 const toggleMonthList = state => {
   return {
+    ...state,
     isMonthListOpen: !state.isMonthListOpen
   }
 }
 
 const toggleYearList = state => {
   return {
+    ...state,
     isYearListOpen: !state.isYearListOpen
   }
 }
