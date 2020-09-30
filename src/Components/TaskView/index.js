@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import withNav from '../Hoc/withNav.js';
-import DateView from '../DateView';
 import TaskModal from '../TaskModal';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
@@ -340,12 +339,6 @@ class TaskView extends React.Component {
     return (
       <>
         <CalendarModal />
-        {/* Date View */}
-        <DateView
-          parseNextDate={this.parseNextDate}
-          parsePrevDate={this.parsePrevDate}
-          date={this.state.currentDate}
-        />
         <div className='task-view'>
           {/* Modal Section */}
           <TaskModal
@@ -372,6 +365,8 @@ class TaskView extends React.Component {
           <Subheader
             date={this.state.currentDate}
             createTask={this.createTask}
+            parseNextDate={this.parseNextDate}
+            parsePrevDate={this.parsePrevDate}
           />
           {/* List Header Section */}
           <ListHeader />
