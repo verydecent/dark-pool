@@ -7,35 +7,35 @@ import {
   TOGGLE_YEAR_LIST,
 } from './constants';
 
-const toggleAccountModal = () => ({
+export const toggleAccountModal = () => ({
   type: TOGGLE_ACCOUNT_MODAL
 });
 
-const toggleCalendarModal = () => ({
+export const toggleCalendarModal = () => ({
   type: TOGGLE_CALENDAR_MODAL
 });
 
-const setToCurrentDate = () => ({
+export const setToCurrentDate = () => ({
   type: SET_TO_CURRENT_DATE
 });
 
-const changeMonth = () => ({
+export const changeMonth = () => ({
   type: CHANGE_MONTH
 });
 
-const toggleMonthList = () => ({
+export const toggleMonthList = () => ({
   type: TOGGLE_MONTH_LIST
 });
 
-const toggleYearList = () => ({
+export const toggleYearList = () => ({
   type: TOGGLE_YEAR_LIST
 });
 
-export {
-  toggleAccountModal,
-  toggleCalendarModal,
-  setToCurrentDate,
-  changeMonth,
-  toggleMonthList,
-  toggleYearList
-}
+// export {
+//   toggleAccountModal,
+//   toggleCalendarModal,
+//   setToCurrentDate,
+//   changeMonth,
+//   toggleMonthList,
+//   toggleYearList
+// }

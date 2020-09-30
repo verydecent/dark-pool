@@ -8,8 +8,8 @@ const initialState = {
   // Calendar Modal
   isCalendarModalOpen: false,
   dateContext: moment(),
-  isMonthNavOpen: false,
-  isYearNavOpen: false,
+  isMonthListOpen: false,
+  isYearListOpen: false,
 }
 
 const store = createStore(

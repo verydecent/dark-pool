@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { toggleMonthList, toggleYearList } from './actions';
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
@@ -25,6 +24,18 @@ const setToCurrentDate = state => {
   const newDateContext = moment();
   return {
     dateContext: newDateContext
+  }
+}
+
+const toggleMonthList = state => {
+  return {
+    isMonthListOpen: !state.isMonthListOpen
+  }
+}
+
+const toggleYearList = state => {
+  return {
+    isYearListOpen: !state.isYearListOpen
   }
 }
 
