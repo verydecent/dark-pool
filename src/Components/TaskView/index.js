@@ -315,7 +315,7 @@ class TaskView extends React.Component {
       <>
         <CalendarModal
           isCalendarModalOpen={this.props.isCalendarModalOpen}
-          toggleCalendarModal={this.props.CalendarModal}
+          toggleCalendarModal={this.props.toggleCalendarModal}
         />
         <div className='task-view'>
           <TaskModal
