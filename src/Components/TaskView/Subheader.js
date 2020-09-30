@@ -11,7 +11,7 @@ const Subheader = ({
   const formatDate = date.format('dddd LL');
   return (
     <div className='task-view-subheader'>
-      <span className='task-view-date-title'>
+      <span className='date-title'>
         {formatDate}
       </span>
       <div className='task-view-button-container'>

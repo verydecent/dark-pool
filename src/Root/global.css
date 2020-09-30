@@ -110,3 +110,11 @@ a:visited {
   padding: 2px 8px;
   cursor: pointer;
 }
+
+/* Date Title */
+
+.date-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4A4B4F;
+}
