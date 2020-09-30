@@ -19,11 +19,8 @@
   margin-bottom: 16px;
   padding-left: var(--view-horizontal-padding);
   padding-right: var(--view-horizontal-padding);
-}
-
-.task-view-header-cta {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 /* Subheader */
