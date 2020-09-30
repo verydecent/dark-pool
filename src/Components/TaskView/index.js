@@ -342,6 +342,7 @@ class TaskView extends React.Component {
             createTask={this.createTask}
             parseNextDate={this.parseNextDate}
             parsePrevDate={this.parsePrevDate}
+            toggleCalendarModal={this.props.CalendarModal}
           />
           <ListHeader />
           <List
