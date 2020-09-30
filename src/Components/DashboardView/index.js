@@ -100,13 +100,6 @@ class DashboardView extends React.Component {
       beginning: '',
       end: ''
     };
-
-    // HTTP Request handlers
-    this.getTasks = this.getTasks.bind(this);
-
-    // Graph methods
-    this.selectTimeFrame = this.selectTimeFrame.bind(this);
-    this.selectGraphType = this.selectGraphType.bind(this);
   }
 
   componentDidMount() {
@@ -126,7 +119,7 @@ class DashboardView extends React.Component {
       });
   }
 
-  getTasks() {
+  getTasks = () => {
     // Time frame can be day, week, month, or year
     const { userId, beginning, end } = this.state;
     // Make 4 backend endpoints based on timeframe
@@ -144,7 +137,7 @@ class DashboardView extends React.Component {
       });
   }
 
-  selectGraphType(e) {
+  selectGraphType = (e) => {
     const { value } = e.target;
 
     this.setState({
@@ -153,7 +146,7 @@ class DashboardView extends React.Component {
     });
   }
 
-  selectTimeFrame(e) {
+  selectTimeFrame = (e) => {
     const { value } = e.target;
     let beginning;
     let end;
