@@ -133,54 +133,60 @@ class CalendarModal extends React.Component {
 
     const monthEl = rows.map((d, i) => <tr key={i * 100}>{d}</tr>);
 
-    return (
-      <div className='calendar-modal' >
-        <div className='calendar-modal-overlay' />
-        <table className='calendar'>
-          <thead>
-            <tr className='calendar-header'>
-              <td colSpan='5'>
-                <MonthNav
-                  // Values
-                  isMonthNavOpen={this.state.isMonthNavOpen}
-                  month={this.getMonth()}
-                  monthList={this.months}
-                  // Methods
-                  toggleMonthList={this.toggleMonthList}
-                  changeMonth={this.changeMonth}
-                />
-                <YearNav
-                  // Values
-                  year={this.getYear()}
-                  isYearNavOpen={this.state.isYearNavOpen}
-                  // Methods
-                  toggleYearList={this.toggleYearList}
-                  onChangeYear={this.onChangeYear}
-                  onKeyUpYear={this.onKeyUpYear}
-                  onBlurYear={this.onBlurYear}
-                />
-              </td>
-              <td colSpan='2'>
-                <button onClick={this.prevMonth}>
-                  <AngleLeft />
-                </button>
-                <button onClick={this.nextMonth}>
-                  <AngleRight />
-                </button>
-              </td>
-            </tr>
-            <tr>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {weekdays}
-            </tr>
-            {monthEl}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (!this.props.isCalendarModalOpen) {
+      return null;
+    }
+
+    else {
+      return (
+        <div className='calendar-modal' >
+          <div className='calendar-modal-overlay' onClick={this.props.toggleCalendarModal} />
+          <table className='calendar'>
+            <thead>
+              <tr className='calendar-header'>
+                <td colSpan='5'>
+                  <MonthNav
+                    // Values
+                    isMonthNavOpen={this.state.isMonthNavOpen}
+                    month={this.getMonth()}
+                    monthList={this.months}
+                    // Methods
+                    toggleMonthList={this.toggleMonthList}
+                    changeMonth={this.changeMonth}
+                  />
+                  <YearNav
+                    // Values
+                    year={this.getYear()}
+                    isYearNavOpen={this.state.isYearNavOpen}
+                    // Methods
+                    toggleYearList={this.toggleYearList}
+                    onChangeYear={this.onChangeYear}
+                    onKeyUpYear={this.onKeyUpYear}
+                    onBlurYear={this.onBlurYear}
+                  />
+                </td>
+                <td colSpan='2'>
+                  <button onClick={this.prevMonth}>
+                    <AngleLeft />
+                  </button>
+                  <button onClick={this.nextMonth}>
+                    <AngleRight />
+                  </button>
+                </td>
+              </tr>
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {weekdays}
+              </tr>
+              {monthEl}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   }
 }
 
