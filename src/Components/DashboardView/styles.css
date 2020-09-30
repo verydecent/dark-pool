@@ -105,12 +105,6 @@
 	flex-direction: column;
 }
 
-.data-view-title {
-	font-size: 1.3rem;
-	font-weight: 600;
-	color: #4A4B4F;
-}
-
 .data-view-number {
 	font-size: 2.4rem;
 	color: var(--secondary-color);

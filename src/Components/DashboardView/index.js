@@ -546,7 +546,7 @@ class DashboardView extends React.Component {
               </h1>
             </div>
             <div className='dashboard-view-subheader'>
-              <span className='data-view-title'>
+              <span className='date-title'>
                 {currentTimeFrame(this.state.timeFrame)}
               </span>
               <div className='dashboard-view-button-list'>

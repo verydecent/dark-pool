@@ -34,12 +34,6 @@
   margin-bottom: 16px;
 }
 
-.task-view-date-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #4A4B4F;
-}
-
 /* Field */
 .task-view-field-header-wrapper {
   padding-left: var(--view-horizontal-padding);
