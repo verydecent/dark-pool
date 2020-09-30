@@ -76,3 +76,15 @@
   margin-left: var(--view-horizontal-padding);
   margin-right: var(--view-horizontal-padding);
 }
+
+/* Button Plus */
+
+
+.task-view-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.plus {
+  font-size: 1rem;
+}

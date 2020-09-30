@@ -14,7 +14,7 @@ const Subheader = ({
       <span className='task-view-date-title'>
         {formatDate}
       </span>
-      <div>
+      <div className='task-view-button-container'>
         <button className='grey-button' onClick={parsePrevDate}>
           <AngleLeft />
         </button>
@@ -24,7 +24,7 @@ const Subheader = ({
         <button className='grey-button' onClick={toggleCalendarModal}>
           <Calendar />
         </button>
-        <button className='grey-button' onClick={toggleCalendarModal}>
+        <button className='grey-button plus' onClick={toggleCalendarModal}>
           <Plus />
         </button>
       </div>
