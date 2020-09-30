@@ -8,7 +8,6 @@ const MonthNav = ({
   toggleMonthList,
   changeMonth
 }) => {
-  console.log(isMonthListOpen)
   return (
     <div className='calendar-month-nav'>
       <span

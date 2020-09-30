@@ -207,6 +207,7 @@ class CalendarModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    dateContext: state.dateContext,
     isCalendarModalOpen: state.isCalendarModalOpen,
     isMonthListOpen: state.isMonthListOpen,
     isYearListOpen: state.isYearListOpen
