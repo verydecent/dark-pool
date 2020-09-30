@@ -5,12 +5,6 @@ import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/Actions';
 import AccountView from '../AccountModal';
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleAccountModal: () => dispatch(toggleAccountModal())
-  }
-};
-
 const HeaderNav = ({
   toggleAccountModal
 }) => {
@@ -24,6 +18,12 @@ const HeaderNav = ({
       </div>
     </div>
   );
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleAccountModal: () => dispatch(toggleAccountModal())
+  }
 }
 
 export default connect(null, mapDispatchToProps)(HeaderNav);
