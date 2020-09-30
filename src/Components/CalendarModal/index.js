@@ -196,10 +196,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleCalendarModal: () => dispatch(toggleCalendarModal())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarModal); 
+export default connect(mapStateToProps)(CalendarModal); 
