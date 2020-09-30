@@ -20,7 +20,7 @@
 	padding-right: var(--view-horizontal-padding);
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-end;
 }
 
 .dashboard-view-subheader {
