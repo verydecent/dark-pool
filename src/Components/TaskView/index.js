@@ -11,7 +11,7 @@ import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
-import { TOGGLE_CALENDAR_MODAL } from '../../Redux/constants';
+import { toggleCalendarModal } from '../../Redux/Actions';
 
 class TaskView extends React.Component {
   constructor() {
@@ -360,7 +360,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleCalendarModal: dispatch(TOGGLE_CALENDAR_MODAL)
+    toggleCalendarModal: () => dispatch(toggleCalendarModal())
   }
 }
 
