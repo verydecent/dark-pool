@@ -1,5 +1,9 @@
 import moment from 'moment';
-import { TOGGLE_ACCOUNT_MODAL, TOGGLE_CALENDAR_MODAL } from './constants';
+import {
+  TOGGLE_ACCOUNT_MODAL,
+  TOGGLE_CALENDAR_MODAL,
+  SET_TO_CURRENT_DATE
+} from './constants';
 
 const toggleAccountModal = state => {
   return {
