@@ -1,7 +1,9 @@
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
-  SET_TO_CURRENT_DATE
+  SET_TO_CURRENT_DATE,
+  TOGGLE_MONTH_LIST,
+  TOGGLE_YEAR_LIST
 } from './constants';
 
 const toggleAccountModal = () => ({
@@ -14,10 +16,20 @@ const toggleCalendarModal = () => ({
 
 const setToCurrentDate = () => ({
   type: SET_TO_CURRENT_DATE
+});
+
+const toggleMonthList = () => ({
+  type: TOGGLE_MONTH_LIST
+});
+
+const toggleYearList = () => ({
+  type: TOGGLE_YEAR_LIST
 })
 
 export {
   toggleAccountModal,
   toggleCalendarModal,
-  setToCurrentDate
+  setToCurrentDate,
+  toggleMonthList,
+  toggleYearList
 }
