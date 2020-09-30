@@ -5,7 +5,11 @@ import MonthNav from './MonthNav';
 import YearNav from './YearNav';
 import { AngleLeft, AngleRight } from '../FAIcons';
 import { connect } from 'react-redux';
-import { toggleMonthList, toggleYearList } from '../../Redux/actionCreators';
+import {
+  toggleMonthList,
+  changeMonth,
+  toggleYearList
+} from '../../Redux/actionCreators';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -163,7 +167,7 @@ class CalendarModal extends React.Component {
                     monthList={this.months}
                     // Methods
                     toggleMonthList={this.props.toggleMonthList}
-                    changeMonth={this.changeMonth}
+                    changeMonth={this.props.changeMonth}
                   />
                   <YearNav
                     // Values
@@ -212,7 +216,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toggleMonthList: () => dispatch(toggleMonthList()),
-    toggleYearList: () => dispatch(toggleYearList())
+    changeMonth: month => dispatch(changeMonth(month)),
+    toggleYearList: () => dispatch(toggleYearList()),
   }
 }
 
