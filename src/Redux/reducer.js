@@ -61,8 +61,7 @@ const changeYear = (state, year) => {
   dateContext = moment(dateContext).set('year', year);
   return {
     ...state,
-    dateContext,
-    isYearListOpen: false
+    dateContext
   }
 }
 
