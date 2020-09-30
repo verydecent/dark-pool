@@ -104,24 +104,16 @@ class TaskView extends React.Component {
   }
 
   parseNextDate() {
-    console.log('nextDate()');
-    // We must update the state's currentDate to the next date using moment
     this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
   }
 
   parsePrevDate() {
-    console.log('prevDate()');
     this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
   }
 
   callTask() {
-    console.log('callTask()', this.props);
-
     const { currentDate } = this.state;
     const { userId } = this.state;
-
-    // const todayToDate = today.toDate();
-    // const endOfTodayToDate = moment(today).endOf('day').toDate();
 
     const beginningOfCurrentDate = currentDate.startOf('day').toDate();
     const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
@@ -136,7 +128,6 @@ class TaskView extends React.Component {
   }
 
   createTask() {
-    console.log('createTask()');
     const { userId } = this.state;
 
     axios.post(`task/${userId}`)
@@ -154,7 +145,6 @@ class TaskView extends React.Component {
   }
 
   selectTask(id, title, description, subtasks) {
-    console.log('selectTask()');
     // Should we accept arguments from props
     // OR should I use a loop everytime to target with id?
     // I think since we already have the value we can just pass as arguments instead of having the loop?
@@ -170,7 +160,6 @@ class TaskView extends React.Component {
   }
 
   updateTask(e, taskId) {
-    console.log('updateTask()');
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
     // Search for task in task array by ID then replace the task with new task object
@@ -203,7 +192,6 @@ class TaskView extends React.Component {
   }
 
   deleteTask(taskId) {
-    console.log('deleteTask()');
     axios.delete(`task/${taskId}`)
       .then(response => {
         const taskRemoved = this.state.tasks.filter(task => {
@@ -216,15 +204,11 @@ class TaskView extends React.Component {
           tasks: taskRemoved
         });
       })
-      .catch(error => {
-        console.log(error)
-      });
+      .catch(error => console.log(error));
   }
 
   addSubtask(e, taskId) {
-    console.log('addSubtask()');
     e.preventDefault();
-    // Must update subtasks within task array and subtask array in state
 
     axios.post(`task/${taskId}/subtask`)
       .then(response => {
@@ -239,11 +223,9 @@ class TaskView extends React.Component {
             tasks: immutableTasks,
             subtasks: response.data.subtasks
           };
-        }, console.log('handleChangeSubtask()'));
+        });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   handleChangeSubtask(e, subtaskId) {
@@ -284,14 +266,10 @@ class TaskView extends React.Component {
         ...prevState,
         subtasks: subtasksClone
       }
-    }, () => {
-      console.log('toggleSubtask()')
-      this.updateSubtask(taskId, subtaskId)
-    });
+    }, () => this.updateSubtask(taskId, subtaskId));
   }
 
   updateSubtask(taskId, subtaskId) {
-    console.log('updateSubtask()', this.state);
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => (subtask._id === subtaskId));
     const targetSubtask = this.state.subtasks[indexOfTargetSubtask];
 
@@ -305,12 +283,8 @@ class TaskView extends React.Component {
         // Since we're already updating subtasks with the handleChange do we need to update state again?... 
         // Maybe it's good to do it i'll ask
         // Just so its like aligned with the latest database
-        console.log(response);
-
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   deleteSubtask(taskId, subtaskId) {
@@ -330,7 +304,7 @@ class TaskView extends React.Component {
             tasks: immutableTasks,
             subtasks: response.data.subtasks
           }
-        }, console.log('deleteSubtask()', this.state));
+        });
       })
       .catch(error => console.log(error));
   }
