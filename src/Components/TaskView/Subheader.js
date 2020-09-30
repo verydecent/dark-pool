@@ -24,7 +24,7 @@ const Subheader = ({
         <button className='grey-button' onClick={toggleCalendarModal}>
           <Calendar />
         </button>
-        <button className='grey-button plus' onClick={toggleCalendarModal}>
+        <button className='grey-button plus' onClick={createTask}>
           <Plus />
         </button>
       </div>
