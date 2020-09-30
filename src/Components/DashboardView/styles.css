@@ -28,6 +28,7 @@
 	padding-right: var(--view-horizontal-padding);
 	display: flex;
 	justify-content: flex-end;
+  margin-right: 5px;
 }
 
 /* Warning */
