@@ -8,8 +8,6 @@ const Subheader = ({
   parsePrevDate,
   toggleCalendarModal
 }) => {
-
-  console.log(toggleCalendarModal)
   const formatDate = date.format('dddd LL');
   return (
     <div className='task-view-subheader'>
