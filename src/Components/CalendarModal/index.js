@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import {
   toggleMonthList,
   changeMonth,
-  toggleYearList
+  toggleYearList,
+  changeYear
 } from '../../Redux/actionCreators';
 
 class CalendarModal extends React.Component {
@@ -133,7 +134,6 @@ class CalendarModal extends React.Component {
     }
 
     else {
-      console.log(this.props)
       return (
         <div className='calendar-modal' >
           <div className='calendar-modal-overlay' onClick={this.props.toggleCalendarModal} />
@@ -144,7 +144,7 @@ class CalendarModal extends React.Component {
                   <MonthNav
                     // Values
                     isMonthListOpen={this.props.isMonthListOpen}
-                    month={this.getMonth()}
+                    month={this.props.dateContext.format('MMMM')}
                     monthList={this.months}
                     // Methods
                     toggleMonthList={this.props.toggleMonthList}
@@ -152,13 +152,11 @@ class CalendarModal extends React.Component {
                   />
                   <YearNav
                     // Values
-                    year={this.getYear()}
+                    year={this.props.dateContext.format('Y')}
                     isYearListOpen={this.props.isYearListOpen}
                     // Methods
                     toggleYearList={this.props.toggleYearList}
-                    onChangeYear={this.onChangeYear}
-                    onKeyUpYear={this.onKeyUpYear}
-                    onBlurYear={this.onBlurYear}
+                    changeYear={this.props.changeYear}
                   />
                 </td>
                 <td colSpan='2'>
@@ -200,6 +198,7 @@ const mapDispatchToProps = dispatch => {
     toggleMonthList: () => dispatch(toggleMonthList()),
     changeMonth: month => dispatch(changeMonth(month)),
     toggleYearList: () => dispatch(toggleYearList()),
+    changeYear: e => dispatch(changeYear(e))
   }
 }
 

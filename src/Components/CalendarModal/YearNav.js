@@ -4,9 +4,7 @@ const YearNav = ({
   year,
   isYearListOpen,
   toggleYearList,
-  onKeyUpYear,
-  onBlurYear,
-  onChangeYear
+  changeYear
 }) => {
   return (
     <div className='calendar-year-nav'>
@@ -15,9 +13,9 @@ const YearNav = ({
           className='calendar-year-editor'
           type='number'
           defaultValue={year}
-          onKeyUp={e => onKeyUpYear(e)}
-          onChange={e => onChangeYear(e)}
-          onBlur={e => onBlurYear(e)}
+          // onKeyUp={e => changeYear(e)}
+          onChange={e => changeYear(e)}
+        // onBlur={e => changeYear(e)}
         />
         : <span
           className='calendar-year-label'
