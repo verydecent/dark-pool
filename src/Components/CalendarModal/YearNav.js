@@ -21,7 +21,7 @@ const YearNav = ({
         />
         : <span
           className='calendar-year-label'
-          onClick={() => toggleYearList()}
+          onClick={toggleYearList}
         >
           {year}
         </span>}
