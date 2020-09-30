@@ -148,6 +148,7 @@ class CalendarModal extends React.Component {
     }
 
     else {
+      console.log(this.props)
       return (
         <div className='calendar-modal' >
           <div className='calendar-modal-overlay' onClick={this.props.toggleCalendarModal} />
@@ -157,7 +158,7 @@ class CalendarModal extends React.Component {
                 <td colSpan='5'>
                   <MonthNav
                     // Values
-                    isMonthNavOpen={this.props.isMonthNavOpen}
+                    isMonthListOpen={this.props.isMonthListOpen}
                     month={this.getMonth()}
                     monthList={this.months}
                     // Methods
@@ -167,7 +168,7 @@ class CalendarModal extends React.Component {
                   <YearNav
                     // Values
                     year={this.getYear()}
-                    isYearNavOpen={this.props.isYearNavOpen}
+                    isYearListOpen={this.props.isYearListOpen}
                     // Methods
                     toggleYearList={this.props.toggleYearList}
                     onChangeYear={this.onChangeYear}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const YearNav = ({
   year,
-  isYearNavOpen,
+  isYearListOpen,
   toggleYearList,
   onKeyUpYear,
   onBlurYear,
@@ -10,7 +10,7 @@ const YearNav = ({
 }) => {
   return (
     <div className='calendar-year-nav'>
-      {isYearNavOpen
+      {isYearListOpen
         ? <input
           className='calendar-year-editor'
           type='number'
