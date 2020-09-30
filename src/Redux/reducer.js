@@ -1,20 +1,22 @@
 import moment from 'moment';
+import { toggleMonthList, toggleYearList } from './actions';
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
-  SET_TO_CURRENT_DATE
+  SET_TO_CURRENT_DATE,
+  CHANGE_MONTH,
+  TOGGLE_MONTH_LIST,
+  TOGGLE_YEAR_LIST
 } from './constants';
 
 const toggleAccountModal = state => {
   return {
-    // ...state,
     isAccountModalOpen: !state.isAccountModalOpen
   }
 }
 
 const toggleCalendarModal = state => {
   return {
-    // ...state,
     isCalendarModalOpen: !state.isCalendarModalOpen
   }
 }
@@ -36,6 +38,15 @@ function reducer(state, action) {
     }
     case SET_TO_CURRENT_DATE: {
       return setToCurrentDate(state);
+    }
+    case CHANGE_MONTH: {
+      return changeMonth(state);
+    }
+    case TOGGLE_MONTH_LIST: {
+      return toggleMonthList(state);
+    }
+    case TOGGLE_YEAR_LIST: {
+      return toggleYearList(state);
     }
     default: return state
   }
