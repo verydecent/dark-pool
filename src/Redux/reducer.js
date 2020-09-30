@@ -3,8 +3,9 @@ import {
   TOGGLE_CALENDAR_MODAL,
   SET_TO_CURRENT_DATE,
   TOGGLE_MONTH_LIST,
-  TOGGLE_YEAR_LIST,
   CHANGE_MONTH,
+  TOGGLE_YEAR_LIST,
+  CHANGE_YEAR
 } from './constants';
 import moment from 'moment';
 
