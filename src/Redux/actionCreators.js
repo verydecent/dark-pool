@@ -19,8 +19,9 @@ const setToCurrentDate = () => ({
   type: SET_TO_CURRENT_DATE
 });
 
-const changeMonth = () => ({
-  type: CHANGE_MONTH
+const changeMonth = month => ({
+  type: CHANGE_MONTH,
+  payload: month
 });
 
 const toggleMonthList = () => ({
