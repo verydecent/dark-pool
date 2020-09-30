@@ -12,14 +12,12 @@ const Subheader = ({
       <Button onClick={createTask}>
         Create Task
       </Button>
-      <button className='task-view-button' onClick={() => parsePrevDate()}>
-        {/* <AngleLeft /> */}
-          Yesterday
-        </button>
-      <button className='task-view-button' onClick={() => parseNextDate()}>
-        {/* <AngleRight /> */}
-          Tomorrow
-        </button>
+      <Button onClick={parsePrevDate}>
+        Yesterday
+      </Button>
+      <Button onClick={parseNextDate}>
+        Tomorrow
+      </Button>
     </div>
   );
 }
