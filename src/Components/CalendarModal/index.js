@@ -157,19 +157,19 @@ class CalendarModal extends React.Component {
                 <td colSpan='5'>
                   <MonthNav
                     // Values
-                    isMonthNavOpen={this.state.isMonthNavOpen}
+                    isMonthNavOpen={this.props.isMonthNavOpen}
                     month={this.getMonth()}
                     monthList={this.months}
                     // Methods
-                    toggleMonthList={this.toggleMonthList}
+                    toggleMonthList={this.props.toggleMonthList}
                     changeMonth={this.changeMonth}
                   />
                   <YearNav
                     // Values
                     year={this.getYear()}
-                    isYearNavOpen={this.state.isYearNavOpen}
+                    isYearNavOpen={this.props.isYearNavOpen}
                     // Methods
-                    toggleYearList={this.toggleYearList}
+                    toggleYearList={this.props.toggleYearList}
                     onChangeYear={this.onChangeYear}
                     onKeyUpYear={this.onKeyUpYear}
                     onBlurYear={this.onBlurYear}
@@ -202,7 +202,9 @@ class CalendarModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isCalendarModalOpen: state.isCalendarModalOpen
+    isCalendarModalOpen: state.isCalendarModalOpen,
+    isMonthListOpen: state.isMonthListOpen,
+    isYearListOpen: state.isYearListOpen
   }
 }
 
