@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import withNav from '../Hoc/withNav.js';
-import DateView from '../DateView';
 import TaskModal from '../TaskModal';
 import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
@@ -12,6 +11,7 @@ import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
+import { toggleCalendarModal } from '../../Redux/Actions';
 
 class TaskView extends React.Component {
   constructor() {
@@ -104,25 +104,17 @@ class TaskView extends React.Component {
     }
   }
 
-  parseNextDate(e) {
-    console.log('nextDate()');
-    // We must update the state's currentDate to the next date using moment
+  parseNextDate() {
     this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
   }
 
-  parsePrevDate(e) {
-    console.log('prevDate()');
+  parsePrevDate() {
     this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
   }
 
   callTask() {
-    console.log('callTask()', this.props);
-
     const { currentDate } = this.state;
     const { userId } = this.state;
-
-    // const todayToDate = today.toDate();
-    // const endOfTodayToDate = moment(today).endOf('day').toDate();
 
     const beginningOfCurrentDate = currentDate.startOf('day').toDate();
     const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
@@ -137,7 +129,6 @@ class TaskView extends React.Component {
   }
 
   createTask() {
-    console.log('createTask()');
     const { userId } = this.state;
 
     axios.post(`task/${userId}`)
@@ -155,7 +146,6 @@ class TaskView extends React.Component {
   }
 
   selectTask(id, title, description, subtasks) {
-    console.log('selectTask()');
     // Should we accept arguments from props
     // OR should I use a loop everytime to target with id?
     // I think since we already have the value we can just pass as arguments instead of having the loop?
@@ -171,7 +161,6 @@ class TaskView extends React.Component {
   }
 
   updateTask(e, taskId) {
-    console.log('updateTask()');
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
     // Search for task in task array by ID then replace the task with new task object
@@ -204,7 +193,6 @@ class TaskView extends React.Component {
   }
 
   deleteTask(taskId) {
-    console.log('deleteTask()');
     axios.delete(`task/${taskId}`)
       .then(response => {
         const taskRemoved = this.state.tasks.filter(task => {
@@ -217,15 +205,11 @@ class TaskView extends React.Component {
           tasks: taskRemoved
         });
       })
-      .catch(error => {
-        console.log(error)
-      });
+      .catch(error => console.log(error));
   }
 
   addSubtask(e, taskId) {
-    console.log('addSubtask()');
     e.preventDefault();
-    // Must update subtasks within task array and subtask array in state
 
     axios.post(`task/${taskId}/subtask`)
       .then(response => {
@@ -240,11 +224,9 @@ class TaskView extends React.Component {
             tasks: immutableTasks,
             subtasks: response.data.subtasks
           };
-        }, console.log('handleChangeSubtask()'));
+        });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   handleChangeSubtask(e, subtaskId) {
@@ -285,14 +267,10 @@ class TaskView extends React.Component {
         ...prevState,
         subtasks: subtasksClone
       }
-    }, () => {
-      console.log('toggleSubtask()')
-      this.updateSubtask(taskId, subtaskId)
-    });
+    }, () => this.updateSubtask(taskId, subtaskId));
   }
 
   updateSubtask(taskId, subtaskId) {
-    console.log('updateSubtask()', this.state);
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => (subtask._id === subtaskId));
     const targetSubtask = this.state.subtasks[indexOfTargetSubtask];
 
@@ -306,12 +284,8 @@ class TaskView extends React.Component {
         // Since we're already updating subtasks with the handleChange do we need to update state again?... 
         // Maybe it's good to do it i'll ask
         // Just so its like aligned with the latest database
-        console.log(response);
-
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   deleteSubtask(taskId, subtaskId) {
@@ -331,7 +305,7 @@ class TaskView extends React.Component {
             tasks: immutableTasks,
             subtasks: response.data.subtasks
           }
-        }, console.log('deleteSubtask()', this.state));
+        });
       })
       .catch(error => console.log(error));
   }
@@ -339,15 +313,11 @@ class TaskView extends React.Component {
   render() {
     return (
       <>
-        <CalendarModal />
-        {/* Date View */}
-        <DateView
-          parseNextDate={this.parseNextDate}
-          parsePrevDate={this.parsePrevDate}
-          date={this.state.currentDate}
+        <CalendarModal
+          isCalendarModalOpen={this.props.isCalendarModalOpen}
+          toggleCalendarModal={this.props.toggleCalendarModal}
         />
         <div className='task-view'>
-          {/* Modal Section */}
           <TaskModal
             /* Values */
             isModalOpen={this.state.isModalOpen}
@@ -355,7 +325,7 @@ class TaskView extends React.Component {
             taskTitle={this.state.taskTitle}
             taskDescription={this.state.taskDescription}
             subtasks={this.state.subtasks}
-            /* Method Props */
+            /* Methods */
             toggleModal={this.toggleModal}
             handleChange={this.handleChange}
             updateTask={this.updateTask}
@@ -366,16 +336,15 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          {/* Header Section */}
           <Header />
-          {/* Subheader Section */}
           <Subheader
             date={this.state.currentDate}
             createTask={this.createTask}
+            parseNextDate={this.parseNextDate}
+            parsePrevDate={this.parsePrevDate}
+            toggleCalendarModal={this.props.toggleCalendarModal}
           />
-          {/* List Header Section */}
           <ListHeader />
-          {/* Task List Section */}
           <List
             tasks={this.state.tasks}
             toggleModal={this.toggleModal}
@@ -393,4 +362,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withNav(TaskView));
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleCalendarModal: () => dispatch(toggleCalendarModal())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNav(TaskView));

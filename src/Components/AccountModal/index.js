@@ -5,13 +5,6 @@ import Button from '../Button';
 import { connect } from 'react-redux';
 import './styles.css';
 import { Times } from '../FAIcons';
-import { toggleAccountModal } from '../../Redux/Actions';
-
-const mapStateToProps = state => {
-  return {
-    isAccountModalOpen: state.isAccountModalOpen
-  }
-};
 
 class AccountModal extends React.Component {
   constructor(props) {
@@ -96,12 +89,12 @@ class AccountModal extends React.Component {
       return (
         <div className='account-modal'>
           {/* Overlay */}
-          <div className='account-modal-overlay' onClick={() => this.props.toggleAccountModal()} />
+          <div className='account-modal-overlay' onClick={this.props.toggleAccountModal} />
 
           <div className='account-view'>
             <div className='account-view-header'>
               <h1 className='header-1'>My Account Settings</h1>
-              <div onClick={() => this.props.toggleAccountModal()}>
+              <div onClick={this.props.toggleAccountModal}>
                 <Times />
               </div>
             </div>
@@ -147,6 +140,12 @@ class AccountModal extends React.Component {
         </div>
       );
     }
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isAccountModalOpen: state.isAccountModalOpen
   }
 }
 

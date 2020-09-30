@@ -19,11 +19,8 @@
   margin-bottom: 16px;
   padding-left: var(--view-horizontal-padding);
   padding-right: var(--view-horizontal-padding);
-}
-
-.task-view-header-cta {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 /* Subheader */
@@ -78,22 +75,4 @@
   font-size: 1.2rem;
   margin-left: var(--view-horizontal-padding);
   margin-right: var(--view-horizontal-padding);
-}
-
-/* Button */
-
-.task-view-button {
-  /* height: 40px; */
-  padding: 8px 20px;
-  margin-left: 6px;
-  border: 1px solid var(--button-background-color);
-  border-radius: 4px;
-  background: var(--button-background-color);
-  cursor: pointer;
-  color: #fff;
-}
-
-.task-view-button:hover {
-  background: #fff;
-  color: #000;
 }
