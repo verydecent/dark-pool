@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../Button';
-import { Calendar } from '../FAIcons';
+import { Calendar, AngleLeft, AngleRight } from '../FAIcons';
 
 const Subheader = ({
   date,
@@ -12,17 +12,17 @@ const Subheader = ({
   return (
     <div className='task-view-subheader'>
       <span className='task-view-date-title'>
-        <Button onClick={toggleCalendarModal}>
-          <Calendar />
-        </Button>
         {formatDate}
       </span>
       <div>
+        <Button onClick={toggleCalendarModal}>
+          <Calendar />
+        </Button>
         <Button onClick={parsePrevDate}>
-          Yesterday
+          <AngleLeft />
         </Button>
         <Button onClick={parseNextDate}>
-          Tomorrow
+          <AngleRight />
         </Button>
       </div>
     </div>

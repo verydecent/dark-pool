@@ -11,7 +11,9 @@ export const sortMonth = (tasks, daysInMonth) => {
 
   for (let x = 0; x < tasks.length; x++) {
     const day = new Date(tasks[x].createdAt).getDate();
-    monthDays[day].push(tasks[x]);
+    if (monthDays[day]) {
+      monthDays[day].push(tasks[x]);
+    }
   }
 
   return monthDays;
