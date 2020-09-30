@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectList from './MonthList';
+import MonthList from './MonthList';
 
 const MonthNav = ({
   isMonthNavOpen,
@@ -16,7 +16,7 @@ const MonthNav = ({
       >
         {month}
       </span>
-      {isMonthNavOpen && <SelectList monthList={monthList} changeMonth={changeMonth} />}
+      {isMonthNavOpen && <MonthList monthList={monthList} changeMonth={changeMonth} />}
     </div>
   );
 }
