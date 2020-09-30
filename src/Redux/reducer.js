@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
@@ -7,6 +6,7 @@ import {
   TOGGLE_YEAR_LIST,
   CHANGE_MONTH,
 } from './constants';
+import moment from 'moment';
 
 const toggleAccountModal = state => {
   return {
@@ -44,6 +44,17 @@ const toggleYearList = state => {
   }
 }
 
+const changeMonth = (state, month) => {
+  const months = state.dateContext.months();
+  const monthNumber = months.indexOf(month);
+  let dateContext = Object.assign({}, state.dateContext);
+  dateContext = moment(dateContext).set('month', monthNumber);
+  return {
+    ...state,
+    dateContext
+  }
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case TOGGLE_ACCOUNT_MODAL: {
@@ -56,7 +67,7 @@ function reducer(state, action) {
       return setToCurrentDate(state);
     }
     case CHANGE_MONTH: {
-      return changeMonth(state);
+      return changeMonth(state, action.payload);
     }
     case TOGGLE_MONTH_LIST: {
       return toggleMonthList(state);
