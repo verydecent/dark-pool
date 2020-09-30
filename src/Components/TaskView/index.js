@@ -103,13 +103,13 @@ class TaskView extends React.Component {
     }
   }
 
-  parseNextDate(e) {
+  parseNextDate() {
     console.log('nextDate()');
     // We must update the state's currentDate to the next date using moment
     this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
   }
 
-  parsePrevDate(e) {
+  parsePrevDate() {
     console.log('prevDate()');
     this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
   }
