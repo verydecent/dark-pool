@@ -37,13 +37,6 @@ const toggleMonthList = state => {
   }
 }
 
-const toggleYearList = state => {
-  return {
-    ...state,
-    isYearListOpen: !state.isYearListOpen
-  }
-}
-
 const changeMonth = (state, month) => {
   const monthNumber = moment.months().indexOf(month);
   let dateContext = Object.assign({}, state.dateContext);
@@ -54,6 +47,24 @@ const changeMonth = (state, month) => {
     isMonthListOpen: false
   }
 }
+
+const toggleYearList = state => {
+  return {
+    ...state,
+    isYearListOpen: !state.isYearListOpen
+  }
+}
+
+const changeYear = (state, year) => {
+  let dateContext = Object.assign({}, state.dateContext);
+  dateContext = moment(dateContext).set('year', year);
+  return {
+    ...state,
+    dateContext,
+    isYearListOpen: false
+  }
+}
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -66,14 +77,17 @@ function reducer(state, action) {
     case SET_TO_CURRENT_DATE: {
       return setToCurrentDate(state);
     }
-    case CHANGE_MONTH: {
-      return changeMonth(state, action.payload);
-    }
     case TOGGLE_MONTH_LIST: {
       return toggleMonthList(state);
     }
+    case CHANGE_MONTH: {
+      return changeMonth(state, action.payload);
+    }
     case TOGGLE_YEAR_LIST: {
       return toggleYearList(state);
+    }
+    case CHANGE_YEAR: {
+      return changeYear(state, action.payload);
     }
     default: return state
   }
