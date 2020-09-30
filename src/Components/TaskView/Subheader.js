@@ -3,7 +3,9 @@ import Button from '../Button';
 
 const Subheader = ({
   date,
-  createTask
+  createTask,
+  parseNextDate,
+  parsePrevDate
 }) => {
   const formatDate = date.format('dddd LL');
   return (
