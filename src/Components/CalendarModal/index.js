@@ -41,25 +41,6 @@ class CalendarModal extends React.Component {
     return firstDay;
   }
 
-  toggleMonthList = () => {
-    this.setState({
-      isMonthNavOpen: !this.state.isMonthNavOpen
-    });
-  }
-
-  changeMonth = newMonth => {
-    const monthNumber = this.months.indexOf(newMonth);
-    let newDateContext = Object.assign({}, this.state.dateContext);
-    newDateContext = moment(newDateContext).set('month', monthNumber);
-    this.setState({ dateContext: newDateContext }, () => this.toggleMonthList());
-  }
-
-  toggleYearList = () => {
-    this.setState({
-      isYearNavOpen: !this.state.isYearNavOpen
-    });
-  }
-
   setYear = year => {
     let newDateContext = Object.assign({}, this.state.dateContext);
     newDateContext = moment(newDateContext).set('year', year);
