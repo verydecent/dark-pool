@@ -12,7 +12,7 @@ const HeaderNav = ({
     <div className='header-nav'>
       <AccountView toggleAccountModal={toggleAccountModal} />
       <div className='header-nav-top'>
-        <div className='header-nav-user-icon' onClick={() => toggleAccountModal()}>
+        <div className='header-nav-user-icon' onClick={toggleAccountModal}>
           <User />
         </div>
       </div>
