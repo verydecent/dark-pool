@@ -5,13 +5,6 @@ import Button from '../Button';
 import { connect } from 'react-redux';
 import './styles.css';
 import { Times } from '../FAIcons';
-import { toggleAccountModal } from '../../Redux/Actions';
-
-const mapStateToProps = state => {
-  return {
-    isAccountModalOpen: state.isAccountModalOpen
-  }
-};
 
 class AccountModal extends React.Component {
   constructor(props) {
@@ -147,6 +140,12 @@ class AccountModal extends React.Component {
         </div>
       );
     }
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isAccountModalOpen: state.isAccountModalOpen
   }
 }
 
