@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import { Plus } from '../FAIcons';
 
 const Header = ({
   createTask
@@ -10,7 +11,7 @@ const Header = ({
         Tasks
       </h1>
       <Button onClick={createTask}>
-        Create Task
+        <Plus />
       </Button>
     </div>
   );

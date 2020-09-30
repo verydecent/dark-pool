@@ -15,15 +15,15 @@ const Subheader = ({
         {formatDate}
       </span>
       <div>
-        <Button onClick={toggleCalendarModal}>
-          <Calendar />
-        </Button>
-        <Button onClick={parsePrevDate}>
+        <button className='grey-button' onClick={parsePrevDate}>
           <AngleLeft />
-        </Button>
-        <Button onClick={parseNextDate}>
+        </button>
+        <button className='grey-button' onClick={parseNextDate}>
           <AngleRight />
-        </Button>
+        </button>
+        <button className='grey-button' onClick={toggleCalendarModal}>
+          <Calendar />
+        </button>
       </div>
     </div>
   );

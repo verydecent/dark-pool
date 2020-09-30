@@ -136,14 +136,3 @@
 	display: flex;
 	width: 100%;
 }
-
-.dropdown-button {
-	height: 24px;
-	border: none;
-	background: var(--task-list-header-background-color);
-	border-radius: 2px;
-	width: 118px;
-	border: 1px solid #000;
-	margin-right: 6px;
-	padding: 2px 8px;
-}
