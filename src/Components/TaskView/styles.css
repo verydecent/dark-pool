@@ -28,8 +28,7 @@
 
 .task-view-subheader {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   padding-left: var(--view-horizontal-padding);
   padding-right: var(--view-horizontal-padding);
   margin-bottom: 16px;

@@ -27,8 +27,7 @@
 	padding-left: var(--view-horizontal-padding);
 	padding-right: var(--view-horizontal-padding);
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	justify-content: flex-end;
 }
 
 /* Warning */
