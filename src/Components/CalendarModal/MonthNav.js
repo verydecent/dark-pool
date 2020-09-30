@@ -12,7 +12,7 @@ const MonthNav = ({
     <div className='calendar-month-nav'>
       <span
         className='calendar-month-label'
-        onClick={() => toggleMonthList(month)}
+        onClick={toggleMonthList}
       >
         {month}
       </span>
