@@ -317,11 +317,10 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          <Header
-            createTask={this.createTask}
-          />
+          <Header />
           <Subheader
             date={this.state.currentDate}
+            createTask={this.createTask}
             parseNextDate={this.parseNextDate}
             parsePrevDate={this.parsePrevDate}
             toggleCalendarModal={this.props.toggleCalendarModal}

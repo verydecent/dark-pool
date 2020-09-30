@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../Button';
-import { Calendar, AngleLeft, AngleRight } from '../FAIcons';
+import { Calendar, AngleLeft, AngleRight, Plus } from '../FAIcons';
 
 const Subheader = ({
   date,
   parseNextDate,
   parsePrevDate,
-  toggleCalendarModal
+  toggleCalendarModal,
+  createTask
 }) => {
   const formatDate = date.format('dddd LL');
   return (
@@ -23,6 +23,9 @@ const Subheader = ({
         </button>
         <button className='grey-button' onClick={toggleCalendarModal}>
           <Calendar />
+        </button>
+        <button className='grey-button' onClick={toggleCalendarModal}>
+          <Plus />
         </button>
       </div>
     </div>
