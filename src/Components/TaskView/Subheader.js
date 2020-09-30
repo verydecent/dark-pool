@@ -12,9 +12,6 @@ const Subheader = ({
     <div className='task-view-subheader'>
       <span className='task-view-date-title'>{formatDate}</span>
       <div>
-        <Button onClick={createTask}>
-          Create Task
-      </Button>
         <Button onClick={parsePrevDate}>
           Yesterday
       </Button>
