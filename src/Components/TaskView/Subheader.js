@@ -4,6 +4,8 @@ import { Calendar, AngleLeft, AngleRight, Plus } from '../FAIcons';
 const Subheader = ({
   parseNextDate,
   parsePrevDate,
+  prevDate,
+  nextDate,
   toggleCalendarModal,
   createTask,
   sameDate
@@ -12,10 +14,10 @@ const Subheader = ({
   return (
     <div className='task-view-subheader'>
       <div className='task-view-button-container'>
-        <button className='task-view-button' onClick={parsePrevDate}>
+        <button className='task-view-button' onClick={prevDate}>
           <AngleLeft />
         </button>
-        <button className='task-view-button' onClick={parseNextDate}>
+        <button className='task-view-button' onClick={nextDate}>
           <AngleRight />
         </button>
         <button className='task-view-button' onClick={toggleCalendarModal}>
