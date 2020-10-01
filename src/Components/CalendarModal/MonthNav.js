@@ -14,7 +14,7 @@ const MonthNav = ({
         className='calendar-month-label'
         onClick={toggleMonthList}
       >
-        {month}
+        <h1 className='header-1'>{month}</h1>
       </span>
       {isMonthListOpen && <MonthList monthList={monthList} changeMonth={changeMonth} />}
     </div>

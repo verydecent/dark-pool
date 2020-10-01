@@ -1,5 +1,4 @@
 import React from 'react';
-import { toggleMonthList } from '../../Redux/actionCreators';
 
 const YearNav = ({
   year,
@@ -26,7 +25,7 @@ const YearNav = ({
           className='calendar-year-label'
           onClick={toggleYearList}
         >
-          {year}
+          <h1 className='header-1'>{year}</h1>
         </span>}
     </div>
   );
