@@ -36,9 +36,9 @@ const toggleYearList = () => ({
   type: TOGGLE_YEAR_LIST
 });
 
-const changeYear = e => ({
+const changeYear = year => ({
   type: CHANGE_YEAR,
-  payload: e.target.value
+  payload: year
 });
 
 const prevMonth = () => ({
