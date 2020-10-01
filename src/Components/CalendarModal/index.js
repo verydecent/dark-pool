@@ -113,10 +113,10 @@ class CalendarModal extends React.Component {
                   />
                 </td>
                 <td colSpan='2'>
-                  <button onClick={this.prevMonth}>
+                  <button onClick={this.props.prevMonth}>
                     <AngleLeft />
                   </button>
-                  <button onClick={this.nextMonth}>
+                  <button onClick={this.props.nextMonth}>
                     <AngleRight />
                   </button>
                 </td>

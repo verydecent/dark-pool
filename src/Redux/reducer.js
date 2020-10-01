@@ -76,7 +76,7 @@ const prevMonth = state => {
   }
 }
 
-const nextMonth = () => {
+const nextMonth = state => {
   let dateContext = Object.assign({}, state.dateContext);
   dateContext = moment(dateContext).add(1, 'month');
   return {
