@@ -81,13 +81,16 @@
   justify-content: center;
 }
 
-.selected span {
-  color: red;
+.selected {
   font-weight: 700;
+  background: var(--secondary-color);
+  color: #fff;
 }
 
-.current-date span {
-  /* font-weight: 700; */
+.today {
+  border: 1px solid var(--primary-color);
+  font-weight: 700;
+  color: #fff;
 }
 
 .calendar-month-label, .calendar-year-label {

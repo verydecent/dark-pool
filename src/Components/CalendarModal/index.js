@@ -50,10 +50,10 @@ class CalendarModal extends React.Component {
 
     const daysInMonth = [];
     for (let d = 1; d <= this.props.dateContext.daysInMonth(); d++) {
+      const today = d == moment().get('date') ? 'today' : '';
       const selected = d === this.props.dateContext.get('date') ? 'selected' : '';
       daysInMonth.push(
-        <div key={d} className={`calendar-date ${selected}`}>
-          {/* // <div key={d} classNae={current + ' ' + selected}m> */}
+        <div key={d} className={`calendar-date ${selected} ${today}`}>
           <span onClick={() => this.props.selecdivate(d)}>{d}</span>
         </div>);
     }
