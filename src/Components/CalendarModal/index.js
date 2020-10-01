@@ -25,11 +25,6 @@ class CalendarModal extends React.Component {
     this.weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     this.months = moment.months();
   }
-
-  getYear = () => this.state.dateContext.format('Y');
-
-  getMonth = () => this.state.dateContext.format('MMMM');
-
   getDaysInMonth = () => this.state.dateContext.daysInMonth();
 
   getCurrentDate = () => this.state.dateContext.get('date');
