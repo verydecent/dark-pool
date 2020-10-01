@@ -84,14 +84,6 @@ class TaskView extends React.Component {
     }
   }
 
-  parseNextDate = () => {
-    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
-  }
-
-  parsePrevDate = () => {
-    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
-  }
-
   callTask = () => {
     const { currentDate } = this.state;
     const { userId } = this.state;
@@ -327,8 +319,6 @@ class TaskView extends React.Component {
               return moment(dateContext).isSame(today);
             }}
             createTask={this.createTask}
-            parseNextDate={this.parseNextDate}
-            parsePrevDate={this.parsePrevDate}
             prevDate={this.props.prevDate}
             nextDate={this.props.nextDate}
             toggleCalendarModal={this.props.toggleCalendarModal}

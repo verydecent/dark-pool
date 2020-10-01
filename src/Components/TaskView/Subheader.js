@@ -2,15 +2,12 @@ import React from 'react';
 import { Calendar, AngleLeft, AngleRight, Plus } from '../FAIcons';
 
 const Subheader = ({
-  parseNextDate,
-  parsePrevDate,
   prevDate,
   nextDate,
   toggleCalendarModal,
   createTask,
   sameDate
 }) => {
-  console.log(sameDate())
   return (
     <div className='task-view-subheader'>
       <div className='task-view-button-container'>
