@@ -67,9 +67,9 @@
 }
 
 .calendar-date:hover {
-  background: var(--primary-color);
+  border: 3px solid var(--secondary-color);
   cursor: pointer;
-  color: #fff;
+  font-weight: 700;
 }
 
 .calendar-empty {
@@ -88,7 +88,7 @@
 }
 
 .today {
-  border: 1px solid var(--primary-color);
+  border: 3px solid var(--primary-color);
   font-weight: 700;
   color: #fff;
 }
