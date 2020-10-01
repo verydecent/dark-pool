@@ -5,7 +5,9 @@ import {
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
   TOGGLE_YEAR_LIST,
-  CHANGE_YEAR
+  CHANGE_YEAR,
+  PREV_MONTH,
+  NEXT_MONTH
 } from './constants';
 import moment from 'moment';
 
@@ -65,6 +67,23 @@ const changeYear = (state, year) => {
   }
 }
 
+const prevMonth = state => {
+  let dateContext = Object.assign({}, state.dateContext);
+  dateContext = moment(dateContext).subtract(1, 'month');
+  return {
+    ...state,
+    dateContext
+  }
+}
+
+const nextMonth = () => {
+  let dateContext = Object.assign({}, state.dateContext);
+  dateContext = moment(dateContext).add(1, 'month');
+  return {
+    ...state,
+    dateContext
+  }
+}
 
 function reducer(state, action) {
   switch (action.type) {
@@ -88,6 +107,12 @@ function reducer(state, action) {
     }
     case CHANGE_YEAR: {
       return changeYear(state, action.payload);
+    }
+    case PREV_MONTH: {
+      return prevMonth(state);
+    }
+    case NEXT_MONTH: {
+      return nextMonth(state);
     }
     default: return state
   }
