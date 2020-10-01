@@ -30,18 +30,6 @@ class CalendarModal extends React.Component {
 
   getCurrentDate = () => this.state.dateContext.get('date');
 
-  prevMonth = () => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).subtract(1, 'month');
-    this.setState({ dateContext });
-  }
-
-  nextMonth = () => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).add(1, 'month');
-    this.setState({ dateContext });
-  }
-
   onClickDay = day => {
     let dateContext = Object.assign({}, this.state.dateContext);
     dateContext = moment(this.state.dateContext).set('date', day);
