@@ -5,8 +5,10 @@ const Subheader = ({
   parseNextDate,
   parsePrevDate,
   toggleCalendarModal,
-  createTask
+  createTask,
+  sameDate
 }) => {
+  console.log(sameDate())
   return (
     <div className='task-view-subheader'>
       <div className='task-view-button-container'>
@@ -19,7 +21,7 @@ const Subheader = ({
         <button className='task-view-button' onClick={toggleCalendarModal}>
           <Calendar />
         </button>
-        <button className='task-view-button plus' onClick={createTask}>
+        <button className='task-view-button plus' onClick={createTask} disabled={!sameDate()}>
           <Plus />
         </button>
       </div>

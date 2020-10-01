@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = ({
-  date
+  date,
 }) => {
   return (
     <div className='task-view-header'>

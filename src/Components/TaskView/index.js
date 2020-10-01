@@ -316,8 +316,17 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          <Header date={this.props.dateContext.format('dddd LL')} />
+          <Header
+            date={this.props.dateContext.format('dddd LL')}
+          />
           <Subheader
+            sameDate={() => {
+              let dateContext = Object.assign({}, this.props.dateContext);
+              dateContext = moment(dateContext).format('YYYY-MM-DD');
+              const today = moment().format('YYYY-MM-DD');
+              console.log('dateContext', dateContext, 'moment()', moment().format());
+              return moment(dateContext).isSame(today);
+            }}
             createTask={this.createTask}
             parseNextDate={this.parseNextDate}
             parsePrevDate={this.parsePrevDate}

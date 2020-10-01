@@ -125,3 +125,10 @@
   padding: 2px 8px;
   cursor: pointer;
 }
+
+.plus:disabled,
+.plus[disabled]{
+  border: 1px solid #999999;
+  background-color: #4A4B4F;
+  color: #666666;
+}
