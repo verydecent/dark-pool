@@ -324,7 +324,6 @@ class TaskView extends React.Component {
               let dateContext = Object.assign({}, this.props.dateContext);
               dateContext = moment(dateContext).format('YYYY-MM-DD');
               const today = moment().format('YYYY-MM-DD');
-              console.log('dateContext', dateContext, 'moment()', moment().format());
               return moment(dateContext).isSame(today);
             }}
             createTask={this.createTask}
