@@ -5,7 +5,9 @@ import {
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
   TOGGLE_YEAR_LIST,
-  CHANGE_YEAR
+  CHANGE_YEAR,
+  PREV_MONTH,
+  NEXT_MONTH
 } from './constants';
 
 const toggleAccountModal = () => ({
@@ -36,6 +38,14 @@ const toggleYearList = () => ({
 const changeYear = e => ({
   type: CHANGE_YEAR,
   payload: e.target.value
+});
+
+const prevMonth = () => ({
+  type: PREV_MONTH
+});
+
+const nextMonth = () => ({
+  type: NEXT_MONTH
 })
 
 export {
@@ -45,5 +55,7 @@ export {
   toggleMonthList,
   changeMonth,
   toggleYearList,
-  changeYear
+  changeYear,
+  prevMonth,
+  nextMonth
 }
