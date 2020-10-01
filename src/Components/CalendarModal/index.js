@@ -25,14 +25,11 @@ class CalendarModal extends React.Component {
     this.weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     this.months = moment.months();
   }
-  getDaysInMonth = () => this.state.dateContext.daysInMonth();
 
   getCurrentDate = () => this.state.dateContext.get('date');
 
-  getCurrentDay = () => this.state.dateContext.format('D');
-
   getFirstDayOfMonth = () => {
-    const { dateContext } = this.state;
+    const { dateContext } = this.props;
     const firstDay = moment(dateContext).startOf('month').format('d');
     return firstDay;
   }
@@ -61,16 +58,17 @@ class CalendarModal extends React.Component {
 
     // Creates the empty dates from previous months
     const emptyDates = [];
-    for (let i = 0; i < this.getFirstDayOfMonth(); i++) {
+    for (let i = 0; i < this.props.dateContext.startOf('month').format('d'); i++) {
       emptyDates.push(<td key={i * 100} className='calendar-empty-dates'></td>);
     }
 
     const daysInMonth = [];
-    for (let d = 1; d <= this.getDaysInMonth(); d++) {
-      const className = d == this.getCurrentDay() ? 'date current-date' : 'date';
-      const selectedDateClassName = d === this.state.dateContext.get('date') ? 'selected' : '';
+    for (let d = 1; d <= this.props.dateContext.daysInMonth(); d++) {
+      const current = d == this.props.dateContext.format('D') ? 'date current-date' : 'date';
+      console.log(this.props.dateContext.get('date'))
+      const selected = d === this.props.dateContext.get('date') ? 'selected' : '';
       daysInMonth.push(
-        <td key={d} className={className + ' ' + selectedDateClassName}>
+        <td key={d} className={current + ' ' + selected}>
           <span onClick={() => this.onClickDay(d)}>{d}</span>
         </td>);
     }
