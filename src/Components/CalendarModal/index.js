@@ -9,7 +9,9 @@ import {
   toggleMonthList,
   changeMonth,
   toggleYearList,
-  changeYear
+  changeYear,
+  nextMonth,
+  prevMonth
 } from '../../Redux/actionCreators';
 
 class CalendarModal extends React.Component {
@@ -161,7 +163,9 @@ const mapDispatchToProps = dispatch => {
     toggleMonthList: () => dispatch(toggleMonthList()),
     changeMonth: month => dispatch(changeMonth(month)),
     toggleYearList: () => dispatch(toggleYearList()),
-    changeYear: e => dispatch(changeYear(e))
+    changeYear: e => dispatch(changeYear(e)),
+    nextMonth: () => dispatch(nextMonth()),
+    prevMonth: () => dispatch(prevMonth()),
   }
 }
 
