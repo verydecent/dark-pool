@@ -11,7 +11,7 @@ import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
-import { toggleCalendarModal } from '../../Redux/Actions';
+import { toggleCalendarModal } from '../../Redux/actionCreators';
 
 class TaskView extends React.Component {
   constructor() {
@@ -29,26 +29,6 @@ class TaskView extends React.Component {
       isModalOpen: false,
       currentDate: moment(),
     };
-
-    // Main
-    this.handleChange = this.handleChange.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.parseNextDate = this.parseNextDate.bind(this);
-    this.parsePrevDate = this.parsePrevDate.bind(this);
-    this.callTask = this.callTask.bind(this);
-
-    // Task
-    this.createTask = this.createTask.bind(this);
-    this.selectTask = this.selectTask.bind(this);
-    this.updateTask = this.updateTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-
-    // Subtask
-    this.addSubtask = this.addSubtask.bind(this);
-    this.updateSubtask = this.updateSubtask.bind(this);
-    this.toggleSubtask = this.toggleSubtask.bind(this);
-    this.deleteSubtask = this.deleteSubtask.bind(this);
-    this.handleChangeSubtask = this.handleChangeSubtask.bind(this);
   }
 
   componentDidMount() {
@@ -71,14 +51,14 @@ class TaskView extends React.Component {
       });
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
-  toggleModal() {
+  toggleModal = () => {
     // this.setState({ isModalOpen: !this.state.isModalOpen });
     // How do I search for the selected task in the array then set it to state?
     // Search through this.state.tasks.filter then find by id? How do I create an idq? 
@@ -104,15 +84,15 @@ class TaskView extends React.Component {
     }
   }
 
-  parseNextDate() {
+  parseNextDate = () => {
     this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
   }
 
-  parsePrevDate() {
+  parsePrevDate = () => {
     this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
   }
 
-  callTask() {
+  callTask = () => {
     const { currentDate } = this.state;
     const { userId } = this.state;
 
@@ -128,7 +108,7 @@ class TaskView extends React.Component {
       });
   }
 
-  createTask() {
+  createTask = () => {
     const { userId } = this.state;
 
     axios.post(`task/${userId}`)
@@ -145,7 +125,7 @@ class TaskView extends React.Component {
       });
   }
 
-  selectTask(id, title, description, subtasks) {
+  selectTask = (id, title, description, subtasks) => {
     // Should we accept arguments from props
     // OR should I use a loop everytime to target with id?
     // I think since we already have the value we can just pass as arguments instead of having the loop?
@@ -160,7 +140,7 @@ class TaskView extends React.Component {
     });
   }
 
-  updateTask(e, taskId) {
+  updateTask = (e, taskId) => {
     // This will activate after updating the selected Tasks data in the state
     // We will then take the state data and create a new object
     // Search for task in task array by ID then replace the task with new task object
@@ -192,7 +172,7 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  deleteTask(taskId) {
+  deleteTask = (taskId) => {
     axios.delete(`task/${taskId}`)
       .then(response => {
         const taskRemoved = this.state.tasks.filter(task => {
@@ -208,7 +188,7 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  addSubtask(e, taskId) {
+  addSubtask = (e, taskId) => {
     e.preventDefault();
 
     axios.post(`task/${taskId}/subtask`)
@@ -229,7 +209,7 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  handleChangeSubtask(e, subtaskId) {
+  handleChangeSubtask = (e, subtaskId) => {
     // Clone subtasks from state to keep things immutable
     // Target subtask index
     // Update subtask with event target's value
@@ -253,7 +233,7 @@ class TaskView extends React.Component {
     }));
   }
 
-  toggleSubtask(e, taskId, subtaskId) {
+  toggleSubtask = (e, taskId, subtaskId) => {
     // Need to be cloning whole task array
     const subtasksClone = this.state.subtasks.map(subtask => {
       if (subtask._id === subtaskId) {
@@ -270,7 +250,7 @@ class TaskView extends React.Component {
     }, () => this.updateSubtask(taskId, subtaskId));
   }
 
-  updateSubtask(taskId, subtaskId) {
+  updateSubtask = (taskId, subtaskId) => {
     const indexOfTargetSubtask = this.state.subtasks.findIndex(subtask => (subtask._id === subtaskId));
     const targetSubtask = this.state.subtasks[indexOfTargetSubtask];
 
@@ -288,7 +268,7 @@ class TaskView extends React.Component {
       .catch(error => console.log(error));
   }
 
-  deleteSubtask(taskId, subtaskId) {
+  deleteSubtask = (taskId, subtaskId) => {
     // filter out if the matching id and then setState with newly created array
     // Do this for tasks as well
     // const newSubtasks = this.state.subtasks.filter(subtask => )
@@ -336,9 +316,8 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          <Header />
+          <Header date={this.props.dateContext.format('dddd LL')} />
           <Subheader
-            date={this.state.currentDate}
             createTask={this.createTask}
             parseNextDate={this.parseNextDate}
             parsePrevDate={this.parsePrevDate}
@@ -358,7 +337,8 @@ class TaskView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isCalendarModalOpen: state.isCalendarModalOpen
+    isCalendarModalOpen: state.isCalendarModalOpen,
+    dateContext: state.dateContext
   }
 }
 

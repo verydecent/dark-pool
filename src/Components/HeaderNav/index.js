@@ -2,7 +2,7 @@ import React from 'react';
 import { User } from '../FAIcons/index';
 import './styles.css';
 import { connect } from 'react-redux';
-import { toggleAccountModal } from '../../Redux/Actions';
+import { toggleAccountModal } from '../../Redux/actionCreators';
 import AccountModal from '../AccountModal';
 
 const HeaderNav = ({

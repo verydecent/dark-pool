@@ -1,8 +1,8 @@
 import React from 'react';
-import SelectList from './MonthList';
+import MonthList from './MonthList';
 
 const MonthNav = ({
-  isMonthNavOpen,
+  isMonthListOpen,
   month,
   monthList,
   toggleMonthList,
@@ -12,11 +12,11 @@ const MonthNav = ({
     <div className='calendar-month-nav'>
       <span
         className='calendar-month-label'
-        onClick={() => toggleMonthList(month)}
+        onClick={toggleMonthList}
       >
-        {month}
+        <h1 className='header-1'>{month}</h1>
       </span>
-      {isMonthNavOpen && <SelectList monthList={monthList} changeMonth={changeMonth} />}
+      {isMonthListOpen && <MonthList monthList={monthList} changeMonth={changeMonth} />}
     </div>
   );
 }

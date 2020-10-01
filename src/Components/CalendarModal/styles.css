@@ -15,15 +15,16 @@
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
-.calendar {
+.calendar-container {
   z-index: 999;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 450px;
+  max-width: 700px;
   border-radius: 4px;
   height: auto;
   padding-top: var(--modal-top-padding);
@@ -32,15 +33,71 @@
   background: var(--view-background-color);
 }
 
-.selected span {
-  color: red;
+.calendar {
+  width: 100%;
+}
+
+.calendar-header {
+  border-bottom: 1px solid var(--input-border-color);
+  padding-right: var(--modal-horizontal-padding);
+  padding-left: var(--modal-horizontal-padding);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.calendar-header-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar-subheader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar-body {
+  padding-right: var(--modal-horizontal-padding);
+  padding-left: var(--modal-horizontal-padding);
+  font-size: 1.3rem;
+}
+
+.calendar-row {
+  display: flex;
+}
+
+.calendar-date {
+  min-width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-date:hover {
+  border: 3px solid var(--secondary-color);
+  cursor: pointer;
   font-weight: 700;
 }
 
-.current-date span {
+.calendar-empty {
+  background: var(--input-border-color);
+  min-width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected {
+  font-weight: 700;
+  background: var(--secondary-color);
   color: #fff;
-  border-radius: 50%;
-  background-color: var(--secondary-color);
+}
+
+.today {
+  border: 3px solid var(--primary-color);
+  font-weight: 700;
 }
 
 .calendar-month-label, .calendar-year-label {
@@ -54,4 +111,17 @@
 .month-list-item:hover {
   text-decoration: underline;
   color: var(--secondary-color);
+}
+
+/* Button */
+
+.direction-button {
+  height: 24px;
+  background: var(--task-list-header-background-color);
+  border-radius: 2px;
+  width: auto;
+  border: 1px solid #000;
+  margin-left: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
 }

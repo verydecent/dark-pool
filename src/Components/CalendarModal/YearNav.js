@@ -2,28 +2,30 @@ import React from 'react';
 
 const YearNav = ({
   year,
-  isYearNavOpen,
+  isYearListOpen,
   toggleYearList,
-  onKeyUpYear,
-  onBlurYear,
-  onChangeYear
+  changeYear
 }) => {
   return (
     <div className='calendar-year-nav'>
-      {isYearNavOpen
+      {isYearListOpen
         ? <input
           className='calendar-year-editor'
           type='number'
           defaultValue={year}
-          onKeyUp={e => onKeyUpYear(e)}
-          onChange={e => onChangeYear(e)}
-          onBlur={e => onBlurYear(e)}
+          onChange={e => changeYear(e)}
+          onKeyUp={e => {
+            if (e.key === 'Enter' || e.key === 'Esc' || e.key === 'Escape') {
+              toggleYearList()
+            }
+          }}
+          onBlur={toggleYearList}
         />
         : <span
           className='calendar-year-label'
-          onClick={() => toggleYearList()}
+          onClick={toggleYearList}
         >
-          {year}
+          <h1 className='header-1'>{year}</h1>
         </span>}
     </div>
   );

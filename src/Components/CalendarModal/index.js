@@ -4,8 +4,18 @@ import './styles.css';
 import MonthNav from './MonthNav';
 import YearNav from './YearNav';
 import { AngleLeft, AngleRight } from '../FAIcons';
-import { toggleCalendarModal } from '../../Redux/Actions';
 import { connect } from 'react-redux';
+import {
+  toggleMonthList,
+  changeMonth,
+  toggleYearList,
+  changeYear,
+  nextMonth,
+  prevMonth,
+  selectDate
+} from '../../Redux/actionCreators';
+import Overlay from './Overlay';
+import { Times } from '../FAIcons';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -15,97 +25,42 @@ class CalendarModal extends React.Component {
       isMonthNavOpen: false,
       isYearNavOpen: false,
     }
-
     // View helpers
     this.weekdays = moment.weekdays(); // ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     this.weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     this.months = moment.months();
   }
 
-  getYear = () => this.state.dateContext.format('Y');
-  getMonth = () => this.state.dateContext.format('MMMM');
-  getDaysInMonth = () => this.state.dateContext.daysInMonth();
-  getCurrentDate = () => this.state.dateContext.get('date');
-  getCurrentDay = () => this.state.dateContext.format('D');
-  getFirstDayOfMonth = () => {
-    const { dateContext } = this.state;
+  getCurrendivate = () => this.state.dateContext.get('date');
+
+  getFirsdateOfMonth = () => {
+    const { dateContext } = this.props;
     const firstDay = moment(dateContext).startOf('month').format('d');
     return firstDay;
-  }
-  toggleMonthList = () => {
-    this.setState({
-      isMonthNavOpen: !this.state.isMonthNavOpen
-    });
-  }
-  changeMonth = newMonth => {
-    const monthNumber = this.months.indexOf(newMonth);
-    let newDateContext = Object.assign({}, this.state.dateContext);
-    newDateContext = moment(newDateContext).set('month', monthNumber);
-    this.setState({ dateContext: newDateContext }, () => this.toggleMonthList());
-  }
-  toggleYearList = () => {
-    this.setState({
-      isYearNavOpen: !this.state.isYearNavOpen
-    });
-  }
-  setYear = year => {
-    let newDateContext = Object.assign({}, this.state.dateContext);
-    newDateContext = moment(newDateContext).set('year', year);
-    this.setState({ dateContext: newDateContext });
-  }
-  onChangeYear = e => {
-    const year = e.target.value;
-    this.setYear(year);
-  }
-  onKeyUpYear = e => {
-    if (e.which === 13 || e.which === 27) {
-      const year = e.target.value;
-      this.setYear(year);
-      this.toggleYearList();
-    }
-  }
-  onBlurYear = e => {
-    const year = e.target.value;
-    this.setYear(year);
-    this.toggleYearList();
-  }
-
-  prevMonth = () => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).subtract(1, 'month');
-    this.setState({ dateContext });
-  }
-
-  nextMonth = () => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).add(1, 'month');
-    this.setState({ dateContext });
-  }
-
-  onClickDay = day => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(this.state.dateContext).set('date', day);
-    this.setState({ dateContext: dateContext }, console.log(this.state.dateContext));
   }
 
   render() {
     // Map weekdays i.e. Sun, Mon, Tue
-    const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
+    const weekdays = this.weekdaysShort.map(day => <div key={day} className='calendar-date'>{day}</div>);
 
     // Creates the empty dates from previous months
     const emptyDates = [];
-    for (let i = 0; i < this.getFirstDayOfMonth(); i++) {
-      emptyDates.push(<td key={i * 100} className='calendar-empty-dates'></td>);
+    for (let i = 0; i < this.getFirsdateOfMonth(); i++) {
+      emptyDates.push(<div key={i * 100} className='calendar-empty'>{''}</div>);
     }
 
     const daysInMonth = [];
-    for (let d = 1; d <= this.getDaysInMonth(); d++) {
-      const className = d == this.getCurrentDay() ? 'date current-date' : 'date';
-      const selectedDateClassName = d === this.state.dateContext.get('date') ? 'selected' : '';
+    for (let d = 1; d <= this.props.dateContext.daysInMonth(); d++) {
+      let today = d == moment().get('date') ? 'today' : '';
+      const selected = d === this.props.dateContext.get('date') ? 'selected' : '';
       daysInMonth.push(
-        <td key={d} className={className + ' ' + selectedDateClassName}>
-          <span onClick={() => this.onClickDay(d)}>{d}</span>
-        </td>);
+        <div
+          className={`calendar-date ${selected} ${today}`}
+          key={d}
+          onClick={() => this.props.selectDate(d)}
+        >
+          {d}
+        </div>);
     }
 
     // Combine empty dates and total days in month
@@ -113,78 +68,81 @@ class CalendarModal extends React.Component {
     let rows = [];
     let cells = [];
 
-    // Organize into mulitdimensional array modeling the month
+    // Organize into mulidivimensional array modeling the month
     totalDateSlots.forEach((row, i) => {
       // If not 7th day (Sunday) then push to cells
       if ((i % 7) !== 0 || i === 0) {
         cells.push(row);
       }
       else {
-        const insertRow = cells.slice();
-        rows.push(insertRow);
+        const inserdivow = cells.slice();
+        rows.push(inserdivow);
         cells = [];
         cells.push(row);
       }
       if (i === totalDateSlots.length - 1) {
-        const insertRow = cells.slice();
-        rows.push(insertRow);
+        const inserdivow = cells.slice();
+        rows.push(inserdivow);
       }
     });
 
-    const monthEl = rows.map((d, i) => <tr key={i * 100}>{d}</tr>);
+    const monthEl = rows.map((d, i) => <div className='calendar-row' key={i * 100}>{d}</div>);
 
     if (!this.props.isCalendarModalOpen) {
       return null;
     }
-
     else {
       return (
         <div className='calendar-modal' >
-          <div className='calendar-modal-overlay' onClick={this.props.toggleCalendarModal} />
-          <table className='calendar'>
-            <thead>
-              <tr className='calendar-header'>
-                <td colSpan='5'>
-                  <MonthNav
-                    // Values
-                    isMonthNavOpen={this.state.isMonthNavOpen}
-                    month={this.getMonth()}
-                    monthList={this.months}
-                    // Methods
-                    toggleMonthList={this.toggleMonthList}
-                    changeMonth={this.changeMonth}
-                  />
+          <Overlay toggleCalendarModal={this.props.toggleCalendarModal} />
+          <div className='calendar-container'>
+            <div className='calendar'>
+              <div className='calendar-header'>
+                <div className='calendar-header-top'>
                   <YearNav
                     // Values
-                    year={this.getYear()}
-                    isYearNavOpen={this.state.isYearNavOpen}
+                    year={this.props.dateContext.format('Y')}
+                    isYearListOpen={this.props.isYearListOpen}
                     // Methods
-                    toggleYearList={this.toggleYearList}
-                    onChangeYear={this.onChangeYear}
-                    onKeyUpYear={this.onKeyUpYear}
-                    onBlurYear={this.onBlurYear}
+                    toggleYearList={this.props.toggleYearList}
+                    changeYear={this.props.changeYear}
                   />
-                </td>
-                <td colSpan='2'>
-                  <button onClick={this.prevMonth}>
-                    <AngleLeft />
-                  </button>
-                  <button onClick={this.nextMonth}>
-                    <AngleRight />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {weekdays}
-              </tr>
-              {monthEl}
-            </tbody>
-          </table>
-        </div>
+                  <div onClick={this.props.toggleAccountModal}>
+                    <Times />
+                  </div>
+                </div>
+                <div className='calendar-subheader'>
+                  <MonthNav
+                    // Values
+                    isMonthListOpen={this.props.isMonthListOpen}
+                    month={this.props.dateContext.format('MMMM')}
+                    monthList={this.months}
+                    // Methods
+                    toggleMonthList={this.props.toggleMonthList}
+                    changeMonth={this.props.changeMonth}
+                  />
+                  <div>
+                    <button className='direction-button' onClick={this.props.prevMonth}>
+                      <AngleLeft />
+                    </button>
+                    <button className='direction-button' onClick={this.props.nextMonth}>
+                      <AngleRight />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className='calendar-body'>
+                <div className='calendar-row'>
+                  {weekdays}
+                </div>
+                <div>
+                  {monthEl}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div >
       );
     }
   }
@@ -192,8 +150,23 @@ class CalendarModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isCalendarModalOpen: state.isCalendarModalOpen
+    dateContext: state.dateContext,
+    isCalendarModalOpen: state.isCalendarModalOpen,
+    isMonthListOpen: state.isMonthListOpen,
+    isYearListOpen: state.isYearListOpen
   }
 }
 
-export default connect(mapStateToProps)(CalendarModal); 
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleMonthList: () => dispatch(toggleMonthList()),
+    changeMonth: month => dispatch(changeMonth(month)),
+    toggleYearList: () => dispatch(toggleYearList()),
+    changeYear: e => dispatch(changeYear(e)),
+    nextMonth: () => dispatch(nextMonth()),
+    prevMonth: () => dispatch(prevMonth()),
+    selectDate: date => dispatch(selectDate(date))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarModal); 

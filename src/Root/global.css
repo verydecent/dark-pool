@@ -97,3 +97,24 @@ a:visited {
   font-size: 1.2rem;
   /* color: var(--header-1-color); */
 }
+
+/* Button */
+
+.grey-button {
+  height: 24px;
+  background: var(--task-list-header-background-color);
+  border-radius: 2px;
+  width: 108px;
+  border: 1px solid #000;
+  margin-left: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+/* Date Title */
+
+.date-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #4A4B4F;
+}

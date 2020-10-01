@@ -21,23 +21,17 @@
   padding-right: var(--view-horizontal-padding);
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 /* Subheader */
 
 .task-view-subheader {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   padding-left: var(--view-horizontal-padding);
   padding-right: var(--view-horizontal-padding);
   margin-bottom: 16px;
-}
-
-.task-view-date-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #4A4B4F;
 }
 
 /* Field */
@@ -75,4 +69,16 @@
   font-size: 1.2rem;
   margin-left: var(--view-horizontal-padding);
   margin-right: var(--view-horizontal-padding);
+}
+
+/* Button Plus */
+
+
+.task-view-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.plus {
+  font-size: 1rem;
 }
