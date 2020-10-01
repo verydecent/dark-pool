@@ -316,7 +316,7 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          <Header date={this.state.currentDate.format('dddd LL')} />
+          <Header date={this.props.dateContext.format('dddd LL')} />
           <Subheader
             createTask={this.createTask}
             parseNextDate={this.parseNextDate}
@@ -337,7 +337,8 @@ class TaskView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isCalendarModalOpen: state.isCalendarModalOpen
+    isCalendarModalOpen: state.isCalendarModalOpen,
+    dateContext: state.dateContext
   }
 }
 
