@@ -15,6 +15,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
 .calendar-container {
@@ -41,10 +42,17 @@
   padding-right: var(--modal-horizontal-padding);
   padding-left: var(--modal-horizontal-padding);
   padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.calendar-header-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 16px;
+}
+
+.calendar-subheader {
+  display: flex;
+  justify-content: space-between;
 }
 
 .calendar-body {
@@ -103,4 +111,17 @@
 .month-list-item:hover {
   text-decoration: underline;
   color: var(--secondary-color);
+}
+
+/* Button */
+
+.direction-button {
+  height: 24px;
+  background: var(--task-list-header-background-color);
+  border-radius: 2px;
+  width: auto;
+  border: 1px solid #000;
+  margin-left: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
 }

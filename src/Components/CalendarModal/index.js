@@ -15,6 +15,7 @@ import {
   selectDate
 } from '../../Redux/actionCreators';
 import Overlay from './Overlay';
+import { Times } from '../FAIcons';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -97,7 +98,20 @@ class CalendarModal extends React.Component {
           <div className='calendar-container'>
             <div className='calendar'>
               <div className='calendar-header'>
-                <div>
+                <div className='calendar-header-top'>
+                  <YearNav
+                    // Values
+                    year={this.props.dateContext.format('Y')}
+                    isYearListOpen={this.props.isYearListOpen}
+                    // Methods
+                    toggleYearList={this.props.toggleYearList}
+                    changeYear={this.props.changeYear}
+                  />
+                  <div onClick={this.props.toggleAccountModal}>
+                    <Times />
+                  </div>
+                </div>
+                <div className='calendar-subheader'>
                   <MonthNav
                     // Values
                     isMonthListOpen={this.props.isMonthListOpen}
@@ -107,22 +121,14 @@ class CalendarModal extends React.Component {
                     toggleMonthList={this.props.toggleMonthList}
                     changeMonth={this.props.changeMonth}
                   />
-                  <YearNav
-                    // Values
-                    year={this.props.dateContext.format('Y')}
-                    isYearListOpen={this.props.isYearListOpen}
-                    // Methods
-                    toggleYearList={this.props.toggleYearList}
-                    changeYear={this.props.changeYear}
-                  />
-                </div>
-                <div className=''>
-                  <button className='grey-button' onClick={this.props.prevMonth}>
-                    <AngleLeft />
-                  </button>
-                  <button className='grey-button' onClick={this.props.nextMonth}>
-                    <AngleRight />
-                  </button>
+                  <div>
+                    <button className='direction-button' onClick={this.props.prevMonth}>
+                      <AngleLeft />
+                    </button>
+                    <button className='direction-button' onClick={this.props.nextMonth}>
+                      <AngleRight />
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className='calendar-body'>
