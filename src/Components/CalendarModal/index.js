@@ -37,30 +37,6 @@ class CalendarModal extends React.Component {
     return firstDay;
   }
 
-  setYear = year => {
-    let newDateContext = Object.assign({}, this.state.dateContext);
-    newDateContext = moment(newDateContext).set('year', year);
-    this.setState({ dateContext: newDateContext });
-  }
-
-  onChangeYear = e => {
-    const year = e.target.value;
-    this.setYear(year);
-  }
-
-  onKeyUpYear = e => {
-    if (e.which === 13 || e.which === 27) {
-      const year = e.target.value;
-      this.setYear(year);
-      this.toggleYearList();
-    }
-  }
-  onBlurYear = e => {
-    const year = e.target.value;
-    this.setYear(year);
-    this.toggleYearList();
-  }
-
   prevMonth = () => {
     let dateContext = Object.assign({}, this.state.dateContext);
     dateContext = moment(dateContext).subtract(1, 'month');
