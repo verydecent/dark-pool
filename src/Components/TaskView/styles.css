@@ -71,9 +71,7 @@
   margin-right: var(--view-horizontal-padding);
 }
 
-/* Button Plus */
-
-
+/* Button */
 .task-view-button-container {
   display: flex;
   align-items: center;
@@ -81,4 +79,15 @@
 
 .plus {
   font-size: 1rem;
+}
+
+.task-view-button {
+  height: 24px;
+  background: var(--task-list-header-background-color);
+  border-radius: 4px;
+  width: 40px;
+  border: 1px solid #000;
+  margin-left: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
 }
