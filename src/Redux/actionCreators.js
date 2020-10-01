@@ -7,7 +7,8 @@ import {
   TOGGLE_YEAR_LIST,
   CHANGE_YEAR,
   PREV_MONTH,
-  NEXT_MONTH
+  NEXT_MONTH,
+  SELECT_DATE
 } from './constants';
 
 const toggleAccountModal = () => ({
@@ -46,7 +47,12 @@ const prevMonth = () => ({
 
 const nextMonth = () => ({
   type: NEXT_MONTH
-})
+});
+
+const selectDate = date => ({
+  type: 'SELECT_DATE',
+  payload: date
+});
 
 export {
   toggleAccountModal,
@@ -57,5 +63,6 @@ export {
   toggleYearList,
   changeYear,
   prevMonth,
-  nextMonth
+  nextMonth,
+  selectDate
 }
