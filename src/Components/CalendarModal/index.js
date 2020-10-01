@@ -11,7 +11,8 @@ import {
   toggleYearList,
   changeYear,
   nextMonth,
-  prevMonth
+  prevMonth,
+  selectDate
 } from '../../Redux/actionCreators';
 import Overlay from './Overlay';
 
@@ -31,12 +32,6 @@ class CalendarModal extends React.Component {
 
   getCurrentDate = () => this.state.dateContext.get('date');
 
-  onClickDay = day => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(this.state.dateContext).set('date', day);
-    this.setState({ dateContext: dateContext }, console.log(this.state.dateContext));
-  }
-
   render() {
     // Map weekdays i.e. Sun, Mon, Tue
     const weekdays = this.weekdaysShort.map(day => <td key={day} className='weekday'>{day}</td>);
@@ -50,11 +45,11 @@ class CalendarModal extends React.Component {
     const daysInMonth = [];
     for (let d = 1; d <= this.props.dateContext.daysInMonth(); d++) {
       const current = d == this.props.dateContext.format('D') ? 'date current-date' : 'date';
-      console.log(this.props.dateContext.get('date'))
       const selected = d === this.props.dateContext.get('date') ? 'selected' : '';
       daysInMonth.push(
         <td key={d} className={current + ' ' + selected}>
-          <span onClick={() => this.onClickDay(d)}>{d}</span>
+          {/* // <td key={d} classNae={current + ' ' + selected}m> */}
+          <span onClick={() => this.props.selectDate(d)}>{d}</span>
         </td>);
     }
 
@@ -82,11 +77,11 @@ class CalendarModal extends React.Component {
     });
 
     const monthEl = rows.map((d, i) => <tr key={i * 100}>{d}</tr>);
+    console.log(moment())
 
     if (!this.props.isCalendarModalOpen) {
       return null;
     }
-
     else {
       return (
         <div className='calendar-modal' >
@@ -155,6 +150,7 @@ const mapDispatchToProps = dispatch => {
     changeYear: e => dispatch(changeYear(e)),
     nextMonth: () => dispatch(nextMonth()),
     prevMonth: () => dispatch(prevMonth()),
+    selectDate: (date) => dispatch(selectDate(date))
   }
 }
 

@@ -7,7 +7,8 @@ import {
   TOGGLE_YEAR_LIST,
   CHANGE_YEAR,
   PREV_MONTH,
-  NEXT_MONTH
+  NEXT_MONTH,
+  SELECT_DATE
 } from './constants';
 import moment from 'moment';
 
@@ -85,6 +86,15 @@ const nextMonth = state => {
   }
 }
 
+const selectDate = (state, date) => {
+  let dateContext = Object.assign({}, state.dateContext);
+  dateContext = moment(dateContext).set('date', date);
+  return {
+    ...state,
+    dateContext
+  }
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case TOGGLE_ACCOUNT_MODAL: {
@@ -113,6 +123,9 @@ function reducer(state, action) {
     }
     case NEXT_MONTH: {
       return nextMonth(state);
+    }
+    case SELECT_DATE: {
+      return selectDate(state, action.payload);
     }
     default: return state
   }
