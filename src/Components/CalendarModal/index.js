@@ -28,12 +28,6 @@ class CalendarModal extends React.Component {
 
   getCurrentDate = () => this.state.dateContext.get('date');
 
-  getFirstDayOfMonth = () => {
-    const { dateContext } = this.props;
-    const firstDay = moment(dateContext).startOf('month').format('d');
-    return firstDay;
-  }
-
   prevMonth = () => {
     let dateContext = Object.assign({}, this.state.dateContext);
     dateContext = moment(dateContext).subtract(1, 'month');
