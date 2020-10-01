@@ -50,7 +50,7 @@ const nextMonth = () => ({
 });
 
 const selectDate = date => ({
-  type: 'SELECT_DATE',
+  type: SELECT_DATE,
   payload: date
 });
 
