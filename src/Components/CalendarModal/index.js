@@ -13,6 +13,7 @@ import {
   nextMonth,
   prevMonth
 } from '../../Redux/actionCreators';
+import Overlay from './Overlay';
 
 class CalendarModal extends React.Component {
   constructor(props) {
@@ -89,7 +90,7 @@ class CalendarModal extends React.Component {
     else {
       return (
         <div className='calendar-modal' >
-          <div className='calendar-modal-overlay' onClick={this.props.toggleCalendarModal} />
+          <Overlay toggleCalendarModal={this.props.toggleCalendarModal} />
           <table className='calendar'>
             <thead>
               <tr className='calendar-header'>
