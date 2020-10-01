@@ -50,11 +50,15 @@ class CalendarModal extends React.Component {
 
     const daysInMonth = [];
     for (let d = 1; d <= this.props.dateContext.daysInMonth(); d++) {
-      const today = d == moment().get('date') ? 'today' : '';
+      let today = d == moment().get('date') ? 'today' : '';
       const selected = d === this.props.dateContext.get('date') ? 'selected' : '';
       daysInMonth.push(
-        <div key={d} className={`calendar-date ${selected} ${today}`}>
-          <span onClick={() => this.props.selecdivate(d)}>{d}</span>
+        <div
+          className={`calendar-date ${selected} ${today}`}
+          key={d}
+          onClick={() => this.props.selectDate(d)}
+        >
+          {d}
         </div>);
     }
 
@@ -113,10 +117,10 @@ class CalendarModal extends React.Component {
                   />
                 </div>
                 <div className=''>
-                  <button onClick={this.props.prevMonth}>
+                  <button className='grey-button' onClick={this.props.prevMonth}>
                     <AngleLeft />
                   </button>
-                  <button onClick={this.props.nextMonth}>
+                  <button className='grey-button' onClick={this.props.nextMonth}>
                     <AngleRight />
                   </button>
                 </div>
@@ -155,7 +159,7 @@ const mapDispatchToProps = dispatch => {
     changeYear: e => dispatch(changeYear(e)),
     nextMonth: () => dispatch(nextMonth()),
     prevMonth: () => dispatch(prevMonth()),
-    selecdivate: (date) => dispatch(selecdivate(date))
+    selectDate: date => dispatch(selectDate(date))
   }
 }
 

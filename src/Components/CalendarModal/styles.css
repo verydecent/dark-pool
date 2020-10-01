@@ -90,7 +90,6 @@
 .today {
   border: 3px solid var(--primary-color);
   font-weight: 700;
-  color: #fff;
 }
 
 .calendar-month-label, .calendar-year-label {
