@@ -129,8 +129,6 @@ class DashboardView extends React.Component {
     // Make 4 backend endpoints based on timeframe
     axios.get(`/task/${this.props.userId}?start_date=${beginning}&end_date=${end}`)
       .then(response => {
-        console.log()
-        // Then setState
         this.setState({
           ...this.state,
           tasks: response.data
