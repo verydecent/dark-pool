@@ -273,7 +273,7 @@ class DashboardView extends React.Component {
                 <div>
                   <TimeFrameButton />
                   <GraphTypeButton />
-                  <button className='grey-button' onClick={this.props.toggleCalendarModal} >
+                  <button className='task-view-button' onClick={this.props.toggleCalendarModal} >
                     <Calendar />
                   </button>
                 </div>
