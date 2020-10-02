@@ -1,7 +1,7 @@
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
-  SET_TO_CURRENT_DATE,
+  RESET_TO_CURRENT_DATE,
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
   TOGGLE_YEAR_LIST,
@@ -28,11 +28,11 @@ const toggleCalendarModal = state => {
   }
 }
 
-const setToCurrentDate = state => {
-  const newDateContext = moment();
+const resetToCurrentDate = state => {
+  const dateContext = moment();
   return {
     ...state,
-    dateContext: newDateContext
+    dateContext
   }
 }
 
@@ -125,8 +125,8 @@ function reducer(state, action) {
     case TOGGLE_CALENDAR_MODAL: {
       return toggleCalendarModal(state);
     }
-    case SET_TO_CURRENT_DATE: {
-      return setToCurrentDate(state);
+    case RESET_TO_CURRENT_DATE: {
+      return resetToCurrentDate(state);
     }
     case TOGGLE_MONTH_LIST: {
       return toggleMonthList(state);

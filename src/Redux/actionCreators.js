@@ -1,7 +1,7 @@
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
-  SET_TO_CURRENT_DATE,
+  RESET_TO_CURRENT_DATE,
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
   TOGGLE_YEAR_LIST,
@@ -19,8 +19,8 @@ const toggleCalendarModal = () => ({
   type: TOGGLE_CALENDAR_MODAL
 });
 
-const setToCurrentDate = () => ({
-  type: SET_TO_CURRENT_DATE
+const resetToCurrentDate = () => ({
+  type: RESET_TO_CURRENT_DATE
 });
 
 const toggleMonthList = () => ({
@@ -65,7 +65,7 @@ const nextDate = () => ({
 export {
   toggleAccountModal,
   toggleCalendarModal,
-  setToCurrentDate,
+  resetToCurrentDate,
   toggleMonthList,
   changeMonth,
   toggleYearList,
