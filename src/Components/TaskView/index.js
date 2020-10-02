@@ -34,7 +34,7 @@ class TaskView extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.dateContext !== prevProps.dateContext) {
-      this.callTask();
+      this.callTasks();
     }
   }
 
@@ -43,7 +43,7 @@ class TaskView extends React.Component {
     this.props.resetToCurrentDate();
   }
 
-  callTask = () => {
+  callTasks = () => {
     const { userId, dateContext } = this.props;
 
     const newDateContext = moment(Object.assign({}, dateContext));
@@ -59,12 +59,7 @@ class TaskView extends React.Component {
       });
   }
 
-  handleChange = (e) => {
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   toggleModal = () => {
     // this.setState({ isModalOpen: !this.state.isModalOpen });
@@ -93,9 +88,7 @@ class TaskView extends React.Component {
   }
 
   createTask = () => {
-    const { userId } = this.state;
-
-    axios.post(`task/${userId}`)
+    axios.post(`task/${this.props.userId}`)
       .then((response) => {
         this.setState(prevState => {
           return {
