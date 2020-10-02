@@ -16,9 +16,6 @@ class AccountModal extends React.Component {
       role: "",
       buttonText: "Update"
     }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +30,6 @@ class AccountModal extends React.Component {
       }
     })
       .then(response => {
-        console.log('Get User Info Success', response);
         const { email, username, role } = response.data;
         this.setState({ username, email, role });
       })
@@ -49,11 +45,9 @@ class AccountModal extends React.Component {
       })
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { username, password } = this.state;
     const token = getCookie('token');
