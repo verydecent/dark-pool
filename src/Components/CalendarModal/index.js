@@ -107,7 +107,7 @@ class CalendarModal extends React.Component {
                     toggleYearList={this.props.toggleYearList}
                     changeYear={this.props.changeYear}
                   />
-                  <div onClick={this.props.toggleAccountModal}>
+                  <div onClick={this.props.toggleCalendarModal}>
                     <Times />
                   </div>
                 </div>
