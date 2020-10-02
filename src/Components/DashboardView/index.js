@@ -189,10 +189,10 @@ class DashboardView extends React.Component {
     );
 
     const currentTimeFrame = timeFrame => {
-      if (timeFrame === 'day') return this.state.dateObject.format('dddd LL');
-      else if (timeFrame === 'isoWeek') return `Week of ${this.state.dateObject.format('LL')}`;
-      else if (timeFrame === 'month') return this.state.dateObject.format('MMMM YYYY');
-      else if (timeFrame === 'year') return this.state.dateObject.format('YYYY');
+      if (timeFrame === 'day') return this.props.dateContext.format('dddd LL');
+      else if (timeFrame === 'isoWeek') return `Week of ${this.props.dateContext.format('LL')}`;
+      else if (timeFrame === 'month') return this.props.dateContext.format('MMMM YYYY');
+      else if (timeFrame === 'year') return this.props.dateContext.format('YYYY');
     }
 
     const timeFrametitle = () => {
