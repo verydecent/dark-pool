@@ -2,13 +2,16 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducer';
 import moment from 'moment';
 import logger from 'redux-logger';
+import { isAuthenticated } from '../Utilities/helpers';
 
 const initialState = {
+  // Global
+  userId: isAuthenticated()._id,
+  dateContext: moment(),
   // Account Modal
   isAccountModalOpen: false,
   // Calendar Modal
   isCalendarModalOpen: false,
-  dateContext: moment(),
   isMonthListOpen: false,
   isYearListOpen: false,
 }
