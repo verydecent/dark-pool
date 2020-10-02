@@ -15,6 +15,7 @@ import {
 } from '../../Utilities/subtaskHelpers';
 import { connect } from 'react-redux';
 import { resetToCurrentDate } from '../../Redux/actionCreators';
+import { Calendar } from '../FAIcons';
 /*
 Graph options
 
@@ -160,7 +161,7 @@ class DashboardView extends React.Component {
   }
 
   render() {
-    const TimeFrameButtons = () => (
+    const TimeFrameButton = () => (
       <select className='grey-button' value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
         <option value='day'>Day View</option>
         <option value='isoWeek'>Week View</option>
@@ -169,7 +170,7 @@ class DashboardView extends React.Component {
       </select>
     );
 
-    const GraphTypeButtons = () => (
+    const GraphTypeButton = () => (
       <select className='grey-button' value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
         <option value='line'>Line Graph</option>
         <option value='bar'>Bar Graph</option>
@@ -262,8 +263,11 @@ class DashboardView extends React.Component {
             <div className='dashboard-view-subheader'>
               <div className='dashboard-view-button-list'>
                 <div>
-                  <TimeFrameButtons />
-                  <GraphTypeButtons />
+                  <TimeFrameButton />
+                  <GraphTypeButton />
+                  <button className='grey-button'>
+                    <Calendar />
+                  </button>
                 </div>
               </div>
             </div>
