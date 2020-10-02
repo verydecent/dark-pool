@@ -1,7 +1,6 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import './styles.css';
-import { isAuthenticated } from '../../Utilities/helpers';
 import moment from 'moment';
 import axios from '../../Utilities/axiosConfig';
 import GraphContainer from './GraphContainer';
@@ -14,6 +13,8 @@ import {
   getTaskCompleted,
   getTaskIncomplete
 } from '../../Utilities/subtaskHelpers';
+import { connect } from 'react-redux';
+import { resetToCurrentDate } from '../../Redux/actionCreators';
 /*
 Graph options
 
@@ -88,7 +89,6 @@ class DashboardView extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: isAuthenticated()._id,
       // Graph
       timeFrame: 'day',
       graphType: 'line',
@@ -103,7 +103,7 @@ class DashboardView extends React.Component {
   }
 
   componentDidMount() {
-    const { userId } = this.state;
+    const { userId } = this.props;
     let beginning = moment().startOf('day').toDate();
     let end = moment().endOf('day').toDate();
 
@@ -119,11 +119,15 @@ class DashboardView extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    this.props.resetToCurrentDate();
+  }
+
   getTasks = () => {
     // Time frame can be day, week, month, or year
-    const { userId, beginning, end } = this.state;
+    const { beginning, end } = this.state;
     // Make 4 backend endpoints based on timeframe
-    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
+    axios.get(`/task/${this.props.userId}?start_date=${beginning}&end_date=${end}`)
       .then(response => {
         console.log()
         // Then setState
@@ -321,4 +325,17 @@ class DashboardView extends React.Component {
   }
 }
 
-export default withNav(DashboardView);
+const mapStateToProps = state => {
+  return {
+    userId: state.userId,
+    dateContext: state.dateContext
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetToCurrentDate: dispatch(resetToCurrentDate())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNav(DashboardView));
