@@ -117,9 +117,11 @@ const nextDate = state => {
 
 function reducer(state, action) {
   switch (action.type) {
+    // Account Modal
     case TOGGLE_ACCOUNT_MODAL: {
       return toggleAccountModal(state);
     }
+    // Calendar Modal
     case TOGGLE_CALENDAR_MODAL: {
       return toggleCalendarModal(state);
     }
@@ -147,6 +149,8 @@ function reducer(state, action) {
     case SELECT_DATE: {
       return selectDate(state, action.payload);
     }
+
+    // Task View
     case PREV_DATE: {
       return prevDate(state);
     }
