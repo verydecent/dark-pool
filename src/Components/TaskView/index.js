@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 import withNav from '../Hoc/withNav.js';
 import TaskModal from '../TaskModal';
-import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment';
 import Header from './Header';
@@ -25,9 +24,7 @@ class TaskView extends React.Component {
       taskDescription: '',
       subtasks: [],
       // Helpers
-      userId: isAuthenticated()._id,
       isModalOpen: false,
-      currentDate: moment(),
     };
   }
 
