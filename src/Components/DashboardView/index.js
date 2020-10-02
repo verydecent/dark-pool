@@ -325,7 +325,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetToCurrentDate: dispatch(resetToCurrentDate())
+    resetToCurrentDate: () => dispatch(resetToCurrentDate())
   }
 }
 
