@@ -8,7 +8,7 @@ const GraphContainer = ({
   graphType,
   tasks,
   timeFrame,
-  dateObject,
+  dateContext,
 }) => {
   if (tasks.length === 0) {
     return (
@@ -21,9 +21,9 @@ const GraphContainer = ({
     return (
       <div className='dashboard-view-graph-container'>
         {timeFrame === 'day' && <Day tasks={tasks} graphType={graphType} />}
-        {timeFrame === 'isoWeek' && <Week dateObject={dateObject} tasks={tasks} graphType={graphType} />}
-        {timeFrame === 'month' && <Month dateObject={dateObject} tasks={tasks} graphType={graphType} />}
-        {timeFrame === 'year' && <Year dateObject={dateObject} tasks={tasks} graphType={graphType} />}
+        {timeFrame === 'isoWeek' && <Week dateContext={dateContext} tasks={tasks} graphType={graphType} />}
+        {timeFrame === 'month' && <Month dateContext={dateContext} tasks={tasks} graphType={graphType} />}
+        {timeFrame === 'year' && <Year dateContext={dateContext} tasks={tasks} graphType={graphType} />}
       </div>
     )
   }

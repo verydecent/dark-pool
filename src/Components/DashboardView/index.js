@@ -94,45 +94,27 @@ class DashboardView extends React.Component {
       graphType: 'line',
       // Tasks for Graph
       tasks: [],
-
-      // Date Picker
-      dateObject: moment(),
-      beginning: '',
-      end: ''
     };
   }
 
   componentDidMount() {
-    const { userId } = this.props;
-    let beginning = moment().startOf('day').toDate();
-    let end = moment().endOf('day').toDate();
-
-    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
-      .then(response => {
-        this.setState({
-          ...this.state,
-          tasks: response.data
-        });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
+    this.callTasks();
   }
 
   componentWillUnmount() {
     this.props.resetToCurrentDate();
   }
 
-  getTasks = () => {
-    // Time frame can be day, week, month, or year
-    const { beginning, end } = this.state;
-    // Make 4 backend endpoints based on timeframe
-    axios.get(`/task/${this.props.userId}?start_date=${beginning}&end_date=${end}`)
+  callTasks = () => {
+    const { userId, dateContext } = this.props;
+
+    const newDateContext = moment(Object.assign({}, dateContext));
+    const startDate = newDateContext.startOf('day').toDate();
+    const endDate = newDateContext.endOf('day').toDate();
+
+    axios.get(`task/${userId}?start_date=${startDate}&end_date=${endDate}`)
       .then(response => {
-        this.setState({
-          ...this.state,
-          tasks: response.data
-        });
+        this.setState({ tasks: response.data });
       })
       .catch(error => {
         console.log('error', error);
@@ -141,25 +123,7 @@ class DashboardView extends React.Component {
 
   selectGraphType = e => this.setState({ ...this.state, graphType: e.target.value });
 
-  selectTimeFrame = e => {
-    const { value } = e.target;
-    let beginning;
-    let end;
-    let date = Object.assign({}, this.state.dateObject);
-
-    date = moment(date);
-    beginning = date.startOf(value).toDate();
-    end = date.endOf(value).toDate();
-
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        timeFrame: value,
-        beginning: beginning,
-        end: end,
-      }
-    }, () => this.getTasks());
-  }
+  selectTimeFrame = e => this.setState({ ...this.state, timeFrame: e.target.value }, this.callTasks);
 
   timeFrametitle = () => {
     if (this.state.timeFrame === 'day') {
@@ -304,10 +268,10 @@ class DashboardView extends React.Component {
               </div>
             </div>
             <GraphContainer
-              dateObject={this.state.dateObject}
               tasks={this.state.tasks}
               timeFrame={this.state.timeFrame}
               graphType={this.state.graphType}
+              dateContext={this.props.dateContext}
             />
           </div>
         </div>

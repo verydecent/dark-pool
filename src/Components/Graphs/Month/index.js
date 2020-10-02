@@ -5,9 +5,9 @@ import { LineGraph, AreaGraph, BarGraph } from '../dashboardGraphs';
 const MonthContainer = ({
   tasks,
   graphType,
-  dateObject
+  dateContext
 }) => {
-  const sortedData = sortMonth(tasks, dateObject.daysInMonth());
+  const sortedData = sortMonth(tasks, dateContext.daysInMonth());
 
   const lineData = formatLineData(sortedData);
   const barData = formatBarData(sortedData);
