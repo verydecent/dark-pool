@@ -51,6 +51,32 @@ class TaskView extends React.Component {
       });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.dateContext !== prevProps.dateContext) {
+      this.callTask();
+    }
+  }
+
+  componentWillUnmount() {
+    // Initialize moment object here
+  }
+
+  callTask = () => {
+    const { userId, dateContext } = this.props;
+
+    const newDateContext = moment(Object.assign({}, dateContext));
+    const startDate = newDateContext.startOf('day').toDate();
+    const endDate = newDateContext.endOf('day').toDate();
+
+    axios.get(`task/${userId}?start_date=${startDate}&end_date=${endDate}`)
+      .then(response => {
+        this.setState({ tasks: response.data });
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }
+
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -82,22 +108,6 @@ class TaskView extends React.Component {
         };
       });
     }
-  }
-
-  callTask = () => {
-    const { currentDate } = this.state;
-    const { userId } = this.state;
-
-    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
-    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
-
-    axios.get(`task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`)
-      .then(response => {
-        this.setState({ tasks: response.data });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
   }
 
   createTask = () => {
@@ -337,8 +347,9 @@ class TaskView extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    dateContext: state.dateContext,
+    userId: state.userId,
     isCalendarModalOpen: state.isCalendarModalOpen,
-    dateContext: state.dateContext
   }
 }
 
