@@ -161,6 +161,40 @@ class DashboardView extends React.Component {
     }, () => this.getTasks());
   }
 
+  timeFrametitle = () => {
+    if (this.state.timeFrame === 'day') {
+      return 'Daily'
+    }
+    else if (this.state.timeFrame === 'isoWeek') {
+      return 'Weekly'
+    }
+    else if (this.state.timeFrame === 'month') {
+      return 'Monthly'
+    }
+    else if (this.state.timeFrame === 'year') {
+      return 'Yearly'
+    }
+  }
+
+  graphTypeTitle = () => {
+    if (this.state.graphType === 'line') {
+      return 'Line Graph'
+    }
+    else if (this.state.graphType === 'area') {
+      return 'Area Graph'
+    }
+    else if (this.state.graphType === 'bar') {
+      return 'Bar Graph'
+    }
+  }
+
+  currentTimeFrame = () => {
+    if (this.state.timeFrame === 'day') return this.props.dateContext.format('dddd LL');
+    else if (this.state.timeFrame === 'isoWeek') return `Week of ${this.props.dateContext.format('LL')}`;
+    else if (this.state.timeFrame === 'month') return this.props.dateContext.format('MMMM YYYY');
+    else if (this.state.timeFrame === 'year') return this.props.dateContext.format('YYYY');
+  }
+
   render() {
     const TimeFrameButtons = () => (
       <select className='grey-button' value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
@@ -178,40 +212,6 @@ class DashboardView extends React.Component {
         <option value='area'>Area View</option>
       </select>
     );
-
-    const currentTimeFrame = timeFrame => {
-      if (timeFrame === 'day') return this.props.dateContext.format('dddd LL');
-      else if (timeFrame === 'isoWeek') return `Week of ${this.props.dateContext.format('LL')}`;
-      else if (timeFrame === 'month') return this.props.dateContext.format('MMMM YYYY');
-      else if (timeFrame === 'year') return this.props.dateContext.format('YYYY');
-    }
-
-    const timeFrametitle = () => {
-      if (this.state.timeFrame === 'day') {
-        return 'Daily'
-      }
-      else if (this.state.timeFrame === 'isoWeek') {
-        return 'Weekly'
-      }
-      else if (this.state.timeFrame === 'month') {
-        return 'Monthly'
-      }
-      else if (this.state.timeFrame === 'year') {
-        return 'Yearly'
-      }
-    }
-
-    const graphTypeTitle = () => {
-      if (this.state.graphType === 'line') {
-        return 'Line Graph'
-      }
-      else if (this.state.graphType === 'area') {
-        return 'Area Graph'
-      }
-      else if (this.state.graphType === 'bar') {
-        return 'Bar Graph'
-      }
-    }
 
     return (
       <>
@@ -289,10 +289,10 @@ class DashboardView extends React.Component {
           <div className='dashboard-view-container'>
             <div className='dashboard-view-header'>
               <h1 className='header-1'>
-                {`${timeFrametitle()} ${graphTypeTitle()}  `}
+                {`${this.timeFrametitle()} ${this.graphTypeTitle()}  `}
               </h1>
               <span className='date-title'>
-                {currentTimeFrame(this.state.timeFrame)}
+                {this.currentTimeFrame()}
               </span>
             </div>
             <div className='dashboard-view-subheader'>
