@@ -14,8 +14,9 @@ import {
   getTaskIncomplete
 } from '../../Utilities/subtaskHelpers';
 import { connect } from 'react-redux';
-import { resetToCurrentDate } from '../../Redux/actionCreators';
+import { resetToCurrentDate, toggleCalendarModal } from '../../Redux/actionCreators';
 import { Calendar } from '../FAIcons';
+import CalendarModal from '../CalendarModal';
 /*
 Graph options
 
@@ -102,6 +103,12 @@ class DashboardView extends React.Component {
     this.callTasks();
   }
 
+  componentDidUpdate(prevState) {
+    if (this.props.dateContext !== prevState.dateContext) {
+      this.callTasks();
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetToCurrentDate();
   }
@@ -180,6 +187,7 @@ class DashboardView extends React.Component {
 
     return (
       <>
+        <CalendarModal toggleCalendarModal={this.props.toggleCalendarModal} />
         <div className='data-view'>
           <div className='data-view-header-left'>
             <div className='data-view-header-top'>
@@ -265,7 +273,7 @@ class DashboardView extends React.Component {
                 <div>
                   <TimeFrameButton />
                   <GraphTypeButton />
-                  <button className='grey-button'>
+                  <button className='grey-button' onClick={this.props.toggleCalendarModal} >
                     <Calendar />
                   </button>
                 </div>
@@ -293,7 +301,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetToCurrentDate: () => dispatch(resetToCurrentDate())
+    resetToCurrentDate: () => dispatch(resetToCurrentDate()),
+    toggleCalendarModal: () => dispatch(toggleCalendarModal())
   }
 }
 
