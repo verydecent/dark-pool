@@ -109,8 +109,8 @@ class DashboardView extends React.Component {
     const { userId, dateContext } = this.props;
 
     const newDateContext = moment(Object.assign({}, dateContext));
-    const startDate = newDateContext.startOf('day').toDate();
-    const endDate = newDateContext.endOf('day').toDate();
+    const startDate = newDateContext.startOf(this.state.timeFrame).toDate();
+    const endDate = newDateContext.endOf(this.state.timeFrame).toDate();
 
     axios.get(`task/${userId}?start_date=${startDate}&end_date=${endDate}`)
       .then(response => {
