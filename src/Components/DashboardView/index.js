@@ -141,16 +141,9 @@ class DashboardView extends React.Component {
       });
   }
 
-  selectGraphType = (e) => {
-    const { value } = e.target;
+  selectGraphType = e => this.setState({ ...this.state, graphType: e.target.value });
 
-    this.setState({
-      ...this.state,
-      graphType: value
-    });
-  }
-
-  selectTimeFrame = (e) => {
+  selectTimeFrame = e => {
     const { value } = e.target;
     let beginning;
     let end;
