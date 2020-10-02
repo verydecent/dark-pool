@@ -67,14 +67,12 @@ class TaskView extends React.Component {
     // Search through this.state.tasks.filter then find by id? How do I create an idq? 
     // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
     if (this.state.isModalOpen) {
-      this.setState(prevState => {
-        return {
-          isModalOpen: false,
-          taskId: '',
-          taskTitle: '',
-          taskDescription: '',
-          subtasks: [],
-        };
+      this.setState({
+        isModalOpen: false,
+        taskId: '',
+        taskTitle: '',
+        taskDescription: '',
+        subtasks: [],
       });
     }
     else {
@@ -97,9 +95,7 @@ class TaskView extends React.Component {
           };
         });
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(() => console.log(error));
   }
 
   selectTask = (id, title, description, subtasks) => {
