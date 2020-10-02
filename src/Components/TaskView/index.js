@@ -11,7 +11,7 @@ import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
-import { toggleCalendarModal, prevDate, nextDate } from '../../Redux/actionCreators';
+import { resetToCurrentDate, toggleCalendarModal, prevDate, nextDate } from '../../Redux/actionCreators';
 
 class TaskView extends React.Component {
   constructor() {
@@ -58,7 +58,8 @@ class TaskView extends React.Component {
   }
 
   componentWillUnmount() {
-    // Initialize moment object here
+    // Reset moment object when unmounting to load today's tasks
+    this.props.resetToCurrentDate();
   }
 
   callTask = () => {
@@ -355,6 +356,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    resetToCurrentDate: () => dispatch(resetToCurrentDate()),
     toggleCalendarModal: () => dispatch(toggleCalendarModal()),
     prevDate: () => dispatch(prevDate()),
     nextDate: () => dispatch(nextDate())
