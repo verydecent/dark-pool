@@ -11,8 +11,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 6px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 18px;
+  padding-bottom: 8px;
   padding-left: 24px;
   padding-right: 24px;
 
@@ -49,9 +49,10 @@
 }
 
 .form-button {
-  padding: 20px 32px;
+  padding: 12px 0;
   border-radius: 6px;
   background-color: #2ebc4f;
   border: 1px solid #2ebc4f;
   color: #fff;
+  cursor: pointer;
 }
