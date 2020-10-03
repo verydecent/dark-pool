@@ -271,11 +271,11 @@ class DashboardView extends React.Component {
             <div className='dashboard-view-subheader'>
               <div className='dashboard-view-button-list'>
                 <div>
+                  <TimeFrameButton />
+                  <GraphTypeButton />
                   <button className='task-view-button' onClick={this.props.toggleCalendarModal} >
                     <Calendar />
                   </button>
-                  <TimeFrameButton />
-                  <GraphTypeButton />
                 </div>
               </div>
             </div>

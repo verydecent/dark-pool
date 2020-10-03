@@ -6,7 +6,6 @@ import { isAuthenticated } from '../../Utilities/helpers';
 import {
   ChartBar,
   ListUl,
-  Calendar,
   PeaceOut
 } from '../FAIcons';
 
@@ -52,16 +51,6 @@ const SideNav = ({
               </div>
               <span className='sidenav-text' style={{ color: history.location.pathname === '/app/tasks' ? '#fff' : '' }}>
                 Tasks
-              </span>
-            </Link>
-          </li>
-          <li style={{ background: history.location.pathname === '/app/calendar' ? '#E44B6F' : '' }}>
-            <Link to='/app/calendar'>
-              <div className='sidenav-icon' style={{ color: history.location.pathname === '/app/calendar' ? '#fff' : '' }}>
-                <Calendar />
-              </div>
-              <span className='sidenav-text' style={{ color: history.location.pathname === '/app/calendar' ? '#fff' : '' }}>
-                Calendar
               </span>
             </Link>
           </li>

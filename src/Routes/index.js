@@ -5,7 +5,6 @@ import ProtectedRoute from './ProtectedRoute';
 import AdminRoute from './AdminRoute';
 // Landing
 import Home from '../Components/Landing/Home';
-import Nav from '../Components/Landing/Nav';
 import Login from '../Components/Landing/Login';
 import Register from '../Components/Landing/Register';
 import ActivateAccount from '../Components/Landing/ActivateAccount';
@@ -14,7 +13,6 @@ import ResetPassword from '../Components/Landing/ResetPassword';
 // In App
 import DashboardView from '../Components/DashboardView';
 import TaskView from '../Components/TaskView';
-import CalendarView from '../Components/CalendarView';
 import ProfileView from '../Components/ProfileView';
 
 import ProtectedAdmin from '../Components/ProtectedAdmin';
@@ -38,7 +36,6 @@ const Routes = () => {
         {/* App - Subscriber */}
         <ProtectedRoute exact path='/app' component={DashboardView} />
         <ProtectedRoute exact path='/app/tasks' component={TaskView} />
-        <ProtectedRoute exact path='/app/calendar' component={CalendarView} />
 
         {/* App - Admin */}
         <AdminRoute exact path='/app/admin' component={ProtectedAdmin} />
