@@ -1,5 +1,4 @@
 import React from 'react';
-import withNav from '../Hoc/withNav';
 import axios from 'axios';
 import { isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect, Link } from 'react-router-dom';
@@ -26,7 +25,7 @@ class Register extends React.Component {
   }
 
   handleSubmit(e) {
-    // Prevents form from refreshing the page
+    // Prevents register-form from refreshing the page
     e.preventDefault();
     const { username, email, password, passwordConfirm } = this.state;
 
@@ -64,70 +63,70 @@ class Register extends React.Component {
       doesPasswordConfirm
     } = this.state;
     const redirect = isAuthenticated() ? <Redirect to='/app' /> : null;
-    const passwordConfirmaMessage = doesPasswordConfirm
-      ? null
-      : <p style={{ color: 'red', textAlign: 'center' }}>*Required: Password and Password Confirm match & Password length is at least 6 characters in length</p>;
+    const passwordConfirmaMessage = !doesPasswordConfirm && <div className='register-action-container-1'>
+      <p style={{ color: 'red', textAlign: 'center' }}>*Required: Password and Password Confirm match & Password length is at least 6 characters in length</p>
+    </div>
 
     return (
       <>
         {redirect}
         <div className='register-container-1'>
-          <h1 className='login-title'>Register</h1>
-          <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-            <div className='login-action-container-1'>
-              <label className='form-label' htmlFor=''>Username</label>
-              <input
-                className='form-input'
-                name='username'
-                placeholder='username'
-                value={username}
-                type='text'
-                onChange={(e) => this.handleChange(e)}
-              />
-            </div>
-            <div className='login-action-container-1'>
-              <label className='form-label' htmlFor=''>Email</label>
-              <input
-                className='form-input'
-                name='email'
-                placeholder='email'
-                value={email}
-                type='text'
-                onChange={(e) => this.handleChange(e)}
-              />
-            </div>
-            <div className='login-action-container-1'>
-              <label className='form-label' htmlFor=''>Password</label>
-              <input
-                className='form-input'
-                name='password'
-                placeholder='password'
-                value={password}
-                type='password'
-                onChange={(e) => this.handleChange(e)}
-              />
-            </div>
-            <div className='login-action-container-1'>
-              <label className='form-label' htmlFor=''>Password Confirm</label>
-              <input
-                className='form-input'
-                name='passwordConfirm'
-                placeholder='Password Confirmation'
-                value={passwordConfirm}
-                type='password'
-                onChange={(e) => this.handleChange(e)}
-              />
-            </div>
-            <div className='login-action-container-1'>
+          <div className='register-container-2'>
+            <h1 className='register-title'>Register</h1>
+            < form className='' onSubmit={(e) => this.handleSubmit(e)}>
+              <div className='register-action-container-1'>
+                <label className='register-form-label' htmlFor=''>Username</label>
+                <input
+                  className='register-form-input'
+                  name='username'
+                  placeholder='username'
+                  value={username}
+                  type='text'
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className='register-action-container-1'>
+                <label className='register-form-label' htmlFor=''>Email</label>
+                <input
+                  className='register-form-input'
+                  name='email'
+                  placeholder='email'
+                  value={email}
+                  type='text'
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className='register-action-container-1'>
+                <label className='register-form-label' htmlFor=''>Password</label>
+                <input
+                  className='register-form-input'
+                  name='password'
+                  placeholder='password'
+                  value={password}
+                  type='password'
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className='register-action-container-1'>
+                <label className='register-form-label' htmlFor=''>Password Confirm</label>
+                <input
+                  className='register-form-input'
+                  name='passwordConfirm'
+                  placeholder='Password Confirmation'
+                  value={passwordConfirm}
+                  type='password'
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
               {passwordConfirmaMessage}
-            </div>
-            <div className='login-action-container-1'>
-              <button className='form-button'>{buttonText}</button>
-            </div>
-            <div className='login-action-container-2'>
-              <Link to='/login'>Already registered?</Link>
-            </div>
-          </form>
+              <div className='register-action-container-1'>
+                <button className='register-form-button'>{buttonText}</button>
+              </div>
+              <div className='register-action-container-2'>
+                <Link to='/register'>Already registered?</Link>
+              </div>
+            </form>
+          </div>
         </div>
       </>
     );
@@ -135,4 +134,4 @@ class Register extends React.Component {
 }
 
 
-export default withNav(Register);
+export default Register;
