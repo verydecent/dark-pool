@@ -23,6 +23,7 @@ const HeaderNav = ({
 
 const mapStateToProps = state => {
   return {
+    userId: state.userId,
     isAccountModalOpen: state.isAccountModalOpen
   }
 }

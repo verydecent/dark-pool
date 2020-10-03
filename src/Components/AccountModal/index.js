@@ -18,14 +18,10 @@ class AccountModal extends React.Component {
   }
 
   componentDidMount() {
-    console.log('cdm')
-    /*
-    // Get user's ID from localStorage helper
-    const id = isAuthenticated()._id;
     // Get JWT from cookie
     const token = getCookie('token');
 
-    axios.get(`${process.env.API_URL}/user/${id}`, {
+    axios.get(`${process.env.API_URL}/user/${this.props.userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -44,7 +40,6 @@ class AccountModal extends React.Component {
           });
         }
       })
-      */
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
