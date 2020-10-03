@@ -7,6 +7,7 @@ import AccountModal from '../AccountModal';
 
 const HeaderNav = ({
   userId,
+  username,
   isAccountModalOpen,
   toggleAccountModal
 }) => {
@@ -14,9 +15,10 @@ const HeaderNav = ({
     <div className='header-nav'>
       {isAccountModalOpen && <AccountModal userId={userId} toggleAccountModal={toggleAccountModal} />}
       <div className='header-nav-top'>
-        <div className='header-nav-user-icon' onClick={toggleAccountModal}>
+        <span className='header-nav-username'>{username}</span>
+        <span className='header-nav-user-icon' onClick={toggleAccountModal}>
           <User />
-        </div>
+        </span>
       </div>
     </div>
   );
@@ -25,6 +27,7 @@ const HeaderNav = ({
 const mapStateToProps = state => {
   return {
     userId: state.userId,
+    username: state.username,
     isAccountModalOpen: state.isAccountModalOpen
   }
 }

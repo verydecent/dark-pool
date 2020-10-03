@@ -48,7 +48,6 @@ export const removeLocalStorage = (key) => {
 // Authenticate user by passing data to cookie and localStorage during login
 
 export const authenticate = (response, next) => {
-  console.log('Authenticate Helper Login Response', response);
   setCookie('token', response.data.token);
   setLocalStorage('user', response.data.user);
   next();
@@ -80,7 +79,6 @@ export const logout = next => {
 // Create function that will update user information in real time after doing a put request
 
 export const updateUser = (response, next) => {
-  console.log('Update User In LocalStorage');
   if (typeof window !== 'undefined') {
     // ? Why need the code below ?
     // let user = JSON.parse(localStorage.getItem('user'));
