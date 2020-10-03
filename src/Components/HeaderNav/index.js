@@ -6,12 +6,13 @@ import { toggleAccountModal } from '../../Redux/actionCreators';
 import AccountModal from '../AccountModal';
 
 const HeaderNav = ({
+  userId,
   isAccountModalOpen,
   toggleAccountModal
 }) => {
   return (
     <div className='header-nav'>
-      {isAccountModalOpen && <AccountModal toggleAccountModal={toggleAccountModal} />}
+      {isAccountModalOpen && <AccountModal userId={userId} toggleAccountModal={toggleAccountModal} />}
       <div className='header-nav-top'>
         <div className='header-nav-user-icon' onClick={toggleAccountModal}>
           <User />

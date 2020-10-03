@@ -72,65 +72,59 @@ class AccountModal extends React.Component {
 
   render() {
     const { username, password, role, email, buttonText } = this.state;
+    return (
+      <div className='account-modal'>
+        {/* Overlay */}
+        <div className='account-modal-overlay' onClick={this.props.toggleAccountModal} />
 
-    if (!this.props.isAccountModalOpen) {
-      return null;
-    }
-    else {
-      return (
-        <div className='account-modal'>
-          {/* Overlay */}
-          <div className='account-modal-overlay' onClick={this.props.toggleAccountModal} />
-
-          <div className='account-view'>
-            <div className='account-view-header'>
-              <h1 className='header-1'>My Account Settings</h1>
-              <div onClick={this.props.toggleAccountModal}>
-                <Times />
-              </div>
+        <div className='account-view'>
+          <div className='account-view-header'>
+            <h1 className='header-1'>My Account Settings</h1>
+            <div onClick={this.props.toggleAccountModal}>
+              <Times />
             </div>
-            <form
-              className='account-view-form'
-              onSubmit={(e) => this.handleSubmit(e)}
-            >
-              <label>Email</label>
-              <input
-                name='email'
-                value={email}
-                type='text'
-                disabled={true}
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Role</label>
-              <input
-                name='role'
-                value={role}
-                type='text'
-                disabled={true}
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Username</label>
-              <input
-                name='username'
-                value={username}
-                type='text'
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Password</label>
-              <input
-                name='password'
-                value={password}
-                type='password'
-                onChange={(e) => this.handleChange(e)}
-              />
-              <div className='account-view-button-container'>
-                <Button>{buttonText}</Button>
-              </div>
-            </form>
           </div>
+          <form
+            className='account-view-form'
+            onSubmit={(e) => this.handleSubmit(e)}
+          >
+            <label>Email</label>
+            <input
+              name='email'
+              value={email}
+              type='text'
+              disabled={true}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label>Role</label>
+            <input
+              name='role'
+              value={role}
+              type='text'
+              disabled={true}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label>Username</label>
+            <input
+              name='username'
+              value={username}
+              type='text'
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label>Password</label>
+            <input
+              name='password'
+              value={password}
+              type='password'
+              onChange={(e) => this.handleChange(e)}
+            />
+            <div className='account-view-button-container'>
+              <Button>{buttonText}</Button>
+            </div>
+          </form>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
