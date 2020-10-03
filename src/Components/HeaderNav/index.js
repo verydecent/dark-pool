@@ -6,11 +6,12 @@ import { toggleAccountModal } from '../../Redux/actionCreators';
 import AccountModal from '../AccountModal';
 
 const HeaderNav = ({
+  isAccountModalOpen,
   toggleAccountModal
 }) => {
   return (
     <div className='header-nav'>
-      <AccountModal toggleAccountModal={toggleAccountModal} />
+      {isAccountModalOpen && <AccountModal toggleAccountModal={toggleAccountModal} />}
       <div className='header-nav-top'>
         <div className='header-nav-user-icon' onClick={toggleAccountModal}>
           <User />
@@ -20,10 +21,16 @@ const HeaderNav = ({
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    isAccountModalOpen: state.isAccountModalOpen
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     toggleAccountModal: () => dispatch(toggleAccountModal())
   }
 }
 
-export default connect(null, mapDispatchToProps)(HeaderNav);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderNav);

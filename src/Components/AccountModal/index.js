@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
 import Button from '../Button';
-import { connect } from 'react-redux';
 import './styles.css';
 import { Times } from '../FAIcons';
 
@@ -19,6 +18,8 @@ class AccountModal extends React.Component {
   }
 
   componentDidMount() {
+    console.log('cdm')
+    /*
     // Get user's ID from localStorage helper
     const id = isAuthenticated()._id;
     // Get JWT from cookie
@@ -43,6 +44,7 @@ class AccountModal extends React.Component {
           });
         }
       })
+      */
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -137,10 +139,4 @@ class AccountModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAccountModalOpen: state.isAccountModalOpen
-  }
-}
-
-export default connect(mapStateToProps)(AccountModal);
+export default AccountModal;
