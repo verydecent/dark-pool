@@ -123,7 +123,7 @@ class Register extends React.Component {
                 <button className='register-form-button'>{buttonText}</button>
               </div>
               <div className='register-action-container-2'>
-                <Link to='/register'>Already registered?</Link>
+                <Link to='/login'>Already registered?</Link>
               </div>
             </form>
           </div>
