@@ -1,0 +1,40 @@
+/* Hoc Styling */
+
+.landing-view {
+  height: 100%;
+}
+
+.home-wrapper {
+  height: calc(100% - 140px);
+  width: 100%;
+  background-color: #24292e;
+}
+
+.home {
+  height: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  display: flex;
+}
+
+.home-title-section {
+ width: 60%; 
+}
+
+.home-title {
+  padding-top: 40%;
+  font-size: 6rem;
+  color: #fff;
+}
+
+.home-description {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+
+.home-hero-section {
+  width: 40%;
+  padding-top: 100px;
+}
