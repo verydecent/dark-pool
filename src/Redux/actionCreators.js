@@ -1,14 +1,16 @@
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
-  SET_TO_CURRENT_DATE,
+  RESET_TO_CURRENT_DATE,
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
   TOGGLE_YEAR_LIST,
   CHANGE_YEAR,
   PREV_MONTH,
   NEXT_MONTH,
-  SELECT_DATE
+  SELECT_DATE,
+  PREV_DATE,
+  NEXT_DATE
 } from './constants';
 
 const toggleAccountModal = () => ({
@@ -19,8 +21,8 @@ const toggleCalendarModal = () => ({
   type: TOGGLE_CALENDAR_MODAL
 });
 
-const setToCurrentDate = () => ({
-  type: SET_TO_CURRENT_DATE
+const resetToCurrentDate = () => ({
+  type: RESET_TO_CURRENT_DATE
 });
 
 const toggleMonthList = () => ({
@@ -36,9 +38,9 @@ const toggleYearList = () => ({
   type: TOGGLE_YEAR_LIST
 });
 
-const changeYear = e => ({
+const changeYear = year => ({
   type: CHANGE_YEAR,
-  payload: e.target.value
+  payload: year
 });
 
 const prevMonth = () => ({
@@ -50,19 +52,29 @@ const nextMonth = () => ({
 });
 
 const selectDate = date => ({
-  type: 'SELECT_DATE',
+  type: SELECT_DATE,
   payload: date
+});
+
+const prevDate = () => ({
+  type: PREV_DATE
+});
+
+const nextDate = () => ({
+  type: NEXT_DATE
 });
 
 export {
   toggleAccountModal,
   toggleCalendarModal,
-  setToCurrentDate,
+  resetToCurrentDate,
   toggleMonthList,
   changeMonth,
   toggleYearList,
   changeYear,
   prevMonth,
   nextMonth,
-  selectDate
+  selectDate,
+  prevDate,
+  nextDate,
 }

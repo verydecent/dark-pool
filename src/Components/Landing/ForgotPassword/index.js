@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import withNav from '../Hoc/withNav';
+import Wave from 'react-wavify';
 
 class ForgotPassword extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ForgotPassword extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email } = this.state;
-    
+
     axios.post(`${process.env.API_URL}/auth/forgot-password`, { email })
       .then(response => {
         console.log('Forgot password Request Success', response);
@@ -30,20 +31,40 @@ class ForgotPassword extends React.Component {
   }
 
   render() {
-    const { email } = this.state;
     return (
-      <>
-        <h1>Forgot password</h1>
-
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-          <input 
-            name='email'
-            value={email}
-            onChange={(e) => this.handleChange(e)}
+      <div className='home-wrapper'>
+        <div className='auth-section'>
+          <div className='login-container-1'>
+            <h1 className='login-title'>Forgot Password</h1>
+            <form className='' onSubmit={e => this.handleSubmit(e)}>
+              <div className='login-action-container-1'>
+                <label className='form-label' htmlFor=''>Email</label>
+                <input
+                  className='form-input'
+                  name='email'
+                  placeholder='email'
+                  value={this.state.email}
+                  type='text'
+                  onChange={e => this.handleChange(e)}
+                />
+              </div>
+              <div className='login-action-container-1'>
+                <button className='form-button'>Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className='wave-section'>
+          <Wave fill='#418BCA'
+            paused={false}
+            options={{
+              amplitude: 25,
+              speed: .5,
+              points: 3
+            }}
           />
-          <button>Submit</button>
-        </form>
-      </>
+        </div>
+      </div>
     );
   }
 }

@@ -12,6 +12,12 @@
   justify-content: flex-end;
 }
 
+.header-nav-username {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-right: 15px;
+}
+
 .header-nav-user-icon {
   height: 28px;
   width: 28px;

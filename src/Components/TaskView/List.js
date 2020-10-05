@@ -9,7 +9,7 @@ const List = ({
   selectTask
 }) => {
 
-  const TasksMapped = tasks.map(task => {
+  const TasksMapped = (tasks ? tasks : []).map(task => {
     return (
       <Task
         // Values

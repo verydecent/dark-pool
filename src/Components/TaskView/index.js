@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 import withNav from '../Hoc/withNav.js';
 import TaskModal from '../TaskModal';
-import { isAuthenticated } from '../../Utilities/helpers';
 import axios from '../../Utilities/axiosConfig';
 import moment from 'moment';
 import Header from './Header';
@@ -11,7 +10,8 @@ import ListHeader from './ListHeader';
 import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
-import { toggleCalendarModal } from '../../Redux/actionCreators';
+import { resetToCurrentDate, toggleCalendarModal, prevDate, nextDate } from '../../Redux/actionCreators';
+import { isAuthenticated } from '../../Utilities/helpers';
 
 class TaskView extends React.Component {
   constructor() {
@@ -25,38 +25,42 @@ class TaskView extends React.Component {
       taskDescription: '',
       subtasks: [],
       // Helpers
-      userId: isAuthenticated()._id,
       isModalOpen: false,
-      currentDate: moment(),
     };
   }
 
   componentDidMount() {
-    const { userId } = this.state;
+    this.callTasks();
+  }
 
-    let date = Object.assign({}, this.state.currentDate);
-    date = moment(date);
-    let beginning;
-    let end;
+  componentDidUpdate(prevProps) {
+    if (this.props.dateContext !== prevProps.dateContext) {
+      this.callTasks();
+    }
+  }
 
-    beginning = date.startOf('day').toDate();
-    end = date.endOf('day').toDate();
+  componentWillUnmount() {
+    // Reset moment object when unmounting to load today's tasks
+    this.props.resetToCurrentDate();
+  }
 
-    axios.get(`task/${userId}?start_date=${beginning}&end_date=${end}`)
+  callTasks = () => {
+    const { dateContext } = this.props;
+
+    const newDateContext = moment(Object.assign({}, dateContext));
+    const startDate = newDateContext.startOf('day').toDate();
+    const endDate = newDateContext.endOf('day').toDate();
+
+    axios.get(`task/${isAuthenticated()._id}?start_date=${startDate}&end_date=${endDate}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
       .catch(error => {
-        console.log(error)
+        console.log('error', error);
       });
   }
 
-  handleChange = (e) => {
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   toggleModal = () => {
     // this.setState({ isModalOpen: !this.state.isModalOpen });
@@ -64,14 +68,12 @@ class TaskView extends React.Component {
     // Search through this.state.tasks.filter then find by id? How do I create an idq? 
     // If taskModal had a selected component, then make sure to clear the state of any data so new selected component can be set to state
     if (this.state.isModalOpen) {
-      this.setState(prevState => {
-        return {
-          isModalOpen: false,
-          taskId: '',
-          taskTitle: '',
-          taskDescription: '',
-          subtasks: [],
-        };
+      this.setState({
+        isModalOpen: false,
+        taskId: '',
+        taskTitle: '',
+        taskDescription: '',
+        subtasks: [],
       });
     }
     else {
@@ -84,34 +86,8 @@ class TaskView extends React.Component {
     }
   }
 
-  parseNextDate = () => {
-    this.setState({ currentDate: this.state.currentDate.add(1, 'days') }, () => this.callTask());
-  }
-
-  parsePrevDate = () => {
-    this.setState({ currentDate: this.state.currentDate.subtract(1, 'days') }, () => this.callTask());
-  }
-
-  callTask = () => {
-    const { currentDate } = this.state;
-    const { userId } = this.state;
-
-    const beginningOfCurrentDate = currentDate.startOf('day').toDate();
-    const endOfCurrentDate = moment(beginningOfCurrentDate).endOf('day').toDate();
-
-    axios.get(`task/${userId}?start_date=${beginningOfCurrentDate}&end_date=${endOfCurrentDate}`)
-      .then(response => {
-        this.setState({ tasks: response.data });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
-  }
-
   createTask = () => {
-    const { userId } = this.state;
-
-    axios.post(`task/${userId}`)
+    axios.post(`task/${isAuthenticated()._id}`)
       .then((response) => {
         this.setState(prevState => {
           return {
@@ -120,9 +96,7 @@ class TaskView extends React.Component {
           };
         });
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(() => console.log(error));
   }
 
   selectTask = (id, title, description, subtasks) => {
@@ -316,11 +290,19 @@ class TaskView extends React.Component {
             updateSubtask={this.updateSubtask}
             deleteSubtask={this.deleteSubtask}
           />
-          <Header date={this.props.dateContext.format('dddd LL')} />
+          <Header
+            date={this.props.dateContext.format('dddd LL')}
+          />
           <Subheader
+            sameDate={() => {
+              let dateContext = Object.assign({}, this.props.dateContext);
+              dateContext = moment(dateContext).format('YYYY-MM-DD');
+              const today = moment().format('YYYY-MM-DD');
+              return moment(dateContext).isSame(today);
+            }}
             createTask={this.createTask}
-            parseNextDate={this.parseNextDate}
-            parsePrevDate={this.parsePrevDate}
+            prevDate={this.props.prevDate}
+            nextDate={this.props.nextDate}
             toggleCalendarModal={this.props.toggleCalendarModal}
           />
           <ListHeader />
@@ -337,14 +319,17 @@ class TaskView extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    dateContext: state.dateContext,
     isCalendarModalOpen: state.isCalendarModalOpen,
-    dateContext: state.dateContext
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleCalendarModal: () => dispatch(toggleCalendarModal())
+    resetToCurrentDate: () => dispatch(resetToCurrentDate()),
+    toggleCalendarModal: () => dispatch(toggleCalendarModal()),
+    prevDate: () => dispatch(prevDate()),
+    nextDate: () => dispatch(nextDate())
   }
 }
 

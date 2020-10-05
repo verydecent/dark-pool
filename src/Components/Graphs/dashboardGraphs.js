@@ -114,8 +114,9 @@ export const LineGraph = ({
         <Line
           type="monotone"
           dataKey="percent"
-          stroke="#418BCA"
-          fill="#F3F3F4"
+          // stroke="#418BCA"
+          // fill="#B5D558"
+          // fill="#F3F3F4"
           activeDot={{ r: 10 }}
           dot={{ r: 10 }}
           strokeWidth={3}
@@ -145,13 +146,13 @@ export const BarGraph = ({
         <Tooltip />
         <Bar
           dataKey='incomplete'
-          fill="#E44B6F"
+          fill="#418BCA"
           barSize={20}
           background={false}
         />
         <Bar
           dataKey='complete'
-          fill="#418BCA"
+          fill="#B5D558"
           barSize={20}
           background={false}
         />
@@ -191,16 +192,16 @@ export const AreaGraph = ({
           type='monotone'
           dataKey='complete'
           stackId="1"
-          stroke='#418BCA'
-          fill='#418BCA'
+          stroke='#B5D558'
+          fill='#B5D558'
           strokeWidth={2}
         />
         <Area
           type='monotone'
           dataKey='incomplete'
           stackId="1"
-          stroke='#E44B6F'
-          fill='#E44B6F'
+          stroke='#'
+          fill='#'
           strokeWidth={2}
         />
       </AreaChart>
@@ -209,8 +210,8 @@ export const AreaGraph = ({
 }
 
 // Gauge helpers
-const TASKCOLORS = ['#4A4B4F', '#E44B6F'];
-const SUBTASKCOLORS = ['#4A4B4F', '#418BCA'];
+const TASKCOLORS = ['#4A4B4F', '#418BCA'];
+const SUBTASKCOLORS = ['#4A4B4F', '#B5D558'];
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import withNav from '../Hoc/withNav';
+import Wave from 'react-wavify';
 
 class ResetPassword extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class ResetPassword extends React.Component {
     console.log('sub')
     e.preventDefault();
     const { newPassword, token } = this.state;
-    
+
     axios.post(`${process.env.API_URL}/auth/reset-password`, { newPassword, resetPasswordLink: token })
       .then(response => {
         console.log('Reset password Request Success', response);
@@ -44,23 +45,49 @@ class ResetPassword extends React.Component {
   render() {
     const { username, newPassword, confirmPassword } = this.state;
     return (
-      <>
-        <h1>Hey {username}, reset your password</h1>
+      <div className='home-wrapper'>
+        <div className='auth-section'>
 
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-          <input 
-            name='newPassword'
-            value={newPassword}
-            onChange={(e) => this.handleChange(e)}
+          <div className='login-container-1'>
+            <h1 className='login-title'>Hey {username}, reset your password</h1>
+            <form className='' onSubmit={e => this.handleSubmit(e)}>
+              <div className='login-action-container-1'>
+                <label className='form-label' htmlFor=''>New Password</label>
+                <input
+                  className='form-input'
+                  name='newPassword'
+                  value={newPassword}
+                  type='password'
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className='login-action-container-1'>
+                <label className='form-label' htmlFor=''>Confirm Password</label>
+                <input
+                  className='form-input'
+                  name='confirmPassword'
+                  value={confirmPassword}
+                  type='password'
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className='login-action-container-1'>
+                <button className='form-button'>Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className='wave-section'>
+          <Wave fill='#418BCA'
+            paused={false}
+            options={{
+              amplitude: 25,
+              speed: .5,
+              points: 3
+            }}
           />
-          <input 
-            name='confirmPassword'
-            value={confirmPassword}
-            onChange={(e) => this.handleChange(e)}
-          />
-          <button>Submit</button>
-        </form>
-      </>
+        </div>
+      </div>
     );
   }
 }

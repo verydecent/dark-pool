@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { getCookie, isAuthenticated, logout, updateUser } from '../../Utilities/helpers';
 import Button from '../Button';
-import { connect } from 'react-redux';
 import './styles.css';
 import { Times } from '../FAIcons';
 
@@ -16,24 +15,18 @@ class AccountModal extends React.Component {
       role: "",
       buttonText: "Update"
     }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    // Get user's ID from localStorage helper
-    const id = isAuthenticated()._id;
     // Get JWT from cookie
     const token = getCookie('token');
 
-    axios.get(`${process.env.API_URL}/user/${id}`, {
+    axios.get(`${process.env.API_URL}/user/${this.props.userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
       .then(response => {
-        console.log('Get User Info Success', response);
         const { email, username, role } = response.data;
         this.setState({ username, email, role });
       })
@@ -49,11 +42,9 @@ class AccountModal extends React.Component {
       })
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { username, password } = this.state;
     const token = getCookie('token');
@@ -81,72 +72,60 @@ class AccountModal extends React.Component {
 
   render() {
     const { username, password, role, email, buttonText } = this.state;
+    return (
+      <div className='account-modal'>
+        {/* Overlay */}
+        <div className='account-modal-overlay' onClick={this.props.toggleAccountModal} />
 
-    if (!this.props.isAccountModalOpen) {
-      return null;
-    }
-    else {
-      return (
-        <div className='account-modal'>
-          {/* Overlay */}
-          <div className='account-modal-overlay' onClick={this.props.toggleAccountModal} />
-
-          <div className='account-view'>
-            <div className='account-view-header'>
-              <h1 className='header-1'>My Account Settings</h1>
-              <div onClick={this.props.toggleAccountModal}>
-                <Times />
-              </div>
+        <div className='account-view'>
+          <div className='account-view-header'>
+            <h1 className='header-1'>My Account Settings</h1>
+            <div onClick={this.props.toggleAccountModal}>
+              <Times />
             </div>
-            <form
-              className='account-view-form'
-              onSubmit={(e) => this.handleSubmit(e)}
-            >
-              <label>Email</label>
-              <input
-                name='email'
-                value={email}
-                type='text'
-                disabled={true}
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Role</label>
-              <input
-                name='role'
-                value={role}
-                type='text'
-                disabled={true}
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Username</label>
-              <input
-                name='username'
-                value={username}
-                type='text'
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Password</label>
-              <input
-                name='password'
-                value={password}
-                type='password'
-                onChange={(e) => this.handleChange(e)}
-              />
-              <div className='account-view-button-container'>
-                <Button>{buttonText}</Button>
-              </div>
-            </form>
           </div>
+          <form
+            className='account-view-form'
+            onSubmit={(e) => this.handleSubmit(e)}
+          >
+            <label>Email</label>
+            <input
+              name='email'
+              value={email}
+              type='text'
+              disabled={true}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label>Role</label>
+            <input
+              name='role'
+              value={role}
+              type='text'
+              disabled={true}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label>Username</label>
+            <input
+              name='username'
+              value={username}
+              type='text'
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label>Password</label>
+            <input
+              name='password'
+              value={password}
+              type='password'
+              onChange={(e) => this.handleChange(e)}
+            />
+            <div className='account-view-button-container'>
+              <Button>{buttonText}</Button>
+            </div>
+          </form>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAccountModalOpen: state.isAccountModalOpen
-  }
-}
-
-export default connect(mapStateToProps)(AccountModal);
+export default AccountModal;

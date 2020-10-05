@@ -6,7 +6,7 @@ export const getTaskTotal = tasks => {
 
 export const getTaskCompleted = tasks => {
   let completedTotal = 0;
-  tasks.forEach(task => {
+  (tasks ? tasks : []).forEach(task => {
     const subtaskTotal = task.subtasks.length;
     let subtasksCompleted = 0;
     task.subtasks.forEach(subtask => {

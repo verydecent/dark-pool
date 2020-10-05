@@ -107,7 +107,7 @@ class CalendarModal extends React.Component {
                     toggleYearList={this.props.toggleYearList}
                     changeYear={this.props.changeYear}
                   />
-                  <div onClick={this.props.toggleAccountModal}>
+                  <div onClick={this.props.toggleCalendarModal}>
                     <Times />
                   </div>
                 </div>
@@ -162,7 +162,7 @@ const mapDispatchToProps = dispatch => {
     toggleMonthList: () => dispatch(toggleMonthList()),
     changeMonth: month => dispatch(changeMonth(month)),
     toggleYearList: () => dispatch(toggleYearList()),
-    changeYear: e => dispatch(changeYear(e)),
+    changeYear: e => dispatch(changeYear(e.target.value)),
     nextMonth: () => dispatch(nextMonth()),
     prevMonth: () => dispatch(prevMonth()),
     selectDate: date => dispatch(selectDate(date))

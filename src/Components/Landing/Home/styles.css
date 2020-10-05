@@ -1,0 +1,98 @@
+/* Hoc Styling */
+
+.landing-view {
+  height: 100%;
+}
+
+.home-wrapper {
+  height: calc(100% - 140px);
+  width: 100%;
+  background-color: #24292e;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.home-hero-section {
+  margin-top: 8%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.home-title {
+  font-size: 6rem;
+  color: #fff;
+  margin-block-start: 0;
+  letter-spacing: 1.5px;
+}
+
+.home-description {
+  padding-left: 1.5px;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  line-height: 2;
+  color: #fff;
+}
+
+.home-hero-button button {
+  margin-top: 20px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  width: 130px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.home-hero-button:hover button {
+  border-color: var(--green-color);
+  color: var(--green-color);
+  transition: 0.4s;
+}
+
+/* Styles for other landing pages */
+
+.landing-section {
+  margin-top: 8%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  letter-spacing: 1px;
+  align-items: center;
+}
+
+.auth-section {
+  font-size: 1.2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-title {
+  color: #fff;
+}
+
+.landing-description {
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.landing-links:hover {
+  transition: 0.3s;
+  color: var(--green-color);
+}

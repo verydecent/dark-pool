@@ -31,10 +31,12 @@ export const findDailyPercentComplete = tasks => {
       }
     }
   }
-
-  const percent = parseFloat((completed / total).toFixed(2));
-
-  return percent;
+  if (total === 0 && completed === 0) {
+    return 0;
+  }
+  else {
+    return parseFloat((completed / total).toFixed(2));
+  }
 }
 
 export const formatLineData = (weekObj) => {

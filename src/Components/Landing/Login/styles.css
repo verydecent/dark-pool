@@ -4,19 +4,16 @@
 
 .login-container-1 {
   width: 360px;
-
-  border: 1px solid red;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 6px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 18px;
+  padding-bottom: 8px;
   padding-left: 24px;
   padding-right: 24px;
-
-  font-size: 1.4rem;
+  background: #fff;
 }
 
 /* Action Elements */
@@ -33,6 +30,10 @@
   margin-bottom: 18px;
 }
 
+.login-action-container-2 a {
+  color: #000;
+}
+
 .login-title {
   margin-bottom: 24px;
 }
@@ -46,12 +47,14 @@
   min-height: 44px;
   border-radius: 6px;
   width: 100%;
+  border: 1px solid var(--input-border-color);
 }
 
 .form-button {
-  padding: 20px 32px;
+  padding: 12px 0;
   border-radius: 6px;
-  background-color: #2ebc4f;
-  border: 1px solid #2ebc4f;
+  background-color: var(--green-color);
+  border: 1px solid var(--green-color);
   color: #fff;
+  cursor: pointer;
 }

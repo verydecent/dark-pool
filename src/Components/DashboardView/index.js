@@ -1,7 +1,6 @@
 import React from 'react';
 import withNav from '../Hoc/withNav';
 import './styles.css';
-import { isAuthenticated } from '../../Utilities/helpers';
 import moment from 'moment';
 import axios from '../../Utilities/axiosConfig';
 import GraphContainer from './GraphContainer';
@@ -14,6 +13,11 @@ import {
   getTaskCompleted,
   getTaskIncomplete
 } from '../../Utilities/subtaskHelpers';
+import { isAuthenticated } from '../../Utilities/helpers';
+import { connect } from 'react-redux';
+import { resetToCurrentDate, toggleCalendarModal } from '../../Redux/actionCreators';
+import { Calendar } from '../FAIcons';
+import CalendarModal from '../CalendarModal';
 /*
 Graph options
 
@@ -88,86 +92,84 @@ class DashboardView extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: isAuthenticated()._id,
       // Graph
       timeFrame: 'day',
       graphType: 'line',
       // Tasks for Graph
       tasks: [],
-
-      // Date Picker
-      dateObject: moment(),
-      beginning: '',
-      end: ''
     };
   }
 
   componentDidMount() {
-    const { userId } = this.state;
-    let beginning = moment().startOf('day').toDate();
-    let end = moment().endOf('day').toDate();
+    this.callTasks();
+  }
 
-    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
+  componentDidUpdate(prevState) {
+    if (this.props.dateContext !== prevState.dateContext) {
+      this.callTasks();
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.resetToCurrentDate();
+  }
+
+  callTasks = () => {
+    const { dateContext } = this.props;
+
+    const newDateContext = moment(Object.assign({}, dateContext));
+    const startDate = newDateContext.startOf(this.state.timeFrame).toDate();
+    const endDate = newDateContext.endOf(this.state.timeFrame).toDate();
+
+    axios.get(`task/${isAuthenticated()._id}?start_date=${startDate}&end_date=${endDate}`)
       .then(response => {
-        this.setState({
-          ...this.state,
-          tasks: response.data
-        });
+        this.setState({ tasks: response.data });
       })
       .catch(error => {
         console.log('error', error);
       });
   }
 
-  getTasks = () => {
-    // Time frame can be day, week, month, or year
-    const { userId, beginning, end } = this.state;
-    // Make 4 backend endpoints based on timeframe
-    axios.get(`/task/${userId}?start_date=${beginning}&end_date=${end}`)
-      .then(response => {
-        console.log()
-        // Then setState
-        this.setState({
-          ...this.state,
-          tasks: response.data
-        });
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
+  selectGraphType = e => this.setState({ ...this.state, graphType: e.target.value });
+
+  selectTimeFrame = e => this.setState({ ...this.state, timeFrame: e.target.value }, this.callTasks);
+
+  timeFrametitle = () => {
+    if (this.state.timeFrame === 'day') {
+      return 'Daily'
+    }
+    else if (this.state.timeFrame === 'isoWeek') {
+      return 'Weekly'
+    }
+    else if (this.state.timeFrame === 'month') {
+      return 'Monthly'
+    }
+    else if (this.state.timeFrame === 'year') {
+      return 'Yearly'
+    }
   }
 
-  selectGraphType = (e) => {
-    const { value } = e.target;
-
-    this.setState({
-      ...this.state,
-      graphType: value
-    });
+  graphTypeTitle = () => {
+    if (this.state.graphType === 'line') {
+      return 'Line Graph'
+    }
+    else if (this.state.graphType === 'area') {
+      return 'Area Graph'
+    }
+    else if (this.state.graphType === 'bar') {
+      return 'Bar Graph'
+    }
   }
 
-  selectTimeFrame = (e) => {
-    const { value } = e.target;
-    let beginning;
-    let end;
-    let date = Object.assign({}, this.state.dateObject);
-
-    date = moment(date);
-    beginning = date.startOf(value).toDate();
-    end = date.endOf(value).toDate();
-
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        timeFrame: value,
-        beginning: beginning,
-        end: end,
-      }
-    }, () => this.getTasks());
+  currentTimeFrame = () => {
+    if (this.state.timeFrame === 'day') return this.props.dateContext.format('dddd LL');
+    else if (this.state.timeFrame === 'isoWeek') return `Week of ${this.props.dateContext.format('LL')}`;
+    else if (this.state.timeFrame === 'month') return this.props.dateContext.format('MMMM YYYY');
+    else if (this.state.timeFrame === 'year') return this.props.dateContext.format('YYYY');
   }
 
   render() {
-    const TimeFrameButtons = () => (
+    const TimeFrameButton = () => (
       <select className='grey-button' value={this.state.timeFrame} onChange={(e) => this.selectTimeFrame(e)}>
         <option value='day'>Day View</option>
         <option value='isoWeek'>Week View</option>
@@ -176,7 +178,7 @@ class DashboardView extends React.Component {
       </select>
     );
 
-    const GraphTypeButtons = () => (
+    const GraphTypeButton = () => (
       <select className='grey-button' value={this.state.graphType} onChange={(e) => this.selectGraphType(e)}>
         <option value='line'>Line Graph</option>
         <option value='bar'>Bar Graph</option>
@@ -184,42 +186,9 @@ class DashboardView extends React.Component {
       </select>
     );
 
-    const currentTimeFrame = timeFrame => {
-      if (timeFrame === 'day') return this.state.dateObject.format('dddd LL');
-      else if (timeFrame === 'isoWeek') return `Week of ${this.state.dateObject.format('LL')}`;
-      else if (timeFrame === 'month') return this.state.dateObject.format('MMMM YYYY');
-      else if (timeFrame === 'year') return this.state.dateObject.format('YYYY');
-    }
-
-    const timeFrametitle = () => {
-      if (this.state.timeFrame === 'day') {
-        return 'Daily'
-      }
-      else if (this.state.timeFrame === 'isoWeek') {
-        return 'Weekly'
-      }
-      else if (this.state.timeFrame === 'month') {
-        return 'Monthly'
-      }
-      else if (this.state.timeFrame === 'year') {
-        return 'Yearly'
-      }
-    }
-
-    const graphTypeTitle = () => {
-      if (this.state.graphType === 'line') {
-        return 'Line Graph'
-      }
-      else if (this.state.graphType === 'area') {
-        return 'Area Graph'
-      }
-      else if (this.state.graphType === 'bar') {
-        return 'Bar Graph'
-      }
-    }
-
     return (
       <>
+        <CalendarModal toggleCalendarModal={this.props.toggleCalendarModal} />
         <div className='data-view'>
           <div className='data-view-header-left'>
             <div className='data-view-header-top'>
@@ -294,25 +263,28 @@ class DashboardView extends React.Component {
           <div className='dashboard-view-container'>
             <div className='dashboard-view-header'>
               <h1 className='header-1'>
-                {`${timeFrametitle()} ${graphTypeTitle()}  `}
+                {`${this.timeFrametitle()} ${this.graphTypeTitle()}  `}
               </h1>
               <span className='date-title'>
-                {currentTimeFrame(this.state.timeFrame)}
+                {this.currentTimeFrame()}
               </span>
             </div>
             <div className='dashboard-view-subheader'>
               <div className='dashboard-view-button-list'>
                 <div>
-                  <TimeFrameButtons />
-                  <GraphTypeButtons />
+                  <TimeFrameButton />
+                  <GraphTypeButton />
+                  <button className='task-view-button' onClick={this.props.toggleCalendarModal} >
+                    <Calendar />
+                  </button>
                 </div>
               </div>
             </div>
             <GraphContainer
-              dateObject={this.state.dateObject}
               tasks={this.state.tasks}
               timeFrame={this.state.timeFrame}
               graphType={this.state.graphType}
+              dateContext={this.props.dateContext}
             />
           </div>
         </div>
@@ -321,4 +293,17 @@ class DashboardView extends React.Component {
   }
 }
 
-export default withNav(DashboardView);
+const mapStateToProps = state => {
+  return {
+    dateContext: state.dateContext
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetToCurrentDate: () => dispatch(resetToCurrentDate()),
+    toggleCalendarModal: () => dispatch(toggleCalendarModal())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNav(DashboardView));
