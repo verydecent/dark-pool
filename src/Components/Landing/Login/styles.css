@@ -53,8 +53,8 @@
 .form-button {
   padding: 12px 0;
   border-radius: 6px;
-  background-color: #B5D558;
-  border: 1px solid #B5D558;
+  background-color: var(--green-color);
+  border: 1px solid var(--green-color);
   color: #fff;
   cursor: pointer;
 }

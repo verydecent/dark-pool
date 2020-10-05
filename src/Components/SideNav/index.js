@@ -11,7 +11,7 @@ import {
 
 const adminLink = isAuthenticated() && isAuthenticated.role === 'admin'
   ? (
-    <li style={{ background: history.location.pathname === '/app/admin' ? '#E44B6F' : '' }}>
+    <li style={{ background: history.location.pathname === '/app/admin' ? '#418BCA' : '' }}>
       <Link to='/app/admin'>
         <div className='sidenav-icon' style={{ color: history.location.pathname === '/app/admin' ? '#fff' : '' }}>
           <ChartBar />
@@ -34,7 +34,7 @@ const SideNav = ({
           <Link to='/'><h2>DarkPool</h2></Link>
         </div>
         <ul className='sidenav-links'>
-          <li style={{ background: history.location.pathname === '/app' ? '#E44B6F' : '' }}>
+          <li style={{ background: history.location.pathname === '/app' ? '#418BCA' : '' }}>
             <Link to='/app'>
               <div className='sidenav-icon' style={{ color: history.location.pathname === '/app' ? '#fff' : '' }}>
                 <ChartBar />
@@ -44,7 +44,7 @@ const SideNav = ({
               </span>
             </Link>
           </li>
-          <li style={{ background: history.location.pathname === '/app/tasks' ? '#E44B6F' : '' }}>
+          <li style={{ background: history.location.pathname === '/app/tasks' ? '#418BCA' : '' }}>
             <Link to='/app/tasks'>
               <div className='sidenav-icon' style={{ color: history.location.pathname === '/app/tasks' ? '#fff' : '' }}>
                 <ListUl />
