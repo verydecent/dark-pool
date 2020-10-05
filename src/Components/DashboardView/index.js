@@ -13,6 +13,7 @@ import {
   getTaskCompleted,
   getTaskIncomplete
 } from '../../Utilities/subtaskHelpers';
+import { isAuthenticated } from '../../Utilities/helpers';
 import { connect } from 'react-redux';
 import { resetToCurrentDate, toggleCalendarModal } from '../../Redux/actionCreators';
 import { Calendar } from '../FAIcons';
@@ -114,13 +115,13 @@ class DashboardView extends React.Component {
   }
 
   callTasks = () => {
-    const { userId, dateContext } = this.props;
+    const { dateContext } = this.props;
 
     const newDateContext = moment(Object.assign({}, dateContext));
     const startDate = newDateContext.startOf(this.state.timeFrame).toDate();
     const endDate = newDateContext.endOf(this.state.timeFrame).toDate();
 
-    axios.get(`task/${userId}?start_date=${startDate}&end_date=${endDate}`)
+    axios.get(`task/${isAuthenticated()._id}?start_date=${startDate}&end_date=${endDate}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -294,7 +295,6 @@ class DashboardView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userId: state.userId,
     dateContext: state.dateContext
   }
 }

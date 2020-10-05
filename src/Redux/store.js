@@ -6,8 +6,6 @@ import { isAuthenticated } from '../Utilities/helpers';
 
 const initialState = {
   // Global
-  userId: isAuthenticated() && isAuthenticated()._id,
-  username: isAuthenticated() && isAuthenticated().username,
   dateContext: moment(),
   // Account Modal
   isAccountModalOpen: false,

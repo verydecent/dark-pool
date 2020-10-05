@@ -10,11 +10,9 @@ import {
   NEXT_MONTH,
   SELECT_DATE,
   PREV_DATE,
-  NEXT_DATE,
-  AUTHENTICATE
+  NEXT_DATE
 } from './constants';
 import moment from 'moment';
-import { isAuthenticated } from '../Utilities/helpers';
 
 const toggleAccountModal = state => {
   return {
@@ -117,14 +115,6 @@ const nextDate = state => {
   }
 }
 
-const authenticate = state => {
-  return {
-    ...state,
-    userId: isAuthenticated() && isAuthenticated._id,
-    username: isAuthenticated() && isAuthenticated.username
-  }
-}
-
 function reducer(state, action) {
   switch (action.type) {
     // Account Modal
@@ -166,9 +156,6 @@ function reducer(state, action) {
     }
     case NEXT_DATE: {
       return nextDate(state);
-    }
-    case AUTHENTICATE: {
-      return authenticate(state);
     }
     default: return state
   }

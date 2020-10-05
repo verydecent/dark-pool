@@ -25,8 +25,6 @@ const List = ({
     );
   });
 
-  console.log(TasksMapped)
-
   return (
     <div className='task-view-list'>
       {TasksMapped}

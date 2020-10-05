@@ -34,7 +34,6 @@ class Login extends React.Component {
     })
       .then(response => {
         // Push user to dashboard route
-        console.log('Login Success', response);
         authenticate(response, () => {
           this.setState({ email: '', password: '', buttonText: 'Logging In...' });
           // Push admin to admin protected route

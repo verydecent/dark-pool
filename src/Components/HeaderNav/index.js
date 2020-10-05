@@ -4,18 +4,17 @@ import './styles.css';
 import { connect } from 'react-redux';
 import { toggleAccountModal } from '../../Redux/actionCreators';
 import AccountModal from '../AccountModal';
+import { isAuthenticated } from '../../Utilities/helpers';
 
 const HeaderNav = ({
-  userId,
-  username,
   isAccountModalOpen,
   toggleAccountModal
 }) => {
   return (
     <div className='header-nav'>
-      {isAccountModalOpen && <AccountModal userId={userId} toggleAccountModal={toggleAccountModal} />}
+      {isAccountModalOpen && <AccountModal userId={isAuthenticated()._id} toggleAccountModal={toggleAccountModal} />}
       <div className='header-nav-top'>
-        <span className='header-nav-username'>{username}</span>
+        <span className='header-nav-username'>{isAuthenticated().username}</span>
         <span className='header-nav-user-icon' onClick={toggleAccountModal}>
           <User />
         </span>
@@ -26,8 +25,6 @@ const HeaderNav = ({
 
 const mapStateToProps = state => {
   return {
-    userId: state.userId,
-    username: state.username,
     isAccountModalOpen: state.isAccountModalOpen
   }
 }

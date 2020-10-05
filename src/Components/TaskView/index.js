@@ -11,6 +11,7 @@ import List from './List';
 import { connect } from 'react-redux';
 import CalendarModal from '../CalendarModal';
 import { resetToCurrentDate, toggleCalendarModal, prevDate, nextDate } from '../../Redux/actionCreators';
+import { isAuthenticated } from '../../Utilities/helpers';
 
 class TaskView extends React.Component {
   constructor() {
@@ -44,13 +45,13 @@ class TaskView extends React.Component {
   }
 
   callTasks = () => {
-    const { userId, dateContext } = this.props;
+    const { dateContext } = this.props;
 
     const newDateContext = moment(Object.assign({}, dateContext));
     const startDate = newDateContext.startOf('day').toDate();
     const endDate = newDateContext.endOf('day').toDate();
 
-    axios.get(`task/${userId}?start_date=${startDate}&end_date=${endDate}`)
+    axios.get(`task/${isAuthenticated()._id}?start_date=${startDate}&end_date=${endDate}`)
       .then(response => {
         this.setState({ tasks: response.data });
       })
@@ -86,7 +87,7 @@ class TaskView extends React.Component {
   }
 
   createTask = () => {
-    axios.post(`task/${this.props.userId}`)
+    axios.post(`task/${isAuthenticated()._id}`)
       .then((response) => {
         this.setState(prevState => {
           return {
@@ -319,7 +320,6 @@ class TaskView extends React.Component {
 const mapStateToProps = state => {
   return {
     dateContext: state.dateContext,
-    userId: state.userId,
     isCalendarModalOpen: state.isCalendarModalOpen,
   }
 }
