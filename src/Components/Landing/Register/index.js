@@ -4,6 +4,7 @@ import { isAuthenticated } from '../../../Utilities/helpers';
 import withNav from '../Hoc/withNav';
 import { Redirect, Link } from 'react-router-dom';
 import './styles.css';
+import Wave from 'react-wavify';
 
 class Register extends React.Component {
   constructor() {
@@ -69,67 +70,77 @@ class Register extends React.Component {
     </div>
 
     return (
-      <>
-        {redirect}
-        <div className='register-container-1'>
-          <div className='register-container-2'>
-            <h1 className='register-title'>Register</h1>
-            < form className='' onSubmit={(e) => this.handleSubmit(e)}>
-              <div className='register-action-container-1'>
-                <label className='register-form-label' htmlFor=''>Username</label>
-                <input
-                  className='register-form-input'
-                  name='username'
-                  placeholder='username'
-                  value={username}
-                  type='text'
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              <div className='register-action-container-1'>
-                <label className='register-form-label' htmlFor=''>Email</label>
-                <input
-                  className='register-form-input'
-                  name='email'
-                  placeholder='email'
-                  value={email}
-                  type='text'
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              <div className='register-action-container-1'>
-                <label className='register-form-label' htmlFor=''>Password</label>
-                <input
-                  className='register-form-input'
-                  name='password'
-                  placeholder='password'
-                  value={password}
-                  type='password'
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              <div className='register-action-container-1'>
-                <label className='register-form-label' htmlFor=''>Password Confirm</label>
-                <input
-                  className='register-form-input'
-                  name='passwordConfirm'
-                  placeholder='Password Confirmation'
-                  value={passwordConfirm}
-                  type='password'
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              {passwordConfirmaMessage}
-              <div className='register-action-container-1'>
-                <button className='register-form-button'>{buttonText}</button>
-              </div>
-              <div className='register-action-container-2'>
-                <Link to='/login'>Already registered?</Link>
-              </div>
-            </form>
+      <div className='home-wrapper'>
+        <div className='auth-section'>
+          {redirect}
+          <div className='register-container-1'>
+            <div className='register-container-2'>
+              <h1 className='register-title'>Register</h1>
+              < form className='' onSubmit={(e) => this.handleSubmit(e)}>
+                <div className='register-action-container-1'>
+                  <label className='register-form-label' htmlFor=''>Username</label>
+                  <input
+                    className='register-form-input'
+                    name='username'
+                    placeholder='username'
+                    value={username}
+                    type='text'
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                <div className='register-action-container-1'>
+                  <label className='register-form-label' htmlFor=''>Email</label>
+                  <input
+                    className='register-form-input'
+                    name='email'
+                    placeholder='email'
+                    value={email}
+                    type='text'
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                <div className='register-action-container-1'>
+                  <label className='register-form-label' htmlFor=''>Password</label>
+                  <input
+                    className='register-form-input'
+                    name='password'
+                    placeholder='password'
+                    value={password}
+                    type='password'
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                <div className='register-action-container-1'>
+                  <label className='register-form-label' htmlFor=''>Confirm Password</label>
+                  <input
+                    className='register-form-input'
+                    name='passwordConfirm'
+                    placeholder='Password Confirmation'
+                    value={passwordConfirm}
+                    type='password'
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                {passwordConfirmaMessage}
+                <div className='register-action-container-1'>
+                  <button className='register-form-button'>{buttonText}</button>
+                </div>
+                <div className='register-action-container-2'>
+                  <Link to='/login'>Already registered?</Link>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </>
+        <Wave fill='#418BCA'
+          paused={false}
+          options={{
+            amplitude: 25,
+            speed: .5,
+            points: 3
+          }}
+        />
+      </div>
     );
   }
 }

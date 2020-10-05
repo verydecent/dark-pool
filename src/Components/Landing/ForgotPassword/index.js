@@ -19,7 +19,7 @@ class ForgotPassword extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email } = this.state;
-    
+
     axios.post(`${process.env.API_URL}/auth/forgot-password`, { email })
       .then(response => {
         console.log('Forgot password Request Success', response);
@@ -32,18 +32,20 @@ class ForgotPassword extends React.Component {
   render() {
     const { email } = this.state;
     return (
-      <>
-        <h1>Forgot password</h1>
+      <div className='home-wrapper'>
+        <div className='auth-section'>
+          <h1>Forgot password</h1>
 
-        <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-          <input 
-            name='email'
-            value={email}
-            onChange={(e) => this.handleChange(e)}
-          />
-          <button>Submit</button>
-        </form>
-      </>
+          <form className='' onSubmit={(e) => this.handleSubmit(e)}>
+            <input
+              name='email'
+              value={email}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <button>Submit</button>
+          </form>
+        </div>
+      </div>
     );
   }
 }

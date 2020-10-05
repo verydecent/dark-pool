@@ -21,7 +21,6 @@ const Home = () => {
           </button>
         </Link>
       </div>
-      {/* Waves */}
       <div className='wave-section'>
         <Wave fill='#418BCA'
           paused={false}
