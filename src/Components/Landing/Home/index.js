@@ -14,6 +14,9 @@ const Home = () => {
         <p className='home-description'>
           Brainstorm Organize Reflect
         </p>
+        <button className='home-hero-button'>
+          Register
+        </button>
       </div>
       {/* Waves */}
       <div className='wave-section'>

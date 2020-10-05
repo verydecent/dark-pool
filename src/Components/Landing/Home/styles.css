@@ -14,7 +14,7 @@
 }
 
 .home-hero-section {
-  margin-top: 10%;
+  margin-top: 8%;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -37,10 +37,15 @@
   color: #fff;
 }
 
-.wave-section {
-  /* height: 50%; */
-}
-
-.wave-bottom {
-  /* background-color: */
+.home-hero-button {
+  margin-top: 20px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  width: 130px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  cursor: pointer;
 }
