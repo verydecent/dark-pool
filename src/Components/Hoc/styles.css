@@ -2,7 +2,7 @@
 
 .header-wrapper {
 	margin-left: var(--side-nav-width);
-	background: var(--outer-background-color);
+	/* background: var(--outer-background-color); */
 }
 
 .view-wrapper {

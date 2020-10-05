@@ -9,7 +9,7 @@ const List = ({
   selectTask
 }) => {
 
-  const TasksMapped = tasks.map(task => {
+  const TasksMapped = (tasks ? tasks : []).map(task => {
     return (
       <Task
         // Values
@@ -24,6 +24,8 @@ const List = ({
       />
     );
   });
+
+  console.log(TasksMapped)
 
   return (
     <div className='task-view-list'>

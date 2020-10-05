@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import withNav from '../Hoc/withNav';
+import Wave from 'react-wavify';
 
 class ForgotPassword extends React.Component {
   constructor(props) {
@@ -52,8 +53,18 @@ class ForgotPassword extends React.Component {
               </div>
             </form>
           </div>
-        </div >
-      </div >
+        </div>
+        <div className='wave-section'>
+          <Wave fill='#418BCA'
+            paused={false}
+            options={{
+              amplitude: 25,
+              speed: .5,
+              points: 3
+            }}
+          />
+        </div>
+      </div>
     );
   }
 }

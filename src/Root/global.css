@@ -19,7 +19,8 @@ body {
 
 .root {
   height: 100%;
-  background-color: var(--outer-background-color);
+  background-color: #24292e;
+  /* background-color: var(--outer-background-color); */
 }
 
 @font-face {
