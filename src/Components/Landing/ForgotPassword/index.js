@@ -30,22 +30,30 @@ class ForgotPassword extends React.Component {
   }
 
   render() {
-    const { email } = this.state;
     return (
       <div className='home-wrapper'>
         <div className='auth-section'>
-          <h1>Forgot password</h1>
-
-          <form className='' onSubmit={(e) => this.handleSubmit(e)}>
-            <input
-              name='email'
-              value={email}
-              onChange={(e) => this.handleChange(e)}
-            />
-            <button>Submit</button>
-          </form>
-        </div>
-      </div>
+          <div className='login-container-1'>
+            <h1 className='login-title'>Forgot Password</h1>
+            <form className='' onSubmit={e => this.handleSubmit(e)}>
+              <div className='login-action-container-1'>
+                <label className='form-label' htmlFor=''>Email</label>
+                <input
+                  className='form-input'
+                  name='email'
+                  placeholder='email'
+                  value={this.state.email}
+                  type='text'
+                  onChange={e => this.handleChange(e)}
+                />
+              </div>
+              <div className='login-action-container-1'>
+                <button className='form-button'>Reset</button>
+              </div>
+            </form>
+          </div>
+        </div >
+      </div >
     );
   }
 }
