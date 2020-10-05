@@ -58,6 +58,7 @@ export const authenticate = (response, next) => {
 export const isAuthenticated = () => {
   if (window !== undefined) {
     const cookieChecked = getCookie('token');
+    console.log('cookieChecked', cookieChecked);
 
     if (cookieChecked) {
       if (localStorage.getItem('user')) {
