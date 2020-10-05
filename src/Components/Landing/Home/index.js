@@ -3,6 +3,7 @@ import withNav from '../Hoc/withNav';
 import Register from '../Register';
 import Wave from 'react-wavify';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -14,9 +15,11 @@ const Home = () => {
         <p className='home-description'>
           Brainstorm Organize Reflect
         </p>
-        <button className='home-hero-button'>
-          Register
-        </button>
+        <Link className='home-hero-button' to='/register'>
+          <button>
+            Register
+          </button>
+        </Link>
       </div>
       {/* Waves */}
       <div className='wave-section'>
