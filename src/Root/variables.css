@@ -2,9 +2,12 @@
   --nav-font-color: #D9E1E8;
 
   --header-nav-height: 65px;
-  --header-nav-background-color: #282C37;
 
-  --side-nav-background-color: #313540;
+  --header-nav-background-color: #24292e;
+  /* --header-nav-background-color: #282C37; */
+
+  --side-nav-background-color: #24292e;
+  /* --side-nav-background-color: #313540; */
   --side-nav-width: 200px;
 
   /* Landing */
