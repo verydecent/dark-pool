@@ -38,7 +38,7 @@
 }
 
 .nav-menu-list-item:hover a {
-  color: var(--primary-color);
+  color: var(--green-color);
   transition: 0.4s;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .nav-global-logo:hover a {
-  color: var(--primary-color);
+  color: var(--green-color);
   transition: 0.4s;
 }
 
@@ -66,6 +66,6 @@
 }
 
 #bordered-nav-link:hover {
-  border-color: var(--primary-color);
+  border-color: var(--green-color);
   transition: 0.4s;
 }

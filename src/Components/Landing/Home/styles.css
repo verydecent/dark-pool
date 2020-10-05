@@ -51,8 +51,8 @@
 }
 
 .home-hero-button:hover button {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+  border-color: var(--green-color);
+  color: var(--green-color);
   transition: 0.4s;
 }
 

@@ -96,7 +96,7 @@
 }
 
 .today {
-  border: 3px solid var(--primary-color);
+  border: 3px solid var(--green-color);
   font-weight: 700;
 }
 
