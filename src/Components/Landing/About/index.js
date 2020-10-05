@@ -13,7 +13,7 @@ const About = () => {
           DarkPool is a to-do scheduling app that allows you to track your progress with time graphs
         </p>
         <p className='landing-description'>
-          DarkPool was designed and developed by Wonjae Hwang
+          DarkPool was designed and developed by <a className='landing-links' href='https://www.wonjaehwang.com/' target='_blank'>Wonjae Hwang</a>
         </p>
       </div>
       <div className='wave-section'>

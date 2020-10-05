@@ -91,3 +91,8 @@
   color: #fff;
   font-size: 1.3rem;
 }
+
+.landing-links:hover {
+  transition: 0.3s;
+  color: var(--green-color);
+}
