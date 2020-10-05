@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { isAuthenticated } from '../../../Utilities/helpers';
+import withNav from '../Hoc/withNav';
 import { Redirect, Link } from 'react-router-dom';
 import './styles.css';
 
@@ -134,4 +135,4 @@ class Register extends React.Component {
 }
 
 
-export default Register;
+export default withNav(Register);
