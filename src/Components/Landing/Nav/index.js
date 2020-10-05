@@ -11,8 +11,9 @@ const Nav = () => {
         </div>
         <nav className='nav-menu'>
           <ul className='nav-menu-list'>
-            <li className='nav-menu-list-item'><Link to='/login'>Login</Link></li>
-            <li className='nav-menu-list-item'><Link id='bordered-nav-link' to='/register'>Register</Link></li>
+            <li className='nav-menu-list-item'><Link to='/login'>Home</Link></li>
+            <li className='nav-menu-list-item'><Link to='/login'>About</Link></li>
+            <li className='nav-menu-list-item'><Link id='bordered-nav-link' to='/login'>Login</Link></li>
           </ul>
         </nav>
       </div>
