@@ -30,6 +30,7 @@ class Register extends React.Component {
     // Prevents register-form from refreshing the page
     e.preventDefault();
     const { username, email, password, passwordConfirm } = this.state;
+    console.log('Register API KEY ? =======>', process.env.API_URL)
 
     if (password !== passwordConfirm) {
       this.setState({ doesPasswordConfirm: false });
