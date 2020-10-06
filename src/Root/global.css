@@ -22,7 +22,7 @@ body {
   /* background-color: #24292e; */
   background-color: var(--outer-background-color);
 }
-
+/* 
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -37,7 +37,7 @@ body {
   font-weight: normal;
     src:
       url('../../assets/fonts/Roboto-light.ttf') format('ttf')
-  }
+  } */
 
 @font-face {
   font-family: 'Roboto';
