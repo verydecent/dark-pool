@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/Root/index.js",
   module: {
     rules: [
