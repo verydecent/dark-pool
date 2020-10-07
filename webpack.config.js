@@ -34,13 +34,15 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      // Dynamically access local environment variables based on the environment
-      ENV: JSON.stringify(require(path.join(__dirname, "src", "config", env))),
-      "process.env": {
-        // defaults the environment to development if not specified
-        "NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify('5fa3b9'),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: '1+1',
+      'typeof window': JSON.stringify('object'),
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    })
+    });
   ],
   devServer: {
     contentBase: "./build",
