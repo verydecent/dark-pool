@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: "production",
@@ -33,6 +34,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv(),
+    new HtmlWebPackPlugin({
+      template: "./build/index.html",
+      filename: "./index.html"
+    })
   ],
   devServer: {
     contentBase: "./build",
