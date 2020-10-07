@@ -10,7 +10,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader", "eslint-loader"],
-        query: require('./.babelrc')
+        // query: require('./.babelrc')
       },
       {
         test: /\.css$/i,
