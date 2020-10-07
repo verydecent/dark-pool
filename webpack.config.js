@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv(),
-    new HtmlWebPackPlugin({
+    new HtmlWebpackPlugin({
       template: "./build/index.html",
       filename: "./index.html"
     })
