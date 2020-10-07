@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const Dotenv = require('dotenv-webpack');
-console.log('=====__dirname', __dirname)
+
 module.exports = {
   mode: "production",
   entry: "./src/Root/index.js",
@@ -33,8 +33,13 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv({
-      path: path.resolve(__dirname + '/.env')
+    new webpack.DefinePlugin({
+      // Dynamically access local environment variables based on the environment
+      ENV: JSON.stringify(require(path.join(__dirname, "src", "config", env))),
+      "process.env": {
+        // defaults the environment to development if not specified
+        "NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
+      }
     })
   ],
   devServer: {
