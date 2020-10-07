@@ -32,7 +32,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv()
+    new Dotenv({
+      path: path.resolve(__dirname, './.env')
+    })
   ],
   devServer: {
     contentBase: "./build",
