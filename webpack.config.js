@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const Dotenv = require('dotenv-webpack');
-
+console.log('=====__dirname', __dirname)
 module.exports = {
   mode: "production",
   entry: "./src/Root/index.js",
