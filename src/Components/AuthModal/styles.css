@@ -20,11 +20,11 @@
 .auth-modal-view {
   z-index: 999;
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 460px;
-  height: 150px;
+  width: 310px;
+  height: 200px;
   border-radius: 4px;
   padding-top: var(--modal-top-padding);
   padding-bottom: var(--modal-bottom-padding);
@@ -44,4 +44,6 @@
   justify-content: center;
   padding-top: 35px;
   font-size: 1.6rem;
+  padding-right: 16px;
+  padding-left: var(--modal-horizontal-padding);
 }

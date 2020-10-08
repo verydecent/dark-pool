@@ -50,14 +50,14 @@ class Register extends React.Component {
             password: '',
             passwordConfirm: '',
             buttonText: 'Registered',
-            message: 'Registration Success! Check your email.'
+            message: response.data.message
           });
           this.props.toggleAuthModal();
         })
         .catch(error => {
           console.log('Registration error', error.response);
           this.props.toggleAuthModal();
-          this.setState({ buttonText: 'Register', message: response.message });
+          this.setState({ buttonText: 'Register', message: error.message });
         });
     }
 
