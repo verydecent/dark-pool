@@ -5,6 +5,8 @@ import withNav from '../Hoc/withNav';
 import { Redirect, Link } from 'react-router-dom';
 import './styles.css';
 import Wave from 'react-wavify';
+import AuthModal from '../../AuthModal';
+import { connect } from 'react-redux';
 
 class Register extends React.Component {
   constructor() {
@@ -16,6 +18,7 @@ class Register extends React.Component {
       passwordConfirm: '',
       doesPasswordConfirm: true,
       buttonText: 'Register',
+      message: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,12 +48,15 @@ class Register extends React.Component {
             email: '',
             password: '',
             passwordConfirm: '',
-            buttonText: 'Registered'
-          })
+            buttonText: 'Registered',
+            message: 'Registration Success! Check your email.'
+          });
+          this.props.toggleAuthModal();
         })
         .catch(error => {
           console.log('Registration error', error.response);
-          this.setState({ buttonText: 'Register' });
+          this.props.toggleAuthModal();
+          this.setState({ buttonText: 'Register', message: response.message });
         });
     }
 
@@ -72,6 +78,7 @@ class Register extends React.Component {
 
     return (
       <div className='home-wrapper'>
+        <AuthModal message={this.state.message} />
         <div className='auth-section'>
           {redirect}
           <div className='register-container-1'>
@@ -146,5 +153,10 @@ class Register extends React.Component {
   }
 }
 
+const mapDispatchToState = dispatch => {
+  return {
+    toggleAuthModal: () => dispatch(toggleAuthModal())
+  }
+}
 
-export default withNav(Register);
+export default connect(mapDispatchToState)(withNav(Register));
