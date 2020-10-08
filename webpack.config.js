@@ -36,7 +36,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv(),
     new HtmlWebpackPlugin({
-      favicon: "./src/build/favicon.ico"
+      favicon: __dirname + "/build/favicon.ico"
     })
   ],
   devServer: {
