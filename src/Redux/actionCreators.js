@@ -1,6 +1,7 @@
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
+  TOGGLE_AUTH_MODAL,
   RESET_TO_CURRENT_DATE,
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
@@ -19,6 +20,10 @@ const toggleAccountModal = () => ({
 
 const toggleCalendarModal = () => ({
   type: TOGGLE_CALENDAR_MODAL
+});
+
+const toggleAuthModal = () => ({
+  type: TOGGLE_AUTH_MODAL
 });
 
 const resetToCurrentDate = () => ({
@@ -67,6 +72,7 @@ const nextDate = () => ({
 export {
   toggleAccountModal,
   toggleCalendarModal,
+  toggleAuthModal,
   resetToCurrentDate,
   toggleMonthList,
   changeMonth,
