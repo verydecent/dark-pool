@@ -6,14 +6,19 @@ import './styles.css';
 const AuthModal = ({
   message
 }) => {
-  return (
-    <div className='auth-modal'>
-      <div className='auth-modal-overlay' onClick={this.props.toggleAuthModal}></div>
-      <div className='auth-modal-view'>
-        {message}
+  if (this.props.isAuthModalOpen) {
+    return (
+      <div className='auth-modal'>
+        <div className='auth-modal-overlay' onClick={this.props.toggleAuthModal}></div>
+        <div className='auth-modal-view'>
+          {message}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else {
+    return null;
+  }
 }
 
 const mapStateToProps = state => {
@@ -24,7 +29,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleAuthModal: () => dispatch(toggleAuthModal)
+    toggleAuthModal: () => dispatch(toggleAuthModal())
   }
 }
 

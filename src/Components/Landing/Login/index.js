@@ -5,6 +5,9 @@ import { authenticate, isAuthenticated } from '../../../Utilities/helpers';
 import { Redirect, Link } from 'react-router-dom';
 import './styles.css';
 import Wave from 'react-wavify';
+import { connect } from 'react-redux';
+import { toggleAuthModal } from '../../../Redux/actionCreators';
+import AuthModal from '../../AuthModal';
 
 class Login extends React.Component {
   constructor(props) {
@@ -44,6 +47,7 @@ class Login extends React.Component {
       })
       .catch(error => {
         console.log('Error Logging In', error);
+        this.props.toggleAuthModal();
         this.setState({ buttonText: 'Login' });
       });
   }
@@ -54,6 +58,7 @@ class Login extends React.Component {
 
     return (
       <div className='home-wrapper'>
+        <AuthModal />
         <div className='auth-section'>
           {redirect}
           <div className='login-container-1'>
@@ -104,4 +109,10 @@ class Login extends React.Component {
   }
 }
 
-export default withNav(Login);
+const mapDispatchToState = dispatch => {
+  return {
+    toggleAuthModal: () => dispatch(toggleAuthModal())
+  }
+}
+
+export default connect(null, mapDispatchToState)(withNav(Login));
