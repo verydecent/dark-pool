@@ -1,6 +1,7 @@
 import {
   TOGGLE_ACCOUNT_MODAL,
   TOGGLE_CALENDAR_MODAL,
+  TOGGLE_AUTH_MODAL,
   RESET_TO_CURRENT_DATE,
   TOGGLE_MONTH_LIST,
   CHANGE_MONTH,
@@ -25,6 +26,13 @@ const toggleCalendarModal = state => {
   return {
     ...state,
     isCalendarModalOpen: !state.isCalendarModalOpen
+  }
+}
+
+const toggleAuthModal = state => {
+  return {
+    ...state,
+    isAuthModalOpen: !state.isAuthModalOpen
   }
 }
 
@@ -120,6 +128,10 @@ function reducer(state, action) {
     // Account Modal
     case TOGGLE_ACCOUNT_MODAL: {
       return toggleAccountModal(state);
+    }
+    // Auth Modal
+    case TOGGLE_AUTH_MODAL: {
+      return toggleAuthModal(state);
     }
     // Calendar Modal
     case TOGGLE_CALENDAR_MODAL: {
