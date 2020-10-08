@@ -23,21 +23,21 @@ node ./create-env.js && npm run build
 ## Views
 
 Landing
-![image](https://imgur.com/Kz9D4Si)
+![image](https://i.imgur.com/Kz9D4Si.png)
 
 Task View
-![image](https://imgur.com/Ckl5A0i)
+![image](https://i.imgur.com/Ckl5A0i.png)
 
 Task Modal
-![image](https://imgur.com/gmdw47P)
+![image](https://i.imgur.com/gmdw47P.png)
 
 Graphs
-![image](https://imgur.com/mxhTohZ)
+![image](https://i.imgur.com/mxhTohZ.png)
 
-![image](https://imgur.com/pJP6uz0)
+![image](https://i.imgur.com/pJP6uz0.png)
 
 Calendar Modal
-![image](https://imgur.com/cKaq9T3)
+![image](https://i.imgur.com/cKaq9T3.png)
 
 ## Tech Stack
 
