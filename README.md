@@ -1,15 +1,15 @@
 <!-- @format -->
 
-# [DarkPool.app](https://darkpool.netlify.app)
-DarkPool is a to-do scheduling app that allows you to track your progress with time graphs.
-Users can create, and organize Tasks containing subtasks, and reflect on their progress based on the completion of tasks and subtasks.
-This is repo contains code for the client side, follow this link for the [server](https://github.com/verydecent/dark-pool-server).
+# [Darkpool.app](https://darkpool.netlify.app)
+DarkPool is a to-do scheduling app that allows you to track progress with time graphs.
+Users can create, and organize tasks containing subtasks, and reflect on their progress based on the completion of tasks.
+This is repository contains code for the client side. You can find the server repository [here](https://github.com/verydecent/dark-pool-server).
 
 ## Tech Stack
 
 - [Reactjs](https://reactjs.org)
-- [Reduxjs](https://redux.js.com)
-- [Rechartsjs](https://rechartsjs.org)
+- [Reduxjs](https://redux.js.org)
+- [Recharts](https://recharts.org)
 - [Momentjs](https://momentjs.com)
 - [FontAwesome](https://fontawesome.com)
 
