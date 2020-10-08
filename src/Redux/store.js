@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducer';
 import moment from 'moment';
 import logger from 'redux-logger';
-import { isAuthenticated } from '../Utilities/helpers';
 
 const initialState = {
   // Global
