@@ -160,4 +160,4 @@ const mapDispatchToState = dispatch => {
   }
 }
 
-export default connect(mapDispatchToState)(withNav(Register));
+export default connect(null, mapDispatchToState)(withNav(Register));
