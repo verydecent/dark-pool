@@ -16,6 +16,16 @@ const AuthModal = ({
   );
 }
 
-// const mapStateToProps = state => 
+const mapStateToProps = state => {
+  return {
 
-export default AuthModal;
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthModal);
