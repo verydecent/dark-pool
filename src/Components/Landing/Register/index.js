@@ -7,6 +7,7 @@ import './styles.css';
 import Wave from 'react-wavify';
 import AuthModal from '../../AuthModal';
 import { connect } from 'react-redux';
+import { toggleAuthModal } from '../../../Redux/actionCreators';
 
 class Register extends React.Component {
   constructor() {
