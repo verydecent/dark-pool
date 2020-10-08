@@ -1,7 +1,5 @@
 const webpack = require("webpack");
 const Dotenv = require('dotenv-webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 
 module.exports = {
   mode: "production",
@@ -34,10 +32,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv(),
-    new HtmlWebpackPlugin({
-      favicon: './build/favicon.ico'
-    })
+    new Dotenv()
   ],
   devServer: {
     contentBase: "./build",
