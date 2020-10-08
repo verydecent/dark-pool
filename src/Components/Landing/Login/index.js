@@ -15,7 +15,8 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      buttonText: 'Login'
+      buttonText: 'Login',
+      message: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,7 +49,7 @@ class Login extends React.Component {
       .catch(error => {
         console.log('Error Logging In', error);
         this.props.toggleAuthModal();
-        this.setState({ buttonText: 'Login' });
+        this.setState({ message: error.message, buttonText: 'Login' });
       });
   }
 
@@ -58,7 +59,7 @@ class Login extends React.Component {
 
     return (
       <div className='home-wrapper'>
-        <AuthModal />
+        <AuthModal message={this.state.message} />
         <div className='auth-section'>
           {redirect}
           <div className='login-container-1'>

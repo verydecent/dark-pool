@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleAuthModal } from '../../Redux/actionCreators';
+import { Times } from '../FAIcons';
 import './styles.css';
 
 const AuthModal = ({
@@ -13,7 +14,12 @@ const AuthModal = ({
       <div className='auth-modal'>
         <div className='auth-modal-overlay' onClick={toggleAuthModal}></div>
         <div className='auth-modal-view'>
-          {message}
+          <div className='auth-modal-header'>
+            <Times />
+          </div>
+          <div className='auth-modal-message'>
+            {message}
+          </div>
         </div>
       </div>
     );

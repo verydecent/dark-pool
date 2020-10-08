@@ -20,14 +20,28 @@
 .auth-modal-view {
   z-index: 999;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 360px;
+  width: 460px;
+  height: 150px;
   border-radius: 4px;
-  height: auto;
   padding-top: var(--modal-top-padding);
   padding-bottom: var(--modal-bottom-padding);
   border: 1px solid var(--view-border-color);
   background: var(--view-background-color);
+}
+
+.auth-modal-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 16px;
+}
+
+.auth-modal-message {
+  display: flex;
+  justify-content: center;
+  padding-top: 35px;
+  font-size: 1.6rem;
 }
