@@ -20,6 +20,25 @@ npm run dev
 node ./create-env.js && npm run build
 ```
 
+## Views
+
+Landing
+![image](https://imgur.com/Kz9D4Si)
+
+Task View
+![image](https://imgur.com/Ckl5A0i)
+
+Task Modal
+![image](https://imgur.com/gmdw47P)
+
+Graphs
+![image](https://imgur.com/mxhTohZ)
+
+![image](https://imgur.com/pJP6uz0)
+
+Calendar Modal
+![image](https://imgur.com/cKaq9T3)
+
 ## Tech Stack
 
 - [Reactjs](https://reactjs.org)
