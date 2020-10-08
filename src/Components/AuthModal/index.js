@@ -4,12 +4,14 @@ import { toggleAuthModal } from '../../Redux/actionCreators';
 import './styles.css';
 
 const AuthModal = ({
-  message
+  message,
+  isAuthModalOpen,
+  toggleAuthModal
 }) => {
-  if (this.props.isAuthModalOpen) {
+  if (isAuthModalOpen) {
     return (
       <div className='auth-modal'>
-        <div className='auth-modal-overlay' onClick={this.props.toggleAuthModal}></div>
+        <div className='auth-modal-overlay' onClick={toggleAuthModal}></div>
         <div className='auth-modal-view'>
           {message}
         </div>
