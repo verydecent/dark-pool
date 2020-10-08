@@ -41,15 +41,16 @@ node ./create-env.js && npm run build
 
 ## Tech Stack
 
+##### Frontend
 - [Reactjs](https://reactjs.org)
 - [Reduxjs](https://redux.js.org)
 - [Recharts](https://recharts.org)
 - [Momentjs](https://momentjs.com)
 - [FontAwesome](https://fontawesome.com)
-
 - [Webpack](https://webpack.js.org)
 - [Babeljs](https://babeljs.io)
 
+##### Backend
 - [Nodejs](https://nodejs.org)
 - [Expressjs](https://expressjs.com)
 - [Mongoose](https://mongoosejs.com)
