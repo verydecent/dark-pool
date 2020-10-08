@@ -47,6 +47,7 @@ const Subtask = ({
           value={description}
           name='description'
           onChange={(e) => handleChangeSubtask(e, subtaskId)}
+          onBlur={() => updateSubtask(taskId, subtaskId)}
         />
 
         <div
