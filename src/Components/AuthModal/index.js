@@ -8,7 +8,7 @@ const AuthModal = ({
 }) => {
   return (
     <div className='auth-modal'>
-      <div className='auth-modal-overlay' onClick={() => { }}></div>
+      <div className='auth-modal-overlay' onClick={this.props.toggleAuthModal}></div>
       <div className='auth-modal-view'>
         {message}
       </div>
