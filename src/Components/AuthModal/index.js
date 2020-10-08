@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toggleAuthModal } from '../../Redux/actionCreators';
 import './styles.css';
 
 const AuthModal = ({
@@ -17,13 +18,13 @@ const AuthModal = ({
 
 const mapStateToProps = state => {
   return {
-
+    isAuthModalOpen: state.isAuthModalOpen
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    toggleAuthModal: () => dispatch(toggleAuthModal)
   }
 }
 
