@@ -8,6 +8,8 @@ const initialState = {
   dateContext: moment(),
   // Account Modal
   isAccountModalOpen: false,
+  // Auth Modal
+  isAuthModalOpen: false,
   // Calendar Modal
   isCalendarModalOpen: false,
   isMonthListOpen: false,
