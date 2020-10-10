@@ -16,7 +16,8 @@ class Login extends React.Component {
       email: '',
       password: '',
       buttonText: 'Login',
-      message: ''
+      message: '',
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,26 +32,29 @@ class Login extends React.Component {
     e.preventDefault();
 
     const { email, password } = this.state;
-
-    axios.post(`${process.env.API_URL}/auth/login`, {
-      email,
-      password
-    })
-      .then(response => {
-        // Push user to dashboard route
-        authenticate(response, () => {
-          this.setState({ email: '', password: '', buttonText: 'Logging In...' });
-          // Push admin to admin protected route
-          isAuthenticated() && isAuthenticated().role === 'admin'
-            ? this.props.history.push('/app/admin')
-            : this.props.history.push('/app');
-        });
+    this.props.toggleAuthModal();
+    this.setState({
+      email: '', password: '', buttonText: 'Logging In...', message: 'Logging In...'
+    }, () => {
+      axios.post(`${process.env.API_URL}/auth/login`, {
+        email,
+        password
       })
-      .catch(error => {
-        console.log('Error Logging In', error);
-        this.props.toggleAuthModal();
-        this.setState({ message: error.message, buttonText: 'Login' });
-      });
+        .then(response => {
+          // Push user to dashboard route
+          authenticate(response, () => {
+            // Push admin to admin protected route
+            this.props.toggleAuthModal();
+            isAuthenticated() && isAuthenticated().role === 'admin'
+              ? this.props.history.push('/app/admin')
+              : this.props.history.push('/app');
+          });
+        })
+        .catch(error => {
+          console.log('Error Logging In', error);
+          this.setState({ message: error.message, buttonText: 'Login' });
+        });
+    });
   }
 
   render() {
