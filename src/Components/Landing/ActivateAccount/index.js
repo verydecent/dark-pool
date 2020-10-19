@@ -27,13 +27,10 @@ class ActivateAccount extends React.Component {
 
     axios
       .post(`${process.env.API_URL}/auth/account-activation`, { token })
-      .then((response) => {
-        console.log("Account Activation Success", response);
-        this.setState({ visible: false, buttonText: "Account Activated" });
-      })
-      .catch((error) => {
-        console.log("Account Activation Error", error);
-      });
+      .then((response) =>
+        this.setState({ visible: false, buttonText: "Account Activated" })
+      )
+      .catch((error) => console.log("Account Activation Error", error));
   }
 
   render() {
